@@ -13,13 +13,33 @@ import javax.swing.UIManager;
  * @author User
  */
 public class APURegister extends javax.swing.JFrame {
-
+    String APDir,usertag;
+    int UserType;
     /**
      * Creates new form APURegister
      */
     public APURegister() {
         initComponents();
     }
+    private void getUserType(){
+        UserType = cmbUserType.getSelectedIndex();
+        if(UserType <= 0){
+            usertag = "NONE";
+        }else {
+            switch(UserType){
+                case 1:
+                    usertag = "CM";
+                    break;
+                case 2:
+                    usertag = "TC";
+                    break;
+                default:
+                    usertag = "NONE";
+                    break;
+            }
+        }
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,6 +59,12 @@ public class APURegister extends javax.swing.JFrame {
         txtUsername = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
         cmbUserType = new javax.swing.JComboBox<>();
+        txtUserID = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
+        txtPhoneNumber = new javax.swing.JTextField();
+        cmbGender = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        btnRegister = new javax.swing.JButton();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -103,12 +129,67 @@ public class APURegister extends javax.swing.JFrame {
         cmbUserType.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         cmbUserType.setForeground(new java.awt.Color(237, 237, 237));
         cmbUserType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select User Type", "Centre Manager", "Technician" }));
-        cmbUserType.setBorder(new javax.swing.border.MatteBorder(null));
+        cmbUserType.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 0, 0, new java.awt.Color(237, 237, 237)));
         cmbUserType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbUserTypeActionPerformed(evt);
             }
         });
+
+        txtUserID.setEditable(false);
+        txtUserID.setBackground(new java.awt.Color(68, 68, 68));
+        txtUserID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtUserID.setForeground(new java.awt.Color(237, 237, 237));
+        txtUserID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
+        txtUserID.setCaretColor(new java.awt.Color(237, 237, 237));
+
+        txtEmail.setBackground(new java.awt.Color(68, 68, 68));
+        txtEmail.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtEmail.setForeground(new java.awt.Color(237, 237, 237));
+        txtEmail.setText("Enter your email");
+        txtEmail.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
+        txtEmail.setCaretColor(new java.awt.Color(237, 237, 237));
+        txtEmail.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtEmailFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtEmailFocusLost(evt);
+            }
+        });
+
+        txtPhoneNumber.setBackground(new java.awt.Color(68, 68, 68));
+        txtPhoneNumber.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtPhoneNumber.setForeground(new java.awt.Color(237, 237, 237));
+        txtPhoneNumber.setText("Enter your phone number");
+        txtPhoneNumber.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
+        txtPhoneNumber.setCaretColor(new java.awt.Color(237, 237, 237));
+        txtPhoneNumber.setSelectedTextColor(new java.awt.Color(237, 237, 237));
+        txtPhoneNumber.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtPhoneNumberFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtPhoneNumberFocusLost(evt);
+            }
+        });
+
+        cmbGender.setBackground(new java.awt.Color(68, 68, 68));
+        cmbGender.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        cmbGender.setForeground(new java.awt.Color(237, 237, 237));
+        cmbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Gender", "Male", "Female" }));
+        cmbGender.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 0, 0, new java.awt.Color(237, 237, 237)));
+
+        jLabel1.setBackground(new java.awt.Color(68, 68, 68));
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(237, 237, 237));
+        jLabel1.setText("User Type:");
+
+        btnRegister.setBackground(new java.awt.Color(23, 23, 23));
+        btnRegister.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnRegister.setForeground(new java.awt.Color(237, 237, 237));
+        btnRegister.setText("Register");
+        btnRegister.setBorder(null);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -121,29 +202,50 @@ public class APURegister extends javax.swing.JFrame {
                         .addComponent(lblTitle))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(272, 272, 272)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                            .addComponent(cmbUserType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(115, 115, 115)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtFullName, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                            .addComponent(txtPassword))))
-                .addContainerGap(363, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(cmbUserType, 0, 210, Short.MAX_VALUE)
+                                        .addComponent(txtUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                                        .addComponent(txtFullName, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                                        .addComponent(txtPhoneNumber)))
+                                .addGap(81, 81, 81)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtUserID)
+                                    .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                                    .addComponent(txtEmail)
+                                    .addComponent(cmbGender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                .addContainerGap(397, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addComponent(lblTitle)
-                .addGap(115, 115, 115)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(82, 82, 82)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cmbUserType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtUserID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbUserType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(315, Short.MAX_VALUE))
+                .addGap(59, 59, 59)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -162,51 +264,73 @@ public class APURegister extends javax.swing.JFrame {
 
     private void txtFullNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFullNameFocusGained
         // TODO add your handling code here:
-       if(txtFullName.getText().equals("Enter your full name"))
-      {
+        if (txtFullName.getText().equals("Enter your full name")) {
             txtFullName.setText("");
-       }
+        }
     }//GEN-LAST:event_txtFullNameFocusGained
 
     private void txtFullNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFullNameFocusLost
         // TODO add your handling code here:
-       if(txtFullName.getText().equals(""))
-        {
-           txtFullName.setText("Enter your full name");
+        if (txtFullName.getText().equals("")) {
+            txtFullName.setText("Enter your full name");
         }
     }//GEN-LAST:event_txtFullNameFocusLost
 
     private void txtUsernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsernameFocusGained
         // TODO add your handling code here:
-        if(txtUsername.getText().equals("Enter your username"))
-        {
+        if (txtUsername.getText().equals("Enter your username")) {
             txtUsername.setText("");
         }
     }//GEN-LAST:event_txtUsernameFocusGained
 
     private void txtUsernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsernameFocusLost
         // TODO add your handling code here:
-         if(txtUsername.getText().equals(""))
-        {
+        if (txtUsername.getText().equals("")) {
             txtUsername.setText("Enter your username");
         }
     }//GEN-LAST:event_txtUsernameFocusLost
 
     private void txtPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordFocusGained
-        // TODO add your handling code here:
-            txtUsername.setText("");
+        txtPassword.setText("");
     }//GEN-LAST:event_txtPasswordFocusGained
 
     private void txtPasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordFocusLost
         // TODO add your handling code here:
-            txtUsername.setText("Enter your password");
+        txtPassword.setText("Enter your password");
     }//GEN-LAST:event_txtPasswordFocusLost
 
     private void cmbUserTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbUserTypeActionPerformed
         // TODO add your handling code here:
-      
 
     }//GEN-LAST:event_cmbUserTypeActionPerformed
+
+    private void txtEmailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusGained
+        // TODO add your handling code here:
+        if (txtEmail.getText().equals("Enter your email")) {
+            txtEmail.setText("");
+        }
+    }//GEN-LAST:event_txtEmailFocusGained
+
+    private void txtEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusLost
+        // TODO add your handling code here:
+        if (txtEmail.getText().equals("")) {
+            txtEmail.setText("Enter your email");
+        }
+    }//GEN-LAST:event_txtEmailFocusLost
+
+    private void txtPhoneNumberFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPhoneNumberFocusGained
+        // TODO add your handling code here:
+        if(txtPhoneNumber.getText().equals("Enter your phone number")){
+            txtPhoneNumber.setText("");
+        }
+    }//GEN-LAST:event_txtPhoneNumberFocusGained
+
+    private void txtPhoneNumberFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPhoneNumberFocusLost
+        // TODO add your handling code here:
+        if(txtPhoneNumber.getText().equals("")){
+            txtPhoneNumber.setText("Enter your phone number");
+        }
+    }//GEN-LAST:event_txtPhoneNumberFocusLost
 
     /**
      * @param args the command line arguments
@@ -215,7 +339,7 @@ public class APURegister extends javax.swing.JFrame {
         try {
             UIManager.setLookAndFeel(new FlatDarkLaf());
         } catch (Exception ex) {
-            System.err.println("Failed to initialize LaF");
+            System.err.println("Fail Look and Feel");
         }
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -226,14 +350,20 @@ public class APURegister extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRegister;
+    private javax.swing.JComboBox<String> cmbGender;
     private javax.swing.JComboBox<String> cmbUserType;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFullName;
     private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtPhoneNumber;
+    private javax.swing.JTextField txtUserID;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }
