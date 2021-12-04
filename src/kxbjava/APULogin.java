@@ -6,6 +6,9 @@
 package kxbjava;
 
 import com.formdev.flatlaf.FlatDarkLaf;
+import java.io.File;
+import java.util.Scanner;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 /**
@@ -13,14 +16,42 @@ import javax.swing.UIManager;
  * @author User
  */
 public class APULogin extends javax.swing.JFrame {
-
+    private boolean Username = false, Password = false;
+    private String UserID, UserDir, username;
     /**
      * Creates new form APULogin
      */
     public APULogin() {
         initComponents();
     }
+    private boolean ValidateAccount() {
+        boolean Authenticate = false;
+        try {
+            UserDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
+            String User = txtUsername.getText();
+            String Pass = String.valueOf(txtPassword.getPassword());
+            File usertext = new File(UserDir + "UserProfile.txt");
+            if (!usertext.exists()) {
+                usertext.createNewFile();
+            }
+            Scanner inputFile = new Scanner(usertext);
+            String[] matchedID;
+            while (inputFile.hasNext()) {
+                String lEntry = inputFile.nextLine();
+                matchedID = lEntry.split(":");
+                if (User.equals(matchedID[3]) && Pass.equals(matchedID[4])) {
+                    Authenticate = true;
+                    //UserID = matchedID[0].replace("LB", "");
+                    //username = matchedID[1];
+                }
+            }
+            inputFile.close();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
 
+        }
+        return Authenticate;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,6 +65,7 @@ public class APULogin extends javax.swing.JFrame {
         lblTitle = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
+        btnLogin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,16 +106,29 @@ public class APULogin extends javax.swing.JFrame {
             }
         });
 
+        btnLogin.setBackground(new java.awt.Color(23, 23, 23));
+        btnLogin.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnLogin.setForeground(new java.awt.Color(218, 0, 55));
+        btnLogin.setText("Login");
+        btnLogin.setBorder(null);
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(463, 463, 463)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtUsername)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtUsername)
+                        .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)))
                 .addContainerGap(497, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -95,7 +140,9 @@ public class APULogin extends javax.swing.JFrame {
                 .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(85, 85, 85)
                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(216, Short.MAX_VALUE))
+                .addGap(94, 94, 94)
+                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -136,6 +183,18 @@ public class APULogin extends javax.swing.JFrame {
         } 
     }//GEN-LAST:event_txtPasswordFocusLost
 
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        // TODO add your handling code here:
+        if(ValidateAccount()){
+            JOptionPane.showMessageDialog(null, "Login Successfully! Going to Main Menu", "Authentication Successfully!", JOptionPane.INFORMATION_MESSAGE);
+            new APUHome().setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Authentication failed! Wrong password or username", "Failure of Authentication", JOptionPane.ERROR_MESSAGE);
+        
+        }
+    }//GEN-LAST:event_btnLoginActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -154,6 +213,7 @@ public class APULogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLogin;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JPasswordField txtPassword;
