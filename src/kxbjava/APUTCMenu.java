@@ -69,6 +69,11 @@ public class APUTCMenu extends javax.swing.JFrame {
         btnProfile.setBackground(new java.awt.Color(255, 46, 99));
         btnProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/programmer.png"))); // NOI18N
         btnProfile.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, java.awt.Color.red, null, null));
+        btnProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProfileActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -121,6 +126,12 @@ public class APUTCMenu extends javax.swing.JFrame {
     private void btnCollectPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCollectPaymentActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCollectPaymentActionPerformed
+
+    private void btnProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfileActionPerformed
+        // TODO add your handling code here:
+        new APUUserProfile().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnProfileActionPerformed
 
     /**
      * @param args the command line arguments

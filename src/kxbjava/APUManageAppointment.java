@@ -28,29 +28,135 @@ public class APUManageAppointment extends javax.swing.JFrame {
     private void initComponents() {
 
         pnlApp = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmbTechID = new javax.swing.JComboBox<>();
+        cmbAppID = new javax.swing.JComboBox<>();
+        txtManagerID = new javax.swing.JTextField();
+        txtCustomerID = new javax.swing.JTextField();
+        txtCustName = new javax.swing.JTextField();
+        txtBookDate = new javax.swing.JTextField();
+        txtAppDate = new javax.swing.JTextField();
+        cmbTime = new javax.swing.JComboBox<>();
+        cmbAppliance = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         pnlApp.setBackground(new java.awt.Color(68, 68, 68));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbTechID.setBackground(new java.awt.Color(255, 46, 99));
+        cmbTechID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        cmbTechID.setForeground(new java.awt.Color(237, 237, 237));
+        cmbTechID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Technician ID" }));
+
+        cmbAppID.setBackground(new java.awt.Color(255, 46, 99));
+        cmbAppID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        cmbAppID.setForeground(new java.awt.Color(237, 237, 237));
+        cmbAppID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Appointment ID" }));
+
+        txtManagerID.setEditable(false);
+        txtManagerID.setBackground(new java.awt.Color(68, 68, 68));
+        txtManagerID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtManagerID.setForeground(new java.awt.Color(237, 237, 237));
+        txtManagerID.setText("Manager ID");
+        txtManagerID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
+
+        txtCustomerID.setEditable(false);
+        txtCustomerID.setBackground(new java.awt.Color(68, 68, 68));
+        txtCustomerID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtCustomerID.setForeground(new java.awt.Color(237, 237, 237));
+        txtCustomerID.setText("Customer ID");
+        txtCustomerID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
+
+        txtCustName.setEditable(false);
+        txtCustName.setBackground(new java.awt.Color(68, 68, 68));
+        txtCustName.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtCustName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
+        txtCustName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCustNameActionPerformed(evt);
+            }
+        });
+
+        txtBookDate.setEditable(false);
+        txtBookDate.setBackground(new java.awt.Color(68, 68, 68));
+        txtBookDate.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtBookDate.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
+        txtBookDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBookDateActionPerformed(evt);
+            }
+        });
+
+        txtAppDate.setEditable(false);
+        txtAppDate.setBackground(new java.awt.Color(68, 68, 68));
+        txtAppDate.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtAppDate.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
+        txtAppDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAppDateActionPerformed(evt);
+            }
+        });
+
+        cmbTime.setBackground(new java.awt.Color(255, 46, 99));
+        cmbTime.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        cmbTime.setForeground(new java.awt.Color(237, 237, 237));
+        cmbTime.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Time", "0800", "1000", "1200", "1400", "1600", "1800" }));
+        cmbTime.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 0, 0, new java.awt.Color(0, 0, 0)));
+
+        cmbAppliance.setBackground(new java.awt.Color(255, 46, 99));
+        cmbAppliance.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        cmbAppliance.setForeground(new java.awt.Color(237, 237, 237));
+        cmbAppliance.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Appliance", "Television", "Refrigerator", "Air-conditioner", "Washing Machine", "PC" }));
+        cmbAppliance.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 0, 0, new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout pnlAppLayout = new javax.swing.GroupLayout(pnlApp);
         pnlApp.setLayout(pnlAppLayout);
         pnlAppLayout.setHorizontalGroup(
             pnlAppLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlAppLayout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1034, Short.MAX_VALUE))
+                .addGap(95, 95, 95)
+                .addGroup(pnlAppLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cmbAppliance, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlAppLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(pnlAppLayout.createSequentialGroup()
+                            .addComponent(txtAppDate, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                            .addComponent(cmbTime, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnlAppLayout.createSequentialGroup()
+                            .addComponent(txtCustName, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtBookDate, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnlAppLayout.createSequentialGroup()
+                            .addComponent(txtCustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(35, 35, 35)
+                            .addComponent(txtManagerID))
+                        .addGroup(pnlAppLayout.createSequentialGroup()
+                            .addComponent(cmbAppID, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cmbTechID, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(620, Short.MAX_VALUE))
         );
         pnlAppLayout.setVerticalGroup(
             pnlAppLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlAppLayout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(529, Short.MAX_VALUE))
+                .addGap(90, 90, 90)
+                .addGroup(pnlAppLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmbAppID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbTechID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(57, 57, 57)
+                .addGroup(pnlAppLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtManagerID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(72, 72, 72)
+                .addGroup(pnlAppLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCustName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBookDate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(71, 71, 71)
+                .addGroup(pnlAppLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtAppDate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(61, 61, 61)
+                .addComponent(cmbAppliance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -66,6 +172,18 @@ public class APUManageAppointment extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtCustNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCustNameActionPerformed
+
+    private void txtBookDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBookDateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBookDateActionPerformed
+
+    private void txtAppDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAppDateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAppDateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -103,7 +221,15 @@ public class APUManageAppointment extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cmbAppID;
+    private javax.swing.JComboBox<String> cmbAppliance;
+    private javax.swing.JComboBox<String> cmbTechID;
+    private javax.swing.JComboBox<String> cmbTime;
     private javax.swing.JPanel pnlApp;
+    private javax.swing.JTextField txtAppDate;
+    private javax.swing.JTextField txtBookDate;
+    private javax.swing.JTextField txtCustName;
+    private javax.swing.JTextField txtCustomerID;
+    private javax.swing.JTextField txtManagerID;
     // End of variables declaration//GEN-END:variables
 }

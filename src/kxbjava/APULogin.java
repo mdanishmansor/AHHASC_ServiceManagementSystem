@@ -74,6 +74,16 @@ public class APULogin extends javax.swing.JFrame {
             
         }
     }
+    private void checkUserType(){
+         if (UserID.contains("CM")) {
+                    new APUCMMenu().setVisible(true);
+                    this.dispose();
+                }
+         if(UserID.contains("TC")){
+             new APUTCMenu().setVisible(true);
+             this.dispose();
+         }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -209,8 +219,7 @@ public class APULogin extends javax.swing.JFrame {
         if(ValidateAccount()){
             JOptionPane.showMessageDialog(null, "Login Successfully! Going to Main Menu", "Authentication Successfully!", JOptionPane.INFORMATION_MESSAGE);
            UserSession();
-            new APUHome().setVisible(true);
-            this.dispose();
+           checkUserType();
         } else {
             JOptionPane.showMessageDialog(null, "Authentication failed! Wrong password or username", "Failure of Authentication", JOptionPane.ERROR_MESSAGE);
         

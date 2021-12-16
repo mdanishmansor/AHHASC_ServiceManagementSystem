@@ -20,7 +20,8 @@ import javax.swing.JOptionPane;
  */
 public class APUUserProfile extends javax.swing.JFrame {
     
-    private String UserDir;
+    private String UserDir, UserID;
+    //char userpass;
     /**
      * Creates new form APUUserProfile
      */
@@ -45,7 +46,7 @@ public class APUUserProfile extends javax.swing.JFrame {
         txtFullName = new javax.swing.JButton();
         txtEmail = new javax.swing.JTextField();
         txtUsername = new javax.swing.JTextField();
-        txtPassword = new javax.swing.JPasswordField();
+        PassField = new javax.swing.JPasswordField();
         txtPhoneNumber = new javax.swing.JTextField();
         btnUpdate = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
@@ -60,7 +61,6 @@ public class APUUserProfile extends javax.swing.JFrame {
         lblTitle.setForeground(new java.awt.Color(218, 0, 55));
         lblTitle.setText("User Profile");
 
-        txtUserID.setEditable(false);
         txtUserID.setBackground(new java.awt.Color(68, 68, 68));
         txtUserID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         txtUserID.setForeground(new java.awt.Color(237, 237, 237));
@@ -87,10 +87,10 @@ public class APUUserProfile extends javax.swing.JFrame {
         txtUsername.setForeground(new java.awt.Color(237, 237, 237));
         txtUsername.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
 
-        txtPassword.setBackground(new java.awt.Color(68, 68, 68));
-        txtPassword.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        txtPassword.setForeground(new java.awt.Color(237, 237, 237));
-        txtPassword.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
+        PassField.setBackground(new java.awt.Color(68, 68, 68));
+        PassField.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        PassField.setForeground(new java.awt.Color(237, 237, 237));
+        PassField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
 
         txtPhoneNumber.setBackground(new java.awt.Color(68, 68, 68));
         txtPhoneNumber.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -102,6 +102,11 @@ public class APUUserProfile extends javax.swing.JFrame {
         btnUpdate.setForeground(new java.awt.Color(237, 237, 237));
         btnUpdate.setText("Update");
         btnUpdate.setBorder(null);
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
         btnLogout.setBackground(new java.awt.Color(255, 46, 99));
         btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/logout.png"))); // NOI18N
@@ -125,7 +130,9 @@ public class APUUserProfile extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(498, 498, 498)
                 .addComponent(lblTitle)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnLogout)
+                .addGap(97, 97, 97))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -137,7 +144,7 @@ public class APUUserProfile extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
                                 .addComponent(txtUserID))
-                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(PassField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,22 +153,20 @@ public class APUUserProfile extends javax.swing.JFrame {
                 .addGap(350, 350, 350))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(231, 231, 231))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnLogout)
-                        .addGap(120, 120, 120))))
+                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(231, 231, 231))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(72, 72, 72)
-                .addComponent(lblTitle)
-                .addGap(1, 1, 1)
-                .addComponent(btnLogout)
-                .addGap(41, 41, 41)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addComponent(lblTitle))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(92, 92, 92)
+                        .addComponent(btnLogout)))
+                .addGap(51, 51, 51)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtUserID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -172,7 +177,7 @@ public class APUUserProfile extends javax.swing.JFrame {
                 .addGap(51, 51, 51)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(PassField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
@@ -222,7 +227,7 @@ public class APUUserProfile extends javax.swing.JFrame {
              txtFullName.setText(matchedID[1]);
              txtEmail.setText(matchedID[2]);
              txtUsername.setText(matchedID[3]);
-             txtPassword.setText(matchedID[4]);
+             PassField.setText(matchedID[4]);
              txtPhoneNumber.setText(matchedID[5]);
               switch (matchedID[6]) {
                         case "Male":
@@ -240,87 +245,89 @@ public class APUUserProfile extends javax.swing.JFrame {
             //Logger.getLogger(.class.getName()).log(Level.SEVERE, null, ex);
         }
     } 
-//    private void updateUserInformation(){
-//        
-//        try {
-//            // Check if textfields are empty
-//            emptyFields();
-//            // To get directory  
-//            UserDir = System.getProperty("user.dir") + "\\src\\localdb\\";
-//            // To get the book ID
-//            cID = (String) cbxClientID.getSelectedItem();
-//            // To rename original book.txt to book.bak
-//            File clientOri = new File(saveDir + "client.txt");
-//            File clientBak = new File(saveDir + "clientBak.txt");
-//            // To check if clientBak.txt is present or not
-//            if (!clientBak.exists()){
-//                clientOri.createNewFile();
-//            }
-//            // This is for debugging only!
-//            // JOptionPane.showMessageDialog(null, "renamed");
-//            // This is to rename the existing book.txt to clientBak.txt
-//            clientOri.renameTo(clientBak);
-//            // This is to open, find and replace a specific book record
-//            // Requires temporary file to store current state
-//            // FileWriter to write into a new file called book.txt
-//            FileWriter cd = new FileWriter(saveDir + "client.txt"); 
-//            // PrintWriter to print into book.txt
-//            PrintWriter cdp = new PrintWriter(cd); 
-//            // This is to open and read clientBak.txt 
-//            File clienttxt = new File(saveDir + "clientBak.txt");
-//            // This is to instantiate the file opened earlier
-//            Scanner inputFile = new Scanner(clienttxt);
-//            // This array is to contain all lines
-//            String[] matchedID;
-//            // This is only for debugging!
-//            // boolean itWorked = false;
-//            // Read lines from the file until no more are left.
-//            while (inputFile.hasNext())
-//            {
-//                // This is for debugging only!
-//                // JOptionPane.showMessageDialog(null, "In loop");
-//                // Read the next line.
-//                String bEntry = inputFile.nextLine();
-//                // Split the line by using the delimiterÂ ":" (semicolon) and store into array.
-//                matchedID = bEntry.split(":");
-//                // Check if the read line has current book ID
-//                if (matchedID[0].equals(cspecies + cID)) {
-//                    // Inserting the new information from the text fields into the book line
-//                    matchedID[1] = txtFullName.getText();
-//                    matchedID[2] = txtEmail.getText();
-//                    matchedID[3] = txtUsername.getText();
-//                    matchedID[4] = txtPassword.getText();
-//                    matchedID[5] = txtClientPhoneNumber.getText();
-//                    matchedID[6] = txtClientEmailAddress.getText();
-//                    matchedID[7] = txtClientHomeAddress.getText();
-//                    matchedID[8] = "false";
-//                    // JOptionPane.showMessageDialog(null, "Yes it worked");
-//                }
-//                // Rewrite the new book.txt with values found in clientBak.txt
-//                cdp.println(matchedID[0] + ":" +
-//                            matchedID[1] + ":" +
-//                            matchedID[2] + ":" +
-//                            matchedID[3] + ":" +
-//                            matchedID[4] + ":" +
-//                            matchedID[5] + ":" +
-//                            matchedID[6] + ":" +
-//                            matchedID[7];
-//
-//            }
-//            // Close the clientBak.txt reader
-//            inputFile.close();
-//            // This deletes clientBak.txt
-//            clientBak.delete();
-//            // This closes the book.txt printer 
-//            cdp.close();
-//            JOptionPane.showMessageDialog(null, "Client record has been updated!", "Client updated!", JOptionPane.INFORMATION_MESSAGE);
-//            loadClientID();
-//        } catch (Exception ex) {
-//            highlightEmpty();
-//            JOptionPane.showMessageDialog(null, "Invalid input! Please check your input to proceed.", "Invalid insertion detected!", JOptionPane.ERROR_MESSAGE);
-//        }
-    
+    private void updateUserInformation(){
+        
+        try {
+            // Check if textfields are empty
+            //emptyFields();
+            // To get directory  
+            UserDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
+            // To get the book ID
+            UserID = txtUserID.getText();
+            //char [] userpass = txtPassword.getPassword();
+            String userpass = new String(PassField.getPassword());
+            // To rename original book.txt to book.bak
+            File UserOri = new File(UserDir + "UserProfile.txt");
+            File UserBack = new File(UserDir + "UserProfileBack.txt");
+            // To check if clientBak.txt is present or not
+            if (!UserBack.exists()){
+                UserOri.createNewFile();
+            }
+            // This is for debugging only!
+            // JOptionPane.showMessageDialog(null, "renamed");
+            // This is to rename the existing book.txt to clientBak.txt
+            UserOri.renameTo(UserBack);
+            // This is to open, find and replace a specific book record
+            // Requires temporary file to store current state
+            // FileWriter to write into a new file called book.txt
+            FileWriter cd = new FileWriter(UserDir + "UserProfile.txt"); 
+            // PrintWriter to print into book.txt
+            PrintWriter cdp = new PrintWriter(cd); 
+            // This is to open and read clientBak.txt 
+            File usertxt = new File(UserDir + "UserProfileBack.txt");
+            // This is to instantiate the file opened earlier
+            Scanner inputFile = new Scanner(usertxt);
+            // This array is to contain all lines
+            String[] matchedID;
+            // This is only for debugging!
+            // boolean itWorked = false;
+            // Read lines from the file until no more are left.
+            while (inputFile.hasNext())
+            {
+                // This is for debugging only!
+                // JOptionPane.showMessageDialog(null, "In loop");
+                // Read the next line.
+                String bEntry = inputFile.nextLine();
+                // Split the line by using the delimiterÂ ":" (semicolon) and store into array.
+                matchedID = bEntry.split(":");
+                // Check if the read line has current book ID
+                if (matchedID[0].equals(UserID)) {
+                    // Inserting the new information from the text fields into the book line
+                    matchedID[1] = txtFullName.getText();
+                    matchedID[2] = txtEmail.getText();
+                    matchedID[3] = txtUsername.getText();
+                    matchedID[4].equals(userpass);
+                    matchedID[5] = txtPhoneNumber.getText();
+                    matchedID[6] = (String) cmbGender.getSelectedItem();
+                    matchedID[7] = "true";
+                    //matchedID[8] = "false";
+                    // JOptionPane.showMessageDialog(null, "Yes it worked");
+                }
+                // Rewrite the new book.txt with values found in clientBak.txt
+                cdp.println(matchedID[0] + ":" +
+                            matchedID[1] + ":" +
+                            matchedID[2] + ":" +
+                            matchedID[3] + ":" +
+                            matchedID[4] + ":" +
+                            matchedID[5] + ":" +
+                            matchedID[6] + ":" +
+                            matchedID[7]);
 
+            }
+            // Close the clientBak.txt reader
+            inputFile.close();
+            // This deletes clientBak.txt
+            UserBack.delete();
+            // This closes the book.txt printer 
+            cdp.close();
+            JOptionPane.showMessageDialog(null, "Client record has been updated!", "Client updated!", JOptionPane.INFORMATION_MESSAGE);
+            loadUserProfile();
+        } catch (Exception ex) {
+            //highlightEmpty();
+            //JOptionPane.showMessageDialog(null, "Invalid input! Please check your input to proceed.", "Invalid insertion detected!", JOptionPane.ERROR_MESSAGE);
+        }
+    
+    }
     private void ClearCache(){
         try {  
             UserDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
@@ -344,6 +351,11 @@ public class APUUserProfile extends javax.swing.JFrame {
             this.dispose();        
         }
     }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        updateUserInformation();
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -381,6 +393,7 @@ public class APUUserProfile extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPasswordField PassField;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> cmbGender;
@@ -389,7 +402,6 @@ public class APUUserProfile extends javax.swing.JFrame {
     private javax.swing.JLabel lblTitle;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JButton txtFullName;
-    private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtPhoneNumber;
     private javax.swing.JTextField txtUserID;
     private javax.swing.JTextField txtUsername;

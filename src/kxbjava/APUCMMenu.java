@@ -6,6 +6,8 @@
 package kxbjava;
 
 import com.formdev.flatlaf.FlatDarkLaf;
+import java.io.File;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 /**
@@ -13,13 +15,25 @@ import javax.swing.UIManager;
  * @author User
  */
 public class APUCMMenu extends javax.swing.JFrame {
-
+    private String UserDir;
     /**
      * Creates new form APUCMMenu
      */
     public APUCMMenu() {
         initComponents();
     }
+    
+     private void ClearCache(){
+        try {  
+            UserDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
+            File cache = new File(UserDir + "UserCache.txt");
+            if (cache.exists()) {
+                cache.delete();
+            }
+        } catch (Exception ex) {
+            
+        }
+     }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -32,11 +46,17 @@ public class APUCMMenu extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         btnManageProfile = new javax.swing.JButton();
-        btn = new javax.swing.JButton();
+        btnBookAppointment = new javax.swing.JButton();
+        btnManageAppointment = new javax.swing.JButton();
+        btnProfile = new javax.swing.JButton();
+        btnManagePayment = new javax.swing.JButton();
+        btnManageFeedback2 = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(68, 68, 68));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnManageProfile.setBackground(new java.awt.Color(8, 217, 214));
         btnManageProfile.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -49,32 +69,79 @@ public class APUCMMenu extends javax.swing.JFrame {
                 btnManageProfileActionPerformed(evt);
             }
         });
+        jPanel1.add(btnManageProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 227, 135));
 
-        btn.setText("jButton1");
+        btnBookAppointment.setBackground(new java.awt.Color(8, 217, 214));
+        btnBookAppointment.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnBookAppointment.setForeground(new java.awt.Color(37, 42, 52));
+        btnBookAppointment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/appointments.png"))); // NOI18N
+        btnBookAppointment.setText("Book Appointment");
+        btnBookAppointment.setBorder(null);
+        btnBookAppointment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBookAppointmentActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnBookAppointment, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 140, 227, 135));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(601, 601, 601)
-                        .addComponent(btn))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(235, 235, 235)
-                        .addComponent(btnManageProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(496, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(143, 143, 143)
-                .addComponent(btn)
-                .addGap(32, 32, 32)
-                .addComponent(btnManageProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(293, Short.MAX_VALUE))
-        );
+        btnManageAppointment.setBackground(new java.awt.Color(8, 217, 214));
+        btnManageAppointment.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnManageAppointment.setForeground(new java.awt.Color(37, 42, 52));
+        btnManageAppointment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/manager.png"))); // NOI18N
+        btnManageAppointment.setText("Manage Appointment");
+        btnManageAppointment.setBorder(null);
+        btnManageAppointment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageAppointmentActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnManageAppointment, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 300, 227, 135));
+
+        btnProfile.setBackground(new java.awt.Color(255, 46, 99));
+        btnProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/programmer.png"))); // NOI18N
+        btnProfile.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, java.awt.Color.red, null, null));
+        btnProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProfileActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(1009, 79, -1, -1));
+
+        btnManagePayment.setBackground(new java.awt.Color(8, 217, 214));
+        btnManagePayment.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnManagePayment.setForeground(new java.awt.Color(37, 42, 52));
+        btnManagePayment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/money.png"))); // NOI18N
+        btnManagePayment.setText("Manage Payment");
+        btnManagePayment.setBorder(null);
+        btnManagePayment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManagePaymentActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnManagePayment, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 470, 227, 135));
+
+        btnManageFeedback2.setBackground(new java.awt.Color(8, 217, 214));
+        btnManageFeedback2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnManageFeedback2.setForeground(new java.awt.Color(37, 42, 52));
+        btnManageFeedback2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/feedbackmanage.png"))); // NOI18N
+        btnManageFeedback2.setText("Manage Feedback");
+        btnManageFeedback2.setBorder(null);
+        btnManageFeedback2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageFeedback2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnManageFeedback2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 300, 227, 135));
+
+        btnLogout.setBackground(new java.awt.Color(255, 46, 99));
+        btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/logout.png"))); // NOI18N
+        btnLogout.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, java.awt.Color.red, null, java.awt.Color.red));
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -96,6 +163,36 @@ public class APUCMMenu extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnManageProfileActionPerformed
 
+    private void btnBookAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookAppointmentActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBookAppointmentActionPerformed
+
+    private void btnManageAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageAppointmentActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnManageAppointmentActionPerformed
+
+    private void btnManagePaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManagePaymentActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnManagePaymentActionPerformed
+
+    private void btnManageFeedback2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageFeedback2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnManageFeedback2ActionPerformed
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        int selection = JOptionPane.showConfirmDialog(null, "Logging out. Are you sure to continue?", "Logout", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (selection == JOptionPane.YES_OPTION) {
+            ClearCache();
+            this.dispose();
+        }
+    }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void btnProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfileActionPerformed
+        // TODO add your handling code here:
+        new APUUserProfile().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnProfileActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -114,8 +211,13 @@ public class APUCMMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn;
+    private javax.swing.JButton btnBookAppointment;
+    private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnManageAppointment;
+    private javax.swing.JButton btnManageFeedback2;
+    private javax.swing.JButton btnManagePayment;
     private javax.swing.JButton btnManageProfile;
+    private javax.swing.JButton btnProfile;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
