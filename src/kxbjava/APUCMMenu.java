@@ -41,8 +41,14 @@ public class APUCMMenu extends javax.swing.JFrame {
         btnManageProfile.setBackground(new java.awt.Color(8, 217, 214));
         btnManageProfile.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         btnManageProfile.setForeground(new java.awt.Color(37, 42, 52));
+        btnManageProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/man.png"))); // NOI18N
         btnManageProfile.setText("Manage User Profile");
         btnManageProfile.setBorder(null);
+        btnManageProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageProfileActionPerformed(evt);
+            }
+        });
 
         btn.setText("jButton1");
 
@@ -56,8 +62,8 @@ public class APUCMMenu extends javax.swing.JFrame {
                         .addGap(601, 601, 601)
                         .addComponent(btn))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(281, 281, 281)
-                        .addComponent(btnManageProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(235, 235, 235)
+                        .addComponent(btnManageProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(496, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -65,9 +71,9 @@ public class APUCMMenu extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(143, 143, 143)
                 .addComponent(btn)
-                .addGap(13, 13, 13)
-                .addComponent(btnManageProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(317, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addComponent(btnManageProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(293, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -83,6 +89,12 @@ public class APUCMMenu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnManageProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageProfileActionPerformed
+        // TODO add your handling code here:
+        new APUMUserProfile().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnManageProfileActionPerformed
 
     /**
      * @param args the command line arguments

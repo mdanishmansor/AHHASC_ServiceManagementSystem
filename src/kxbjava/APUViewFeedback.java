@@ -12,12 +12,12 @@ import javax.swing.UIManager;
  *
  * @author User
  */
-public class APUFeedback extends javax.swing.JFrame {
+public class APUViewFeedback extends javax.swing.JFrame {
 
     /**
      * Creates new form APUFeedback
      */
-    public APUFeedback() {
+    public APUViewFeedback() {
         initComponents();
     }
 
@@ -71,7 +71,7 @@ public class APUFeedback extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new APUFeedback().setVisible(true);
+                new APUViewFeedback().setVisible(true);
             }
         });
     }
