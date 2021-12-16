@@ -7,6 +7,8 @@ package kxbjava;
 
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -17,7 +19,7 @@ import javax.swing.UIManager;
  */
 public class APULogin extends javax.swing.JFrame {
     private boolean Username = false, Password = false;
-    private String UserID, UserDir, username;
+    private String UserID, UserDir, username, FileDir, fullname, email, password, phonenumber, gender;
     /**
      * Creates new form APULogin
      */
@@ -41,9 +43,14 @@ public class APULogin extends javax.swing.JFrame {
                 matchedID = lEntry.split(":");
                 if (User.equals(matchedID[3]) && Pass.equals(matchedID[4])) {
                     Authenticate = true;
-                    //UserID = matchedID[0].replace("LB", "");
-                    //username = matchedID[1];
-                }
+                    UserID = matchedID[0];
+                    fullname = matchedID[1];
+                    email = matchedID[2];
+                    username = matchedID[3];
+                    password = matchedID[4];
+                    phonenumber = matchedID[5];
+                    gender = matchedID[6];
+                   }
             }
             inputFile.close();
         } catch (Exception ex) {
@@ -51,6 +58,21 @@ public class APULogin extends javax.swing.JFrame {
 
         }
         return Authenticate;
+    }
+    private void UserSession(){
+         try {
+       FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
+        File cache = new File(FileDir + "UserCache.txt");
+        if (!cache.exists()) {
+            cache.createNewFile();
+        }
+        FileWriter ld = new FileWriter(FileDir + "UserCache.txt", true); 
+        PrintWriter ldp = new PrintWriter(ld);
+        ldp.println(UserID + ":" + fullname + ":" + email + ":" + username + ":" + password + ":" + phonenumber + ":" + gender);
+        ldp.close();
+        } catch (Exception ex) {
+            
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -123,12 +145,11 @@ public class APULogin extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(463, 463, 463)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtUsername)
-                        .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)))
+                    .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                    .addComponent(txtUsername))
                 .addContainerGap(497, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -187,6 +208,7 @@ public class APULogin extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(ValidateAccount()){
             JOptionPane.showMessageDialog(null, "Login Successfully! Going to Main Menu", "Authentication Successfully!", JOptionPane.INFORMATION_MESSAGE);
+           UserSession();
             new APUHome().setVisible(true);
             this.dispose();
         } else {

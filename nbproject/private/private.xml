@@ -4,9 +4,14 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/KxBJava/src/kxbjava/APULogin.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/KxBJava/src/kxbjava/APUCMMenu.java</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/KxBJava/src/kxbjava/APUFeedback.java</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/KxBJava/src/kxbjava/APUBookAppointment.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/KxBJava/src/kxbjava/APUManageUserProfile.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/KxBJava/src/kxbjava/APUProvideFeedback.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/KxBJava/src/kxbjava/APUTCMenu.java</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/KxBJava/src/kxbjava/APUHome.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/KxBJava/src/kxbjava/APUUserProfile.java</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/KxBJava/src/kxbjava/APURegister.java</file>
         </group>
     </open-files>

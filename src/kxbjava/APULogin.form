@@ -45,13 +45,11 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="463" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="btnLogin" min="-2" pref="189" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="lblTitle" min="-2" pref="95" max="-2" attributes="0"/>
-                          <Component id="txtUsername" max="32767" attributes="0"/>
-                          <Component id="txtPassword" alignment="0" pref="210" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="lblTitle" min="-2" pref="95" max="-2" attributes="0"/>
+                      <Component id="txtPassword" alignment="0" pref="210" max="32767" attributes="0"/>
+                      <Component id="txtUsername" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="497" max="32767" attributes="0"/>
               </Group>
