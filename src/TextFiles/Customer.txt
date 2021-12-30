@@ -1,1 +1,1 @@
-CustomerID:CustomerName:PhoneNumber:HomeAddress:DOB:Gender:Email:Status
+CUST00001:dddd:ddddddddddddddddd:ddddddddddd:Female:ddddddddd:dddddddddddddddd:CM00001:false

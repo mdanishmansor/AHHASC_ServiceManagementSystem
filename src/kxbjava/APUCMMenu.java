@@ -52,11 +52,11 @@ public class APUCMMenu extends javax.swing.JFrame {
         btnManagePayment = new javax.swing.JButton();
         btnManageFeedback2 = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
+        btnManageCustomer = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(68, 68, 68));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnManageProfile.setBackground(new java.awt.Color(8, 217, 214));
         btnManageProfile.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -69,7 +69,6 @@ public class APUCMMenu extends javax.swing.JFrame {
                 btnManageProfileActionPerformed(evt);
             }
         });
-        jPanel1.add(btnManageProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 227, 135));
 
         btnBookAppointment.setBackground(new java.awt.Color(8, 217, 214));
         btnBookAppointment.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -82,7 +81,6 @@ public class APUCMMenu extends javax.swing.JFrame {
                 btnBookAppointmentActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBookAppointment, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 140, 227, 135));
 
         btnManageAppointment.setBackground(new java.awt.Color(8, 217, 214));
         btnManageAppointment.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -95,7 +93,6 @@ public class APUCMMenu extends javax.swing.JFrame {
                 btnManageAppointmentActionPerformed(evt);
             }
         });
-        jPanel1.add(btnManageAppointment, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 300, 227, 135));
 
         btnProfile.setBackground(new java.awt.Color(255, 46, 99));
         btnProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/programmer.png"))); // NOI18N
@@ -105,7 +102,6 @@ public class APUCMMenu extends javax.swing.JFrame {
                 btnProfileActionPerformed(evt);
             }
         });
-        jPanel1.add(btnProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(1009, 79, -1, -1));
 
         btnManagePayment.setBackground(new java.awt.Color(8, 217, 214));
         btnManagePayment.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -118,7 +114,6 @@ public class APUCMMenu extends javax.swing.JFrame {
                 btnManagePaymentActionPerformed(evt);
             }
         });
-        jPanel1.add(btnManagePayment, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 470, 227, 135));
 
         btnManageFeedback2.setBackground(new java.awt.Color(8, 217, 214));
         btnManageFeedback2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -131,7 +126,6 @@ public class APUCMMenu extends javax.swing.JFrame {
                 btnManageFeedback2ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnManageFeedback2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 300, 227, 135));
 
         btnLogout.setBackground(new java.awt.Color(255, 46, 99));
         btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/logout.png"))); // NOI18N
@@ -141,7 +135,65 @@ public class APUCMMenu extends javax.swing.JFrame {
                 btnLogoutActionPerformed(evt);
             }
         });
-        jPanel1.add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, -1, -1));
+
+        btnManageCustomer.setBackground(new java.awt.Color(8, 217, 214));
+        btnManageCustomer.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnManageCustomer.setForeground(new java.awt.Color(37, 42, 52));
+        btnManageCustomer.setText("Manage Customer");
+        btnManageCustomer.setBorder(null);
+        btnManageCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageCustomerActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(107, 107, 107)
+                        .addComponent(btnLogout))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(272, 272, 272)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnManageProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnManageFeedback2, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnManagePayment, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(107, 107, 107)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnManageAppointment, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                            .addComponent(btnBookAppointment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnManageCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(176, 176, 176)
+                .addComponent(btnProfile))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnProfile)
+                        .addGap(450, 450, 450))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnLogout)
+                        .addGap(16, 16, 16)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnManageProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBookAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnManageFeedback2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnManageAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnManagePayment, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnManageCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31))))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -193,6 +245,12 @@ public class APUCMMenu extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnProfileActionPerformed
 
+    private void btnManageCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageCustomerActionPerformed
+        // TODO add your handling code here:
+       new APUManageCustomer().setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_btnManageCustomerActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -214,6 +272,7 @@ public class APUCMMenu extends javax.swing.JFrame {
     private javax.swing.JButton btnBookAppointment;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnManageAppointment;
+    private javax.swing.JButton btnManageCustomer;
     private javax.swing.JButton btnManageFeedback2;
     private javax.swing.JButton btnManagePayment;
     private javax.swing.JButton btnManageProfile;

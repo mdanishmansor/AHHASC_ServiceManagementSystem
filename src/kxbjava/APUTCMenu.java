@@ -142,7 +142,6 @@ public class APUTCMenu extends javax.swing.JFrame {
         } catch (Exception ex) {
             System.err.println("Fail Look and Feel");
         }
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

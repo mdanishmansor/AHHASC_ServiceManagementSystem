@@ -5,17 +5,49 @@
  */
 package kxbjava;
 
+import com.formdev.flatlaf.FlatDarkLaf;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import java.time.format.DateTimeFormatter;  
+import java.time.LocalDateTime; 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFrame;
+
 /**
  *
  * @author User
  */
 public class APUManageCustomer extends javax.swing.JFrame {
-
+    
+    private final String CustPrefix = "CUST";
+    private String FileDir, CustID, uID, uUsername;
+    private int newCustID;
+    private DefaultComboBoxModel CustList;
+            
+    
     /**
      * Creates new form APUManageUserProfile
      */
     public APUManageCustomer() {
         initComponents();
+        CustIDIncrementor();
+        setCustomerID();
+        loadUserProfile();
+        initForm();
+        
     }
 
     /**
@@ -28,44 +60,32 @@ public class APUManageCustomer extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        txtCustomerID = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        txtFullName = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
         lblTitle = new javax.swing.JLabel();
         cmbGender = new javax.swing.JComboBox<>();
+        txtPhoneNumber = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txaHomeAddress = new javax.swing.JTextArea();
+        txtManagerID = new javax.swing.JTextField();
+        btnRegister = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        cmbCustID = new javax.swing.JComboBox<>();
+        txtDOB = new javax.swing.JTextField();
+        txtFullName = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(68, 68, 68));
-
-        txtCustomerID.setBackground(new java.awt.Color(68, 68, 68));
-        txtCustomerID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        txtCustomerID.setText("jTextField1");
-
-        jTextField2.setText("jTextField2");
-
-        jTextField3.setText("jTextField3");
-
-        txtFullName.setBackground(new java.awt.Color(68, 68, 68));
-        txtFullName.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        txtFullName.setText("jTextField4");
-
-        jTextField5.setText("jTextField5");
-
-        jTextField6.setText("jTextField6");
-
-        jTextField7.setText("jTextField7");
 
         lblTitle.setBackground(new java.awt.Color(68, 68, 68));
         lblTitle.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(218, 0, 55));
         lblTitle.setText("Customer Management");
 
+        cmbGender.setBackground(new java.awt.Color(8, 217, 214));
         cmbGender.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        cmbGender.setForeground(new java.awt.Color(68, 68, 68));
         cmbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Gender", "Male", "Female" }));
         cmbGender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,70 +93,146 @@ public class APUManageCustomer extends javax.swing.JFrame {
             }
         });
 
+        txtPhoneNumber.setBackground(new java.awt.Color(68, 68, 68));
+        txtPhoneNumber.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtPhoneNumber.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
+
+        txtEmail.setBackground(new java.awt.Color(68, 68, 68));
+        txtEmail.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtEmail.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
+
+        txaHomeAddress.setBackground(new java.awt.Color(68, 68, 68));
+        txaHomeAddress.setColumns(20);
+        txaHomeAddress.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txaHomeAddress.setForeground(new java.awt.Color(237, 237, 237));
+        txaHomeAddress.setRows(5);
+        txaHomeAddress.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(237, 237, 237)));
+        jScrollPane1.setViewportView(txaHomeAddress);
+
+        txtManagerID.setEditable(false);
+        txtManagerID.setBackground(new java.awt.Color(68, 68, 68));
+        txtManagerID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtManagerID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
+
+        btnRegister.setBackground(new java.awt.Color(23, 23, 23));
+        btnRegister.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnRegister.setForeground(new java.awt.Color(237, 237, 237));
+        btnRegister.setText("Register");
+        btnRegister.setBorder(null);
+        btnRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegisterActionPerformed(evt);
+            }
+        });
+
+        btnUpdate.setBackground(new java.awt.Color(23, 23, 23));
+        btnUpdate.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnUpdate.setForeground(new java.awt.Color(237, 237, 237));
+        btnUpdate.setText("Update");
+        btnUpdate.setBorder(null);
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+
+        btnDelete.setBackground(new java.awt.Color(23, 23, 23));
+        btnDelete.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnDelete.setForeground(new java.awt.Color(237, 237, 237));
+        btnDelete.setText("Delete");
+        btnDelete.setBorder(null);
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
+        cmbCustID.setBackground(new java.awt.Color(8, 217, 214));
+        cmbCustID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        cmbCustID.setForeground(new java.awt.Color(68, 68, 68));
+        cmbCustID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Existing Customer" }));
+        cmbCustID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbCustIDActionPerformed(evt);
+            }
+        });
+
+        txtDOB.setBackground(new java.awt.Color(68, 68, 68));
+        txtDOB.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtDOB.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
+
+        txtFullName.setBackground(new java.awt.Color(68, 68, 68));
+        txtFullName.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtFullName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(450, 450, 450)
-                .addComponent(lblTitle)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(142, 142, 142))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(296, 296, 296)
-                        .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(txtCustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(450, 450, 450)
+                        .addComponent(lblTitle))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(57, 57, 57)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(98, 98, 98))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(259, 259, 259)
+                        .addComponent(cmbCustID, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(87, 87, 87)
+                        .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(259, 259, 259)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(57, 57, 57))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(343, 343, 343)
-                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(85, 85, 85))))))
+                            .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(87, 87, 87)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(360, 360, 360)
+                        .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(64, 64, 64)
+                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(70, 70, 70)
+                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(259, 259, 259)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtManagerID, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(87, 87, 87)
+                                .addComponent(txtDOB, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(341, 341, 341))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(69, 69, 69)
                 .addComponent(lblTitle)
-                .addGap(114, 114, 114)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(7, 7, 7)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(83, 83, 83)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(4, 4, 4)
+                        .addComponent(cmbCustID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(61, 61, 61)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(255, Short.MAX_VALUE))
+                        .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(54, 54, 54)
+                        .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDOB, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(62, 62, 62)
+                .addComponent(txtManagerID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -152,39 +248,503 @@ public class APUManageCustomer extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    //<editor-fold defaultstate="collapsed" desc="Methods">
+    private void loadUserProfile(){
+        String[] matchedID = null;
+        FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
+        File usertext = new File(FileDir + "UserCache.txt");
+        Scanner intUser;
+        try {
+            intUser = new Scanner(usertext);
+            while (intUser.hasNext())
+            {
+             String bEntry = intUser.nextLine();
+             matchedID = bEntry.split(":");
+             uID = matchedID[0];
+             uUsername = matchedID[3];
+                }
+            intUser.close();
+        } catch (FileNotFoundException ex) {
+            //Logger.getLogger(.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    private void setCustomerID(){
+        // This is to ensure the entire method have access to borrow matchedID array
+        String[] matchedID = null;
+        CustList = new DefaultComboBoxModel();
+//        String cLabel; // Declared to store title of the selected client type
+//        switch (cspecies) {
+//            case "STA":
+//                cLabel = "Staff";
+//                break;
+//            case "STU":
+//                cLabel = "Student";
+//                break;
+//            default:
+//                cLabel = "Existing";
+//        }
+        // Adding default text
+        CustList.addElement("Select Customer ID");
+        cmbCustID.setModel(CustList);
+        FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
+        // For debugging purpose only
+        // JOptionPane.showMessageDialog(null, bID);
+        File customertxt = new File(FileDir + "Customer.txt");
+        
+        Scanner intCustomer;
+        try {
+            // This part loads all book information
+            intCustomer = new Scanner(customertxt);
+            // This is to increment the discovered client assignment index
+            int i = 0;
+            // Read lines from the file until no more are left.
+            while (intCustomer.hasNext())
+            {
+                // Read the next line.
+                String bEntry = intCustomer.nextLine();
+                // Split the line by using the delimiterÂ ":" (semicolon) and store into array.
+                matchedID = bEntry.split(":");
+//                String temptype = null;
+//                if (matchedID[0].contains("STA")) {
+//                    temptype = "STA";
+//                } else if (matchedID[0].contains("STU")) {
+//                    temptype = "STU";
+//                }
+                // Get the digits out
+//                String preOut = matchedID[0].replace(temptype, "");
+//                // JOptionPane.showMessageDialog(null, preOut);
+//                // Replace the string part with empty digits, leaving only the prefix
+//                String numOut = matchedID[0].replace(preOut, "");
+                // JOptionPane.showMessageDialog(null, numOut);
+                if (i < 200) {
+                    if ("true".equals(matchedID[8]) && matchedID[0].contains("CUST")) {
+                        matchedID[0] = matchedID[0].replace(CustPrefix, "");
+                        CustList.addElement(matchedID[0]);
+                        i++;
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Maximum client entry limit reached! Stopping at 200th record.", "Client list maxed out!", JOptionPane.ERROR_MESSAGE);
+                    break;
+                }
+            }
+            // OptionPane.showMessageDialog(null, i);
+            intCustomer.close();
+            // Check if there are no clients at all for each type
+            if (CustList.getSize() == 1) {
+                CustList.removeAllElements();
+                CustList.addElement("No customer(s) available.");
+            }
+            // Attempt to list all fetched client ID into the list box
+            cmbCustID.setModel(CustList);
+            // Select index 0 as default
+            cmbCustID.setSelectedIndex(0);
+        } catch (FileNotFoundException ex) {
+            //Logger.getLogger(unnamedBorrowMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+     //
+     private void CustIDIncrementor(){
+        // This is to ensure the entire method have access to the matchedID array
+        String[] matchedID = null;
+        // This flag is to check if the while loop is triggered or not. Triggered while loop indicates presence of records but relevance might not
+        boolean hasRecord = false;
+        try {
+            FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
+            // For debugging purpose only
+            // JOptionPane.showMessageDialog(null, bID);
+            File customertxt = new File(FileDir + "Customer.txt");
+            if (!customertxt.exists()) {
+                customertxt.createNewFile();
+            }
+            Scanner inputFile;
+            try {
+                inputFile = new Scanner(customertxt);
+                // Read lines from the file until no more are left.
+                while (inputFile.hasNext())
+                {
+                   // Read the next line.
+                   String bEntry = inputFile.nextLine();
+                   // Split the line by using the delimiterÂ ":" (semicolon) and store into array.
+                   matchedID = bEntry.split(":");
+                   String temptype = null;
+//                   if (matchedID[0].contains("STA")) {
+//                       temptype = "STA";
+//                   } else if (matchedID[0].contains("STU")) {
+//                       temptype = "STU";
+//                   }
+                   matchedID[0] = matchedID[0].replace(CustPrefix, "");
+                   hasRecord = true;
+                }
+                inputFile.close();
+                if (!hasRecord) {
+                    JOptionPane.showMessageDialog(null, "No customer(s) record of any type was found! Restarting database entry.", "Customer database is empty!", JOptionPane.ERROR_MESSAGE);
+                    newCustID = 1;
+                } else {
+                    newCustID = Integer.parseInt(matchedID[0]) + 1;
+                }
+                // JOptionPane.showMessageDialog(null, newClientID);
+            } catch (FileNotFoundException ex) {
+                //Logger.getLogger(unnamedBorrowMenu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+            JOptionPane.showMessageDialog(null, "Invalid input! Customer can only consist of numbers", "Invalid input type!", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+     private void loadCustomerInfo(){
+        // Assigning the cID to the selected index value
+        CustID = (String) cmbCustID.getSelectedItem();
+        // This is to ensure the entire method have access to borrow matchedID array
+        String[] matchedID = null;
+        FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
+        // For debugging purpose only
+        // JOptionPane.showMessageDialog(null, bID);
+        File customertxt = new File(FileDir + "Customer.txt");
+        Scanner intCustomer;
+        try {
+            // This part loads all book information
+            intCustomer = new Scanner(customertxt);
+            // Read lines from the file until no more are left.
+            while (intCustomer.hasNext())
+            {
+                // Read the next line.
+                String bEntry = intCustomer.nextLine();
+                // Split the line by using the delimiter ":" (semicolon) and store into array.
+                matchedID = bEntry.split(":");
+                matchedID[0] = matchedID[0].replace(CustPrefix, "");
+                // JOptionPane.showMessageDialog(null, i);
+                if (cmbCustID.getSelectedItem().equals(matchedID[0])) {
+                    txtFullName.setText(matchedID[1]);
+                    txtPhoneNumber.setText(matchedID[2]);
+                    txaHomeAddress.setText(matchedID[3]);
+                    switch (matchedID[4]) {
+                        case "Male":
+                            cmbGender.setSelectedIndex(1);
+                            break;
+                        case "Female":
+                            cmbGender.setSelectedIndex(2);
+                            break;
+                        default:
+                            cmbGender.setSelectedIndex(1);
+                    }
+                    txtEmail.setText(matchedID[5]);
+                    txtDOB.setText(matchedID[6]);
+                    txtManagerID.setText(matchedID[7]);
+                }
+            }
+            intCustomer.close();
+        } catch (FileNotFoundException ex) {
+           // Logger.getLogger(unnamedBorrowMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+     
+    private void RegisterCustomer(){
+        // Declaring file extension used
+        FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
+        // Formatting ID into formal 6-digit mask
+        DecimalFormat dc = new DecimalFormat("00000");
+        try {
+            // Fetching IDs from the textfields
+            CustID = dc.format(newCustID);
+            // Check if textfields are empty
+            //emptyFields();
+            // Storing Borrowing entries into variables
+            // Checking if gender is unselected
+            if (cmbGender.getSelectedIndex() <= 0) {
+                JOptionPane.showMessageDialog(null, "Gender is unset! Autosetting value to male", "Gender unselected!", JOptionPane.ERROR_MESSAGE);
+                cmbGender.setSelectedIndex(1); // Setting the gender to male which is index 1
+            }
+            String CustFullName = txtFullName.getText();
+            String CustPhoneNumber = txtPhoneNumber.getText();
+            String CustAddress = txaHomeAddress.getText();
+            String CustGender = (String) cmbGender.getSelectedItem();
+            String CustEmail = txtEmail.getText();
+            String CustDOB = txtDOB.getText();
+            // FileWriter and PrintWriter to create and write into book.txt
+            try {
+                // FileWriter to write into a new file called client.txt
+                FileWriter cd = new FileWriter(FileDir + "Customer.txt", true); 
+                // PrintWriter to print into client.txt
+                PrintWriter cdp = new PrintWriter(cd); 
+                // To print the line into Borrowing textfile
+                cdp.println(CustPrefix + CustID + ":" +
+                             CustFullName + ":" +
+                             CustPhoneNumber + ":" +
+                             CustAddress + ":" +
+                             CustGender + ":" +
+                             CustEmail + ":" + 
+                             CustDOB + ":" +
+                             uID + ":" +
+                             "true"); //true boolean indicating the user is exisiting (non-deleted)
+                
+                cdp.close();
+                cd.close();
+                // To display completed borrowing process status
+                JOptionPane.showMessageDialog(null, "Client is successfully added! Press OK to return to client management form.", "Adding client succeeded!", JOptionPane.INFORMATION_MESSAGE);
+                // To refresh new ID 
+                CustIDIncrementor();
+                // JOptionPane.showMessageDialog(null, newClientID);
+                // To reload the client information
+                // Integrate the reload part with combo box implementation of Client ID
+                setCustomerID();
+                // Refresh the currently displayed client with the latest ID
+                cmbCustID.setSelectedIndex(cmbCustID.getItemCount() - 1);
+            } catch (IOException ex) {
+                //Logger.getLogger(unnamedBorrowMenu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        catch (Exception ex) {
+            //highlightEmpty();
+            JOptionPane.showMessageDialog(null, "Invalid input! Please check your input to proceed.", "Invalid insertion detected!", JOptionPane.ERROR_MESSAGE);
+            // Continue with displaying which field was affected. ensure it appears before the mnessagebox
+        }      
+    }
+    private void updateCustomerInfo(){
+        // TODO add your handling code here:
+        try {
+            // Check if textfields are empty
+            //emptyFields();
+            // To get directory  
+            FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
+            // To get the book ID
+            CustID = (String) cmbCustID.getSelectedItem();
+            // To rename original book.txt to book.bak
+            File customerOri = new File(FileDir + "Customer.txt");
+            File customerBack = new File(FileDir + "CustomerBack.txt");
+            // To check if clientBak.txt is present or not
+            if (!customerBack.exists()){
+                customerOri.createNewFile();
+            }
+            // This is for debugging only!
+            // JOptionPane.showMessageDialog(null, "renamed");
+            // This is to rename the existing book.txt to clientBak.txt
+            customerOri.renameTo(customerBack);
+            // This is to open, find and replace a specific book record
+            // Requires temporary file to store current state
+            // FileWriter to write into a new file called book.txt
+            FileWriter cd = new FileWriter(FileDir + "Customer.txt"); 
+            // PrintWriter to print into book.txt
+            PrintWriter cdp = new PrintWriter(cd); 
+            // This is to open and read clientBak.txt 
+            File customertxt = new File(FileDir + "customerBack.txt");
+            // This is to instantiate the file opened earlier
+            Scanner inputFile = new Scanner(customertxt);
+            // This array is to contain all lines
+            String[] matchedID;
+            // This is only for debugging!
+            // boolean itWorked = false;
+            // Read lines from the file until no more are left.
+            while (inputFile.hasNext())
+            {
+                // This is for debugging only!
+                // JOptionPane.showMessageDialog(null, "In loop");
+                // Read the next line.
+                String bEntry = inputFile.nextLine();
+                // Split the line by using the delimiter ":" (semicolon) and store into array.
+                matchedID = bEntry.split(":");
+                // Check if the read line has current book ID
+                if (matchedID[0].equals(CustPrefix + CustID)) {
+                    // Inserting the new information from the text fields into the book line
+                    matchedID[1] = txtFullName.getText();
+                    matchedID[2] = txtPhoneNumber.getText();
+                    matchedID[3] = txaHomeAddress.getText();
+                    matchedID[4] = (String) cmbGender.getSelectedItem();
+                    matchedID[5] = txtEmail.getText();
+                    matchedID[6] = txtDOB.getText();
+                    matchedID[7] = txtManagerID.getText();
+                    matchedID[8] = "true";
+                    // JOptionPane.showMessageDialog(null, "Yes it worked");
+                }
+                // Rewrite the new book.txt with values found in clientBak.txt
+                cdp.println(matchedID[0] + ":" +
+                            matchedID[1] + ":" +
+                            matchedID[2] + ":" +
+                            matchedID[3] + ":" +
+                            matchedID[4] + ":" +
+                            matchedID[5] + ":" +
+                            matchedID[6] + ":" +
+                            matchedID[7] + ":" +
+                            matchedID[8]);
 
+            }
+            // Close the clientBak.txt reader
+            inputFile.close();
+            // This deletes clientBak.txt
+            customerBack.delete();
+            // This closes the book.txt printer 
+            cdp.close();
+            JOptionPane.showMessageDialog(null, "Client record has been updated!", "Client updated!", JOptionPane.INFORMATION_MESSAGE);
+            loadCustomerInfo();
+        } catch (Exception ex) {
+            //highlightEmpty();
+            JOptionPane.showMessageDialog(null, "Invalid input! Please check your input to proceed.", "Invalid insertion detected!", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    private void deleteCustomer(){
+        // TODO add your handling code here:
+        try {
+            // To rename original book.txt to book.bak
+            File customerOri = new File(FileDir + "Customer.txt");
+            File customerBack = new File(FileDir + "CustomerBack.txt");
+            // To check if clientBak.txt is present or not
+            if (!customerBack.exists()){
+                customerOri.createNewFile();
+            }
+            // This is for debugging only!
+            // JOptionPane.showMessageDialog(null, "renamed");
+            // This is to rename the existing book.txt to clientBak.txt
+            customerOri.renameTo(customerBack);
+            // This is to open, find and replace a specific book record
+            // Requires temporary file to store current state
+            // FileWriter to write into a new file called book.txt
+            FileWriter cd = new FileWriter(FileDir + "Customer.txt"); 
+            // PrintWriter to print into book.txt
+            PrintWriter cdp = new PrintWriter(cd); 
+            // This is to open and read clientBak.txt 
+            File customertxt = new File(FileDir + "CustomerBack.txt");
+            // This is to instantiate the file opened earlier
+            Scanner inputFile = new Scanner(customertxt);
+            // This array is to contain all lines
+            String[] matchedID;
+            // This is only for debugging!
+            // boolean itWorked = false;
+            // Read lines from the file until no more are left.
+            while (inputFile.hasNext())
+            {
+                // This is for debugging only!
+                // JOptionPane.showMessageDialog(null, "In loop");
+                // Read the next line.
+                String cEntry = inputFile.nextLine();
+                // Split the line by using the delimiter ":" (semicolon) and store into array.
+                matchedID = cEntry.split(":");
+                // Check if the read line has current book ID
+                if (matchedID[0].equals(CustPrefix + CustID)) {
+                    // Setting the deleted flag to false
+                    matchedID[8] = "false";
+                    // JOptionPane.showMessageDialog(null, "Yes it worked");
+                }
+                // Rewrite the new book.txt with values found in clientBak.txt
+                cdp.println(matchedID[0] + ":" +
+                            matchedID[1] + ":" +
+                            matchedID[2] + ":" +
+                            matchedID[3] + ":" +
+                            matchedID[4] + ":" +
+                            matchedID[5] + ":" +
+                            matchedID[6] + ":" +
+                            matchedID[7] + ":" +
+                            matchedID[8]);
+
+            }
+            // Close the clientBak.txt reader
+            inputFile.close();
+            // This deletes clientBak.txt
+            customerBack.delete();
+            // This closes the book.txt printer 
+            cdp.close();
+            JOptionPane.showMessageDialog(null, "Customer record has been deleted!", "Customer deleted!", JOptionPane.INFORMATION_MESSAGE);
+            
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+
+        }
+    }
+     
+    //Clear session
+    private void ClearCache(){
+        try {  
+            FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
+            File cache = new File(FileDir + "UserCache.txt");
+            if (cache.exists()) {
+                cache.delete();
+            }
+        } catch (Exception ex) {
+            
+        }
+    }
+    
+    //form load method during init of the form
+     private void initForm(){
+        //cbxClientID.setEnabled(false);
+       // btnAdd.setEnabled(false);
+        //btnUpdate.setEnabled(false);
+        //btnDelete.setEnabled(false);
+        // Set the initial value for new book
+       // clientIncrementor();
+        // This anon class handles window closing event
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e){
+                int selection = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Closing Window", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                if (selection == JOptionPane.YES_OPTION) {
+                    ClearCache();
+                    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                } else {
+                    setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+                }
+            }
+        });
+     }
+     
+    //</editor-fold>
+    
+    // <editor-fold defaultstate="collapsed" desc="Button Events">
     private void cmbGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbGenderActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbGenderActionPerformed
 
+    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+        // TODO add your handling code here:
+        RegisterCustomer();
+    }//GEN-LAST:event_btnRegisterActionPerformed
+
+    private void cmbCustIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCustIDActionPerformed
+        // TODO add your handling code here:
+        if (cmbCustID.getSelectedIndex() > 0) {
+            loadCustomerInfo();
+            btnRegister.setEnabled(false);
+            btnUpdate.setEnabled(true);
+            btnDelete.setEnabled(true);
+            
+        } else {
+            // Disabling action buttons when no book is loaded. Add button is still available to accept new book
+            btnRegister.setEnabled(true);
+            btnUpdate.setEnabled(false);
+            btnDelete.setEnabled(false);
+            //txtManagerID.setVisible(false);
+        }
+    }//GEN-LAST:event_cmbCustIDActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        updateCustomerInfo();
+        
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        int selection = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete customer record?", "Deleting customer", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                if (selection == JOptionPane.YES_OPTION) {
+                deleteCustomer();
+                loadCustomerInfo();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Customer record has not been deleted!", "Customer deletion", JOptionPane.INFORMATION_MESSAGE);
+                }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+    //</editor-fold>
+    
+    
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(APUManageCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(APUManageCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(APUManageCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(APUManageCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+          try {
+            UIManager.setLookAndFeel(new FlatDarkLaf());
+        } catch (Exception ex) {
+            System.err.println("Failed to initialize LaF");
         }
-        //</editor-fold>
-        //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -194,15 +754,19 @@ public class APUManageCustomer extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnRegister;
+    private javax.swing.JButton btnUpdate;
+    private javax.swing.JComboBox<String> cmbCustID;
     private javax.swing.JComboBox<String> cmbGender;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTitle;
-    private javax.swing.JTextField txtCustomerID;
+    private javax.swing.JTextArea txaHomeAddress;
+    private javax.swing.JTextField txtDOB;
+    private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFullName;
+    private javax.swing.JTextField txtManagerID;
+    private javax.swing.JTextField txtPhoneNumber;
     // End of variables declaration//GEN-END:variables
 }

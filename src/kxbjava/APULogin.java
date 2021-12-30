@@ -6,6 +6,7 @@
 package kxbjava;
 
 import com.formdev.flatlaf.FlatDarkLaf;
+import com.sun.glass.events.KeyEvent;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
@@ -19,71 +20,14 @@ import javax.swing.UIManager;
  */
 public class APULogin extends javax.swing.JFrame {
     private boolean Username = false, Password = false;
-    private String UserID, UserDir, username, FileDir, fullname, email, password, phonenumber, gender;
+    private String UserID, username, FileDir, fullname, email, password, phonenumber, gender;
     /**
      * Creates new form APULogin
      */
     public APULogin() {
         initComponents();
     }
-    private boolean ValidateAccount() {
-        boolean Authenticate = false;
-        try {
-            UserDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
-            String User = txtUsername.getText();
-            String Pass = String.valueOf(txtPassword.getPassword());
-            File usertext = new File(UserDir + "UserProfile.txt");
-            if (!usertext.exists()) {
-                usertext.createNewFile();
-            }
-            Scanner inputFile = new Scanner(usertext);
-            String[] matchedID;
-            while (inputFile.hasNext()) {
-                String lEntry = inputFile.nextLine();
-                matchedID = lEntry.split(":");
-                if (User.equals(matchedID[3]) && Pass.equals(matchedID[4])) {
-                    Authenticate = true;
-                    UserID = matchedID[0];
-                    fullname = matchedID[1];
-                    email = matchedID[2];
-                    username = matchedID[3];
-                    password = matchedID[4];
-                    phonenumber = matchedID[5];
-                    gender = matchedID[6];
-                   }
-            }
-            inputFile.close();
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex);
-
-        }
-        return Authenticate;
-    }
-    private void UserSession(){
-         try {
-       FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
-        File cache = new File(FileDir + "UserCache.txt");
-        if (!cache.exists()) {
-            cache.createNewFile();
-        }
-        FileWriter ld = new FileWriter(FileDir + "UserCache.txt", true); 
-        PrintWriter ldp = new PrintWriter(ld);
-        ldp.println(UserID + ":" + fullname + ":" + email + ":" + username + ":" + password + ":" + phonenumber + ":" + gender);
-        ldp.close();
-        } catch (Exception ex) {
-            
-        }
-    }
-    private void checkUserType(){
-         if (UserID.contains("CM")) {
-                    new APUCMMenu().setVisible(true);
-                    this.dispose();
-                }
-         if(UserID.contains("TC")){
-             new APUTCMenu().setVisible(true);
-             this.dispose();
-         }
-    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -122,6 +66,11 @@ public class APULogin extends javax.swing.JFrame {
                 txtUsernameFocusLost(evt);
             }
         });
+        txtUsername.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtUsernameKeyReleased(evt);
+            }
+        });
 
         txtPassword.setBackground(new java.awt.Color(68, 68, 68));
         txtPassword.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -135,6 +84,11 @@ public class APULogin extends javax.swing.JFrame {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtPasswordFocusLost(evt);
+            }
+        });
+        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPasswordKeyReleased(evt);
             }
         });
 
@@ -190,6 +144,76 @@ public class APULogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // <editor-fold defaultstate="collapsed" desc="Methods">
+    
+    private boolean ValidateAccount() {
+        boolean Authenticate = false;
+        try {
+            FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
+            String User = txtUsername.getText();
+            String Pass = String.valueOf(txtPassword.getPassword());
+            File usertext = new File(FileDir + "UserProfile.txt");
+            if (!usertext.exists()) {
+                usertext.createNewFile();
+            }
+            Scanner inputFile = new Scanner(usertext);
+            String[] matchedID;
+            while (inputFile.hasNext()) {
+                String lEntry = inputFile.nextLine();
+                matchedID = lEntry.split(":");
+                if (User.equals(matchedID[3]) && Pass.equals(matchedID[4])) {
+                    Authenticate = true;
+                    UserID = matchedID[0];
+                    fullname = matchedID[1];
+                    email = matchedID[2];
+                    username = matchedID[3];
+                    password = matchedID[4];
+                    phonenumber = matchedID[5];
+                    gender = matchedID[6];
+                   }
+            }
+            inputFile.close();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+
+        }
+        return Authenticate;
+    }
+    //Start the session for the user
+    private void UserSession(){
+         try {
+        FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
+        File cache = new File(FileDir + "UserCache.txt");
+        if (!cache.exists()) {
+            cache.createNewFile();
+        }
+        FileWriter ld = new FileWriter(FileDir + "UserCache.txt", true); 
+        PrintWriter ldp = new PrintWriter(ld);
+        ldp.println(UserID + ":" + fullname + ":" + email + ":" + username + ":" + password + ":" + phonenumber + ":" + gender);
+        ldp.close();
+        } catch (Exception ex) {
+            
+        }
+    }
+    
+    //Store the records of the session of the user
+    private void StoreSession(){
+        
+    }
+    
+    private void checkUserType(){
+         if (UserID.contains("CM")) {
+                    new APUCMMenu().setVisible(true);
+                    this.dispose();
+                }
+         if(UserID.contains("TC")){
+             new APUTCMenu().setVisible(true);
+             this.dispose();
+         }
+    }
+    //</editor-fold>
+    
+    
     private void txtUsernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsernameFocusGained
        if (txtUsername.getText().equals("Username")) {
             txtUsername.setText("");
@@ -225,6 +249,34 @@ public class APULogin extends javax.swing.JFrame {
         
         }
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void txtPasswordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            if(ValidateAccount()){
+            JOptionPane.showMessageDialog(null, "Login Successfully! Going to Main Menu", "Authentication Successfully!", JOptionPane.INFORMATION_MESSAGE);
+           UserSession();
+           checkUserType();
+        } else {
+            JOptionPane.showMessageDialog(null, "Authentication failed! Wrong password or username", "Failure of Authentication", JOptionPane.ERROR_MESSAGE);
+        
+        }
+        }
+    }//GEN-LAST:event_txtPasswordKeyReleased
+
+    private void txtUsernameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsernameKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            if(ValidateAccount()){
+            JOptionPane.showMessageDialog(null, "Login Successfully! Going to Main Menu", "Authentication Successfully!", JOptionPane.INFORMATION_MESSAGE);
+           UserSession();
+           checkUserType();
+        } else {
+            JOptionPane.showMessageDialog(null, "Authentication failed! Wrong password or username", "Failure of Authentication", JOptionPane.ERROR_MESSAGE);
+        
+        }
+        }
+    }//GEN-LAST:event_txtUsernameKeyReleased
 
     /**
      * @param args the command line arguments

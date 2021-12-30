@@ -1,2 +1,0 @@
-CM00001:Muhammad Irfan:Irfan@gmail.com:irfan:zafri:0126767890:Male:true
-TC00001:Danish:danish@gmail.com:dan:010101010:Male:true

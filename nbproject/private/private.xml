@@ -5,14 +5,15 @@
         <group>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/KxBJava/src/kxbjava/APULogin.java</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/KxBJava/src/kxbjava/APUCMMenu.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/KxBJava/src/kxbjava/APUFeedback.java</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/KxBJava/src/kxbjava/APUBookAppointment.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/KxBJava/src/kxbjava/APUManageUserProfile.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/KxBJava/src/kxbjava/APUViewFeedback.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/KxBJava/src/kxbjava/APUMUserProfile.java</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/KxBJava/src/kxbjava/APUProvideFeedback.java</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/KxBJava/src/kxbjava/APUTCMenu.java</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/KxBJava/src/kxbjava/APUHome.java</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/KxBJava/src/kxbjava/APUUserProfile.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/KxBJava/src/kxbjava/APURegister.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/KxBJava/src/kxbjava/APUManageCustomer.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/KxBJava/src/kxbjava/APUPaymentHistory.java</file>
         </group>
     </open-files>
 </project-private>
