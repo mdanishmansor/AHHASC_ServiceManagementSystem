@@ -6,6 +6,14 @@
 package kxbjava;
 
 import com.formdev.flatlaf.FlatDarkLaf;
+import java.awt.Color;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 /**
@@ -15,32 +23,18 @@ import javax.swing.UIManager;
 public class APUMUserProfile extends javax.swing.JFrame {
     String APDir,usertag;
     int UserType;
+    private String userSpecies, uID, FileDir;
+    private int newClientID, userType;
+    private DefaultComboBoxModel userList;
     /**
      * Creates new form APURegister
      */
     public APUMUserProfile() {
         initComponents();
-    }
-    private void getUserType(){
-        UserType = cmbUserType.getSelectedIndex();
-        if(UserType <= 0){
-            usertag = "NONE";
-        }else {
-            switch(UserType){
-                case 1:
-                    usertag = "CM";
-                    break;
-                case 2:
-                    usertag = "TC";
-                    break;
-                default:
-                    usertag = "NONE";
-                    break;
-            }
-        }
+        //getUserType();
+        //setUserOption();
     }
     
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -67,6 +61,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
         cmbUserID = new javax.swing.JComboBox<>();
         btnDelete = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
+        txtManagerID = new javax.swing.JTextField();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -168,6 +163,11 @@ public class APUMUserProfile extends javax.swing.JFrame {
                 txtPhoneNumberFocusLost(evt);
             }
         });
+        txtPhoneNumber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPhoneNumberActionPerformed(evt);
+            }
+        });
 
         cmbGender.setBackground(new java.awt.Color(68, 68, 68));
         cmbGender.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -190,6 +190,11 @@ public class APUMUserProfile extends javax.swing.JFrame {
         cmbUserID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         cmbUserID.setForeground(new java.awt.Color(237, 237, 237));
         cmbUserID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select User ID" }));
+        cmbUserID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbUserIDActionPerformed(evt);
+            }
+        });
 
         btnDelete.setBackground(new java.awt.Color(23, 23, 23));
         btnDelete.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -203,6 +208,12 @@ public class APUMUserProfile extends javax.swing.JFrame {
         btnUpdate.setText("Update");
         btnUpdate.setBorder(null);
 
+        txtManagerID.setEditable(false);
+        txtManagerID.setBackground(new java.awt.Color(68, 68, 68));
+        txtManagerID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtManagerID.setForeground(new java.awt.Color(237, 237, 237));
+        txtManagerID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -214,58 +225,61 @@ public class APUMUserProfile extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cmbUserType, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(81, 81, 81)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                                    .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                                    .addComponent(cmbGender, javax.swing.GroupLayout.Alignment.LEADING, 0, 210, Short.MAX_VALUE)
-                                    .addComponent(cmbUserID, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(77, 77, 77)
                                 .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(82, 82, 82)
                                 .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(85, 85, 85)
+                                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cmbUserType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtFullName)
+                                    .addComponent(txtUsername)
+                                    .addComponent(txtPhoneNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                    .addComponent(txtManagerID))
+                                .addGap(77, 77, 77)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cmbUserID, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtEmail)
+                                    .addComponent(txtPassword)
+                                    .addComponent(cmbGender, 0, 250, Short.MAX_VALUE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(456, 456, 456)
                         .addComponent(lblTitle)))
-                .addContainerGap(397, Short.MAX_VALUE))
+                .addContainerGap(321, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(63, 63, 63)
                 .addComponent(lblTitle)
-                .addGap(74, 74, 74)
+                .addGap(49, 49, 49)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(cmbUserType, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(39, 39, 39)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(40, 40, 40)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(cmbUserID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbUserType, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbUserID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addComponent(txtManagerID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(65, 65, 65)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(57, Short.MAX_VALUE))
+                    .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -282,6 +296,149 @@ public class APUMUserProfile extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // <editor-fold defaultstate="collapsed" desc="Methods">
+     private void getUserType(){
+        userType = cmbUserType.getSelectedIndex(); // Get client type
+        if (userType <= 0) { // Will disable the list from any user interaction
+            //ultilblClientID.setText("Load Existing Client:");
+            userSpecies = "NUL";
+        } else { // Will display fields according to selected user type
+            //DZClientIDLbl.setText("Load Existing " + DZClientCmbox.getSelectedItem().toString() + ":");
+            switch (userType){
+                case 1:
+                userSpecies = "CM";
+                break;
+            case 2:
+                userSpecies = "TC";
+                break;
+            default:
+                userSpecies = "NUL";
+                break;
+            }
+        }
+       }
+     private void setUserOption(){
+        // This is to ensure the entire method have access to borrow matchedID array
+        String[] matchedID = null;
+        userList = new DefaultComboBoxModel();
+        String userLabel; // Declared to store title of the selected client type
+        switch (userSpecies) {
+            case "CM":
+                userLabel = "Centre Manager";
+                break;
+            case "TC":
+                userLabel = "Technician";
+                break;
+            default:
+                userLabel = "Existing";
+        }
+        // Adding default text
+        userList.addElement("Select " + userLabel + " ID");
+        cmbUserID.setModel(userList);
+        FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
+        // For debugging purpose only
+        // JOptionPane.showMessageDialog(null, bID);
+        File usertxt = new File(FileDir + "UserProfile.txt");
+        Scanner intUser;
+        try {
+            // This part loads all book information
+            intUser = new Scanner(usertxt);
+            // This is to increment the discovered client assignment index
+            int i = 0;
+            // Read lines from the file until no more are left.
+            while (intUser.hasNext())
+            {
+                // Read the next line.
+                String bEntry = intUser.nextLine();
+                // Split the line by using the delimiter ":" (semicolon) and store into array.
+                matchedID = bEntry.split(":");
+                String temptype = null;
+                if (matchedID[0].contains("CM")) {
+                    temptype = "CM";
+                } else if (matchedID[0].contains("TC")) {
+                    temptype = "TC";
+                }
+                // Get the digits out
+                String preOut = matchedID[0].replace(temptype, "");
+                // JOptionPane.showMessageDialog(null, preOut);
+                // Replace the string part with empty digits, leaving only the prefix
+                String numOut = matchedID[0].replace(preOut, "");
+                // JOptionPane.showMessageDialog(null, numOut);
+                if (i < 200) {
+                    if ("true".equals(matchedID[7]) && userSpecies.equals(numOut)) {
+                        matchedID[0] = matchedID[0].replace(userSpecies, "");
+                        userList.addElement(matchedID[0]);
+                        i++;
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Maximum client entry limit reached! Stopping at 200th record.", "Client list maxed out!", JOptionPane.ERROR_MESSAGE);
+                    break;
+                }
+            }
+            // OptionPane.showMessageDialog(null, i);
+            intUser.close();
+            // Check if there are no clients at all for each type
+            if (userList.getSize() == 1) {
+                userList.removeAllElements();
+                userList.addElement("No client(s) available.");
+            }
+            // Attempt to list all fetched client ID into the list box
+            cmbUserID.setModel(userList);
+            // Select index 0 as default
+            cmbUserID.setSelectedIndex(0);
+        } catch (FileNotFoundException ex) {
+            //Logger.getLogger(DZBorrowing.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      }
+     
+     private void loadUserID(){
+        // Assigning the cID to the selected index value
+        uID = (String) cmbUserID.getSelectedItem();
+        // This is to ensure the entire method have access to borrow matchedID array
+        String[] matchedID = null;
+        FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
+        // For debugging purpose only
+        // JOptionPane.showMessageDialog(null, bID);
+        File usertxt = new File(FileDir + "UserProfile.txt");
+        Scanner intUser;
+        try {
+            // This part loads all book information
+            intUser = new Scanner(usertxt);
+            // Read lines from the file until no more are left.
+            while (intUser.hasNext())
+            {
+                // Read the next line.
+                String bEntry = intUser.nextLine();
+                // Split the line by using the delimiter ":" (semicolon) and store into array.
+                matchedID = bEntry.split(":");
+                matchedID[0] = matchedID[0].replace(userSpecies, "");
+                // JOptionPane.showMessageDialog(null, i);
+                if (cmbUserID.getSelectedItem().equals(matchedID[0])) {
+                    txtFullName.setText(matchedID[1]);
+                    txtEmail.setText(matchedID[2]);
+                    txtUsername.setText(matchedID[3]);
+                    txtPassword.setText(matchedID[4]);
+                    txtPhoneNumber.setText(matchedID[5]);
+                    switch (matchedID[6]) {
+                        case "Male":
+                            cmbGender.setSelectedIndex(1);
+                            break;
+                        case "Female":
+                            cmbGender.setSelectedIndex(2);
+                            break;
+                        default:
+                            cmbGender.setSelectedIndex(1);
+                    }
+                }
+            }
+            intUser.close();
+        } catch (FileNotFoundException ex) {
+          //  Logger.getLogger(unnamedBorrowMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+     // </editor-fold>
+     
+    
     private void txtFullNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFullNameFocusGained
         // TODO add your handling code here:
         if (txtFullName.getText().equals("Enter your full name")) {
@@ -321,6 +478,23 @@ public class APUMUserProfile extends javax.swing.JFrame {
 
     private void cmbUserTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbUserTypeActionPerformed
         // TODO add your handling code here:
+        //deHighlightEmpty();
+       // clearClient();
+        // Loads index with Client type only
+        if (cmbUserType.getSelectedIndex() > 0) {
+            getUserType();
+            setUserOption();
+            cmbUserID.setEnabled(true);
+            btnRegister.setEnabled(true);
+        } else {
+            // Disabling action buttons when no client is loaded. Add button is still available to accept new book
+            getUserType();
+            setUserOption();
+            cmbUserID.setEnabled(false);
+            btnRegister.setEnabled(false);
+            btnUpdate.setEnabled(false);
+            btnDelete.setEnabled(false);
+        }
 
     }//GEN-LAST:event_cmbUserTypeActionPerformed
 
@@ -351,6 +525,20 @@ public class APUMUserProfile extends javax.swing.JFrame {
             txtPhoneNumber.setText("Enter your phone number");
         }
     }//GEN-LAST:event_txtPhoneNumberFocusLost
+
+    private void cmbUserIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbUserIDActionPerformed
+        // TODO add your handling code here:
+        if (cmbUserID.getSelectedIndex() > 0) {
+            cmbUserID.setEnabled(true);
+            loadUserID();
+        } else {
+            //clearBorrowList();
+        }
+    }//GEN-LAST:event_cmbUserIDActionPerformed
+
+    private void txtPhoneNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneNumberActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPhoneNumberActionPerformed
 
     /**
      * @param args the command line arguments
@@ -384,6 +572,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
     private javax.swing.JLabel lblTitle;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFullName;
+    private javax.swing.JTextField txtManagerID;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtPhoneNumber;
     private javax.swing.JTextField txtUsername;

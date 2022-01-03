@@ -1,2 +1,2 @@
-CM00001:Muhammad Ir4un:Irfan@gmail.coma:irfan:kacang:0126767890:Female:true
-TC00001:Danishman:danish@gmail.com:danish:cang2:010101010:Male :true
+CM00001:Muhammad Ir4un:Irfan@gmail.com:irfan:kacang:0126767890:Female:true
+TC00001:Danishman:danish@gmail.com:danish:cang2:010101010:Male:true
