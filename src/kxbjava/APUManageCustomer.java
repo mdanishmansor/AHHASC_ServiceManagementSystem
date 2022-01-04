@@ -250,6 +250,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     //<editor-fold defaultstate="collapsed" desc="Methods">
+    
     private void loadUserProfile(){
         String[] matchedID = null;
         FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";

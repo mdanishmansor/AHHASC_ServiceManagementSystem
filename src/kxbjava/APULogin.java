@@ -161,7 +161,7 @@ public class APULogin extends javax.swing.JFrame {
             while (inputFile.hasNext()) {
                 String lEntry = inputFile.nextLine();
                 matchedID = lEntry.split(":");
-                if (User.equals(matchedID[3]) && Pass.equals(matchedID[4])) {
+                if (User.equals(matchedID[4]) && Pass.equals(matchedID[5])) {
                     Authenticate = true;
                     UserID = matchedID[0];
                     fullname = matchedID[1];

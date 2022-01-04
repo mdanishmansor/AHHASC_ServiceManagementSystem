@@ -131,9 +131,9 @@
                       <Component id="cmbUserType" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                       <Component id="cmbUserID" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="44" max="32767" attributes="0"/>
+                  <EmptySpace pref="32" max="32767" attributes="0"/>
                   <Component id="txtManagerID" min="-2" pref="35" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="txtFullName" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       <Component id="txtEmail" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
@@ -235,7 +235,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ed" green="ed" red="ed" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Enteryourpass"/>
+            <Property name="text" type="java.lang.String" value="PasswordforUser"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
                 <MatteColorBorder bottom="2" left="0" right="0" top="0">
@@ -405,6 +405,9 @@
               <Border info="null"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegisterActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="cmbUserID">
           <Properties>
@@ -463,6 +466,9 @@
               <Border info="null"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUpdateActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtManagerID">
           <Properties>

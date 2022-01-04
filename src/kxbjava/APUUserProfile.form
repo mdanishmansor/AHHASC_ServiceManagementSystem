@@ -60,26 +60,6 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="498" pref="498" max="-2" attributes="0"/>
-                              <Component id="lblTitle" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="394" pref="394" max="-2" attributes="0"/>
-                              <Component id="btnLogout" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="269" pref="269" max="-2" attributes="0"/>
-                              <Component id="txtPassField" min="-2" pref="210" max="-2" attributes="0"/>
-                              <EmptySpace min="131" pref="131" max="-2" attributes="0"/>
-                              <Component id="txtPhoneNumber" min="-2" pref="210" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="269" pref="269" max="-2" attributes="0"/>
-                              <Component id="cmbGender" min="-2" pref="210" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="830" pref="830" max="-2" attributes="0"/>
-                              <Component id="btnUpdate" min="-2" pref="109" max="-2" attributes="0"/>
-                          </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="269" pref="269" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -95,8 +75,30 @@
                                   </Group>
                               </Group>
                           </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="269" pref="269" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="txtPassField" min="-2" pref="210" max="-2" attributes="0"/>
+                                      <EmptySpace min="131" pref="131" max="-2" attributes="0"/>
+                                      <Component id="txtPhoneNumber" min="-2" pref="210" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="cmbGender" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="498" pref="498" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="btnUpdate" min="-2" pref="109" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="lblTitle" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="394" pref="394" max="-2" attributes="0"/>
+                                      <Component id="btnLogout" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
+                      <EmptySpace min="97" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -126,10 +128,11 @@
                           <Component id="txtPassField" min="-2" pref="35" max="-2" attributes="0"/>
                           <Component id="txtPhoneNumber" min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="59" pref="59" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                       <Component id="cmbGender" min="-2" pref="35" max="-2" attributes="0"/>
-                      <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnUpdate" min="-2" pref="48" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
