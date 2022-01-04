@@ -28,11 +28,12 @@ import javax.swing.UIManager;
  * @author User
  */
 public class APUMUserProfile extends javax.swing.JFrame {
-    String APDir,usertag;
+
     int UserType;
-    private String userSpecies, uID, FileDir, managerID ;
+    private String userSpecies, uID, FileDir, managerID;
     private int newUserID, userType;
     private DefaultComboBoxModel userList;
+
     /**
      * Creates new form APURegister
      */
@@ -43,7 +44,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
         //getUserType();
         //setUserOption();
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -316,48 +317,47 @@ public class APUMUserProfile extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // <editor-fold defaultstate="collapsed" desc="Methods">
-    
-    private void loadUserProfile(){
+    private void loadUserProfile() {
         String[] matchedID = null;
         FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
         File usertext = new File(FileDir + "UserCache.txt");
         Scanner intUser;
         try {
             intUser = new Scanner(usertext);
-            while (intUser.hasNext())
-            {
-             String bEntry = intUser.nextLine();
-             matchedID = bEntry.split(":");
-             managerID = matchedID[0];
-            // uUsername = matchedID[3];
-                }
+            while (intUser.hasNext()) {
+                String bEntry = intUser.nextLine();
+                matchedID = bEntry.split(":");
+                managerID = matchedID[0];
+                // uUsername = matchedID[3];
+            }
             intUser.close();
         } catch (FileNotFoundException ex) {
             //Logger.getLogger(.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-     private void getUserType(){
+
+    private void getUserType() {
         userType = cmbUserType.getSelectedIndex(); // Get client type
         if (userType <= 0) { // Will disable the list from any user interaction
             //ultilblClientID.setText("Load Existing Client:");
             userSpecies = "NUL";
         } else { // Will display fields according to selected user type
             //DZClientIDLbl.setText("Load Existing " + DZClientCmbox.getSelectedItem().toString() + ":");
-            switch (userType){
+            switch (userType) {
                 case 1:
-                userSpecies = "CM";
-                break;
-            case 2:
-                userSpecies = "TC";
-                break;
-            default:
-                userSpecies = "NUL";
-                break;
+                    userSpecies = "CM";
+                    break;
+                case 2:
+                    userSpecies = "TC";
+                    break;
+                default:
+                    userSpecies = "NUL";
+                    break;
             }
         }
-       }
-     private void setUserOption(){
+    }
+
+    private void setUserOption() {
         // This is to ensure the entire method have access to borrow matchedID array
         String[] matchedID = null;
         userList = new DefaultComboBoxModel();
@@ -386,8 +386,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
             // This is to increment the discovered client assignment index
             int i = 0;
             // Read lines from the file until no more are left.
-            while (intUser.hasNext())
-            {
+            while (intUser.hasNext()) {
                 // Read the next line.
                 String bEntry = intUser.nextLine();
                 // Split the line by using the delimiter ":" (semicolon) and store into array.
@@ -397,6 +396,8 @@ public class APUMUserProfile extends javax.swing.JFrame {
                     temptype = "CM";
                 } else if (matchedID[0].contains("TC")) {
                     temptype = "TC";
+                    
+
                 }
                 // Get the digits out
                 String preOut = matchedID[0].replace(temptype, "");
@@ -429,9 +430,9 @@ public class APUMUserProfile extends javax.swing.JFrame {
         } catch (FileNotFoundException ex) {
             //Logger.getLogger(DZBorrowing.class.getName()).log(Level.SEVERE, null, ex);
         }
-      }
-     
-     private void loadUserInfo(){
+    }
+
+    private void loadUserInfo() {
         // Assigning the cID to the selected index value
         uID = (String) cmbUserID.getSelectedItem();
         // This is to ensure the entire method have access to borrow matchedID array
@@ -445,8 +446,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
             // This part loads all book information
             intUser = new Scanner(usertxt);
             // Read lines from the file until no more are left.
-            while (intUser.hasNext())
-            {
+            while (intUser.hasNext()) {
                 // Read the next line.
                 String bEntry = intUser.nextLine();
                 // Split the line by using the delimiter ":" (semicolon) and store into array.
@@ -474,10 +474,11 @@ public class APUMUserProfile extends javax.swing.JFrame {
             }
             intUser.close();
         } catch (FileNotFoundException ex) {
-          //  Logger.getLogger(unnamedBorrowMenu.class.getName()).log(Level.SEVERE, null, ex);
+            //  Logger.getLogger(unnamedBorrowMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-     private void userIncrementor(){
+
+    private void userIncrementor() {
         // This is to ensure the entire method have access to the matchedID array
         String[] matchedID = null;
         // This flag is to check if the while loop is triggered or not. Triggered while loop indicates presence of records but relevance might not
@@ -488,23 +489,23 @@ public class APUMUserProfile extends javax.swing.JFrame {
             // JOptionPane.showMessageDialog(null, bID);
             File usertxt = new File(FileDir + "UserProfile.txt");
             Scanner inputFile;
+            String temptype = null;
+
             try {
                 inputFile = new Scanner(usertxt);
                 // Read lines from the file until no more are left.
-                while (inputFile.hasNext())
-                {
-                   // Read the next line.
-                   String bEntry = inputFile.nextLine();
-                   // Split the line by using the delimiter ":" (semicolon) and store into array.
-                   matchedID = bEntry.split(":");
-                   String temptype = null;
-                   if (matchedID[0].contains("CM")) {
-                       temptype = "CM";
-                   } else if (matchedID[0].contains("TC")) {
-                       temptype = "TC";
-                   }
-                   matchedID[0] = matchedID[0].replace(temptype, "");
-                   hasRecord = true;
+                while (inputFile.hasNext()) {
+                    // Read the next line.
+                    String bEntry = inputFile.nextLine();
+                    // Split the line by using the delimiter ":" (semicolon) and store into array.
+                    matchedID = bEntry.split(":");
+                    if (matchedID[0].contains("CM")) {
+                        temptype = "CM";
+                    } else if (matchedID[0].contains("TC")) {
+                        temptype = "TC";
+                    }
+                    matchedID[0] = matchedID[0].replace(temptype, "");
+                    hasRecord = true;
                 }
                 inputFile.close();
                 if (!hasRecord) {
@@ -512,26 +513,84 @@ public class APUMUserProfile extends javax.swing.JFrame {
                     newUserID = 1;
                 } else {
                     newUserID = Integer.parseInt(matchedID[0]) + 1;
+                    System.out.println("Check new id:" + newUserID);
                 }
                 // JOptionPane.showMessageDialog(null, newClientID);
             } catch (FileNotFoundException ex) {
-               // Logger.getLogger(unnamedBorrowMenu.class.getName()).log(Level.SEVERE, null, ex);
+                // Logger.getLogger(unnamedBorrowMenu.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
             JOptionPane.showMessageDialog(null, "Invalid input! Book ID can only consist of numbers", "Invalid input type!", JOptionPane.ERROR_MESSAGE);
         }
     }
-     
-    private void registerUserInfo(){
+
+    private int userIncrementor(String selecteduserType) {
+        // This is to ensure the entire method have access to the matchedID array
+        String[] matchedID = null;
+        // This flag is to check if the while loop is triggered or not. Triggered while loop indicates presence of records but relevance might not
+        boolean hasRecord = false;
+        int userCount[] = {0, 0};
+        try {
+            FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
+            // For debugging purpose only
+            // JOptionPane.showMessageDialog(null, bID);
+            File usertxt = new File(FileDir + "UserProfile.txt");
+            Scanner inputFile;
+            String temptype = null;
+
+            try {
+                inputFile = new Scanner(usertxt);
+                // Read lines from the file until no more are left.
+                while (inputFile.hasNext()) {
+                    // Read the next line.
+                    String bEntry = inputFile.nextLine();
+                    // Split the line by using the delimiter ":" (semicolon) and store into array.
+                    matchedID = bEntry.split(":");
+                    if (matchedID[0].contains("CM")) {
+                        temptype = "CM";
+                        userCount[0]++;
+                    } else if (matchedID[0].contains("TC")) {
+                        temptype = "TC";
+                        userCount[1]++;
+                    }
+                    matchedID[0] = matchedID[0].replace(temptype, "");
+                    hasRecord = true;
+                }
+                inputFile.close();
+                if (!hasRecord) {
+                    JOptionPane.showMessageDialog(null, "No client(s) record of any type was found! Restarting database entry.", "Client database is empty!", JOptionPane.ERROR_MESSAGE);
+                    newUserID = 1;
+                } else {
+                    newUserID = Integer.parseInt(matchedID[0]) + 1;
+                    System.out.println("Check new id:" + newUserID);
+                }
+
+                // JOptionPane.showMessageDialog(null, newClientID);
+            } catch (FileNotFoundException ex) {
+                // Logger.getLogger(unnamedBorrowMenu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+            JOptionPane.showMessageDialog(null, "Invalid input! Book ID can only consist of numbers", "Invalid input type!", JOptionPane.ERROR_MESSAGE);
+        }
+
+        if (selecteduserType.equals("CM")) {
+            return userCount[0] + 1;
+        } else {
+            return userCount[1] + 1;
+        }
+    }
+
+    private void registerUserInfo() {
         // Declaring file extension used
         FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
         // Formatting ID into formal 6-digit mask
         DecimalFormat dc = new DecimalFormat("00000");
         try {
             // Fetching IDs from the textfields
-            uID = dc.format(newUserID);
+            uID = dc.format(userIncrementor(userSpecies));
             // Check if textfields are empty
             //emptyFields();
             // Storing Borrowing entries into variables
@@ -543,7 +602,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
             if (cmbUserType.getSelectedIndex() <= 0) {
                 JOptionPane.showMessageDialog(null, "User type is unset! Autosetting value to Centre Manager", "User type unselected!", JOptionPane.ERROR_MESSAGE);
                 cmbUserType.setSelectedIndex(1); // Setting the client type to staff which is index 1
-                
+
             }
             String userFullName = txtFullName.getText();
             String userEmail = txtEmail.getText();
@@ -554,24 +613,24 @@ public class APUMUserProfile extends javax.swing.JFrame {
             // FileWriter and PrintWriter to create and write into book.txt
             try {
                 // FileWriter to write into a new file called client.txt
-                FileWriter cd = new FileWriter(FileDir + "UserProfile.txt", true); 
+                FileWriter cd = new FileWriter(FileDir + "UserProfile.txt", true);
                 // PrintWriter to print into client.txt
-                PrintWriter cdp = new PrintWriter(cd); 
+                PrintWriter cdp = new PrintWriter(cd);
                 // To print the line into Borrowing textfile
-                cdp.println(userSpecies + uID + ":" +
-                             managerID + ":" +
-                             userFullName + ":" +
-                             userEmail + ":" +
-                             userUsername + ":" +
-                             userPassword + ":" +
-                             userPhoneNumber + ":" + 
-                             userGender + ":" +
-                             "true"); // false to indicate hasn't been deleted status
+                cdp.println(userSpecies + uID + ":"
+                        + managerID + ":"
+                        + userFullName + ":"
+                        + userEmail + ":"
+                        + userUsername + ":"
+                        + userPassword + ":"
+                        + userPhoneNumber + ":"
+                        + userGender + ":"
+                        + "true"); // false to indicate hasn't been deleted status
                 cdp.close();
                 // To display completed borrowing process status
                 JOptionPane.showMessageDialog(null, userSpecies + uID + " is successfully added! Press OK to return to user management form.", "Adding user succeeded!", JOptionPane.INFORMATION_MESSAGE);
                 // To refresh new ID 
-                userIncrementor();
+                //    userIncrementor();
                 // JOptionPane.showMessageDialog(null, newClientID);
                 // To reload the client information
                 // Integrate the reload part with combo box implementation of Client ID
@@ -579,17 +638,16 @@ public class APUMUserProfile extends javax.swing.JFrame {
                 // Refresh the currently displayed client with the latest ID
                 cmbUserID.setSelectedIndex(cmbUserID.getItemCount() - 1);
             } catch (IOException ex) {
-               // Logger.getLogger(unnamedBorrowMenu.class.getName()).log(Level.SEVERE, null, ex);
+                // Logger.getLogger(unnamedBorrowMenu.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-        catch (Exception ex) {
-          //  highlightEmpty();
+        } catch (Exception ex) {
+            //  highlightEmpty();
             JOptionPane.showMessageDialog(null, "Invalid input! Please check your input to proceed.", "Invalid insertion detected!", JOptionPane.ERROR_MESSAGE);
             // Continue with displaying which field was affected. ensure it appears before the mnessagebox
-        }      
+        }
     }
-    
-      private void clearUser(){
+
+    private void clearUser() {
         // To clean up previous or default values from fields
         txtManagerID.setText("");
         txtFullName.setText("");
@@ -600,8 +658,8 @@ public class APUMUserProfile extends javax.swing.JFrame {
         cmbGender.setSelectedIndex(0);
         uID = "";
     }
-      
-    private void updateUserInfo(){
+
+    private void updateUserInfo() {
         // TODO add your handling code here:
         try {
             // Check if textfields are empty
@@ -614,7 +672,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
             File userOri = new File(FileDir + "UserProfile.txt");
             File userBack = new File(FileDir + "UserProfileBack.txt");
             // To check if clientBak.txt is present or not
-            if (!userBack.exists()){
+            if (!userBack.exists()) {
                 userOri.createNewFile();
             }
             // This is for debugging only!
@@ -624,9 +682,9 @@ public class APUMUserProfile extends javax.swing.JFrame {
             // This is to open, find and replace a specific book record
             // Requires temporary file to store current state
             // FileWriter to write into a new file called book.txt
-            FileWriter cd = new FileWriter(FileDir + "UserProfile.txt"); 
+            FileWriter cd = new FileWriter(FileDir + "UserProfile.txt");
             // PrintWriter to print into book.txt
-            PrintWriter cdp = new PrintWriter(cd); 
+            PrintWriter cdp = new PrintWriter(cd);
             // This is to open and read clientBak.txt 
             File usertxt = new File(FileDir + "UserProfileBack.txt");
             // This is to instantiate the file opened earlier
@@ -636,8 +694,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
             // This is only for debugging!
             // boolean itWorked = false;
             // Read lines from the file until no more are left.
-            while (inputFile.hasNext())
-            {
+            while (inputFile.hasNext()) {
                 // This is for debugging only!
                 // JOptionPane.showMessageDialog(null, "In loop");
                 // Read the next line.
@@ -658,15 +715,15 @@ public class APUMUserProfile extends javax.swing.JFrame {
                     // JOptionPane.showMessageDialog(null, "Yes it worked");
                 }
                 // Rewrite the new book.txt with values found in clientBak.txt
-                cdp.println(matchedID[0] + ":" +
-                            matchedID[1] + ":" +
-                            matchedID[2] + ":" +
-                            matchedID[3] + ":" +
-                            matchedID[4] + ":" +
-                            matchedID[5] + ":" +
-                            matchedID[6] + ":" +
-                            matchedID[7] + ":" +
-                            matchedID[8]);
+                cdp.println(matchedID[0] + ":"
+                        + matchedID[1] + ":"
+                        + matchedID[2] + ":"
+                        + matchedID[3] + ":"
+                        + matchedID[4] + ":"
+                        + matchedID[5] + ":"
+                        + matchedID[6] + ":"
+                        + matchedID[7] + ":"
+                        + matchedID[8]);
 
             }
             // Close the clientBak.txt reader
@@ -682,18 +739,20 @@ public class APUMUserProfile extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Invalid input! Please check your input to proceed.", "Invalid insertion detected!", JOptionPane.ERROR_MESSAGE);
         }
     }
-    private void ClearCache(){
-        try {  
+
+    private void ClearCache() {
+        try {
             FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
             File cache = new File(FileDir + "UserCache.txt");
             if (cache.exists()) {
                 cache.delete();
             }
         } catch (Exception ex) {
-            
+
         }
     }
-    private void initForm(){
+
+    private void initForm() {
         cmbUserID.setEnabled(false);
         btnRegister.setEnabled(true);
         btnUpdate.setEnabled(false);
@@ -702,7 +761,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
         userIncrementor();
         // This anon class handles window closing event
         addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e){
+            public void windowClosing(WindowEvent e) {
                 int selection = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Closing Window", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if (selection == JOptionPane.YES_OPTION) {
                     ClearCache();
@@ -715,12 +774,11 @@ public class APUMUserProfile extends javax.swing.JFrame {
         // This property disables newline creation in JTextField
         //txtClientHomeAddress.getDocument().putProperty("filterNewlines", Boolean.TRUE);
         // Check if invalid input is inserted
-       // inputCharacterValidator();
+        // inputCharacterValidator();
     }
-     // </editor-fold>
-     
-    
-    
+    // </editor-fold>
+
+
     private void txtFullNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFullNameFocusGained
         // TODO add your handling code here:
         if (txtFullName.getText().equals("Enter your full name")) {
@@ -752,19 +810,19 @@ public class APUMUserProfile extends javax.swing.JFrame {
     private void txtPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordFocusGained
         if (txtPassword.getText().equals("PasswordforUser")) {
             txtPassword.setText("");
-        } 
+        }
     }//GEN-LAST:event_txtPasswordFocusGained
 
     private void txtPasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordFocusLost
         if (txtPassword.getText().equals("")) {
             txtPassword.setText("PasswordforUser");
-        } 
+        }
     }//GEN-LAST:event_txtPasswordFocusLost
 
     private void cmbUserTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbUserTypeActionPerformed
         // TODO add your handling code here:
         //deHighlightEmpty();
-       // clearClient();
+        // clearClient();
         // Loads index with Client type only
         //deHighlightEmpty();
         clearUser();
@@ -782,7 +840,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
             btnRegister.setEnabled(false);
             btnUpdate.setEnabled(false);
             btnDelete.setEnabled(false);
-        }                   
+        }
     }//GEN-LAST:event_cmbUserTypeActionPerformed
 
     private void txtEmailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusGained
@@ -801,14 +859,14 @@ public class APUMUserProfile extends javax.swing.JFrame {
 
     private void txtPhoneNumberFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPhoneNumberFocusGained
         // TODO add your handling code here:
-        if(txtPhoneNumber.getText().equals("Enter your phone number")){
+        if (txtPhoneNumber.getText().equals("Enter your phone number")) {
             txtPhoneNumber.setText("");
         }
     }//GEN-LAST:event_txtPhoneNumberFocusGained
 
     private void txtPhoneNumberFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPhoneNumberFocusLost
         // TODO add your handling code here:
-        if(txtPhoneNumber.getText().equals("")){
+        if (txtPhoneNumber.getText().equals("")) {
             txtPhoneNumber.setText("Enter your phone number");
         }
     }//GEN-LAST:event_txtPhoneNumberFocusLost
@@ -816,7 +874,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
     private void cmbUserIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbUserIDActionPerformed
         // TODO add your handling code here:
         clearUser();
-       // deHighlightEmpty();
+        // deHighlightEmpty();
         // Loads index with Book ID only
         if (cmbUserID.getSelectedIndex() > 0) {
             loadUserInfo();
