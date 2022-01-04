@@ -216,6 +216,11 @@ public class APUMUserProfile extends javax.swing.JFrame {
         btnDelete.setForeground(new java.awt.Color(237, 237, 237));
         btnDelete.setText("Delete");
         btnDelete.setBorder(null);
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         btnUpdate.setBackground(new java.awt.Color(23, 23, 23));
         btnUpdate.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -477,55 +482,55 @@ public class APUMUserProfile extends javax.swing.JFrame {
             //  Logger.getLogger(unnamedBorrowMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    //legacy code 
+//    private void userIncrementor() {
+//        // This is to ensure the entire method have access to the matchedID array
+//        String[] matchedID = null;
+//        // This flag is to check if the while loop is triggered or not. Triggered while loop indicates presence of records but relevance might not
+//        boolean hasRecord = false;
+//        try {
+//            FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
+//            // For debugging purpose only
+//            // JOptionPane.showMessageDialog(null, bID);
+//            File usertxt = new File(FileDir + "UserProfile.txt");
+//            Scanner inputFile;
+//            String temptype = null;
+//
+//            try {
+//                inputFile = new Scanner(usertxt);
+//                // Read lines from the file until no more are left.
+//                while (inputFile.hasNext()) {
+//                    // Read the next line.
+//                    String bEntry = inputFile.nextLine();
+//                    // Split the line by using the delimiter ":" (semicolon) and store into array.
+//                    matchedID = bEntry.split(":");
+//                    if (matchedID[0].contains("CM")) {
+//                        temptype = "CM";
+//                    } else if (matchedID[0].contains("TC")) {
+//                        temptype = "TC";
+//                    }
+//                    matchedID[0] = matchedID[0].replace(temptype, "");
+//                    hasRecord = true;
+//                }
+//                inputFile.close();
+//                if (!hasRecord) {
+//                    JOptionPane.showMessageDialog(null, "No client(s) record of any type was found! Restarting database entry.", "Client database is empty!", JOptionPane.ERROR_MESSAGE);
+//                    newUserID = 1;
+//                } else {
+//                    newUserID = Integer.parseInt(matchedID[0]) + 1;
+//                    System.out.println("Check new id:" + newUserID);
+//                }
+//                // JOptionPane.showMessageDialog(null, newClientID);
+//            } catch (FileNotFoundException ex) {
+//                // Logger.getLogger(unnamedBorrowMenu.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        } catch (Exception ex) {
+//            JOptionPane.showMessageDialog(null, ex);
+//            JOptionPane.showMessageDialog(null, "Invalid input! Book ID can only consist of numbers", "Invalid input type!", JOptionPane.ERROR_MESSAGE);
+//        }
+//    }
 
-    private void userIncrementor() {
-        // This is to ensure the entire method have access to the matchedID array
-        String[] matchedID = null;
-        // This flag is to check if the while loop is triggered or not. Triggered while loop indicates presence of records but relevance might not
-        boolean hasRecord = false;
-        try {
-            FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
-            // For debugging purpose only
-            // JOptionPane.showMessageDialog(null, bID);
-            File usertxt = new File(FileDir + "UserProfile.txt");
-            Scanner inputFile;
-            String temptype = null;
-
-            try {
-                inputFile = new Scanner(usertxt);
-                // Read lines from the file until no more are left.
-                while (inputFile.hasNext()) {
-                    // Read the next line.
-                    String bEntry = inputFile.nextLine();
-                    // Split the line by using the delimiter ":" (semicolon) and store into array.
-                    matchedID = bEntry.split(":");
-                    if (matchedID[0].contains("CM")) {
-                        temptype = "CM";
-                    } else if (matchedID[0].contains("TC")) {
-                        temptype = "TC";
-                    }
-                    matchedID[0] = matchedID[0].replace(temptype, "");
-                    hasRecord = true;
-                }
-                inputFile.close();
-                if (!hasRecord) {
-                    JOptionPane.showMessageDialog(null, "No client(s) record of any type was found! Restarting database entry.", "Client database is empty!", JOptionPane.ERROR_MESSAGE);
-                    newUserID = 1;
-                } else {
-                    newUserID = Integer.parseInt(matchedID[0]) + 1;
-                    System.out.println("Check new id:" + newUserID);
-                }
-                // JOptionPane.showMessageDialog(null, newClientID);
-            } catch (FileNotFoundException ex) {
-                // Logger.getLogger(unnamedBorrowMenu.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex);
-            JOptionPane.showMessageDialog(null, "Invalid input! Book ID can only consist of numbers", "Invalid input type!", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
-    private int userIncrementor(String selecteduserType) {
+    private int userIDIncrementor(String selecteduserType) {
         // This is to ensure the entire method have access to the matchedID array
         String[] matchedID = null;
         // This flag is to check if the while loop is triggered or not. Triggered while loop indicates presence of records but relevance might not
@@ -563,7 +568,6 @@ public class APUMUserProfile extends javax.swing.JFrame {
                     newUserID = 1;
                 } else {
                     newUserID = Integer.parseInt(matchedID[0]) + 1;
-                    System.out.println("Check new id:" + newUserID);
                 }
 
                 // JOptionPane.showMessageDialog(null, newClientID);
@@ -590,7 +594,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
         DecimalFormat dc = new DecimalFormat("00000");
         try {
             // Fetching IDs from the textfields
-            uID = dc.format(userIncrementor(userSpecies));
+            uID = dc.format(userIDIncrementor(userSpecies));
             // Check if textfields are empty
             //emptyFields();
             // Storing Borrowing entries into variables
@@ -630,6 +634,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
                 // To display completed borrowing process status
                 JOptionPane.showMessageDialog(null, userSpecies + uID + " is successfully added! Press OK to return to user management form.", "Adding user succeeded!", JOptionPane.INFORMATION_MESSAGE);
                 // To refresh new ID 
+                userIDIncrementor(userSpecies);
                 //    userIncrementor();
                 // JOptionPane.showMessageDialog(null, newClientID);
                 // To reload the client information
@@ -739,6 +744,73 @@ public class APUMUserProfile extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Invalid input! Please check your input to proceed.", "Invalid insertion detected!", JOptionPane.ERROR_MESSAGE);
         }
     }
+    private void deleteUserInfo(){
+        // TODO add your handling code here:
+        try {
+            // To rename original book.txt to book.bak
+            File userOri = new File(FileDir + "UserProfile.txt");
+            File userBack = new File(FileDir + "UserProfileBack.txt");
+            // To check if clientBak.txt is present or not
+            if (!userBack.exists()){
+                userOri.createNewFile();
+            }
+            // This is for debugging only!
+            // JOptionPane.showMessageDialog(null, "renamed");
+            // This is to rename the existing book.txt to clientBak.txt
+            userOri.renameTo(userBack);
+            // This is to open, find and replace a specific book record
+            // Requires temporary file to store current state
+            // FileWriter to write into a new file called book.txt
+            FileWriter cd = new FileWriter(FileDir + "UserProfile.txt"); 
+            // PrintWriter to print into book.txt
+            PrintWriter cdp = new PrintWriter(cd); 
+            // This is to open and read clientBak.txt 
+            File usertxt = new File(FileDir + "UserProfileBack.txt");
+            // This is to instantiate the file opened earlier
+            Scanner inputFile = new Scanner(usertxt);
+            // This array is to contain all lines
+            String[] matchedID;
+            // This is only for debugging!
+            // boolean itWorked = false;
+            // Read lines from the file until no more are left.
+            while (inputFile.hasNext())
+            {
+                // This is for debugging only!
+                // JOptionPane.showMessageDialog(null, "In loop");
+                // Read the next line.
+                String cEntry = inputFile.nextLine();
+                // Split the line by using the delimiter ":" (semicolon) and store into array.
+                matchedID = cEntry.split(":");
+                // Check if the read line has current book ID
+                if (matchedID[0].equals(userSpecies + uID)) {
+                    // Setting the deleted flag to true
+                    matchedID[8] = "false";
+                    // JOptionPane.showMessageDialog(null, "Yes it worked");
+                }
+                // Rewrite the new book.txt with values found in clientBak.txt
+                cdp.println(matchedID[0] + ":" +
+                            matchedID[1] + ":" +
+                            matchedID[2] + ":" +
+                            matchedID[3] + ":" +
+                            matchedID[4] + ":" +
+                            matchedID[5] + ":" +
+                            matchedID[6] + ":" +
+                            matchedID[7] + ":" +
+                            matchedID[8]);
+
+            }
+            // Close the clientBak.txt reader
+            inputFile.close();
+            // This deletes clientBak.txt
+            userBack.delete();
+            // This closes the book.txt printer 
+            cdp.close();
+            JOptionPane.showMessageDialog(null, userSpecies + uID + " record has been deleted!", "User deleted!", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+
+        }
+    }
 
     private void ClearCache() {
         try {
@@ -757,8 +829,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
         btnRegister.setEnabled(true);
         btnUpdate.setEnabled(false);
         btnDelete.setEnabled(false);
-        // Set the initial value for new book
-        userIncrementor();
+        //userIncrementor();
         // This anon class handles window closing event
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
@@ -902,6 +973,17 @@ public class APUMUserProfile extends javax.swing.JFrame {
         // TODO add your handling code here:
         updateUserInfo();
     }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        int selection = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete customer record?", "Deleting customer", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                if (selection == JOptionPane.YES_OPTION) {
+                deleteUserInfo();
+                clearUser();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Customer record has not been deleted!", "Customer deletion", JOptionPane.INFORMATION_MESSAGE);
+                }
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     /**
      * @param args the command line arguments
