@@ -823,7 +823,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
 
         }
     }
-
+    
     private void initForm() {
         cmbUserID.setEnabled(false);
         btnRegister.setEnabled(true);

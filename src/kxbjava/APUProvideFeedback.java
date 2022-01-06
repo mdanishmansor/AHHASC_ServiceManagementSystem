@@ -67,18 +67,18 @@ public class APUProvideFeedback extends javax.swing.JFrame {
                         .addGap(442, 442, 442)
                         .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlFeedbackLayout.createSequentialGroup()
-                        .addGap(233, 233, 233)
+                        .addGap(230, 230, 230)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(274, Short.MAX_VALUE))
+                .addContainerGap(277, Short.MAX_VALUE))
         );
         pnlFeedbackLayout.setVerticalGroup(
             pnlFeedbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlFeedbackLayout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
+                .addGap(31, 31, 31)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addContainerGap(163, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

@@ -28,7 +28,7 @@ public class APUBookAppointment extends javax.swing.JFrame {
      */
     private String source = System.getProperty("user.dir") + "\\src\\TextFiles\\Appointment.txt"; //Retrieving Directory of Appointment.txt File.
     private String generatedStaffID;
-    final DecimalFormat idformat = new DecimalFormat("000");
+    final DecimalFormat idformat = new DecimalFormat("00000");
 
     public APUBookAppointment() {
         initComponents();
@@ -212,7 +212,8 @@ public class APUBookAppointment extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    
     private void txtAppDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAppDateActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAppDateActionPerformed
