@@ -6,6 +6,7 @@
 package kxbjava;
 
 import com.formdev.flatlaf.FlatDarkLaf;
+import java.awt.Color;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
@@ -36,6 +37,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
     private String FileDir, CustID, uID, uUsername;
     private int newCustID;
     private DefaultComboBoxModel CustList;
+    private final Color ogtxt = new Color(237,237,237);
             
     
     /**
@@ -43,7 +45,6 @@ public class APUManageCustomer extends javax.swing.JFrame {
      */
     public APUManageCustomer() {
         initComponents();
-        CustIDIncrementor();
         setCustomerID();
         loadUserProfile();
         initForm();
@@ -73,6 +74,14 @@ public class APUManageCustomer extends javax.swing.JFrame {
         cmbCustID = new javax.swing.JComboBox<>();
         txtDOB = new javax.swing.JTextField();
         txtFullName = new javax.swing.JTextField();
+        lblCustomerID = new javax.swing.JLabel();
+        lblHomeAddress = new javax.swing.JLabel();
+        lblFullName = new javax.swing.JLabel();
+        lblGender = new javax.swing.JLabel();
+        lblManagerID = new javax.swing.JLabel();
+        lblPhoneNumber = new javax.swing.JLabel();
+        lblDOB = new javax.swing.JLabel();
+        lblEmail = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,6 +109,11 @@ public class APUManageCustomer extends javax.swing.JFrame {
         txtEmail.setBackground(new java.awt.Color(68, 68, 68));
         txtEmail.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         txtEmail.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
+        txtEmail.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtEmailFocusLost(evt);
+            }
+        });
 
         txaHomeAddress.setBackground(new java.awt.Color(68, 68, 68));
         txaHomeAddress.setColumns(20);
@@ -165,6 +179,46 @@ public class APUManageCustomer extends javax.swing.JFrame {
         txtFullName.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         txtFullName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
 
+        lblCustomerID.setBackground(new java.awt.Color(68, 68, 68));
+        lblCustomerID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblCustomerID.setForeground(new java.awt.Color(237, 237, 237));
+        lblCustomerID.setText("Customer ID:");
+
+        lblHomeAddress.setBackground(new java.awt.Color(68, 68, 68));
+        lblHomeAddress.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblHomeAddress.setForeground(new java.awt.Color(237, 237, 237));
+        lblHomeAddress.setText("Home Address:");
+
+        lblFullName.setBackground(new java.awt.Color(68, 68, 68));
+        lblFullName.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblFullName.setForeground(new java.awt.Color(237, 237, 237));
+        lblFullName.setText("Full Name:");
+
+        lblGender.setBackground(new java.awt.Color(68, 68, 68));
+        lblGender.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblGender.setForeground(new java.awt.Color(237, 237, 237));
+        lblGender.setText("Gender:");
+
+        lblManagerID.setBackground(new java.awt.Color(68, 68, 68));
+        lblManagerID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblManagerID.setForeground(new java.awt.Color(237, 237, 237));
+        lblManagerID.setText("Manager ID:");
+
+        lblPhoneNumber.setBackground(new java.awt.Color(68, 68, 68));
+        lblPhoneNumber.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblPhoneNumber.setForeground(new java.awt.Color(237, 237, 237));
+        lblPhoneNumber.setText("Phone Number:");
+
+        lblDOB.setBackground(new java.awt.Color(68, 68, 68));
+        lblDOB.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblDOB.setForeground(new java.awt.Color(237, 237, 237));
+        lblDOB.setText("Date of Birth:");
+
+        lblEmail.setBackground(new java.awt.Color(68, 68, 68));
+        lblEmail.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblEmail.setForeground(new java.awt.Color(237, 237, 237));
+        lblEmail.setText("Email:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -175,64 +229,105 @@ public class APUManageCustomer extends javax.swing.JFrame {
                         .addGap(450, 450, 450)
                         .addComponent(lblTitle))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(259, 259, 259)
+                        .addGap(250, 250, 250)
+                        .addComponent(lblCustomerID)
+                        .addGap(296, 296, 296)
+                        .addComponent(lblFullName))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(250, 250, 250)
                         .addComponent(cmbCustID, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(87, 87, 87)
+                        .addGap(141, 141, 141)
                         .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(260, 260, 260)
+                        .addComponent(lblPhoneNumber)
+                        .addGap(266, 266, 266)
+                        .addComponent(lblHomeAddress))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(259, 259, 259)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblGender)
                             .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(87, 87, 87)
+                        .addGap(132, 132, 132)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(259, 259, 259)
+                        .addComponent(lblEmail)
+                        .addGap(342, 342, 342)
+                        .addComponent(lblDOB))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(260, 260, 260)
+                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(130, 130, 130)
+                        .addComponent(txtDOB, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(260, 260, 260)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtManagerID, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblManagerID)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(360, 360, 360)
                         .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(64, 64, 64)
+                        .addGap(66, 66, 66)
                         .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(70, 70, 70)
-                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(259, 259, 259)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtManagerID, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(87, 87, 87)
-                                .addComponent(txtDOB, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(341, 341, 341))
+                        .addGap(66, 66, 66)
+                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(259, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(69, 69, 69)
                 .addComponent(lblTitle)
-                .addGap(83, 83, 83)
+                .addGap(12, 12, 12)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblCustomerID)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(lblFullName)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cmbCustID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(4, 4, 4)
-                        .addComponent(cmbCustID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(61, 61, 61)
+                        .addComponent(lblPhoneNumber))
+                    .addComponent(lblHomeAddress))
+                .addGap(5, 5, 5)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(54, 54, 54)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblGender)
+                        .addGap(18, 18, 18)
                         .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblEmail)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(lblDOB)))
+                .addGap(8, 8, 8)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtDOB, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(62, 62, 62)
-                .addComponent(txtManagerID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(25, 25, 25)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(txtManagerID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblManagerID))
+                .addGap(41, 41, 41)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10))
+                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -346,7 +441,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
     }
     
      //
-     private void CustIDIncrementor(){
+     private void custIDIncrementor(){
         // This is to ensure the entire method have access to the matchedID array
         String[] matchedID = null;
         // This flag is to check if the while loop is triggered or not. Triggered while loop indicates presence of records but relevance might not
@@ -442,7 +537,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
         }
     }
      
-    private void RegisterCustomer(){
+    private void registerCustomer(){
         // Declaring file extension used
         FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
         // Formatting ID into formal 6-digit mask
@@ -451,7 +546,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
             // Fetching IDs from the textfields
             CustID = dc.format(newCustID);
             // Check if textfields are empty
-            //emptyFields();
+            emptyFields();
             // Storing Borrowing entries into variables
             // Checking if gender is unselected
             if (cmbGender.getSelectedIndex() <= 0) {
@@ -486,7 +581,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
                 // To display completed borrowing process status
                 JOptionPane.showMessageDialog(null, "Client is successfully added! Press OK to return to client management form.", "Adding client succeeded!", JOptionPane.INFORMATION_MESSAGE);
                 // To refresh new ID 
-                CustIDIncrementor();
+                custIDIncrementor();
                 // JOptionPane.showMessageDialog(null, newClientID);
                 // To reload the client information
                 // Integrate the reload part with combo box implementation of Client ID
@@ -498,7 +593,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
             }
         }
         catch (Exception ex) {
-            //highlightEmpty();
+            highlightEmpty();
             JOptionPane.showMessageDialog(null, "Invalid input! Please check your input to proceed.", "Invalid insertion detected!", JOptionPane.ERROR_MESSAGE);
             // Continue with displaying which field was affected. ensure it appears before the mnessagebox
         }      
@@ -507,7 +602,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             // Check if textfields are empty
-            //emptyFields();
+            emptyFields();
             // To get directory  
             FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
             // To get the book ID
@@ -580,7 +675,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Client record has been updated!", "Client updated!", JOptionPane.INFORMATION_MESSAGE);
             loadCustomerInfo();
         } catch (Exception ex) {
-            //highlightEmpty();
+            highlightEmpty();
             JOptionPane.showMessageDialog(null, "Invalid input! Please check your input to proceed.", "Invalid insertion detected!", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -669,12 +764,12 @@ public class APUManageCustomer extends javax.swing.JFrame {
     
     //form load method during init of the form
      private void initForm(){
-        //cbxClientID.setEnabled(false);
-       // btnAdd.setEnabled(false);
-        //btnUpdate.setEnabled(false);
-        //btnDelete.setEnabled(false);
+        this.setSize(1170,750);
+        this.setLocation(600,150);
+        btnUpdate.setEnabled(false);
+        btnDelete.setEnabled(false);
         // Set the initial value for new book
-       // clientIncrementor();
+        custIDIncrementor();
         // This anon class handles window closing event
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e){
@@ -691,6 +786,74 @@ public class APUManageCustomer extends javax.swing.JFrame {
      
     //</editor-fold>
     
+    // <editor-fold defaultstate="collapsed" desc="Validation Methods">
+     private void emptyFields() throws Exception {
+        APUEmailValidation vd = new APUEmailValidation();
+        if ("".equals(txtFullName.getText())) {
+            throw new Exception("Empty user full name");
+        }
+        if ("".equals(txaHomeAddress.getText())) {
+            throw new Exception("Empty user home address");
+        }
+        if ("".equals(txtPhoneNumber.getText())) {
+            throw new Exception("Empty username");
+        }
+        if("".equals(txtEmail.getText())){
+            throw new Exception("Empty user password");
+        }
+        if ("".equals(txtDOB.getText())) {
+            throw new Exception("Empty user phone number");
+        }
+        if (vd.runValidate(txtEmail, false)) {
+            throw new Exception("Invalid email address format");
+        }
+    }
+     
+     private void clearUser(){
+        txtFullName.setText("");
+        txtPhoneNumber.setText("");
+        txaHomeAddress.setText("");
+        txtEmail.setText("");
+        txtDOB.setText("");
+        txtPhoneNumber.setText("");
+        txtManagerID.setText("");
+        cmbGender.setSelectedIndex(0);
+        CustID = "";
+    }
+     private void highlightEmpty() {
+        if (cmbCustID.getSelectedIndex() <= 0) {
+            lblCustomerID.setForeground(Color.RED);
+        }
+        if("".equals(txtFullName.getText())) {
+            lblFullName.setForeground(Color.RED);
+        }
+        if("".equals(txtPhoneNumber.getText())) {
+            lblPhoneNumber.setForeground(Color.RED);
+        }
+        if("".equals(txaHomeAddress.getText())) {
+            lblHomeAddress.setForeground(Color.RED);
+        }
+        if("".equals(txtEmail.getText())){
+            lblEmail.setForeground(Color.RED);
+        }
+        if("".equals(txtDOB.getText())){
+            lblDOB.setForeground(Color.RED);
+        }
+        if("".equals(txtPhoneNumber.getText())) {
+            lblPhoneNumber.setForeground(Color.RED);
+        }
+    }
+      private void deHighlightEmpty(){
+        lblCustomerID.setForeground(ogtxt);
+        lblHomeAddress.setForeground(ogtxt);
+        lblDOB.setForeground(ogtxt);
+        lblPhoneNumber.setForeground(ogtxt);
+        lblEmail.setForeground(ogtxt);
+        lblFullName.setForeground(ogtxt);
+       // lblClientHomeAddress.setForeground(ogtxt);
+    }
+    // </editor-fold>  
+    
     // <editor-fold defaultstate="collapsed" desc="Button Events">
     private void cmbGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbGenderActionPerformed
         // TODO add your handling code here:
@@ -698,11 +861,13 @@ public class APUManageCustomer extends javax.swing.JFrame {
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
-        RegisterCustomer();
+        deHighlightEmpty();
+        registerCustomer();
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void cmbCustIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCustIDActionPerformed
         // TODO add your handling code here:
+        clearUser();
         if (cmbCustID.getSelectedIndex() > 0) {
             loadCustomerInfo();
             btnRegister.setEnabled(false);
@@ -733,6 +898,11 @@ public class APUManageCustomer extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Customer record has not been deleted!", "Customer deletion", JOptionPane.INFORMATION_MESSAGE);
                 }
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void txtEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusLost
+        APUEmailValidation vd = new APUEmailValidation();     
+        vd.runValidate(txtEmail, true);
+    }//GEN-LAST:event_txtEmailFocusLost
     //</editor-fold>
     
     
@@ -762,6 +932,14 @@ public class APUManageCustomer extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbGender;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblCustomerID;
+    private javax.swing.JLabel lblDOB;
+    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblFullName;
+    private javax.swing.JLabel lblGender;
+    private javax.swing.JLabel lblHomeAddress;
+    private javax.swing.JLabel lblManagerID;
+    private javax.swing.JLabel lblPhoneNumber;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JTextArea txaHomeAddress;
     private javax.swing.JTextField txtDOB;

@@ -107,9 +107,6 @@ abstract class APUStringValidation {
                 boolean matching = input.matches(getRegex());
                 if (!matching && !"".equals(input)) {
                     runPopup();
-                    // String output = input.substring(0, input.length() - 1);
-                    // String illegalSymbols = input.replaceAll(getRegex(), "");
-                    // String output = input.replaceAll(illegalSymbols, "");
                     String output = input.replaceAll(getNegateRegex(), "");
                     txt.setText(output);
                 }
@@ -152,9 +149,6 @@ class APUPasswordValidation extends APUStringValidation {
                 boolean matching = input.matches(getRegex());
                 if (!matching && !"".equals(input)) {
                     runPopup();
-                    // String output = input.substring(0, input.length() - 1);
-                    // String illegalSymbols = input.replaceAll(getRegex(), "");
-                    // String output = input.replaceAll(illegalSymbols, "");
                     String output = input.replaceAll(getNegateRegex(), "");
                     txt.setText(output);
                 }

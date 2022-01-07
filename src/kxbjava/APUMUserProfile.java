@@ -33,6 +33,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
     private String userSpecies, uID, FileDir, managerID;
     private int newUserID, userType;
     private DefaultComboBoxModel userList;
+    private final Color ogtxt = new Color(237,237,237);
 
     /**
      * Creates new form APURegister
@@ -66,12 +67,18 @@ public class APUMUserProfile extends javax.swing.JFrame {
         txtEmail = new javax.swing.JTextField();
         txtPhoneNumber = new javax.swing.JTextField();
         cmbGender = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
+        lblUserType = new javax.swing.JLabel();
         btnRegister = new javax.swing.JButton();
         cmbUserID = new javax.swing.JComboBox<>();
         btnDelete = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         txtManagerID = new javax.swing.JTextField();
+        lblPassword = new javax.swing.JLabel();
+        lblFullName = new javax.swing.JLabel();
+        lblEmail = new javax.swing.JLabel();
+        lblUsername = new javax.swing.JLabel();
+        lblPhoneNumber = new javax.swing.JLabel();
+        lblGender = new javax.swing.JLabel();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -185,10 +192,10 @@ public class APUMUserProfile extends javax.swing.JFrame {
         cmbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Gender", "Male", "Female" }));
         cmbGender.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 0, 0, new java.awt.Color(237, 237, 237)));
 
-        jLabel1.setBackground(new java.awt.Color(68, 68, 68));
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(237, 237, 237));
-        jLabel1.setText("User Type:");
+        lblUserType.setBackground(new java.awt.Color(68, 68, 68));
+        lblUserType.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblUserType.setForeground(new java.awt.Color(237, 237, 237));
+        lblUserType.setText("User Type:");
 
         btnRegister.setBackground(new java.awt.Color(23, 23, 23));
         btnRegister.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -239,6 +246,36 @@ public class APUMUserProfile extends javax.swing.JFrame {
         txtManagerID.setForeground(new java.awt.Color(237, 237, 237));
         txtManagerID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
 
+        lblPassword.setBackground(new java.awt.Color(68, 68, 68));
+        lblPassword.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblPassword.setForeground(new java.awt.Color(237, 237, 237));
+        lblPassword.setText("Password:");
+
+        lblFullName.setBackground(new java.awt.Color(68, 68, 68));
+        lblFullName.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblFullName.setForeground(new java.awt.Color(237, 237, 237));
+        lblFullName.setText("Full Name: ");
+
+        lblEmail.setBackground(new java.awt.Color(68, 68, 68));
+        lblEmail.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblEmail.setForeground(new java.awt.Color(237, 237, 237));
+        lblEmail.setText("Email Address:");
+
+        lblUsername.setBackground(new java.awt.Color(68, 68, 68));
+        lblUsername.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblUsername.setForeground(new java.awt.Color(237, 237, 237));
+        lblUsername.setText("Username:");
+
+        lblPhoneNumber.setBackground(new java.awt.Color(68, 68, 68));
+        lblPhoneNumber.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblPhoneNumber.setForeground(new java.awt.Color(237, 237, 237));
+        lblPhoneNumber.setText("Phone Number:");
+
+        lblGender.setBackground(new java.awt.Color(68, 68, 68));
+        lblGender.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblGender.setForeground(new java.awt.Color(237, 237, 237));
+        lblGender.setText("Gender:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -246,32 +283,44 @@ public class APUMUserProfile extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(272, 272, 272)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(77, 77, 77)
-                                .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(82, 82, 82)
-                                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(85, 85, 85)
-                                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cmbUserType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtFullName)
-                                    .addComponent(txtUsername)
-                                    .addComponent(txtPhoneNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                                    .addComponent(txtManagerID))
-                                .addGap(77, 77, 77)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cmbUserID, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtEmail)
-                                    .addComponent(txtPassword)
-                                    .addComponent(cmbGender, 0, 250, Short.MAX_VALUE)))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(456, 456, 456)
-                        .addComponent(lblTitle)))
+                        .addComponent(lblTitle))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(342, 342, 342)
+                            .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(96, 96, 96)
+                            .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(222, 222, 222)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblUserType)
+                                .addComponent(txtManagerID, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cmbUserType, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblFullName)
+                                .addComponent(lblUsername)
+                                .addComponent(lblPhoneNumber))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lblPassword)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(cmbGender, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(lblGender)))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(127, 127, 127)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(cmbUserID, 0, 250, Short.MAX_VALUE)
+                                        .addComponent(txtEmail)
+                                        .addComponent(lblEmail))
+                                    .addGap(0, 0, Short.MAX_VALUE))))))
                 .addContainerGap(321, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -280,31 +329,43 @@ public class APUMUserProfile extends javax.swing.JFrame {
                 .addGap(63, 63, 63)
                 .addComponent(lblTitle)
                 .addGap(49, 49, 49)
-                .addComponent(jLabel1)
+                .addComponent(lblUserType)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbUserType, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbUserID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtManagerID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblFullName)
+                    .addComponent(lblEmail))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPassword)
+                    .addComponent(lblUsername))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(65, 65, 65)
+                    .addComponent(lblPhoneNumber)
+                    .addComponent(lblGender))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -538,8 +599,6 @@ public class APUMUserProfile extends javax.swing.JFrame {
         int userCount[] = {0, 0};
         try {
             FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
-            // For debugging purpose only
-            // JOptionPane.showMessageDialog(null, bID);
             File usertxt = new File(FileDir + "UserProfile.txt");
             Scanner inputFile;
             String temptype = null;
@@ -564,15 +623,13 @@ public class APUMUserProfile extends javax.swing.JFrame {
                 }
                 inputFile.close();
                 if (!hasRecord) {
-                    JOptionPane.showMessageDialog(null, "No client(s) record of any type was found! Restarting database entry.", "Client database is empty!", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "No user(s) record of any type was found! Restarting database entry.", "User database is empty!", JOptionPane.ERROR_MESSAGE);
                     newUserID = 1;
                 } else {
                     newUserID = Integer.parseInt(matchedID[0]) + 1;
                 }
-
-                // JOptionPane.showMessageDialog(null, newClientID);
             } catch (FileNotFoundException ex) {
-                // Logger.getLogger(unnamedBorrowMenu.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(APUMUserProfile.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         } catch (Exception ex) {
@@ -587,6 +644,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
         }
     }
 
+    //register user data into textfields
     private void registerUserInfo() {
         // Declaring file extension used
         FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
@@ -596,17 +654,11 @@ public class APUMUserProfile extends javax.swing.JFrame {
             // Fetching IDs from the textfields
             uID = dc.format(userIDIncrementor(userSpecies));
             // Check if textfields are empty
-            //emptyFields();
-            // Storing Borrowing entries into variables
+            emptyFields();
             // Checking if gender is unselected
             if (cmbGender.getSelectedIndex() <= 0) {
                 JOptionPane.showMessageDialog(null, "Gender is unset! Autosetting value to male", "Gender unselected!", JOptionPane.ERROR_MESSAGE);
                 cmbGender.setSelectedIndex(1); // Setting the gender to male which is index 1
-            }
-            if (cmbUserType.getSelectedIndex() <= 0) {
-                JOptionPane.showMessageDialog(null, "User type is unset! Autosetting value to Centre Manager", "User type unselected!", JOptionPane.ERROR_MESSAGE);
-                cmbUserType.setSelectedIndex(1); // Setting the client type to staff which is index 1
-
             }
             String userFullName = txtFullName.getText();
             String userEmail = txtEmail.getText();
@@ -614,13 +666,13 @@ public class APUMUserProfile extends javax.swing.JFrame {
             String userPassword = String.valueOf(txtPassword.getPassword());
             String userPhoneNumber = txtPhoneNumber.getText();
             String userGender = (String) cmbGender.getSelectedItem();
-            // FileWriter and PrintWriter to create and write into book.txt
+            // FileWriter and PrintWriter to create and write into UserProfile.txt
             try {
-                // FileWriter to write into a new file called client.txt
+                // FileWriter to write into a new file called UserProfile.txt
                 FileWriter cd = new FileWriter(FileDir + "UserProfile.txt", true);
-                // PrintWriter to print into client.txt
+                // PrintWriter to print into UserProfile.txt
                 PrintWriter cdp = new PrintWriter(cd);
-                // To print the line into Borrowing textfile
+                // To print the line into UserProfile textfile
                 cdp.println(userSpecies + uID + ":"
                         + managerID + ":"
                         + userFullName + ":"
@@ -629,46 +681,31 @@ public class APUMUserProfile extends javax.swing.JFrame {
                         + userPassword + ":"
                         + userPhoneNumber + ":"
                         + userGender + ":"
-                        + "true"); // false to indicate hasn't been deleted status
+                        + "true"); // true to indicate user is available and not deleted
                 cdp.close();
-                // To display completed borrowing process status
+                // To display completed registration process status
                 JOptionPane.showMessageDialog(null, userSpecies + uID + " is successfully added! Press OK to return to user management form.", "Adding user succeeded!", JOptionPane.INFORMATION_MESSAGE);
                 // To refresh new ID 
                 userIDIncrementor(userSpecies);
-                //    userIncrementor();
-                // JOptionPane.showMessageDialog(null, newClientID);
                 // To reload the client information
-                // Integrate the reload part with combo box implementation of Client ID
+                // Integrate the reload part with combo box implementation of User ID
                 setUserOption();
-                // Refresh the currently displayed client with the latest ID
+                // Refresh the currently displayed user with the latest ID
                 cmbUserID.setSelectedIndex(cmbUserID.getItemCount() - 1);
             } catch (IOException ex) {
                 // Logger.getLogger(unnamedBorrowMenu.class.getName()).log(Level.SEVERE, null, ex);
             }
         } catch (Exception ex) {
-            //  highlightEmpty();
+            highlightEmpty();
             JOptionPane.showMessageDialog(null, "Invalid input! Please check your input to proceed.", "Invalid insertion detected!", JOptionPane.ERROR_MESSAGE);
-            // Continue with displaying which field was affected. ensure it appears before the mnessagebox
         }
-    }
-
-    private void clearUser() {
-        // To clean up previous or default values from fields
-        txtManagerID.setText("");
-        txtFullName.setText("");
-        txtEmail.setText("");
-        txtUsername.setText("");
-        txtPassword.setText("");
-        txtPhoneNumber.setText("");
-        cmbGender.setSelectedIndex(0);
-        uID = "";
     }
 
     private void updateUserInfo() {
         // TODO add your handling code here:
         try {
             // Check if textfields are empty
-            //emptyFields();
+            emptyFields();
             // To get directory  
             FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
             // To get the book ID
@@ -740,7 +777,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Client record has been updated!", "Client updated!", JOptionPane.INFORMATION_MESSAGE);
             loadUserInfo();
         } catch (Exception ex) {
-            //highlightEmpty();
+            highlightEmpty();
             JOptionPane.showMessageDialog(null, "Invalid input! Please check your input to proceed.", "Invalid insertion detected!", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -825,6 +862,8 @@ public class APUMUserProfile extends javax.swing.JFrame {
     }
     
     private void initForm() {
+        this.setSize(1170,750);
+        this.setLocation(600,150);
         cmbUserID.setEnabled(false);
         btnRegister.setEnabled(true);
         btnUpdate.setEnabled(false);
@@ -848,8 +887,73 @@ public class APUMUserProfile extends javax.swing.JFrame {
         // inputCharacterValidator();
     }
     // </editor-fold>
-
-
+    
+    // <editor-fold defaultstate="collapsed" desc="Validation Methods">
+     private void emptyFields() throws Exception {
+        APUEmailValidation vd = new APUEmailValidation();
+        if ("".equals(txtFullName.getText())) {
+            throw new Exception("Empty user full name");
+        }
+        if ("".equals(txtEmail.getText())) {
+            throw new Exception("Empty user email address");
+        }
+        if ("".equals(txtUsername.getText())) {
+            throw new Exception("Empty username");
+        }
+        if("".equals(String.valueOf(txtPassword.getPassword()))){
+            throw new Exception("Empty user password");
+        }
+        if ("".equals(txtPhoneNumber.getText())) {
+            throw new Exception("Empty user phone number");
+        }
+        if (vd.runValidate(txtEmail, false)) {
+            throw new Exception("Invalid email address format");
+        }
+    }
+     
+     private void clearUser() {
+        // To clean up previous or default values from fields
+        txtManagerID.setText("");
+        txtFullName.setText("");
+        txtEmail.setText("");
+        txtUsername.setText("");
+        txtPassword.setText("");
+        txtPhoneNumber.setText("");
+        cmbGender.setSelectedIndex(0);
+        uID = "";
+    }
+     private void highlightEmpty() {
+        if (cmbUserType.getSelectedIndex() <= 0) {
+            lblUserType.setForeground(Color.RED);
+        }
+        if("".equals(txtFullName.getText())) {
+            lblFullName.setForeground(Color.RED);
+        }
+        if("".equals(txtEmail.getText())) {
+            lblEmail.setForeground(Color.RED);
+        }
+        if("".equals(txtUsername.getText())) {
+            lblUsername.setForeground(Color.RED);
+        }
+        if("".equals(String.valueOf(txtPassword.getPassword()))){
+            lblPassword.setForeground(Color.RED);
+        }
+        if("".equals(txtPhoneNumber.getText())) {
+            lblPhoneNumber.setForeground(Color.RED);
+        }
+    }
+      private void deHighlightEmpty(){
+        lblUserType.setForeground(ogtxt);
+        lblFullName.setForeground(ogtxt);
+        lblEmail.setForeground(ogtxt);
+        lblUsername.setForeground(ogtxt);
+        lblPassword.setForeground(ogtxt);
+        lblPhoneNumber.setForeground(ogtxt);
+       // lblClientHomeAddress.setForeground(ogtxt);
+    }
+    // </editor-fold>  
+    
+    // <editor-fold defaultstate="collapsed" desc="Button events">  
     private void txtFullNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFullNameFocusGained
         // TODO add your handling code here:
         if (txtFullName.getText().equals("Enter your full name")) {
@@ -891,11 +995,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPasswordFocusLost
 
     private void cmbUserTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbUserTypeActionPerformed
-        // TODO add your handling code here:
-        //deHighlightEmpty();
-        // clearClient();
-        // Loads index with Client type only
-        //deHighlightEmpty();
+        deHighlightEmpty();
         clearUser();
         // Loads index with Client type only
         if (cmbUserType.getSelectedIndex() > 0) {
@@ -926,6 +1026,8 @@ public class APUMUserProfile extends javax.swing.JFrame {
         if (txtEmail.getText().equals("")) {
             txtEmail.setText("Enter your email");
         }
+        APUEmailValidation vd = new APUEmailValidation();     
+        vd.runValidate(txtEmail, true);
     }//GEN-LAST:event_txtEmailFocusLost
 
     private void txtPhoneNumberFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPhoneNumberFocusGained
@@ -936,16 +1038,14 @@ public class APUMUserProfile extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPhoneNumberFocusGained
 
     private void txtPhoneNumberFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPhoneNumberFocusLost
-        // TODO add your handling code here:
         if (txtPhoneNumber.getText().equals("")) {
             txtPhoneNumber.setText("Enter your phone number");
         }
     }//GEN-LAST:event_txtPhoneNumberFocusLost
 
     private void cmbUserIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbUserIDActionPerformed
-        // TODO add your handling code here:
         clearUser();
-        // deHighlightEmpty();
+        deHighlightEmpty();
         // Loads index with Book ID only
         if (cmbUserID.getSelectedIndex() > 0) {
             loadUserInfo();
@@ -966,25 +1066,29 @@ public class APUMUserProfile extends javax.swing.JFrame {
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
+        deHighlightEmpty();
         registerUserInfo();
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        // TODO add your handling code here:
+        deHighlightEmpty();
         updateUserInfo();
     }//GEN-LAST:event_btnUpdateActionPerformed
-
+    
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
         int selection = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete customer record?", "Deleting customer", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-                if (selection == JOptionPane.YES_OPTION) {
-                deleteUserInfo();
-                clearUser();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Customer record has not been deleted!", "Customer deletion", JOptionPane.INFORMATION_MESSAGE);
-                }
+        if (selection == JOptionPane.YES_OPTION) {
+            deleteUserInfo();
+            clearUser();
+            getUserType();
+            setUserOption();
+        } else {
+            JOptionPane.showMessageDialog(null, "Customer record has not been deleted!", "Customer deletion", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_btnDeleteActionPerformed
-
+   
+    // </editor-fold>  
+    
     /**
      * @param args the command line arguments
      */
@@ -1010,11 +1114,17 @@ public class APUMUserProfile extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbUserID;
     private javax.swing.JComboBox<String> cmbUserType;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblFullName;
+    private javax.swing.JLabel lblGender;
+    private javax.swing.JLabel lblPassword;
+    private javax.swing.JLabel lblPhoneNumber;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JLabel lblUserType;
+    private javax.swing.JLabel lblUsername;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFullName;
     private javax.swing.JTextField txtManagerID;

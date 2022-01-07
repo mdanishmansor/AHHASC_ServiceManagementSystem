@@ -32,7 +32,7 @@ public class APULogin extends javax.swing.JFrame {
      */
     public APULogin() {
         initComponents();
-        initGUI();
+        initForm();
     }
     
     /**
@@ -252,11 +252,13 @@ public class APULogin extends javax.swing.JFrame {
              this.dispose();
          }
     }
-    private void initGUI(){
+    private void initForm(){
         // Create the required directory for first time boot
        // createDir();
         // Create the required database textfiles for first time boot
         //createDB();
+        this.setSize(1170,750);
+        this.setLocation(600,150);
         btnLogin.setVisible(false); // This will prevent the login button from being pressed right after startup
         // This anon class handles textfield changes for username entry
         txtUsername.getDocument().addDocumentListener(new APUDocumentListener(){

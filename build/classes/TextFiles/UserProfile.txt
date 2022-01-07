@@ -1,5 +1,6 @@
 CM00001:CM00001:Muhammad Ir4un:Irfan@gmail.com:irfanw:kacang:0126767890:Male:true
 TC00001:CM00001:Danishman:danish@gmail.com:danish:cang2:010101010:Male:true
 CM00002:CM00001:danish:danish@gm.com:kacang:bemes:01292222:Male:true
-CM00003:CM00001:jo:bies@mail:jizzman:gogo:dadadad:Male:true
+CM00003:CM00001:jo:bies@mail:jizzman:gogo:dadadad:Male:false
 TC00002:CM00001:dadad:adad:kishen:shanthan:ssssssss:Male:true
+CM00004:null:Enter your full name:dajjaj@gmail.com:Enter your username:PasswordforUser:sssssss:Male:false
