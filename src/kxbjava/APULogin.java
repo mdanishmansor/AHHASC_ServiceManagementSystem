@@ -11,7 +11,13 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -26,7 +32,7 @@ import javax.swing.event.DocumentEvent;
  */
 public class APULogin extends javax.swing.JFrame {
     private boolean Username = false, Password = false;
-    private String UserID, username, FileDir, fullname, email, password, phonenumber, gender;
+    private String UserID, username, FileDir, fullname, email, password, phonenumber, gender, ManagerID, currentdate;
     /**
      * Creates new form APULogin
      */
@@ -134,7 +140,7 @@ public class APULogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    // <editor-fold defaultstate="collapsed" desc="Methods">
+    // <editor-fold defaultstate="collapsed" desc="Validation Methods">
     private void showLoginButton(){
         if (Username && Password){
             btnLogin.setVisible(true);
@@ -163,8 +169,43 @@ public class APULogin extends javax.swing.JFrame {
         showLoginButton();
     
     }
+            private void createDir(){
+        try {
+            FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
+            Path dir = Paths.get(FileDir);
+            Files.createDirectories(dir);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+             private void createDatabase(){
+        try {
+            FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
+            File usertxt = new File(FileDir + "UserProfile.txt");
+            File customertxt = new File(FileDir + "Customer.txt");
+            File appttxt = new File(FileDir + "Appointment.txt");
+            //File clienttxt = new File(FileDir + "client.txt");
+            if (!usertxt.exists()) {
+                usertxt.createNewFile();
+            }
+            if (!customertxt.exists()) {
+                customertxt.createNewFile();
+            }
+            if (!appttxt.exists()) {
+                appttxt.createNewFile();
+            }
+            //if (!clienttxt.exists()) {
+            //    clienttxt.createNewFile();
+            //}
+        } catch(IOException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+            
+    // </editor-fold>
     
-    private boolean ValidateAccount() {
+    // <editor-fold defaultstate="collapsed" desc="Methods">
+    private boolean validateAccount() {
         boolean Authenticate = false;
         try {
             FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
@@ -179,16 +220,17 @@ public class APULogin extends javax.swing.JFrame {
             while (inputFile.hasNext()) {
                 String lEntry = inputFile.nextLine();
                 matchedID = lEntry.split(":");
-                if (User.equals(matchedID[4]) && Pass.equals(matchedID[5])) {
+                if (User.equals(matchedID[4]) && Pass.equals(matchedID[5])){
                     Authenticate = true;
                     UserID = matchedID[0];
-                    fullname = matchedID[1];
-                    email = matchedID[2];
-                    username = matchedID[3];
-                    password = matchedID[4];
-                    phonenumber = matchedID[5];
-                    gender = matchedID[6];
-                   }
+                    ManagerID = matchedID[1];
+                    fullname = matchedID[2];
+                    email = matchedID[3];
+                    username = matchedID[4];
+                    password = matchedID[5];
+                    phonenumber = matchedID[6];
+                    gender = matchedID[7];
+                   } 
             }
             inputFile.close();
         } catch (Exception ex) {
@@ -198,7 +240,7 @@ public class APULogin extends javax.swing.JFrame {
         return Authenticate;
     }
     //Start the session for the user
-    private void UserSession(){
+    private void userSession(){
          try {
         FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
         File cache = new File(FileDir + "UserCache.txt");
@@ -213,7 +255,7 @@ public class APULogin extends javax.swing.JFrame {
             
         }
     }
-    private void ClearCache(){
+    private void clearCache(){
         try {  
             FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
             File cache = new File(FileDir + "UserCache.txt");
@@ -226,16 +268,19 @@ public class APULogin extends javax.swing.JFrame {
     }
     
     //Store the records of the session of the user
-    private void StoreSession(){
+    private void storeSession(){
         try {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy, HH.mm.ss");  
+        LocalDateTime now = LocalDateTime.now();  
+        currentdate = dtf.format(now);
         FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
-        File cache = new File(FileDir + "LoginRecords.txt");
-        if (!cache.exists()) {
-            cache.createNewFile();
+        File records = new File(FileDir + "LoginRecords.txt");
+        if (!records.exists()) {
+            records.createNewFile();
         }
         FileWriter ld = new FileWriter(FileDir + "LoginRecords.txt", true); 
         PrintWriter ldp = new PrintWriter(ld);
-        ldp.println(UserID + ":" + fullname + ":" + email + ":" + username + ":" + password + ":" + phonenumber + ":" + gender);
+        ldp.println(UserID + ":" + ManagerID + ":" + fullname + ":" + username + ":" + password + ":" + currentdate);
         ldp.close();
         } catch (Exception ex) {
             
@@ -254,10 +299,10 @@ public class APULogin extends javax.swing.JFrame {
     }
     private void initForm(){
         // Create the required directory for first time boot
-       // createDir();
+        createDir();
         // Create the required database textfiles for first time boot
-        //createDB();
-        this.setSize(1170,750);
+        createDatabase();
+        this.setSize(1170,800);
         this.setLocation(600,150);
         btnLogin.setVisible(false); // This will prevent the login button from being pressed right after startup
         // This anon class handles textfield changes for username entry
@@ -305,7 +350,7 @@ public class APULogin extends javax.swing.JFrame {
             public void windowClosing(WindowEvent e){
                 int selection = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Closing Window", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if (selection == JOptionPane.YES_OPTION) {
-                    ClearCache();
+                    clearCache();
                     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 } else {
                     setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -315,11 +360,13 @@ public class APULogin extends javax.swing.JFrame {
     }
     //</editor-fold>
     
+    // <editor-fold defaultstate="collapsed" desc="Button Events">
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-        if(ValidateAccount()){
+        if(validateAccount()){
             JOptionPane.showMessageDialog(null, "Login Successfully! Going to Main Menu", "Authentication Successfully!", JOptionPane.INFORMATION_MESSAGE);
-           UserSession();
+           userSession();
+           storeSession();
            checkUserType();
         } else {
             JOptionPane.showMessageDialog(null, "Authentication failed! Wrong password or username", "Failure of Authentication", JOptionPane.ERROR_MESSAGE);
@@ -333,9 +380,9 @@ public class APULogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Please enter the password!", "Failure of Authentication", JOptionPane.ERROR_MESSAGE);
         }else {
              if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-              if(ValidateAccount()){
+              if(validateAccount()){
               JOptionPane.showMessageDialog(null, "Login Successfully! Going to Main Menu", "Authentication Successfully!", JOptionPane.INFORMATION_MESSAGE);
-              UserSession();
+              userSession();
               checkUserType();
         } else {
             JOptionPane.showMessageDialog(null, "Authentication failed! Wrong password or username", "Failure of Authentication", JOptionPane.ERROR_MESSAGE);
@@ -345,7 +392,7 @@ public class APULogin extends javax.swing.JFrame {
         }
        
     }//GEN-LAST:event_txtPasswordKeyReleased
-    //</editor-fold>
+    // </editor-fold>
     
     /**
      * @param args the command line arguments

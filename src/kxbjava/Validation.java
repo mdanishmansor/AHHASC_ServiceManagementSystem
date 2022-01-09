@@ -126,7 +126,7 @@ class APUUsernameValidation extends APUStringValidation {
     
     public APUUsernameValidation() {
         super();
-        setPopup("Invalid username!", "Username can only consist of letters, numbers and escaped symbols.");
+        setPopup("Invalid username!", "Username can only consist of letters, numbers and escaped symbols, without spaces.");
         setRegex("^[-a-zA-Z0-9!@#$%^&*()\\{\\}\\[\\]\"\';\\\\/?|.,><~`_+=]+");
         setNegateRegex("[^-a-zA-Z0-9!@#$%^&*()\\{\\}\\[\\]\"\';\\\\/?|.,><~`_+=]");
     }
@@ -199,19 +199,11 @@ class APUNameValidation extends APUStringValidation {
     }
 }
 
-// This is a subclass of name validation but focuses on first name validation
-class APUFirstNameValidation extends APUNameValidation {
-    public APUFirstNameValidation(){
+// This is a subclass of name validation but focuses full name
+class APUFullNameValidation extends APUNameValidation {
+    public APUFullNameValidation(){
         super();
         setPopup("Invalid first name!", "First name can only consist of letters and spacing.");
-    }
-}
-
-// This is a subclass of name validation but focuses on last name validation
-class APULastNameValidation extends APUNameValidation {
-     public APULastNameValidation(){
-        super();
-        setPopup("Invalid last name!", "Last name can only consist of letters and spacing.");
     }
 }
 

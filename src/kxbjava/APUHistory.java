@@ -12,12 +12,12 @@ import javax.swing.UIManager;
  *
  * @author User
  */
-public class APUPaymentHistory extends javax.swing.JFrame {
+public class APUHistory extends javax.swing.JFrame {
 
     /**
      * Creates new form APUPayment
      */
-    public APUPaymentHistory() {
+    public APUHistory() {
         initComponents();
     }
 
@@ -36,11 +36,11 @@ public class APUPaymentHistory extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1210, Short.MAX_VALUE)
+            .addGap(0, 1218, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 830, Short.MAX_VALUE)
+            .addGap(0, 759, Short.MAX_VALUE)
         );
 
         pack();
@@ -59,7 +59,7 @@ public class APUPaymentHistory extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new APUPaymentHistory().setVisible(true);
+                new APUHistory().setVisible(true);
             }
         });
     }

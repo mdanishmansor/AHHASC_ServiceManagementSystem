@@ -22,6 +22,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import javax.swing.event.DocumentEvent;
 
 /**
  *
@@ -58,6 +59,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jComboBox1 = new javax.swing.JComboBox<>();
+        txtPhoneNumber = new javax.swing.JFormattedTextField();
         jPanel1 = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
         txtFullName = new javax.swing.JTextField();
@@ -65,7 +67,6 @@ public class APUMUserProfile extends javax.swing.JFrame {
         txtPassword = new javax.swing.JPasswordField();
         cmbUserType = new javax.swing.JComboBox<>();
         txtEmail = new javax.swing.JTextField();
-        txtPhoneNumber = new javax.swing.JTextField();
         cmbGender = new javax.swing.JComboBox<>();
         lblUserType = new javax.swing.JLabel();
         btnRegister = new javax.swing.JButton();
@@ -79,12 +80,25 @@ public class APUMUserProfile extends javax.swing.JFrame {
         lblUsername = new javax.swing.JLabel();
         lblPhoneNumber = new javax.swing.JLabel();
         lblGender = new javax.swing.JLabel();
+        txtPhoneNumber1 = new javax.swing.JFormattedTextField();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        txtPhoneNumber.setBackground(new java.awt.Color(68, 68, 68));
+        txtPhoneNumber.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(222, 222, 222)));
+        try {
+            txtPhoneNumber.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##########")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtPhoneNumber.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtPhoneNumber.setText("");
+        txtPhoneNumber.setToolTipText("Customer Phone Number");
+        txtPhoneNumber.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1179, 639));
@@ -99,7 +113,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
         txtFullName.setBackground(new java.awt.Color(68, 68, 68));
         txtFullName.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         txtFullName.setForeground(new java.awt.Color(237, 237, 237));
-        txtFullName.setText("Enter your full name");
+        txtFullName.setToolTipText("User's Full Name");
         txtFullName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         txtFullName.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -113,21 +127,13 @@ public class APUMUserProfile extends javax.swing.JFrame {
         txtUsername.setBackground(new java.awt.Color(68, 68, 68));
         txtUsername.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         txtUsername.setForeground(new java.awt.Color(237, 237, 237));
-        txtUsername.setText("Enter your username");
+        txtUsername.setToolTipText("User Username");
         txtUsername.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
-        txtUsername.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtUsernameFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtUsernameFocusLost(evt);
-            }
-        });
 
         txtPassword.setBackground(new java.awt.Color(68, 68, 68));
         txtPassword.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         txtPassword.setForeground(new java.awt.Color(237, 237, 237));
-        txtPassword.setText("PasswordforUser");
+        txtPassword.setToolTipText("User Password");
         txtPassword.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         txtPassword.setCaretColor(new java.awt.Color(237, 237, 237));
         txtPassword.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -153,36 +159,12 @@ public class APUMUserProfile extends javax.swing.JFrame {
         txtEmail.setBackground(new java.awt.Color(68, 68, 68));
         txtEmail.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         txtEmail.setForeground(new java.awt.Color(237, 237, 237));
-        txtEmail.setText("Enter your email");
+        txtEmail.setToolTipText("User Email");
         txtEmail.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         txtEmail.setCaretColor(new java.awt.Color(237, 237, 237));
         txtEmail.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtEmailFocusGained(evt);
-            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtEmailFocusLost(evt);
-            }
-        });
-
-        txtPhoneNumber.setBackground(new java.awt.Color(68, 68, 68));
-        txtPhoneNumber.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        txtPhoneNumber.setForeground(new java.awt.Color(237, 237, 237));
-        txtPhoneNumber.setText("Enter your phone number");
-        txtPhoneNumber.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
-        txtPhoneNumber.setCaretColor(new java.awt.Color(237, 237, 237));
-        txtPhoneNumber.setSelectedTextColor(new java.awt.Color(237, 237, 237));
-        txtPhoneNumber.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtPhoneNumberFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtPhoneNumberFocusLost(evt);
-            }
-        });
-        txtPhoneNumber.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPhoneNumberActionPerformed(evt);
             }
         });
 
@@ -276,6 +258,18 @@ public class APUMUserProfile extends javax.swing.JFrame {
         lblGender.setForeground(new java.awt.Color(237, 237, 237));
         lblGender.setText("Gender:");
 
+        txtPhoneNumber1.setBackground(new java.awt.Color(68, 68, 68));
+        txtPhoneNumber1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(222, 222, 222)));
+        try {
+            txtPhoneNumber1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##########")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtPhoneNumber1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtPhoneNumber1.setText("");
+        txtPhoneNumber1.setToolTipText("Customer Phone Number");
+        txtPhoneNumber1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -291,37 +285,40 @@ public class APUMUserProfile extends javax.swing.JFrame {
                             .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(96, 96, 96)
                             .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
                             .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                             .addGap(222, 222, 222)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblUserType)
-                                .addComponent(txtManagerID, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cmbUserType, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblFullName)
-                                .addComponent(lblUsername)
-                                .addComponent(lblPhoneNumber))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lblPassword)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(cmbGender, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(lblGender)))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(127, 127, 127)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(cmbUserID, 0, 250, Short.MAX_VALUE)
-                                        .addComponent(txtEmail)
-                                        .addComponent(lblEmail))
-                                    .addGap(0, 0, Short.MAX_VALUE))))))
-                .addContainerGap(321, Short.MAX_VALUE))
+                                .addComponent(lblPhoneNumber)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(txtPhoneNumber1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(117, 117, 117)
+                                        .addComponent(cmbGender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(lblUserType)
+                                                    .addComponent(lblFullName)
+                                                    .addComponent(lblUsername))
+                                                .addGap(286, 286, 286))
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(cmbUserType, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(txtManagerID, javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(txtFullName))
+                                                .addGap(117, 117, 117)))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(lblGender)
+                                            .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(lblEmail)
+                                            .addComponent(txtEmail)
+                                            .addComponent(cmbUserID, 0, 260, Short.MAX_VALUE)
+                                            .addComponent(lblPassword))))))))
+                .addContainerGap(311, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -334,9 +331,9 @@ public class APUMUserProfile extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbUserType, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbUserID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(txtManagerID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblFullName)
                     .addComponent(lblEmail))
@@ -352,19 +349,20 @@ public class APUMUserProfile extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPhoneNumber)
-                    .addComponent(lblGender))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblGender)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                .addComponent(lblPhoneNumber)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPhoneNumber1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -882,9 +880,9 @@ public class APUMUserProfile extends javax.swing.JFrame {
             }
         });
         // This property disables newline creation in JTextField
-        //txtClientHomeAddress.getDocument().putProperty("filterNewlines", Boolean.TRUE);
+        
         // Check if invalid input is inserted
-        // inputCharacterValidator();
+        inputCharacterValidation();
     }
     // </editor-fold>
     
@@ -951,6 +949,56 @@ public class APUMUserProfile extends javax.swing.JFrame {
         lblPhoneNumber.setForeground(ogtxt);
        // lblClientHomeAddress.setForeground(ogtxt);
     }
+      
+      private void inputCharacterValidation(){
+        txtFullName.getDocument().addDocumentListener(new APUDocumentListener() {
+            APUFullNameValidation vd = new APUFullNameValidation();
+            @Override
+            public void changedUpdate(DocumentEvent e){
+                vd.runValidate(txtFullName);
+            }
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                vd.runValidate(txtFullName);
+            }
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                vd.runValidate(txtFullName);
+            }
+        });
+        txtUsername.getDocument().addDocumentListener(new APUDocumentListener() {
+            APUUsernameValidation vd = new APUUsernameValidation();
+            @Override
+            public void changedUpdate(DocumentEvent e){
+                vd.runValidate(txtUsername);
+            }
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                vd.runValidate(txtUsername);
+            }
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                vd.runValidate(txtUsername);
+            }
+        });
+        txtPassword.getDocument().addDocumentListener(new APUDocumentListener() {
+            APUPasswordValidation vd = new APUPasswordValidation();
+            @Override
+            public void changedUpdate(DocumentEvent e){
+                vd.runValidate(txtPassword);
+            }
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                vd.runValidate(txtPassword);
+            }
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                vd.runValidate(txtPassword);
+            }
+        });
+        
+    }
+      
     // </editor-fold>  
     
     // <editor-fold defaultstate="collapsed" desc="Button events">  
@@ -967,20 +1015,6 @@ public class APUMUserProfile extends javax.swing.JFrame {
             txtFullName.setText("Enter your full name");
         }
     }//GEN-LAST:event_txtFullNameFocusLost
-
-    private void txtUsernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsernameFocusGained
-        // TODO add your handling code here:
-        if (txtUsername.getText().equals("Enter your username")) {
-            txtUsername.setText("");
-        }
-    }//GEN-LAST:event_txtUsernameFocusGained
-
-    private void txtUsernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsernameFocusLost
-        // TODO add your handling code here:
-        if (txtUsername.getText().equals("")) {
-            txtUsername.setText("Enter your username");
-        }
-    }//GEN-LAST:event_txtUsernameFocusLost
 
     private void txtPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordFocusGained
         if (txtPassword.getText().equals("PasswordforUser")) {
@@ -1014,34 +1048,11 @@ public class APUMUserProfile extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cmbUserTypeActionPerformed
 
-    private void txtEmailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusGained
-        // TODO add your handling code here:
-        if (txtEmail.getText().equals("Enter your email")) {
-            txtEmail.setText("");
-        }
-    }//GEN-LAST:event_txtEmailFocusGained
-
     private void txtEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusLost
         // TODO add your handling code here:
-        if (txtEmail.getText().equals("")) {
-            txtEmail.setText("Enter your email");
-        }
         APUEmailValidation vd = new APUEmailValidation();     
         vd.runValidate(txtEmail, true);
     }//GEN-LAST:event_txtEmailFocusLost
-
-    private void txtPhoneNumberFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPhoneNumberFocusGained
-        // TODO add your handling code here:
-        if (txtPhoneNumber.getText().equals("Enter your phone number")) {
-            txtPhoneNumber.setText("");
-        }
-    }//GEN-LAST:event_txtPhoneNumberFocusGained
-
-    private void txtPhoneNumberFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPhoneNumberFocusLost
-        if (txtPhoneNumber.getText().equals("")) {
-            txtPhoneNumber.setText("Enter your phone number");
-        }
-    }//GEN-LAST:event_txtPhoneNumberFocusLost
 
     private void cmbUserIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbUserIDActionPerformed
         clearUser();
@@ -1059,10 +1070,6 @@ public class APUMUserProfile extends javax.swing.JFrame {
             btnUpdate.setEnabled(false);
         }
     }//GEN-LAST:event_cmbUserIDActionPerformed
-
-    private void txtPhoneNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneNumberActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPhoneNumberActionPerformed
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
@@ -1129,7 +1136,8 @@ public class APUMUserProfile extends javax.swing.JFrame {
     private javax.swing.JTextField txtFullName;
     private javax.swing.JTextField txtManagerID;
     private javax.swing.JPasswordField txtPassword;
-    private javax.swing.JTextField txtPhoneNumber;
+    private javax.swing.JFormattedTextField txtPhoneNumber;
+    private javax.swing.JFormattedTextField txtPhoneNumber1;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }
