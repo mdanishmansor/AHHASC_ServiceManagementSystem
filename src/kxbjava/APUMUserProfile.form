@@ -255,10 +255,6 @@
               </Border>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtFullNameFocusGained"/>
-            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtFullNameFocusLost"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtUsername">
           <Properties>
@@ -304,10 +300,6 @@
               <Color blue="ed" green="ed" red="ed" type="rgb"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtPasswordFocusGained"/>
-            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtPasswordFocusLost"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="cmbUserType">
           <Properties>

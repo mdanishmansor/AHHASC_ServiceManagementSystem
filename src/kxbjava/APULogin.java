@@ -184,7 +184,7 @@ public class APULogin extends javax.swing.JFrame {
             File usertxt = new File(FileDir + "UserProfile.txt");
             File customertxt = new File(FileDir + "Customer.txt");
             File appttxt = new File(FileDir + "Appointment.txt");
-            //File clienttxt = new File(FileDir + "client.txt");
+            File paymenttxt = new File(FileDir + "Payment.txt");
             if (!usertxt.exists()) {
                 usertxt.createNewFile();
             }
@@ -194,9 +194,9 @@ public class APULogin extends javax.swing.JFrame {
             if (!appttxt.exists()) {
                 appttxt.createNewFile();
             }
-            //if (!clienttxt.exists()) {
-            //    clienttxt.createNewFile();
-            //}
+            if (!paymenttxt.exists()) {
+                paymenttxt.createNewFile();
+            }
         } catch(IOException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }

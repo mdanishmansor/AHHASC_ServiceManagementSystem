@@ -6,6 +6,11 @@
 package kxbjava;
 
 import com.formdev.flatlaf.FlatDarkLaf;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.File;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 /**
@@ -13,12 +18,13 @@ import javax.swing.UIManager;
  * @author User
  */
 public class APUTCMenu extends javax.swing.JFrame {
-
+    private String FileDir;
     /**
      * Creates new form APUTCMenu
      */
     public APUTCMenu() {
         initComponents();
+        initForm();
     }
 
     /**
@@ -65,6 +71,11 @@ public class APUTCMenu extends javax.swing.JFrame {
         btnHandlingTask.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/task.png"))); // NOI18N
         btnHandlingTask.setText("Handling Task");
         btnHandlingTask.setBorder(null);
+        btnHandlingTask.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHandlingTaskActionPerformed(evt);
+            }
+        });
 
         btnProfile.setBackground(new java.awt.Color(255, 46, 99));
         btnProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/programmer.png"))); // NOI18N
@@ -123,6 +134,36 @@ public class APUTCMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void clearCache() {
+        try {
+            FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
+            File cache = new File(FileDir + "UserCache.txt");
+            if (cache.exists()) {
+                cache.delete();
+            }
+        } catch (Exception ex) {
+
+        }
+    }
+    
+    private void initForm(){
+        this.setSize(1170,750);
+        this.setLocation(600,150);
+        //userIncrementor();
+        // This anon class handles window closing event
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                int selection = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Closing Window", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                if (selection == JOptionPane.YES_OPTION) {
+                    clearCache();
+                    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                } else {
+                    setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+                }
+            }
+        });
+    }
+    
     private void btnCollectPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCollectPaymentActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCollectPaymentActionPerformed
@@ -132,6 +173,12 @@ public class APUTCMenu extends javax.swing.JFrame {
         new APUUserProfile().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnProfileActionPerformed
+
+    private void btnHandlingTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHandlingTaskActionPerformed
+        // TODO add your handling code here:
+        new APUHandleTask().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnHandlingTaskActionPerformed
 
     /**
      * @param args the command line arguments

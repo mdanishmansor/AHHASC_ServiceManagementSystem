@@ -115,14 +115,6 @@ public class APUMUserProfile extends javax.swing.JFrame {
         txtFullName.setForeground(new java.awt.Color(237, 237, 237));
         txtFullName.setToolTipText("User's Full Name");
         txtFullName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
-        txtFullName.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtFullNameFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtFullNameFocusLost(evt);
-            }
-        });
 
         txtUsername.setBackground(new java.awt.Color(68, 68, 68));
         txtUsername.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -136,14 +128,6 @@ public class APUMUserProfile extends javax.swing.JFrame {
         txtPassword.setToolTipText("User Password");
         txtPassword.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         txtPassword.setCaretColor(new java.awt.Color(237, 237, 237));
-        txtPassword.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtPasswordFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtPasswordFocusLost(evt);
-            }
-        });
 
         cmbUserType.setBackground(new java.awt.Color(68, 68, 68));
         cmbUserType.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -999,35 +983,6 @@ public class APUMUserProfile extends javax.swing.JFrame {
         
     }
       
-    // </editor-fold>  
-    
-    // <editor-fold defaultstate="collapsed" desc="Button events">  
-    private void txtFullNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFullNameFocusGained
-        // TODO add your handling code here:
-        if (txtFullName.getText().equals("Enter your full name")) {
-            txtFullName.setText("");
-        }
-    }//GEN-LAST:event_txtFullNameFocusGained
-
-    private void txtFullNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFullNameFocusLost
-        // TODO add your handling code here:
-        if (txtFullName.getText().equals("")) {
-            txtFullName.setText("Enter your full name");
-        }
-    }//GEN-LAST:event_txtFullNameFocusLost
-
-    private void txtPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordFocusGained
-        if (txtPassword.getText().equals("PasswordforUser")) {
-            txtPassword.setText("");
-        }
-    }//GEN-LAST:event_txtPasswordFocusGained
-
-    private void txtPasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordFocusLost
-        if (txtPassword.getText().equals("")) {
-            txtPassword.setText("PasswordforUser");
-        }
-    }//GEN-LAST:event_txtPasswordFocusLost
-
     private void cmbUserTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbUserTypeActionPerformed
         deHighlightEmpty();
         clearUser();

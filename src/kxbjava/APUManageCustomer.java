@@ -46,7 +46,6 @@ public class APUManageCustomer extends javax.swing.JFrame {
      */
     public APUManageCustomer() {
         initComponents();
-        setCustomerID();
         loadUserProfile();
         initForm();
         
@@ -779,6 +778,8 @@ public class APUManageCustomer extends javax.swing.JFrame {
         this.setLocation(600,150);
         btnUpdate.setEnabled(false);
         btnDelete.setEnabled(false);
+        
+        setCustomerID();
         // Set the initial value for new book
         custIDIncrementor();
         // This anon class handles window closing event

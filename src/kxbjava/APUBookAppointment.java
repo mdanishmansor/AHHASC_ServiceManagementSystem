@@ -68,7 +68,6 @@ public class APUBookAppointment extends javax.swing.JFrame {
 
         txtAppDate.setBackground(new java.awt.Color(68, 68, 68));
         txtAppDate.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        txtAppDate.setText("08/02/2001");
         txtAppDate.setToolTipText("");
         txtAppDate.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         txtAppDate.addActionListener(new java.awt.event.ActionListener() {

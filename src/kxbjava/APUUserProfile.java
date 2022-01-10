@@ -389,6 +389,8 @@ public class APUUserProfile extends javax.swing.JFrame {
     }
     //</editor-fold>
     
+    
+    // <editor-fold defaultstate="collapsed" desc="Button Events">
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         int selection = JOptionPane.showConfirmDialog(null, "Logging out. Are you sure to continue?", "Logout", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (selection == JOptionPane.YES_OPTION) {
