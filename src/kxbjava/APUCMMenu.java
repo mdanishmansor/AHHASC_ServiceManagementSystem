@@ -238,7 +238,8 @@ public class APUCMMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnManageProfileActionPerformed
 
     private void btnBookAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookAppointmentActionPerformed
-        // TODO add your handling code here:
+        new APUBookAppointment().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnBookAppointmentActionPerformed
 
     private void btnManageAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageAppointmentActionPerformed

@@ -1,3 +1,3 @@
-Appointment ID:CustomerID:Technician ID:Manager ID:Customer Name:Appointment Date:Appointment Time:Appliance:Book Date:Task Status:PaymentStatus:flag
-APPT00001:CUST00001:TC00002:CM00001:Faris:dadad:dadad:dadada:dadad:dadada:dadada:true
-APPT00002:CUST00001:TC00001:CM00001:Faris:dadad:dadad:dadada:dadad:dadada:Paid:true
+APPT00001:TestCustID001:TestTechID001:Manager001:Cust Test Name:20-01-2022:0800:Television:2022/01/11 00:19:00:ongoing:unpaid:TRUE
+APPT00002:CUST00003:TC00001:Manager001:dddddddddddddd:12-01-2022:Select Time:Select Appliance:2022/01/11 00:39:51:ongoing:unpaid:TRUE
+APPT00003:CUST00003:TC00001:Manager001:dddddddddddddd:12-01-2022:Select Time:Select Appliance:2022/01/11 00:39:57:ongoing:unpaid:TRUE

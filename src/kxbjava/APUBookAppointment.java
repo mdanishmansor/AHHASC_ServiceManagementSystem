@@ -14,6 +14,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import javax.swing.UIManager;
 
@@ -26,12 +28,17 @@ public class APUBookAppointment extends javax.swing.JFrame {
     /**
      * Creates new form APUBookAppointment
      */
-    private String source = System.getProperty("user.dir") + "\\src\\TextFiles\\Appointment.txt"; //Retrieving Directory of Appointment.txt File.
+    private final String source = System.getProperty("user.dir") + "\\src\\TextFiles\\Appointment.txt"; //Retrieving Directory of Appointment.txt File.
+    private final String custSource = System.getProperty("user.dir") + "\\src\\TextFiles\\Customer.txt"; //Retrieving Directory of Appointment.txt File.
+    private final String techSource = System.getProperty("user.dir") + "\\src\\TextFiles\\UserProfile.txt"; //Retrieving Directory of Appointment.txt File.
+
     private String generatedStaffID;
     final DecimalFormat idformat = new DecimalFormat("00000");
 
     public APUBookAppointment() {
         initComponents();
+        readCustData();
+        readTechData();
     }
 
     /**
@@ -45,7 +52,6 @@ public class APUBookAppointment extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
-        txtAppDate = new javax.swing.JTextField();
         cmbCustomerID = new javax.swing.JComboBox<>();
         cmbTechID = new javax.swing.JComboBox<>();
         txtCustName = new javax.swing.JTextField();
@@ -66,28 +72,24 @@ public class APUBookAppointment extends javax.swing.JFrame {
         lblTitle.setForeground(new java.awt.Color(218, 0, 55));
         lblTitle.setText("Book Appointment");
 
-        txtAppDate.setBackground(new java.awt.Color(68, 68, 68));
-        txtAppDate.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        txtAppDate.setToolTipText("");
-        txtAppDate.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
-        txtAppDate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAppDateActionPerformed(evt);
-            }
-        });
-
         cmbCustomerID.setBackground(new java.awt.Color(8, 217, 214));
         cmbCustomerID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         cmbCustomerID.setForeground(new java.awt.Color(37, 42, 52));
-        cmbCustomerID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Customer ID", "TestCustID001", "TestCustID002", "TestCustID003" }));
+        cmbCustomerID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Customer ID" }));
         cmbCustomerID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 0, 0, new java.awt.Color(0, 0, 0)));
+        cmbCustomerID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbCustomerIDActionPerformed(evt);
+            }
+        });
 
         cmbTechID.setBackground(new java.awt.Color(8, 217, 214));
         cmbTechID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         cmbTechID.setForeground(new java.awt.Color(37, 42, 52));
-        cmbTechID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Technician ID", "TestTechID001", "TestTechID002", "TestTechID003" }));
+        cmbTechID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Technician ID" }));
         cmbTechID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 0, 0, new java.awt.Color(0, 0, 0)));
 
+        txtCustName.setEditable(false);
         txtCustName.setBackground(new java.awt.Color(68, 68, 68));
         txtCustName.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         txtCustName.setText("Customer Name");
@@ -141,34 +143,31 @@ public class APUBookAppointment extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(302, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cmbCustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtManagerID, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbAppliance, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cmbTechID, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCustName, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbTime, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(366, 366, 366))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(477, 477, 477)
                         .addComponent(lblTitle))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(488, 488, 488)
+                        .addGap(409, 409, 409)
                         .addComponent(btnBook, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(34, 34, 34)
+                        .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(426, 426, 426)
+                        .addComponent(appDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(302, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(cmbAppliance, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cmbCustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtManagerID, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtAppDate, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cmbTechID, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCustName, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbTime, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(appDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(302, 302, 302))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,18 +179,16 @@ public class APUBookAppointment extends javax.swing.JFrame {
                     .addComponent(cmbCustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbTechID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
-                .addComponent(txtCustName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtManagerID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(appDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtAppDate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbTime, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                .addComponent(cmbAppliance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCustName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtManagerID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52)
+                .addComponent(appDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmbTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbAppliance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBook)
                     .addComponent(btnReset))
@@ -211,11 +208,7 @@ public class APUBookAppointment extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    
-    private void txtAppDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAppDateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtAppDateActionPerformed
+
 
     private void txtCustNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustNameActionPerformed
         // TODO add your handling code here:
@@ -230,6 +223,10 @@ public class APUBookAppointment extends javax.swing.JFrame {
         insertData();
     }//GEN-LAST:event_btnBookActionPerformed
 
+    private void cmbCustomerIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCustomerIDActionPerformed
+        readCustData(cmbCustomerID.getSelectedItem().toString());
+    }//GEN-LAST:event_cmbCustomerIDActionPerformed
+
     private void IDincrement() {
         int countLine = 1;
         try {
@@ -243,8 +240,65 @@ public class APUBookAppointment extends javax.swing.JFrame {
                 countLine++;
             }
 
-            generatedStaffID = "APID" + idformat.format(countLine);
+            generatedStaffID = "APPT" + idformat.format(countLine);
 
+        } catch (Exception e) {
+
+        }
+
+    }
+
+    public final void readCustData() {
+        File file = new File(custSource);
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            Object[] tableLines = br.lines().toArray();
+            for (int i = 0; i < tableLines.length; i++) {
+                String line = tableLines[i].toString().trim();
+                String[] dataRow = line.split(":");
+                cmbCustomerID.addItem(dataRow[0]);
+
+            }
+            br.close();
+        } catch (Exception e) {
+
+        }
+
+    }
+
+    public final void readCustData(String SelectedCustID) {
+        File file = new File(custSource);
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            Object[] tableLines = br.lines().toArray();
+            for (int i = 0; i < tableLines.length; i++) {
+                String line = tableLines[i].toString().trim();
+                String[] dataRow = line.split(":");
+                if (SelectedCustID.equals(dataRow[0])) {
+                    txtCustName.setText(dataRow[1]);
+                }
+            }
+            br.close();
+        } catch (Exception e) {
+
+        }
+
+    }
+
+    public final void readTechData() {
+        File file = new File(techSource);
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            Object[] tableLines = br.lines().toArray();
+            for (int i = 0; i < tableLines.length; i++) {
+                String line = tableLines[i].toString().trim();
+                String[] dataRow = line.split(":");
+                if (dataRow[0].contains("TC")) {
+                    cmbTechID.addItem(dataRow[0]);
+                }
+
+            }
+            br.close();
         } catch (Exception e) {
 
         }
@@ -260,25 +314,37 @@ public class APUBookAppointment extends javax.swing.JFrame {
 
             String appointment_id = generatedStaffID;
             String customer_id = cmbCustomerID.getSelectedItem().toString();
-            String technician_id = cmbTechID.getSelectedItem().toString(); 
-            String customer_name = txtCustName.getText();
+            String technician_id = cmbTechID.getSelectedItem().toString();
             String manager_id = txtManagerID.getText();
+            String customer_name = txtCustName.getText();
             Date selectedDate = appDateChooser.getDate();
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
             String appointment_date = sdf.format(selectedDate);
             String appointment_time = cmbTime.getSelectedItem().toString();
+            String app_status = "ongoing";
+            String app_payment = "unpaid";
             String appliance_name = cmbAppliance.getSelectedItem().toString();
 
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu/MM/dd HH:mm:ss");
+            LocalDateTime now = LocalDateTime.now();
+            System.out.println();
+            String book_date = dtf.format(now);
+            String flag = "TRUE";
+
             String datalist
-                    = appointment_id + "::"
-                    + customer_id + "::"
-                    + technician_id + "::"
-                    + customer_name + "::"
-                    + manager_id + "::"
-                    + appointment_date + "::"
-                    + appointment_time + "::"
-                    + appliance_name
+                    = appointment_id + ":"
+                    + customer_id + ":"
+                    + technician_id + ":"
+                    + manager_id + ":"
+                    + customer_name + ":"
+                    + appointment_date + ":"
+                    + appointment_time + ":"
+                    + appliance_name + ":"
+                    + book_date + ":"
+                    + app_status + ":"
+                    + app_payment + ":"
+                    + flag
                     + "\n";
 
             bf.write(datalist); //Writes the Values From The Variables to the Appointment.txt File.
@@ -317,7 +383,6 @@ public class APUBookAppointment extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbTime;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblTitle;
-    private javax.swing.JTextField txtAppDate;
     private javax.swing.JTextField txtCustName;
     private javax.swing.JTextField txtManagerID;
     // End of variables declaration//GEN-END:variables
