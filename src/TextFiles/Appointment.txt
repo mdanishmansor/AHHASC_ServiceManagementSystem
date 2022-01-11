@@ -1,3 +1,1 @@
-APPT00001:TestCustID001:TestTechID001:Manager001:Cust Test Name:20-01-2022:0800:Television:2022/01/11 00:19:00:ongoing:unpaid:TRUE
-APPT00002:CUST00003:TC00001:Manager001:dddddddddddddd:12-01-2022:Select Time:Select Appliance:2022/01/11 00:39:51:ongoing:unpaid:TRUE
-APPT00003:CUST00003:TC00001:Manager001:dddddddddddddd:12-01-2022:Select Time:Select Appliance:2022/01/11 00:39:57:ongoing:unpaid:TRUE
+APPT00001:CUST00003:TC00002:CM00001:dddddddddddddd:28-01-2022:1200:Refrigerator:18.38.18, 11-01-2022:ongoing:true

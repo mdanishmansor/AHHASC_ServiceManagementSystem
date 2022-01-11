@@ -6,9 +6,12 @@
 package kxbjava;
 
 import com.formdev.flatlaf.FlatDarkLaf;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -17,6 +20,9 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Scanner;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 /**
@@ -31,14 +37,15 @@ public class APUBookAppointment extends javax.swing.JFrame {
     private final String source = System.getProperty("user.dir") + "\\src\\TextFiles\\Appointment.txt"; //Retrieving Directory of Appointment.txt File.
     private final String custSource = System.getProperty("user.dir") + "\\src\\TextFiles\\Customer.txt"; //Retrieving Directory of Appointment.txt File.
     private final String techSource = System.getProperty("user.dir") + "\\src\\TextFiles\\UserProfile.txt"; //Retrieving Directory of Appointment.txt File.
-
-    private String generatedStaffID;
+    private final String paymentSource = System.getProperty("user.dir") + "\\src\\TextFiles\\Payment.txt";
+   
+    private String generatedStaffID, FileDir, uID;
     final DecimalFormat idformat = new DecimalFormat("00000");
 
     public APUBookAppointment() {
         initComponents();
-        readCustData();
-        readTechData();
+        initForm();
+        
     }
 
     /**
@@ -92,8 +99,7 @@ public class APUBookAppointment extends javax.swing.JFrame {
         txtCustName.setEditable(false);
         txtCustName.setBackground(new java.awt.Color(68, 68, 68));
         txtCustName.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        txtCustName.setText("Customer Name");
-        txtCustName.setToolTipText("");
+        txtCustName.setToolTipText("Customer Name");
         txtCustName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         txtCustName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,8 +110,7 @@ public class APUBookAppointment extends javax.swing.JFrame {
         txtManagerID.setEditable(false);
         txtManagerID.setBackground(new java.awt.Color(68, 68, 68));
         txtManagerID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        txtManagerID.setText("Manager001");
-        txtManagerID.setToolTipText("");
+        txtManagerID.setToolTipText("Manager ID");
         txtManagerID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         txtManagerID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,6 +142,8 @@ public class APUBookAppointment extends javax.swing.JFrame {
         cmbTime.setForeground(new java.awt.Color(37, 42, 52));
         cmbTime.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Time", "0800", "1000", "1200", "1400", "1600", "1800" }));
         cmbTime.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 0, 0, new java.awt.Color(0, 0, 0)));
+
+        appDateChooser.setBackground(new java.awt.Color(68, 68, 68));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -214,19 +221,42 @@ public class APUBookAppointment extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCustNameActionPerformed
 
-    private void txtManagerIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtManagerIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtManagerIDActionPerformed
-
     private void btnBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookActionPerformed
         IDincrement();
         insertData();
+        insertPayment();
     }//GEN-LAST:event_btnBookActionPerformed
 
     private void cmbCustomerIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCustomerIDActionPerformed
         readCustData(cmbCustomerID.getSelectedItem().toString());
     }//GEN-LAST:event_cmbCustomerIDActionPerformed
 
+    private void txtManagerIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtManagerIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtManagerIDActionPerformed
+
+    //<editor-fold defaultstate="collapsed" desc="Methods">
+     
+    private void loadUserProfile(){
+        String[] matchedID = null;
+        FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
+        File usertext = new File(FileDir + "UserCache.txt");
+        Scanner intUser;
+        try {
+            intUser = new Scanner(usertext);
+            while (intUser.hasNext())
+            {
+             String bEntry = intUser.nextLine();
+             matchedID = bEntry.split(":");
+             uID = matchedID[0];
+             txtManagerID.setText(uID);
+                }
+            intUser.close();
+        } catch (FileNotFoundException ex) {
+            //Logger.getLogger(.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     private void IDincrement() {
         int countLine = 1;
         try {
@@ -256,8 +286,9 @@ public class APUBookAppointment extends javax.swing.JFrame {
             for (int i = 0; i < tableLines.length; i++) {
                 String line = tableLines[i].toString().trim();
                 String[] dataRow = line.split(":");
-                cmbCustomerID.addItem(dataRow[0]);
-
+                if (dataRow[0].contains("CUST") && "true".equals(dataRow[8])) {
+                    cmbCustomerID.addItem(dataRow[0]);
+                }
             }
             br.close();
         } catch (Exception e) {
@@ -293,7 +324,7 @@ public class APUBookAppointment extends javax.swing.JFrame {
             for (int i = 0; i < tableLines.length; i++) {
                 String line = tableLines[i].toString().trim();
                 String[] dataRow = line.split(":");
-                if (dataRow[0].contains("TC")) {
+                if (dataRow[0].contains("TC") && "true".equals(dataRow[8])) {
                     cmbTechID.addItem(dataRow[0]);
                 }
 
@@ -308,6 +339,7 @@ public class APUBookAppointment extends javax.swing.JFrame {
     private void insertData() {
 
         try {
+            
             File file = new File(source);
             FileWriter fw = new FileWriter(file, true);
             BufferedWriter bf = new BufferedWriter(fw);
@@ -326,11 +358,11 @@ public class APUBookAppointment extends javax.swing.JFrame {
             String app_payment = "unpaid";
             String appliance_name = cmbAppliance.getSelectedItem().toString();
 
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu/MM/dd HH:mm:ss");
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH.mm.ss, dd-MM-yyyy");
             LocalDateTime now = LocalDateTime.now();
             System.out.println();
             String book_date = dtf.format(now);
-            String flag = "TRUE";
+            String flag = "true";
 
             String datalist
                     = appointment_id + ":"
@@ -343,6 +375,51 @@ public class APUBookAppointment extends javax.swing.JFrame {
                     + appliance_name + ":"
                     + book_date + ":"
                     + app_status + ":"
+                    + flag
+                    + "\n";
+
+            bf.write(datalist); //Writes the Values From The Variables to the Appointment.txt File.
+            bf.close();
+             JOptionPane.showMessageDialog(null, "Appointment has been booked", "Appoinment Booking", JOptionPane.INFORMATION_MESSAGE);
+        } catch (IOException e) {
+        }
+
+    }
+    
+    private void insertPayment() {
+
+        try {
+            File file = new File(paymentSource);
+            FileWriter fw = new FileWriter(file, true);
+            BufferedWriter bf = new BufferedWriter(fw);
+
+            String appointment_id = generatedStaffID;
+            String customer_id = cmbCustomerID.getSelectedItem().toString();
+            String technician_id = cmbTechID.getSelectedItem().toString();
+            String manager_id = txtManagerID.getText();
+            String customer_name = txtCustName.getText();
+            Date selectedDate = appDateChooser.getDate();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+
+            String appointment_date = sdf.format(selectedDate);
+            String appointment_time = cmbTime.getSelectedItem().toString();
+            //String app_status = "ongoing";
+            String app_payment = "Unpaid";
+            String appliance_name = cmbAppliance.getSelectedItem().toString();
+            
+//            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu/MM/dd HH:mm:ss");
+//            LocalDateTime now = LocalDateTime.now();
+            System.out.println();
+//            String book_date = dtf.format(now);
+            String flag = "true";
+
+            String datalist
+                    = appointment_id + ":"
+                    + technician_id + ":"
+                    + customer_name + ":"
+                    + appointment_date + ":"
+                    + appointment_time + ":"
+                    + appliance_name + ":"
                     + app_payment + ":"
                     + flag
                     + "\n";
@@ -353,7 +430,43 @@ public class APUBookAppointment extends javax.swing.JFrame {
         }
 
     }
+    private void clearCache() {
+        try {
+            FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
+            File cache = new File(FileDir + "UserCache.txt");
+            if (cache.exists()) {
+                cache.delete();
+            }
+        } catch (Exception ex) {
 
+        }
+    }
+    private void initForm() {
+        this.setSize(1170, 750);
+        this.setLocation(600, 150);
+        //btnUpdate.setEnabled(false);
+        loadUserProfile();
+        readCustData();
+        readTechData();
+        // Set the initial value for new book
+        // This anon class handles window closing event
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                int selection = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Closing Window", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                if (selection == JOptionPane.YES_OPTION) {
+                    clearCache();
+                    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                } else {
+                    setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+                }
+            }
+        });
+        // txaHomeAddress.getDocument().putProperty("filterNewlines", Boolean.TRUE);
+        //  inputCharacterValidation();
+    }
+    // </editor-fold>
+    
+    
     /**
      * @param args the command line arguments
      */

@@ -48,14 +48,14 @@ public class APUHandleTask extends javax.swing.JFrame {
         cmbApptID = new javax.swing.JComboBox<>();
         txtApptDate = new javax.swing.JTextField();
         lblApptDate = new javax.swing.JLabel();
-        txtCustomerID = new javax.swing.JTextField();
         txtCustomerName = new javax.swing.JTextField();
         txtAppliance = new javax.swing.JTextField();
         txtApptTime = new javax.swing.JTextField();
-        txtPaymentAmount = new javax.swing.JTextField();
+        txttotalPayment = new javax.swing.JTextField();
         txtPaymentDate = new javax.swing.JTextField();
         cmbPaymentStatus = new javax.swing.JComboBox<>();
         btnUpdate = new javax.swing.JButton();
+        txtPaymentAmount = new javax.swing.JTextField();
 
         lblTitle.setBackground(new java.awt.Color(68, 68, 68));
         lblTitle.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
@@ -89,12 +89,6 @@ public class APUHandleTask extends javax.swing.JFrame {
 
         lblApptDate.setText("Appointment Date:");
 
-        txtCustomerID.setEditable(false);
-        txtCustomerID.setBackground(new java.awt.Color(68, 68, 68));
-        txtCustomerID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        txtCustomerID.setForeground(new java.awt.Color(237, 237, 237));
-        txtCustomerID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
-
         txtCustomerName.setEditable(false);
         txtCustomerName.setBackground(new java.awt.Color(68, 68, 68));
         txtCustomerName.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -113,14 +107,14 @@ public class APUHandleTask extends javax.swing.JFrame {
         txtApptTime.setForeground(new java.awt.Color(237, 237, 237));
         txtApptTime.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
 
-        txtPaymentAmount.setEditable(false);
-        txtPaymentAmount.setBackground(new java.awt.Color(68, 68, 68));
-        txtPaymentAmount.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        txtPaymentAmount.setForeground(new java.awt.Color(237, 237, 237));
-        txtPaymentAmount.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
-        txtPaymentAmount.addActionListener(new java.awt.event.ActionListener() {
+        txttotalPayment.setEditable(false);
+        txttotalPayment.setBackground(new java.awt.Color(68, 68, 68));
+        txttotalPayment.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txttotalPayment.setForeground(new java.awt.Color(237, 237, 237));
+        txttotalPayment.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
+        txttotalPayment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPaymentAmountActionPerformed(evt);
+                txttotalPaymentActionPerformed(evt);
             }
         });
 
@@ -133,7 +127,7 @@ public class APUHandleTask extends javax.swing.JFrame {
         cmbPaymentStatus.setBackground(new java.awt.Color(68, 68, 68));
         cmbPaymentStatus.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         cmbPaymentStatus.setForeground(new java.awt.Color(237, 237, 237));
-        cmbPaymentStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Payment Status", "Not paid", "Paid" }));
+        cmbPaymentStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Payment Status", "Unpaid", "Paid" }));
         cmbPaymentStatus.setToolTipText("Payment Status of the Task");
 
         btnUpdate.setBackground(new java.awt.Color(23, 23, 23));
@@ -144,6 +138,17 @@ public class APUHandleTask extends javax.swing.JFrame {
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
+            }
+        });
+
+        txtPaymentAmount.setEditable(false);
+        txtPaymentAmount.setBackground(new java.awt.Color(68, 68, 68));
+        txtPaymentAmount.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtPaymentAmount.setForeground(new java.awt.Color(237, 237, 237));
+        txtPaymentAmount.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
+        txtPaymentAmount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPaymentAmountActionPerformed(evt);
             }
         });
 
@@ -159,25 +164,26 @@ public class APUHandleTask extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(226, 226, 226)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblApptDate)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(txtPaymentDate, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbPaymentStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(txttotalPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtPaymentAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                     .addComponent(txtApptTime, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtPaymentDate, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(txtCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtAppliance, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(txtApptDate, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(cmbApptID, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(127, 127, 127)
-                                    .addComponent(txtCustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(cmbPaymentStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lblApptDate)
+                                        .addComponent(txtApptDate, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(528, 528, 528)
                         .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -188,27 +194,27 @@ public class APUHandleTask extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(82, 82, 82)
                 .addComponent(lblPageTitle)
-                .addGap(67, 67, 67)
+                .addGap(34, 34, 34)
+                .addComponent(lblApptDate)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbApptID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
-                .addComponent(lblApptDate)
-                .addGap(27, 27, 27)
+                    .addComponent(txtApptDate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(64, 64, 64)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtApptDate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(59, 59, 59)
+                    .addComponent(txtCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAppliance, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(61, 61, 61)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtApptTime, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtAppliance, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(58, 58, 58)
+                    .addComponent(txtPaymentDate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(69, 69, 69)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPaymentDate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txttotalPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPaymentAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(60, 60, 60)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addComponent(cmbPaymentStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGap(43, 43, 43)
                 .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
         );
@@ -341,13 +347,13 @@ public class APUHandleTask extends javax.swing.JFrame {
                 matchedID[0] = matchedID[0].replace(apptPrefix, "");
                 // JOptionPane.showMessageDialog(null, i);
                 if (cmbApptID.getSelectedItem().equals(matchedID[0])) {
-                    txtCustomerID.setText(matchedID[1]);
+                    //txtCustomerID.setText(matchedID[1]);
                     txtCustomerName.setText(matchedID[4]);
                     txtApptDate.setText(matchedID[5]);
                     txtApptTime.setText(matchedID[6]);
                     txtAppliance.setText(matchedID[7]);
                     switch (matchedID[10]) {
-                        case "Not paid":
+                        case "Unpaid":
                             cmbPaymentStatus.setSelectedIndex(1);
                             break;
                         case "Paid":
@@ -393,9 +399,9 @@ public class APUHandleTask extends javax.swing.JFrame {
      }
     // </editor-fold>
     
-    private void txtPaymentAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPaymentAmountActionPerformed
+    private void txttotalPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttotalPaymentActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPaymentAmountActionPerformed
+    }//GEN-LAST:event_txttotalPaymentActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
 //        deHighlightEmpty();
@@ -420,6 +426,10 @@ public class APUHandleTask extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_cmbApptIDActionPerformed
+
+    private void txtPaymentAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPaymentAmountActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPaymentAmountActionPerformed
 
     /**
      * @param args the command line arguments
@@ -451,9 +461,9 @@ public class APUHandleTask extends javax.swing.JFrame {
     private javax.swing.JTextField txtAppliance;
     private javax.swing.JTextField txtApptDate;
     private javax.swing.JTextField txtApptTime;
-    private javax.swing.JTextField txtCustomerID;
     private javax.swing.JTextField txtCustomerName;
     private javax.swing.JTextField txtPaymentAmount;
     private javax.swing.JTextField txtPaymentDate;
+    private javax.swing.JTextField txttotalPayment;
     // End of variables declaration//GEN-END:variables
 }
