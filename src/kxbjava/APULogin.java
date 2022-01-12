@@ -32,7 +32,7 @@ import javax.swing.event.DocumentEvent;
  */
 public class APULogin extends javax.swing.JFrame {
     private boolean Username = false, Password = false;
-    private String UserID, username, FileDir, fullname, email, password, phonenumber, gender, ManagerID, currentdate;
+    private String UserID, username, FileDir, fullname, email, password, phonenumber, gender, ManagerID, currentdate, userRole;
     /**
      * Creates new form APULogin
      */
@@ -68,12 +68,14 @@ public class APULogin extends javax.swing.JFrame {
         txtUsername.setBackground(new java.awt.Color(68, 68, 68));
         txtUsername.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         txtUsername.setForeground(new java.awt.Color(237, 237, 237));
+        txtUsername.setText("irfan");
         txtUsername.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         txtUsername.setCaretColor(new java.awt.Color(237, 237, 237));
 
         txtPassword.setBackground(new java.awt.Color(68, 68, 68));
         txtPassword.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         txtPassword.setForeground(new java.awt.Color(237, 237, 237));
+        txtPassword.setText("kacang");
         txtPassword.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         txtPassword.setCaretColor(new java.awt.Color(237, 237, 237));
         txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -100,16 +102,15 @@ public class APULogin extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(463, 463, 463)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtUsername)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(523, 523, 523)
                         .addComponent(lblTitle))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(476, 476, 476)
-                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(463, 463, 463)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtUsername)
+                                .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)))))
                 .addContainerGap(487, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -117,13 +118,13 @@ public class APULogin extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(116, 116, 116)
                 .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(97, 97, 97)
+                .addGap(75, 75, 75)
                 .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(80, 80, 80)
+                .addGap(74, 74, 74)
                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55)
+                .addGap(91, 91, 91)
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(111, Short.MAX_VALUE))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -220,16 +221,17 @@ public class APULogin extends javax.swing.JFrame {
             while (inputFile.hasNext()) {
                 String lEntry = inputFile.nextLine();
                 matchedID = lEntry.split(":");
-                if (User.equals(matchedID[4]) && Pass.equals(matchedID[5])){
+                if (User.equals(matchedID[5]) && Pass.equals(matchedID[6])){
                     Authenticate = true;
                     UserID = matchedID[0];
                     ManagerID = matchedID[1];
-                    fullname = matchedID[2];
-                    email = matchedID[3];
-                    username = matchedID[4];
-                    password = matchedID[5];
-                    phonenumber = matchedID[6];
-                    gender = matchedID[7];
+                    userRole = matchedID[2];
+                    fullname = matchedID[3];
+                    email = matchedID[4];
+                    username = matchedID[5];
+                    password = matchedID[6];
+                    phonenumber = matchedID[7];
+                    gender = matchedID[8];
                    } 
             }
             inputFile.close();
@@ -249,7 +251,7 @@ public class APULogin extends javax.swing.JFrame {
         }
         FileWriter ld = new FileWriter(FileDir + "UserCache.txt", true); 
         PrintWriter ldp = new PrintWriter(ld);
-        ldp.println(UserID + ":" + fullname + ":" + email + ":" + username + ":" + password + ":" + phonenumber + ":" + gender);
+        ldp.println(UserID + ":" + ManagerID + ":" + userRole + ":" + fullname + ":" + email + ":" + username + ":" + password + ":" + phonenumber + ":" + gender);
         ldp.close();
         } catch (Exception ex) {
             
@@ -280,7 +282,7 @@ public class APULogin extends javax.swing.JFrame {
         }
         FileWriter ld = new FileWriter(FileDir + "LoginRecords.txt", true); 
         PrintWriter ldp = new PrintWriter(ld);
-        ldp.println(UserID + ":" + ManagerID + ":" + fullname + ":" + username + ":" + password + ":" + currentdate);
+        ldp.println(UserID + ":" + ManagerID + ":" +  userRole +  ":" + fullname + ":" + currentdate);
         ldp.close();
         } catch (Exception ex) {
             
@@ -304,7 +306,7 @@ public class APULogin extends javax.swing.JFrame {
         createDatabase();
         this.setSize(1170,800);
         this.setLocation(600,150);
-        btnLogin.setVisible(false); // This will prevent the login button from being pressed right after startup
+        btnLogin.setVisible(true); // This will prevent the login button from being pressed right after startup
         // This anon class handles textfield changes for username entry
         txtUsername.getDocument().addDocumentListener(new APUDocumentListener(){
 

@@ -6,6 +6,8 @@
 package kxbjava;
 
 import com.formdev.flatlaf.FlatDarkLaf;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -13,6 +15,7 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
@@ -22,13 +25,13 @@ import javax.swing.UIManager;
  */
 public class APUUserProfile extends javax.swing.JFrame {
     
-    private String FileDir, UserID, uID;
+    private String FileDir, UserID, userID;
     /**
      * Creates new form APUUserProfile
      */
     public APUUserProfile() {
         initComponents();
-        loadUserProfile();
+        initForm();
     }
 
     /**
@@ -52,6 +55,8 @@ public class APUUserProfile extends javax.swing.JFrame {
         btnLogout = new javax.swing.JButton();
         cmbGender = new javax.swing.JComboBox<>();
         txtFullName = new javax.swing.JTextField();
+        txtRole = new javax.swing.JTextField();
+        txtManagerID = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -111,7 +116,7 @@ public class APUUserProfile extends javax.swing.JFrame {
         cmbGender.setBackground(new java.awt.Color(68, 68, 68));
         cmbGender.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         cmbGender.setForeground(new java.awt.Color(237, 237, 237));
-        cmbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Gender", "Male ", "Female" }));
+        cmbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Gender", "Male", "Female" }));
         cmbGender.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 0, 0, new java.awt.Color(237, 237, 237)));
 
         txtFullName.setBackground(new java.awt.Color(68, 68, 68));
@@ -119,67 +124,91 @@ public class APUUserProfile extends javax.swing.JFrame {
         txtFullName.setForeground(new java.awt.Color(237, 237, 237));
         txtFullName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
 
+        txtRole.setEditable(false);
+        txtRole.setBackground(new java.awt.Color(68, 68, 68));
+        txtRole.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtRole.setForeground(new java.awt.Color(237, 237, 237));
+        txtRole.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
+
+        txtManagerID.setEditable(false);
+        txtManagerID.setBackground(new java.awt.Color(68, 68, 68));
+        txtManagerID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtManagerID.setForeground(new java.awt.Color(237, 237, 237));
+        txtManagerID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(498, 498, 498)
+                .addComponent(lblTitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnLogout)
+                .addGap(41, 41, 41))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(189, 189, 189)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(269, 269, 269)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(txtUserID, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(131, 131, 131)
-                                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(269, 269, 269)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(txtPassField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(131, 131, 131)
-                                .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(498, 498, 498)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(lblTitle)
-                                .addGap(394, 394, 394)
-                                .addComponent(btnLogout)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(txtManagerID, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(128, 128, 128)
+                        .addComponent(txtRole, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(txtPassField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(txtUserID, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(128, 128, 128)
+                            .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
+                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(72, 72, 72)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblTitle)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
+                        .addGap(72, 72, 72)
+                        .addComponent(lblTitle))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
                         .addComponent(btnLogout)))
-                .addGap(51, 51, 51)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtUserID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(68, 68, 68)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(51, 51, 51)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(txtUserID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(46, 46, 46)
+                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(63, 63, 63)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtPassField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47)
+                        .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtPassField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
-                .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(171, 171, 171)
+                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(40, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtManagerID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtRole, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(67, 67, 67))))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -220,14 +249,16 @@ public class APUUserProfile extends javax.swing.JFrame {
             {
              String bEntry = intUser.nextLine();
              matchedID = bEntry.split(":");
-             uID = matchedID[0];
-             txtUserID.setText(uID);
-             txtFullName.setText(matchedID[1]);
-             txtEmail.setText(matchedID[2]);
-             txtUsername.setText(matchedID[3]);
-             txtPassField.setText(matchedID[4]);
-             txtPhoneNumber.setText(matchedID[5]);
-              switch (matchedID[6]) {
+             userID = matchedID[0];
+             txtUserID.setText(userID);
+             txtManagerID.setText(matchedID[1]);
+             txtRole.setText(matchedID[2]);
+             txtFullName.setText(matchedID[3]);
+             txtEmail.setText(matchedID[4]);
+             txtUsername.setText(matchedID[5]);
+             txtPassField.setText(matchedID[6]);
+             txtPhoneNumber.setText(matchedID[7]);
+              switch (matchedID[8]) {
                         case "Male":
                             cmbGender.setSelectedIndex(1);
                             break;
@@ -265,14 +296,14 @@ public class APUUserProfile extends javax.swing.JFrame {
                 matchedID = bEntry.split(":");
                 matchedID[0] = matchedID[0].replace("CUST", "");
                 // JOptionPane.showMessageDialog(null, i);
-                if (matchedID[0].equals(uID)) {
+                if (matchedID[0].equals(userID)) {
                     txtUserID.setText(matchedID[0]);
-                    txtFullName.setText(matchedID[1]);
-                    txtEmail.setText(matchedID[2]);
-                    txtUsername.setText(matchedID[3]);
-                    txtPassField.setText(matchedID[4]);
-                    txtPhoneNumber.setText(matchedID[5]);
-                    switch (matchedID[6]) {
+                    txtFullName.setText(matchedID[3]);
+                    txtEmail.setText(matchedID[4]);
+                    txtUsername.setText(matchedID[5]);
+                    txtPassField.setText(matchedID[6]);
+                    txtPhoneNumber.setText(matchedID[7]);
+                    switch (matchedID[8]) {
                         case "Male":
                             cmbGender.setSelectedIndex(1);
                             break;
@@ -341,13 +372,16 @@ public class APUUserProfile extends javax.swing.JFrame {
                 // Check if the read line has current book ID
                 if (matchedID[0].equals(UserID)) {
                     // Inserting the new information from the text fields into the book line
-                    matchedID[1] = txtFullName.getText();
-                    matchedID[2] = txtEmail.getText();
-                    matchedID[3] = txtUsername.getText();
-                    matchedID[4] = String.valueOf(txtPassField.getPassword());
-                    matchedID[5] = txtPhoneNumber.getText();
-                    matchedID[6] = (String)cmbGender.getSelectedItem();
-                    matchedID[7] = "true";
+                    matchedID[1] = txtManagerID.getText();
+                    matchedID[2] = txtRole.getText();
+                    matchedID[3] = txtFullName.getText();
+                    matchedID[4] = txtEmail.getText();
+                    matchedID[5] = txtUsername.getText();
+                    matchedID[6] = String.valueOf(txtPassField.getPassword());
+                    matchedID[7] = txtPhoneNumber.getText();
+                    matchedID[8] = (String)cmbGender.getSelectedItem();
+                    matchedID[9] = "true";
+                    
                     //matchedID[8] = "false";
                     
                 }
@@ -359,7 +393,9 @@ public class APUUserProfile extends javax.swing.JFrame {
                             matchedID[4] + ":" +
                             matchedID[5] + ":" +
                             matchedID[6] + ":" + 
-                            matchedID[7]);
+                            matchedID[7] + ":" + 
+                            matchedID[8] + ":" + 
+                            matchedID[9]);
                 //JOptionPane.showMessageDialog(null, "Yes it worked");
             }
             // Close the clientBak.txt reader
@@ -376,6 +412,28 @@ public class APUUserProfile extends javax.swing.JFrame {
         }
     
     }
+    private void initForm(){
+        this.setSize(1170,750);
+        this.setLocation(600,150);
+        loadUserProfile();
+        this.txtManagerID.setVisible(false);
+        this.txtRole.setVisible(false);
+        // Set the initial value for new book
+        // This anon class handles window closing event
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e){
+                int selection = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Closing Window", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                if (selection == JOptionPane.YES_OPTION) {
+                    //clearCache();
+                    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                } else {
+                    setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+                }
+            }
+        });
+       // txaHomeAddress.getDocument().putProperty("filterNewlines", Boolean.TRUE);
+      //  inputCharacterValidation();
+     }
     private void ClearCache(){
         try {  
             FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
@@ -433,8 +491,10 @@ public class APUUserProfile extends javax.swing.JFrame {
     private javax.swing.JLabel lblTitle;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFullName;
+    private javax.swing.JTextField txtManagerID;
     private javax.swing.JPasswordField txtPassField;
     private javax.swing.JTextField txtPhoneNumber;
+    private javax.swing.JTextField txtRole;
     private javax.swing.JTextField txtUserID;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables

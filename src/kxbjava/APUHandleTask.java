@@ -275,7 +275,7 @@ public class APUHandleTask extends javax.swing.JFrame {
         FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
         // For debugging purpose only
         // JOptionPane.showMessageDialog(null, bID);
-        File appttxt = new File(FileDir + "Appointment.txt");
+        File appttxt = new File(FileDir + "Payment.txt");
         
         Scanner intAppt;
         try {
@@ -302,7 +302,7 @@ public class APUHandleTask extends javax.swing.JFrame {
 //                // Replace the string part with empty digits, leaving only the prefix
 //                String numOut = matchedID[0].replace(preOut, "");
                 // JOptionPane.showMessageDialog(null, numOut)
-                 if ("true".equals(matchedID[11]) && matchedID[0].contains("APPT") && matchedID[2].equals(uID)) {
+                 if ("true".equals(matchedID[7]) && matchedID[0].contains("APPT") && matchedID[1].equals(uID)) {
                     matchedID[0] = matchedID[0].replace(apptPrefix, "");
                     ApptList.addElement(matchedID[0]);
                     i++;
@@ -332,7 +332,7 @@ public class APUHandleTask extends javax.swing.JFrame {
         FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
         // For debugging purpose only
         // JOptionPane.showMessageDialog(null, bID);
-        File appttxt = new File(FileDir + "Appointment.txt");
+        File appttxt = new File(FileDir + "Payment.txt");
         Scanner intAppt;
         try {
             // This part loads all book information

@@ -454,7 +454,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
                 String numOut = matchedID[0].replace(preOut, "");
                 // JOptionPane.showMessageDialog(null, numOut);
                 if (i < 200) {
-                    if ("true".equals(matchedID[8]) && userSpecies.equals(numOut)) {
+                    if ("true".equals(matchedID[9]) && userSpecies.equals(numOut)) {
                         matchedID[0] = matchedID[0].replace(userSpecies, "");
                         userList.addElement(matchedID[0]);
                         i++;
@@ -503,12 +503,22 @@ public class APUMUserProfile extends javax.swing.JFrame {
                 // JOptionPane.showMessageDialog(null, i);
                 if (cmbUserID.getSelectedItem().equals(matchedID[0])) {
                     txtManagerID.setText(matchedID[1]);
-                    txtFullName.setText(matchedID[2]);
-                    txtEmail.setText(matchedID[3]);
-                    txtUsername.setText(matchedID[4]);
-                    txtPassword.setText(matchedID[5]);
-                    txtPhoneNumber.setText(matchedID[6]);
-                    switch (matchedID[7]) {
+                    switch (matchedID[2]) {
+                        case "Centre Manager":
+                            cmbGender.setSelectedIndex(1);
+                            break;
+                        case "Technician":
+                            cmbGender.setSelectedIndex(2);
+                            break;
+                        default:
+                            cmbGender.setSelectedIndex(1);
+                    }
+                    txtFullName.setText(matchedID[3]);
+                    txtEmail.setText(matchedID[4]);
+                    txtUsername.setText(matchedID[5]);
+                    txtPassword.setText(matchedID[6]);
+                    txtPhoneNumber.setText(matchedID[7]);
+                    switch (matchedID[8]) {
                         case "Male":
                             cmbGender.setSelectedIndex(1);
                             break;
@@ -646,8 +656,9 @@ public class APUMUserProfile extends javax.swing.JFrame {
             String userEmail = txtEmail.getText();
             String userUsername = txtUsername.getText();
             String userPassword = String.valueOf(txtPassword.getPassword());
-            String userPhoneNumber = txtPhoneNumber.getText();
+            String userPhoneNumber = txtPhoneNumber1.getText();
             String userGender = (String) cmbGender.getSelectedItem();
+            String userRole = (String) cmbUserType.getSelectedItem();
             // FileWriter and PrintWriter to create and write into UserProfile.txt
             try {
                 // FileWriter to write into a new file called UserProfile.txt
@@ -657,6 +668,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
                 // To print the line into UserProfile textfile
                 cdp.println(userSpecies + uID + ":"
                         + managerID + ":"
+                        + userRole + ":"
                         + userFullName + ":"
                         + userEmail + ":"
                         + userUsername + ":"
@@ -729,13 +741,14 @@ public class APUMUserProfile extends javax.swing.JFrame {
                 if (matchedID[0].equals(userSpecies + uID)) {
                     // Inserting the new information from the text fields into the book line
                     matchedID[1] = txtManagerID.getText();
-                    matchedID[2] = txtFullName.getText();
-                    matchedID[3] = txtEmail.getText();
-                    matchedID[4] = txtUsername.getText();
-                    matchedID[5] = String.valueOf(txtPassword.getPassword());
-                    matchedID[6] = txtPhoneNumber.getText();
-                    matchedID[7] = (String) cmbGender.getSelectedItem();
-                    matchedID[8] = "true";
+                    matchedID[2] = (String) cmbUserType.getSelectedItem();
+                    matchedID[3] = txtFullName.getText();
+                    matchedID[4] = txtEmail.getText();
+                    matchedID[5] = txtUsername.getText();
+                    matchedID[6] = String.valueOf(txtPassword.getPassword());
+                    matchedID[7] = txtPhoneNumber.getText();
+                    matchedID[8] = (String) cmbGender.getSelectedItem();
+                    matchedID[9] = "true";
                     // JOptionPane.showMessageDialog(null, "Yes it worked");
                 }
                 // Rewrite the new book.txt with values found in clientBak.txt
@@ -747,7 +760,8 @@ public class APUMUserProfile extends javax.swing.JFrame {
                         + matchedID[5] + ":"
                         + matchedID[6] + ":"
                         + matchedID[7] + ":"
-                        + matchedID[8]);
+                        + matchedID[8] + ":" 
+                        + matchedID[9]);
 
             }
             // Close the clientBak.txt reader
@@ -803,7 +817,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
                 // Check if the read line has current book ID
                 if (matchedID[0].equals(userSpecies + uID)) {
                     // Setting the deleted flag to true
-                    matchedID[8] = "false";
+                    matchedID[9] = "false";
                     // JOptionPane.showMessageDialog(null, "Yes it worked");
                 }
                 // Rewrite the new book.txt with values found in clientBak.txt
@@ -815,7 +829,8 @@ public class APUMUserProfile extends javax.swing.JFrame {
                             matchedID[5] + ":" +
                             matchedID[6] + ":" +
                             matchedID[7] + ":" +
-                            matchedID[8]);
+                            matchedID[8] + ":" +
+                            matchedID[9]);
 
             }
             // Close the clientBak.txt reader

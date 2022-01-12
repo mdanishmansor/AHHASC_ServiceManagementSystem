@@ -523,10 +523,12 @@ public class APUManageCustomer extends javax.swing.JFrame {
                 matchedID[0] = matchedID[0].replace(CustPrefix, "");
                 // JOptionPane.showMessageDialog(null, i);
                 if (cmbCustID.getSelectedItem().equals(matchedID[0])) {
-                    txtFullName.setText(matchedID[1]);
-                    txtPhoneNumber.setText(matchedID[2]);
-                    txaHomeAddress.setText(matchedID[3]);
-                    switch (matchedID[4]) {
+                    txtManagerID.setText(matchedID[1]);
+                    txtFullName.setText(matchedID[2]);
+                    
+                    txtPhoneNumber.setText(matchedID[3]);
+                    txaHomeAddress.setText(matchedID[4]);
+                    switch (matchedID[5]) {
                         case "Male":
                             cmbGender.setSelectedIndex(1);
                             break;
@@ -536,9 +538,8 @@ public class APUManageCustomer extends javax.swing.JFrame {
                         default:
                             cmbGender.setSelectedIndex(1);
                     }
-                    txtEmail.setText(matchedID[5]);
-                    txtDOB.setText(matchedID[6]);
-                    txtManagerID.setText(matchedID[7]);
+                    txtEmail.setText(matchedID[6]);
+                    txtDOB.setText(matchedID[7]);
                 }
             }
             intCustomer.close();
@@ -577,13 +578,13 @@ public class APUManageCustomer extends javax.swing.JFrame {
                 PrintWriter cdp = new PrintWriter(cd); 
                 // To print the line into Borrowing textfile
                 cdp.println(CustPrefix + CustID + ":" +
-                             CustFullName + ":" +
-                             CustPhoneNumber + ":" +
-                             CustAddress + ":" +
-                             CustGender + ":" +
-                             CustEmail + ":" + 
-                             CustDOB + ":" +
-                             uID + ":" +
+                            uID + ":" +
+                            CustFullName + ":" +
+                            CustPhoneNumber + ":" +
+                            CustAddress + ":" +
+                            CustGender + ":" +
+                            CustEmail + ":" + 
+                            CustDOB + ":" +
                              "true"); //true boolean indicating the user is exisiting (non-deleted)
                 
                 cdp.close();
@@ -654,13 +655,13 @@ public class APUManageCustomer extends javax.swing.JFrame {
                 // Check if the read line has current book ID
                 if (matchedID[0].equals(CustPrefix + CustID)) {
                     // Inserting the new information from the text fields into the book line
-                    matchedID[1] = txtFullName.getText();
-                    matchedID[2] = txtPhoneNumber.getText();
-                    matchedID[3] = txaHomeAddress.getText();
-                    matchedID[4] = (String) cmbGender.getSelectedItem();
-                    matchedID[5] = txtEmail.getText();
-                    matchedID[6] = txtDOB.getText();
-                    matchedID[7] = txtManagerID.getText();
+                    matchedID[1] = txtManagerID.getText();
+                    matchedID[2] = txtFullName.getText();
+                    matchedID[3] = txtPhoneNumber.getText();
+                    matchedID[4] = txaHomeAddress.getText();
+                    matchedID[5] = (String) cmbGender.getSelectedItem();
+                    matchedID[6] = txtEmail.getText();
+                    matchedID[7] = txtDOB.getText();
                     matchedID[8] = "true";
                     // JOptionPane.showMessageDialog(null, "Yes it worked");
                 }

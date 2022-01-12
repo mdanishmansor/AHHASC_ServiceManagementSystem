@@ -306,7 +306,7 @@ public class APUBookAppointment extends javax.swing.JFrame {
                 String line = tableLines[i].toString().trim();
                 String[] dataRow = line.split(":");
                 if (SelectedCustID.equals(dataRow[0])) {
-                    txtCustName.setText(dataRow[1]);
+                    txtCustName.setText(dataRow[2]);
                 }
             }
             br.close();
@@ -324,7 +324,7 @@ public class APUBookAppointment extends javax.swing.JFrame {
             for (int i = 0; i < tableLines.length; i++) {
                 String line = tableLines[i].toString().trim();
                 String[] dataRow = line.split(":");
-                if (dataRow[0].contains("TC") && "true".equals(dataRow[8])) {
+                if (dataRow[0].contains("TC") && "true".equals(dataRow[9])) {
                     cmbTechID.addItem(dataRow[0]);
                 }
 
