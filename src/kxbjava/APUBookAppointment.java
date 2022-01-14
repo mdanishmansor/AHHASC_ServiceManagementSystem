@@ -39,7 +39,7 @@ public class APUBookAppointment extends javax.swing.JFrame {
     private final String techSource = System.getProperty("user.dir") + "\\src\\TextFiles\\UserProfile.txt"; //Retrieving Directory of Appointment.txt File.
     private final String paymentSource = System.getProperty("user.dir") + "\\src\\TextFiles\\Payment.txt";
    
-    private String generatedStaffID, FileDir, uID;
+    private String generatedStaffID, FileDir, uID, generatedPaymentID;
     final DecimalFormat idformat = new DecimalFormat("00000");
 
     public APUBookAppointment() {
@@ -223,6 +223,7 @@ public class APUBookAppointment extends javax.swing.JFrame {
 
     private void btnBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookActionPerformed
         IDincrement();
+        paymentIDIncrement();
         insertData();
         insertPayment();
     }//GEN-LAST:event_btnBookActionPerformed
@@ -271,6 +272,26 @@ public class APUBookAppointment extends javax.swing.JFrame {
             }
 
             generatedStaffID = "APPT" + idformat.format(countLine);
+
+        } catch (Exception e) {
+
+        }
+
+    }
+    private void paymentIDIncrement() {
+        int countLine = 1;
+        try {
+
+            File pytxt = new File(paymentSource);
+            FileReader fr = new FileReader(pytxt);
+            BufferedReader br = new BufferedReader(fr);
+            String list;
+
+            while ((list = br.readLine()) != null) { //Counts the total amount of lines in the text file.
+                countLine++;
+            }
+
+           generatedPaymentID = "PAY" + idformat.format(countLine);
 
         } catch (Exception e) {
 
@@ -354,7 +375,7 @@ public class APUBookAppointment extends javax.swing.JFrame {
 
             String appointment_date = sdf.format(selectedDate);
             String appointment_time = cmbTime.getSelectedItem().toString();
-            String app_status = "ongoing";
+            String app_status = "Ongoing";
             String app_payment = "Unpaid";
             String appliance_name = cmbAppliance.getSelectedItem().toString();
 
@@ -394,6 +415,7 @@ public class APUBookAppointment extends javax.swing.JFrame {
             BufferedWriter bf = new BufferedWriter(fw);
 
             String appointment_id = generatedStaffID;
+            String payment_id = generatedPaymentID;
             String customer_id = cmbCustomerID.getSelectedItem().toString();
             String technician_id = cmbTechID.getSelectedItem().toString();
             String manager_id = txtManagerID.getText();
@@ -406,9 +428,10 @@ public class APUBookAppointment extends javax.swing.JFrame {
             //String app_status = "ongoing";
             String app_payment = "Unpaid";
             String appliance_name = cmbAppliance.getSelectedItem().toString();
-            String app_update = "dd-MM-yyyy";
+            String payment_date = "dd-MM-yyyy";
             String app_total = "0.00";
             String app_paid = "0.00";
+            String app_balance = "0.00";
 //            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu/MM/dd HH:mm:ss");
 //            LocalDateTime now = LocalDateTime.now();
             System.out.println();
@@ -416,16 +439,18 @@ public class APUBookAppointment extends javax.swing.JFrame {
             String flag = "true";
 
             String datalist
-                    = appointment_id + ":"
+                    = payment_id + ":"
+                    + appointment_id + ":"
                     + technician_id + ":"
                     + customer_name + ":"
                     + appointment_date + ":"
                     + appointment_time + ":"
                     + appliance_name + ":"
                     + app_payment + ":"
-                    + app_update + ":"
+                    + payment_date + ":"
                     + app_total + ":"
                     + app_paid + ":"
+                    + app_balance + ":"
                     + flag
                     + "\n";
 

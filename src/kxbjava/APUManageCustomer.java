@@ -761,7 +761,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
     }
      
     //Clear session
-    private void ClearCache(){
+    private void clearCache(){
         try {  
             FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
             File cache = new File(FileDir + "UserCache.txt");
@@ -788,7 +788,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
             public void windowClosing(WindowEvent e){
                 int selection = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Closing Window", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if (selection == JOptionPane.YES_OPTION) {
-                    ClearCache();
+                    clearCache();
                     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 } else {
                     setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
