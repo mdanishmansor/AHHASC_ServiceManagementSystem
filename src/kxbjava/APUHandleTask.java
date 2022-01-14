@@ -8,8 +8,17 @@ package kxbjava;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Scanner;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
@@ -23,8 +32,11 @@ import javax.swing.UIManager;
 public class APUHandleTask extends javax.swing.JFrame {
     
     private final String apptPrefix = "APPT";
-    private String FileDir, uID, ApptID;
+    private final String feedPrefix = "FEED";
+    private String FileDir, techID, ApptID, feedID;
+    private int newFeedID;
     private DefaultComboBoxModel ApptList;
+    private final String source = System.getProperty("user.dir") + "\\src\\TextFiles\\Feedback.txt";
     /**
      * Creates new form APUHandleTask
      */
@@ -55,6 +67,7 @@ public class APUHandleTask extends javax.swing.JFrame {
         txtPaymentDate = new javax.swing.JTextField();
         cmbPaymentStatus = new javax.swing.JComboBox<>();
         btnUpdate = new javax.swing.JButton();
+        txtTechID = new javax.swing.JTextField();
         txtPaymentAmount = new javax.swing.JTextField();
 
         lblTitle.setBackground(new java.awt.Color(68, 68, 68));
@@ -107,7 +120,6 @@ public class APUHandleTask extends javax.swing.JFrame {
         txtApptTime.setForeground(new java.awt.Color(237, 237, 237));
         txtApptTime.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
 
-        txttotalPayment.setEditable(false);
         txttotalPayment.setBackground(new java.awt.Color(68, 68, 68));
         txttotalPayment.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         txttotalPayment.setForeground(new java.awt.Color(237, 237, 237));
@@ -141,7 +153,17 @@ public class APUHandleTask extends javax.swing.JFrame {
             }
         });
 
-        txtPaymentAmount.setEditable(false);
+        txtTechID.setEditable(false);
+        txtTechID.setBackground(new java.awt.Color(68, 68, 68));
+        txtTechID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtTechID.setForeground(new java.awt.Color(237, 237, 237));
+        txtTechID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
+        txtTechID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTechIDActionPerformed(evt);
+            }
+        });
+
         txtPaymentAmount.setBackground(new java.awt.Color(68, 68, 68));
         txtPaymentAmount.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         txtPaymentAmount.setForeground(new java.awt.Color(237, 237, 237));
@@ -163,27 +185,29 @@ public class APUHandleTask extends javax.swing.JFrame {
                         .addComponent(lblPageTitle))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(226, 226, 226)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cmbPaymentStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(txttotalPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtPaymentAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(txtApptTime, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtPaymentDate, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(txtCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtAppliance, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(cmbApptID, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lblApptDate)
-                                        .addComponent(txtApptDate, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(cmbPaymentStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtTechID, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txttotalPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtPaymentAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtApptTime, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtPaymentDate, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtAppliance, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(cmbApptID, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblApptDate)
+                                    .addComponent(txtApptDate, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(528, 528, 528)
                         .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -210,11 +234,13 @@ public class APUHandleTask extends javax.swing.JFrame {
                     .addComponent(txtPaymentDate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(69, 69, 69)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txttotalPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPaymentAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPaymentAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txttotalPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-                .addComponent(cmbPaymentStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmbPaymentStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTechID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42)
                 .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
         );
@@ -246,7 +272,7 @@ public class APUHandleTask extends javax.swing.JFrame {
             {
              String bEntry = intUser.nextLine();
              matchedID = bEntry.split(":");
-             uID = matchedID[0];
+             techID = matchedID[0];
                 }
             intUser.close();
         } catch (FileNotFoundException ex) {
@@ -302,7 +328,7 @@ public class APUHandleTask extends javax.swing.JFrame {
 //                // Replace the string part with empty digits, leaving only the prefix
 //                String numOut = matchedID[0].replace(preOut, "");
                 // JOptionPane.showMessageDialog(null, numOut)
-                 if ("true".equals(matchedID[7]) && matchedID[0].contains("APPT") && matchedID[1].equals(uID)) {
+                 if ("true".equals(matchedID[10]) && matchedID[0].contains("APPT") && matchedID[1].equals(techID)) {
                     matchedID[0] = matchedID[0].replace(apptPrefix, "");
                     ApptList.addElement(matchedID[0]);
                     i++;
@@ -347,12 +373,12 @@ public class APUHandleTask extends javax.swing.JFrame {
                 matchedID[0] = matchedID[0].replace(apptPrefix, "");
                 // JOptionPane.showMessageDialog(null, i);
                 if (cmbApptID.getSelectedItem().equals(matchedID[0])) {
-                    //txtCustomerID.setText(matchedID[1]);
-                    txtCustomerName.setText(matchedID[4]);
-                    txtApptDate.setText(matchedID[5]);
-                    txtApptTime.setText(matchedID[6]);
-                    txtAppliance.setText(matchedID[7]);
-                    switch (matchedID[10]) {
+                    txtTechID.setText(matchedID[1]);
+                    txtCustomerName.setText(matchedID[2]);
+                    txtApptDate.setText(matchedID[3]);
+                    txtApptTime.setText(matchedID[4]);
+                    txtAppliance.setText(matchedID[5]);
+                    switch (matchedID[6]) {
                         case "Unpaid":
                             cmbPaymentStatus.setSelectedIndex(1);
                             break;
@@ -372,15 +398,216 @@ public class APUHandleTask extends javax.swing.JFrame {
            // Logger.getLogger(unnamedBorrowMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+      private void updatePayment(){
+        // TODO add your handling code here:
+        try {
+            // Check if textfields are empty
+            //emptyFields();
+            // To get directory  
+            FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
+            // To get the book ID
+            ApptID = (String) cmbApptID.getSelectedItem();
+            // To rename original book.txt to book.bak
+            File paymentOri = new File(FileDir + "Payment.txt");
+            File paymentBack = new File(FileDir + "PaymentBack.txt");
+            // To check if clientBak.txt is present or not
+            if (!paymentBack.exists()){
+                paymentOri.createNewFile();
+            }
+            // This is for debugging only!
+            // JOptionPane.showMessageDialog(null, "renamed");
+            // This is to rename the existing book.txt to clientBak.txt
+            paymentOri.renameTo(paymentBack);
+            // This is to open, find and replace a specific book record
+            // Requires temporary file to store current state
+            // FileWriter to write into a new file called book.txt
+            FileWriter cd = new FileWriter(FileDir + "Payment.txt"); 
+            // PrintWriter to print into book.txt
+            PrintWriter cdp = new PrintWriter(cd); 
+            // This is to open and read clientBak.txt 
+            File paymenttxt = new File(FileDir + "PaymentBack.txt");
+            // This is to instantiate the file opened earlier
+            Scanner inputFile = new Scanner(paymenttxt);
+            // This array is to contain all lines
+            String[] matchedID;
+            // This is only for debugging!
+            // boolean itWorked = false;
+            // Read lines from the file until no more are left.
+            while (inputFile.hasNext())
+            {
+                // This is for debugging only!
+                // JOptionPane.showMessageDialog(null, "In loop");
+                // Read the next line.
+                String bEntry = inputFile.nextLine();
+                // Split the line by using the delimiter ":" (semicolon) and store into array.
+                matchedID = bEntry.split(":");
+                // Check if the read line has current book ID
+                if (matchedID[0].equals(apptPrefix + ApptID)) {
+                    // Inserting the new information from the text fields into the book line
+                    matchedID[1] = txtTechID.getText();
+                    matchedID[2] = txtCustomerName.getText();
+                    matchedID[3] = txtApptDate.getText();
+                    matchedID[4] = txtApptTime.getText();
+                    matchedID[5] = txtAppliance.getText();
+                    matchedID[6] = (String) cmbPaymentStatus.getSelectedItem();
+                    matchedID[7] = txtPaymentDate.getText();
+                    matchedID[8] = txttotalPayment.getText();
+                    matchedID[9] = txtPaymentAmount.getText();
+                    matchedID[10] = "true";
+                    // JOptionPane.showMessageDialog(null, "Yes it worked");
+                }
+                // Rewrite the new book.txt with values found in clientBak.txt
+                cdp.println(matchedID[0] + ":" +
+                            matchedID[1] + ":" +
+                            matchedID[2] + ":" +
+                            matchedID[3] + ":" +
+                            matchedID[4] + ":" +
+                            matchedID[5] + ":" +
+                            matchedID[6] + ":" +
+                            matchedID[7] + ":" +
+                            matchedID[8] + ":" +
+                            matchedID[9] + ":" +
+                            matchedID[10]);
+
+            }
+            // Close the clientBak.txt reader
+            inputFile.close();
+            // This deletes clientBak.txt
+            paymentBack.delete();
+            // This closes the book.txt printer 
+            cdp.close();
+            JOptionPane.showMessageDialog(null, "Client record has been updated!", "Client updated!", JOptionPane.INFORMATION_MESSAGE);
+            //loadCustomerInfo();
+        } catch (Exception ex) {
+            //highlightEmpty();
+            JOptionPane.showMessageDialog(null, "Invalid input! Please check your input to proceed.", "Invalid insertion detected!", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+     private void feedbackIDIncrementor(){
+        // This is to ensure the entire method have access to the matchedID array
+        String[] matchedID = null;
+        // This flag is to check if the while loop is triggered or not. Triggered while loop indicates presence of records but relevance might not
+        boolean hasRecord = false;
+        try {
+            FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
+            // For debugging purpose only
+            // JOptionPane.showMessageDialog(null, bID);
+            File feedbacktxt = new File(FileDir + "Feedback.txt");
+            if (!feedbacktxt.exists()) {
+                feedbacktxt.createNewFile();
+            }
+            Scanner inputFile;
+            try {
+                inputFile = new Scanner(feedbacktxt);
+                // Read lines from the file until no more are left.
+                while (inputFile.hasNext())
+                {
+                   // Read the next line.
+                   String bEntry = inputFile.nextLine();
+                   // Split the line by using the delimiterÂ ":" (semicolon) and store into array.
+                   matchedID = bEntry.split(":");
+                   String temptype = null;
+//                   if (matchedID[0].contains("STA")) {
+//                       temptype = "STA";
+//                   } else if (matchedID[0].contains("STU")) {
+//                       temptype = "STU";
+//                   }
+                   matchedID[0] = matchedID[0].replace(feedPrefix, "");
+                   hasRecord = true;
+                }
+                inputFile.close();
+                if (!hasRecord) {
+                    JOptionPane.showMessageDialog(null, "No customer(s) record of any type was found! Restarting database entry.", "Customer database is empty!", JOptionPane.ERROR_MESSAGE);
+                    newFeedID = 1;
+                } else {
+                    newFeedID = Integer.parseInt(matchedID[0]) + 1;
+                }
+                // JOptionPane.showMessageDialog(null, newClientID);
+            } catch (FileNotFoundException ex) {
+                //Logger.getLogger(unnamedBorrowMenu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+            JOptionPane.showMessageDialog(null, "Invalid input! Customer can only consist of numbers", "Invalid input type!", JOptionPane.ERROR_MESSAGE);
+        }
+    }  
+    private void insertFeedback(){
+        // Declaring file extension used
+        FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
+        // Formatting ID into formal 6-digit mask
+        DecimalFormat dc = new DecimalFormat("00000");
+        try {
+            // Fetching IDs from the textfields
+            feedID = dc.format(newFeedID);
+            // Check if textfields are empty
+            //emptyFields();
+            // Storing Borrowing entries into variables
+            // Checking if gender is unselected
+//            if (cmbGender.getSelectedIndex() <= 0) {
+//                JOptionPane.showMessageDialog(null, "Gender is unset! Autosetting value to male", "Gender unselected!", JOptionPane.ERROR_MESSAGE);
+//                cmbGender.setSelectedIndex(1); // Setting the gender to male which is index 1
+//            }
+            String ApptID = (String) cmbApptID.getSelectedItem();
+            String TechID = txtTechID.getText();
+            String paymentStatus = (String) cmbPaymentStatus.getSelectedItem();
+            String apptFeedback = "customer feedback";
+            String technicianRating = "0";
+            //String CustGender = (String) cmbGender.getSelectedItem();
+            //String CustEmail = txtEmail.getText();
+           // String CustDOB = txtDOB.getText();
+            // FileWriter and PrintWriter to create and write into book.txt
+            try {
+                // FileWriter to write into a new file called client.txt
+                FileWriter cd = new FileWriter(FileDir + "Feedback.txt", true); 
+                // PrintWriter to print into client.txt
+                PrintWriter cdp = new PrintWriter(cd); 
+                // To print the line into Borrowing textfile
+                cdp.println(feedPrefix + feedID + ":" +
+                            ApptID + ":" +
+                            TechID + ":" +
+                            paymentStatus + ":" +
+                            apptFeedback + ":" + 
+                            technicianRating + ":" +
+                            "true"); //true boolean indicating the user is exisiting (non-deleted)
+                
+                cdp.close();
+                cd.close();
+                // To display completed borrowing process status
+                JOptionPane.showMessageDialog(null, "Client is successfully added! Press OK to return to client management form.", "Adding client succeeded!", JOptionPane.INFORMATION_MESSAGE);
+                // To refresh new ID 
+                feedbackIDIncrementor();
+                // JOptionPane.showMessageDialog(null, newClientID);
+                // To reload the client information
+                // Integrate the reload part with combo box implementation of Client ID
+                //setCustomerID();
+                // Refresh the currently displayed client with the latest ID
+                //cmbCustID.setSelectedIndex(cmbCustID.getItemCount() - 1);
+            } catch (IOException ex) {
+                //Logger.getLogger(unnamedBorrowMenu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        catch (Exception ex) {
+            //highlightEmpty();
+            JOptionPane.showMessageDialog(null, "Invalid input! Please check your input to proceed.", "Invalid insertion detected!", JOptionPane.ERROR_MESSAGE);
+            // Continue with displaying which field was affected. ensure it appears before the mnessagebox
+        }      
+    }
+    
+    private void setCurrentDate(){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH.mm.ss, dd-MM-yyyy");
+        LocalDateTime now = LocalDateTime.now();
+        txtPaymentDate.setText(dtf.format(now));
+    }
     
     
      private void initForm(){
         this.setSize(1170,750);
         this.setLocation(600,150);
-        btnUpdate.setEnabled(false);
-        
+       // btnUpdate.setEnabled(false);
         loadUserProfile();
         setAppointmentID();
+        setCurrentDate();
         // Set the initial value for new book
         // This anon class handles window closing event
         addWindowListener(new WindowAdapter() {
@@ -406,6 +633,7 @@ public class APUHandleTask extends javax.swing.JFrame {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
 //        deHighlightEmpty();
 //        updateUserInfo();
+          updatePayment();
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void cmbApptIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbApptIDActionPerformed
@@ -426,6 +654,10 @@ public class APUHandleTask extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_cmbApptIDActionPerformed
+
+    private void txtTechIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTechIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTechIDActionPerformed
 
     private void txtPaymentAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPaymentAmountActionPerformed
         // TODO add your handling code here:
@@ -464,6 +696,7 @@ public class APUHandleTask extends javax.swing.JFrame {
     private javax.swing.JTextField txtCustomerName;
     private javax.swing.JTextField txtPaymentAmount;
     private javax.swing.JTextField txtPaymentDate;
+    private javax.swing.JTextField txtTechID;
     private javax.swing.JTextField txttotalPayment;
     // End of variables declaration//GEN-END:variables
 }

@@ -355,7 +355,7 @@ public class APUBookAppointment extends javax.swing.JFrame {
             String appointment_date = sdf.format(selectedDate);
             String appointment_time = cmbTime.getSelectedItem().toString();
             String app_status = "ongoing";
-            String app_payment = "unpaid";
+            String app_payment = "Unpaid";
             String appliance_name = cmbAppliance.getSelectedItem().toString();
 
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH.mm.ss, dd-MM-yyyy");
@@ -406,7 +406,9 @@ public class APUBookAppointment extends javax.swing.JFrame {
             //String app_status = "ongoing";
             String app_payment = "Unpaid";
             String appliance_name = cmbAppliance.getSelectedItem().toString();
-            
+            String app_update = "dd-MM-yyyy";
+            String app_total = "0.00";
+            String app_paid = "0.00";
 //            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu/MM/dd HH:mm:ss");
 //            LocalDateTime now = LocalDateTime.now();
             System.out.println();
@@ -421,6 +423,9 @@ public class APUBookAppointment extends javax.swing.JFrame {
                     + appointment_time + ":"
                     + appliance_name + ":"
                     + app_payment + ":"
+                    + app_update + ":"
+                    + app_total + ":"
+                    + app_paid + ":"
                     + flag
                     + "\n";
 

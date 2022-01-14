@@ -1,1 +1,1 @@
-APPT00001:TC00001:dddddddddddddd:28-01-2022:1200:Refrigerator:Unpaid:trueAPPT00002:TC00001:ddddd:14-01-2022:1200:Refrigerator:Unpaid:true
+APPT00002:TC00001:ddddd:21-01-2022:1200:Refrigerator:Paid:11.49.14, 14-01-2022:10.0:20.0:true

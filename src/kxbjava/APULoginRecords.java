@@ -8,6 +8,9 @@ package kxbjava;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.BufferedReader;
@@ -17,6 +20,8 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.text.TextAlignment;
+import javax.swing.GroupLayout;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -30,8 +35,8 @@ public class APULoginRecords extends javax.swing.JFrame {
     
     private String userSpecies, uID, FileDir, managerID;
     
-    private String logTitle = "Login records of the system's users";
-    private String SubTitle = new String("Invoice");
+    //private final String pdfTitle = new String ("AHHASC");
+    //private String subTitle = "Login Records";
     /**
      * Creates new form APULoginRecords
      */
@@ -67,11 +72,11 @@ public class APULoginRecords extends javax.swing.JFrame {
 
             },
             new String [] {
-                "User ID", "Manager ID", "User Name", "Username", "Password", "Login Date & Time"
+                "User ID", "Manager ID", "User Role", "Full Name", "Login Date & Time"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -96,16 +101,16 @@ public class APULoginRecords extends javax.swing.JFrame {
                 .addComponent(btnPrint)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(104, Short.MAX_VALUE)
+                .addContainerGap(139, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(96, 96, 96))
+                .addGap(61, 61, 61))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(154, 154, 154)
+                .addGap(162, 162, 162)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(90, 90, 90)
+                .addGap(82, 82, 82)
                 .addComponent(btnPrint)
                 .addContainerGap(161, Short.MAX_VALUE))
         );
@@ -136,53 +141,63 @@ public class APULoginRecords extends javax.swing.JFrame {
 //        }
         //get directory to save the file
         FileDir = System.getProperty("user.dir") + "\\src\\PDF\\";
-        Document doc=new Document();
+        
 //        Document pdf = new Document();
 //        
 
         try {
+            Document document = new Document(PageSize.A4);
+            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(FileDir + "LoginRecords.pdf"));
             
-            PdfWriter.getInstance(doc, new FileOutputStream(FileDir + "LoginRecords.pdf"));
+            
            
-            doc.open();
+            document.open();
+           // doc.addTitle("AHHASC");
             
-            PdfPTable tbl = new PdfPTable(6);
+            PdfPTable tbl = new PdfPTable(5);
             
             tbl.addCell("User ID");
             tbl.addCell("Manager ID");
-            tbl.addCell("User Name");
-            tbl.addCell("Username");
-            tbl.addCell("Password");
+            tbl.addCell("User Role");
+            tbl.addCell("Full Name");
             tbl.addCell("Login Date & Time");
             
             
             for(int i = 0; i < tblLoginRecords.getRowCount(); i++){
                 String userID = tblLoginRecords.getValueAt(i, 0).toString();
                 String ManagerID = tblLoginRecords.getValueAt(i, 1).toString();
-                String userFullName = tblLoginRecords.getValueAt(i, 2).toString();
-                String username = tblLoginRecords.getValueAt(i, 3).toString();
-                String pass = tblLoginRecords.getValueAt(i, 4).toString();
-                String logdate = tblLoginRecords.getValueAt(i, 5).toString();
+                String userRole = tblLoginRecords.getValueAt(i, 2).toString();
+                String fullName = tblLoginRecords.getValueAt(i, 3).toString();
+                String logdate = tblLoginRecords.getValueAt(i, 4).toString();
                 
                 tbl.addCell(userID);
                 tbl.addCell(ManagerID);
-                tbl.addCell(userFullName);
-                tbl.addCell(username);
-                tbl.addCell(pass);
+                tbl.addCell(userRole);
+                tbl.addCell(fullName);
                 tbl.addCell(logdate);
                 
             }
+//            
+//            //write into the pdf
+//            doc.add(tbl)
+            document.addTitle("Title");
+            //Paragraph p1 = new Paragraph("AHHASC");
+         //  p1.setAlignment(Element.ALIGN_CENTER);
             
-            //write into the pdf
-            doc.add(tbl);
+            
+            //document.addTitle("Book");
+            //document.add(tbl);
+            //document.add(tbl);
+            document.close();
+            writer.close();
             
             
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(APULoginRecords.class.getName()).log(Level.SEVERE, null, ex);
         } catch (DocumentException ex) {
             Logger.getLogger(APULoginRecords.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(APULoginRecords.class.getName()).log(Level.SEVERE, null, ex);
         }
-        doc.close();
+        
        JOptionPane.showMessageDialog(null, "Print Successfully!", "Records Printed!", JOptionPane.INFORMATION_MESSAGE);
     
     }//GEN-LAST:event_btnPrintActionPerformed
