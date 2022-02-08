@@ -65,22 +65,22 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="250" pref="250" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="lblPhoneNumber" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="cmbGender" min="-2" pref="260" max="-2" attributes="0"/>
                                       <Component id="lblGender" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtEmail" alignment="0" min="-2" pref="260" max="-2" attributes="0"/>
                                       <Component id="txtManagerID" alignment="0" min="-2" pref="260" max="-2" attributes="0"/>
                                       <Component id="lblManagerID" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="txtPhoneNumber" min="-2" pref="260" max="-2" attributes="0"/>
+                                      <Component id="txtEmail" alignment="0" min="-2" pref="260" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jScrollPane1" min="-2" pref="260" max="-2" attributes="0"/>
                                       <Component id="lblHomeAddress" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" attributes="0">
@@ -155,12 +155,12 @@
                       </Group>
                       <Component id="lblEmail" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="txtDOB" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       <Component id="txtEmail" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   <Component id="lblManagerID" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                   <Component id="txtManagerID" min="-2" pref="35" max="-2" attributes="0"/>
@@ -217,7 +217,7 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtEmail">
+        <Component class="javax.swing.JTextField" name="txtDOB">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="44" green="44" red="44" type="rgb"/>
@@ -235,7 +235,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtEmailFocusLost"/>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtDOBFocusLost"/>
           </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -525,26 +525,26 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="txtDOB">
+        <Component class="javax.swing.JTextField" name="txtEmail">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="44" green="44" red="44" type="rgb"/>
             </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial" size="18" style="0"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Customer Email"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
                 <MatteColorBorder bottom="2" left="0" right="0" top="0">
-                  <Color PropertyName="color" blue="de" green="de" red="de" type="rgb"/>
+                  <Color PropertyName="color" blue="ed" green="ed" red="ed" type="rgb"/>
                 </MatteColorBorder>
               </Border>
             </Property>
-            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-              <Format format="dd/MM/yyyy" subtype="-1" type="1"/>
-            </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Customer&apos;s Date of Birth"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Leelawadee UI" size="18" style="0"/>
-            </Property>
           </Properties>
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtEmailFocusLost"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

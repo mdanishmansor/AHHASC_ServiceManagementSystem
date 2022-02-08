@@ -55,6 +55,7 @@ public class APULogin extends javax.swing.JFrame {
         txtUsername = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
         btnLogin = new javax.swing.JButton();
+        lblForgetPass = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,6 +96,17 @@ public class APULogin extends javax.swing.JFrame {
             }
         });
 
+        lblForgetPass.setBackground(new java.awt.Color(68, 68, 68));
+        lblForgetPass.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lblForgetPass.setForeground(new java.awt.Color(0, 204, 204));
+        lblForgetPass.setText("Forget Password? Click Here");
+        lblForgetPass.setToolTipText("");
+        lblForgetPass.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblForgetPassMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -105,13 +117,14 @@ public class APULogin extends javax.swing.JFrame {
                         .addGap(523, 523, 523)
                         .addComponent(lblTitle))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(463, 463, 463)
+                        .addGap(565, 565, 565)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(txtUsername)
-                                .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)))))
-                .addContainerGap(487, Short.MAX_VALUE))
+                                .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE))
+                            .addComponent(lblForgetPass))))
+                .addContainerGap(385, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,9 +135,11 @@ public class APULogin extends javax.swing.JFrame {
                 .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(74, 74, 74)
                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(91, 91, 91)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblForgetPass, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(103, Short.MAX_VALUE))
+                .addContainerGap(114, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -394,6 +409,12 @@ public class APULogin extends javax.swing.JFrame {
         }
        
     }//GEN-LAST:event_txtPasswordKeyReleased
+
+    private void lblForgetPassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblForgetPassMouseClicked
+        // TODO add your handling code here:
+         new ForgetPassword().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_lblForgetPassMouseClicked
     // </editor-fold>
     
     /**
@@ -416,6 +437,7 @@ public class APULogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblForgetPass;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;

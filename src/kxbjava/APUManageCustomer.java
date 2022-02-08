@@ -63,7 +63,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
         cmbGender = new javax.swing.JComboBox<>();
-        txtEmail = new javax.swing.JTextField();
+        txtDOB = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         txaHomeAddress = new javax.swing.JTextArea();
         txtManagerID = new javax.swing.JTextField();
@@ -81,7 +81,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
         lblDOB = new javax.swing.JLabel();
         lblEmail = new javax.swing.JLabel();
         txtPhoneNumber = new javax.swing.JFormattedTextField();
-        txtDOB = new javax.swing.JFormattedTextField();
+        txtEmail = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,13 +103,13 @@ public class APUManageCustomer extends javax.swing.JFrame {
             }
         });
 
-        txtEmail.setBackground(new java.awt.Color(68, 68, 68));
-        txtEmail.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        txtEmail.setToolTipText("Customer Email");
-        txtEmail.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
-        txtEmail.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtDOB.setBackground(new java.awt.Color(68, 68, 68));
+        txtDOB.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtDOB.setToolTipText("Customer Email");
+        txtDOB.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
+        txtDOB.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtEmailFocusLost(evt);
+                txtDOBFocusLost(evt);
             }
         });
 
@@ -227,11 +227,15 @@ public class APUManageCustomer extends javax.swing.JFrame {
         txtPhoneNumber.setToolTipText("Customer Phone Number");
         txtPhoneNumber.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
 
-        txtDOB.setBackground(new java.awt.Color(68, 68, 68));
-        txtDOB.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(222, 222, 222)));
-        txtDOB.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
-        txtDOB.setToolTipText("Customer's Date of Birth");
-        txtDOB.setFont(new java.awt.Font("Leelawadee UI", 0, 18)); // NOI18N
+        txtEmail.setBackground(new java.awt.Color(68, 68, 68));
+        txtEmail.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtEmail.setToolTipText("Customer Email");
+        txtEmail.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
+        txtEmail.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtEmailFocusLost(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -256,21 +260,21 @@ public class APUManageCustomer extends javax.swing.JFrame {
                         .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(250, 250, 250)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(5, 5, 5)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblPhoneNumber)
                                     .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblGender)
-                                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtManagerID, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblManagerID)
-                                    .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(136, 136, 136)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblHomeAddress)))
+                                    .addComponent(lblHomeAddress)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(cmbCustID, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(141, 141, 141)
@@ -324,11 +328,11 @@ public class APUManageCustomer extends javax.swing.JFrame {
                         .addGap(6, 6, 6)
                         .addComponent(lblDOB))
                     .addComponent(lblEmail))
-                .addGap(34, 34, 34)
+                .addGap(43, 43, 43)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDOB, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
+                .addGap(31, 31, 31)
                 .addComponent(lblManagerID)
                 .addGap(40, 40, 40)
                 .addComponent(txtManagerID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -510,6 +514,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
         // JOptionPane.showMessageDialog(null, bID);
         File customertxt = new File(FileDir + "Customer.txt");
         Scanner intCustomer;
+        
         try {
             // This part loads all book information
             intCustomer = new Scanner(customertxt);
@@ -521,6 +526,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
                 // Split the line by using the delimiter ":" (semicolon) and store into array.
                 matchedID = bEntry.split(":");
                 matchedID[0] = matchedID[0].replace(CustPrefix, "");
+                
                 // JOptionPane.showMessageDialog(null, i);
                 if (cmbCustID.getSelectedItem().equals(matchedID[0])) {
                     txtManagerID.setText(matchedID[1]);
@@ -568,7 +574,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
             String CustPhoneNumber = txtPhoneNumber.getText();
             String CustAddress = txaHomeAddress.getText();
             String CustGender = (String) cmbGender.getSelectedItem();
-            String CustEmail = txtEmail.getText();
+            String CustEmail = txtDOB.getText();
             String CustDOB = txtDOB.getText();
             // FileWriter and PrintWriter to create and write into book.txt
             try {
@@ -607,6 +613,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
             highlightEmpty();
             JOptionPane.showMessageDialog(null, "Invalid input! Please check your input to proceed.", "Invalid insertion detected!", JOptionPane.ERROR_MESSAGE);
             // Continue with displaying which field was affected. ensure it appears before the mnessagebox
+            System.out.println(ex);
         }      
     }
     private void updateCustomerInfo(){
@@ -660,7 +667,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
                     matchedID[3] = txtPhoneNumber.getText();
                     matchedID[4] = txaHomeAddress.getText();
                     matchedID[5] = (String) cmbGender.getSelectedItem();
-                    matchedID[6] = txtEmail.getText();
+                    matchedID[6] = txtDOB.getText();
                     matchedID[7] = txtDOB.getText();
                     matchedID[8] = "true";
                     // JOptionPane.showMessageDialog(null, "Yes it worked");
@@ -804,23 +811,30 @@ public class APUManageCustomer extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Validation Methods">
      private void emptyFields() throws Exception {
         APUEmailValidation vd = new APUEmailValidation();
+        
         if ("".equals(txtFullName.getText())) {
-            throw new Exception("Empty user full name");
+            throw new Exception("Empty customer name");
         }
         if ("".equals(txaHomeAddress.getText())) {
-            throw new Exception("Empty user home address");
+            throw new Exception("Empty customer home address");
         }
-        if ("".equals(txtPhoneNumber.getText())) {
-            throw new Exception("Empty username");
+        if ("          ".equals(txtPhoneNumber.getText())) {
+            throw new Exception("Empty phone number");
         }
         if("".equals(txtEmail.getText())){
-            throw new Exception("Empty user password");
+            throw new Exception("Empty email");
         }
         if ("".equals(txtDOB.getText())) {
-            throw new Exception("Empty user phone number");
+            throw new Exception("Empty customer date of birth");
         }
-        if (vd.runValidate(txtEmail, false)) {
-            throw new Exception("Invalid email address format");
+        if("".equals(txtManagerID.getText())){
+            throw new Exception("Empty Manager ID");
+        }
+        if (vd.runValidate(txtDOB, false)) {
+            throw new Exception("Invalid DOB format");
+        }
+         if (vd.runValidate(txtEmail, false)) {
+            throw new Exception("Invalid email format");
         }
     }
      
@@ -828,26 +842,23 @@ public class APUManageCustomer extends javax.swing.JFrame {
         txtFullName.setText("");
         txtPhoneNumber.setText("");
         txaHomeAddress.setText("");
-        txtEmail.setText("");
+        txtDOB.setText("");
         txtDOB.setText("");
         txtManagerID.setText("");
         cmbGender.setSelectedIndex(0);
         CustID = "";
     }
      private void highlightEmpty() {
-        if (cmbCustID.getSelectedIndex() <= 0) {
-            lblCustomerID.setForeground(Color.RED);
-        }
         if("".equals(txtFullName.getText())) {
             lblFullName.setForeground(Color.RED);
         }
-        if("".equals(txtPhoneNumber.getText())) {
+        if("          ".equals(txtPhoneNumber.getText())) {
             lblPhoneNumber.setForeground(Color.RED);
         }
         if("".equals(txaHomeAddress.getText())) {
             lblHomeAddress.setForeground(Color.RED);
         }
-        if("".equals(txtEmail.getText())){
+        if("".equals(txtDOB.getText())){
             lblEmail.setForeground(Color.RED);
         }
         if("".equals(txtDOB.getText())){
@@ -858,7 +869,6 @@ public class APUManageCustomer extends javax.swing.JFrame {
         }
     }
       private void deHighlightEmpty(){
-        lblCustomerID.setForeground(ogtxt);
         lblHomeAddress.setForeground(ogtxt);
         lblDOB.setForeground(ogtxt);
         lblPhoneNumber.setForeground(ogtxt);
@@ -946,7 +956,13 @@ public class APUManageCustomer extends javax.swing.JFrame {
                 }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
+    private void txtDOBFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDOBFocusLost
+       DOBValidation vd = new DOBValidation();
+       vd.runValidate(txtDOB, true);
+    }//GEN-LAST:event_txtDOBFocusLost
+
     private void txtEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusLost
+        // TODO add your handling code here:
         APUEmailValidation vd = new APUEmailValidation();     
         vd.runValidate(txtEmail, true);
     }//GEN-LAST:event_txtEmailFocusLost
@@ -989,7 +1005,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
     private javax.swing.JLabel lblPhoneNumber;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JTextArea txaHomeAddress;
-    private javax.swing.JFormattedTextField txtDOB;
+    private javax.swing.JTextField txtDOB;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFullName;
     private javax.swing.JTextField txtManagerID;

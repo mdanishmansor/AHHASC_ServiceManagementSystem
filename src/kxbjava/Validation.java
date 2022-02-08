@@ -42,25 +42,25 @@ class APUDocumentListener implements DocumentListener {
 
 // <editor-fold defaultstate="collapsed" desc="Validation Class"> 
 // This abstract class contains the fundamental methods required of a validation
-abstract class APUStringValidation {
+abstract class StringValidation {
     
     private String title, msg, regex, nregex;
     
-    public APUStringValidation() {
+    public StringValidation() {
         title = "Invalid input type!";
         msg = "Field can only consist of letters, numbers and spacing.";
         regex = "^[a-zA-Z0-9 ]+";
         nregex = "[^a-zA-Z0-9 ]";
     }
     
-    public APUStringValidation(String title, String msg, String regex, String nregex) {
+    public StringValidation(String title, String msg, String regex, String nregex) {
         this.title = title;
         this.msg = msg;
         this.regex = regex;
         this.nregex = nregex;
     }
     
-    public APUStringValidation(String msg, String regex, String nregex) {
+    public StringValidation(String msg, String regex, String nregex) {
         title = "Invalid input type!";
         this.msg = msg;
         this.regex = regex;
@@ -122,7 +122,7 @@ abstract class APUStringValidation {
 }
 
 // This subclass handles username validation
-class APUUsernameValidation extends APUStringValidation {
+class APUUsernameValidation extends StringValidation {
     
     public APUUsernameValidation() {
         super();
@@ -133,7 +133,7 @@ class APUUsernameValidation extends APUStringValidation {
 }
 
 // This subclass handles password validation
-class APUPasswordValidation extends APUStringValidation {
+class APUPasswordValidation extends StringValidation {
     
     public APUPasswordValidation() {
         super();
@@ -163,7 +163,7 @@ class APUPasswordValidation extends APUStringValidation {
 }
 
 // This subclass handles email validation
-class APUEmailValidation extends APUStringValidation {
+class APUEmailValidation extends StringValidation {
     
     public APUEmailValidation() {
         super();
@@ -187,9 +187,33 @@ class APUEmailValidation extends APUStringValidation {
     }
     
 }
+class PaymentValidation extends StringValidation {
+    
+    public PaymentValidation() {
+        super();
+        setPopup("Invalid payment format", "Payment must contains 'MYR and Numbers only, MYR11.11 for example'.");
+        setRegex("MYR+[0-9]+\\.[0-9]{2}$");
+    }
+    
+    public boolean runValidate(JTextField txt, boolean dispenseMessage){
+        boolean invalidMoney = false;
+        String input = txt.getText();
+        boolean matching = input.matches("MYR+[0-9]+\\.[0-9]{2}$");
+        if (matching == false && !"".equals(input)) {
+            if (dispenseMessage) {
+                runPopup();
+            }
+            String output = "";
+            txt.setText(output);
+            invalidMoney = true;
+        };
+        return invalidMoney;
+    }
+    
+}
 
 // This subclass handles name validation
-class APUNameValidation extends APUStringValidation {
+class APUNameValidation extends StringValidation {
     
     public APUNameValidation() {
         super();
@@ -203,12 +227,12 @@ class APUNameValidation extends APUStringValidation {
 class APUFullNameValidation extends APUNameValidation {
     public APUFullNameValidation(){
         super();
-        setPopup("Invalid first name!", "First name can only consist of letters and spacing.");
+        setPopup("Invalid full name!", "Full name can only consist of letters and spacing.");
     }
 }
 
 // This subclass handles home address validation
-class APUAddressValidation extends APUStringValidation {
+class APUAddressValidation extends StringValidation {
     public APUAddressValidation() {
         super();
         setPopup("Invalid home address!", "Home address can only consist of letters, numbers, spacing and acceptable symbols.");
@@ -239,76 +263,36 @@ class APUAddressValidation extends APUStringValidation {
     }
     
 }
-
-// This subclass handles book title naming validation
-class APUTitleValidation extends APUStringValidation {
-        APUTitleValidation(){
+class DOBValidation extends StringValidation {
+    
+    public DOBValidation() {
         super();
-        setPopup("Invalid book title!", "Book title can only consist of letters, numbers, spacing and escaped symbols.");
-        setRegex("^[-a-zA-Z0-9!@#$%^&*()\\{\\}\\[\\]\"\';\\\\/?|.,><~`_+= ]+");
-        setNegateRegex("[^-a-zA-Z0-9!@#$%^&*()\\{\\}\\[\\]\"\';\\\\/?|.,><~`_+= ]");
-    }
-}
-
-// This subclass handles book genre validation
-class APUGenreValidation extends  APUStringValidation {
-        APUGenreValidation(){
-        super();
-        setPopup("Invalid book genre!", "Book genre can only consist of letters, numbers, spacing and acceptable symbols.");
-        setRegex("^[-a-zA-Z0-9()&., ]+");
-        setNegateRegex("[^-a-zA-Z0-9()&., ]");
-    }
-}
-
-// This subclass handles book summary validation
-class APUSummaryValidation extends APUStringValidation {
-        APUSummaryValidation(){
-        super();
-        setPopup("Invalid book summary!", "Book summary can only consist of letters, numbers, spacing and acceptable symbols.");
-        setRegex("^[-a-zA-Z0-9()&., ]+");
-        setNegateRegex("[^-a-zA-Z0-9()&., ]");
+        setPopup("Invalid DOB Format", "Date of birth must contains numbers and allowed symbols only, follow dd-MM-yyyy format.");
+        setRegex("(0?[1-9]|[12][0-9]|[01])-(0?[1-9]|1[012])-(\\d{4})");
     }
     
-    public void runValidate(JTextArea txt){
-        Runnable doDelete = new Runnable(){
-            public void set(){
-                String input = txt.getText();
-                boolean matching = input.matches(getRegex());
-                if (!matching && !"".equals(input)) {
-                    runPopup();
-                    // String output = input.substring(0, input.length() - 1);
-                    // String illegalSymbols = input.replaceAll(getRegex(), "");
-                    // String output = input.replaceAll(getRegex(), "");
-                    String output = input.replaceAll(getNegateRegex(), "");
-                    txt.setText(output);
-                }
+    public boolean runValidate(JTextField txt, boolean dispenseMessage){
+        boolean invalidMoney = false;
+        String input = txt.getText();
+        boolean matching = input.matches("(0?[1-9]|[12][0-9]|[01])-(0?[1-9]|1[012])-(\\d{4})");
+        if (matching == false && !"".equals(input)) {
+            if (dispenseMessage) {
+                runPopup();
             }
-            @Override
-            public void run(){
-                set();
-            }
+            String output = "";
+            txt.setText(output);
+            invalidMoney = true;
         };
-        SwingUtilities.invokeLater(doDelete);
+        return invalidMoney;
     }
+    
 }
-
-// This subclass handles book publisher validation
-class APUPublisherValidation extends APUStringValidation {
-        APUPublisherValidation(){
-        super();
-        setPopup("Invalid book publisher!", "Book publisher can only consist of letters, numbers, spacing and acceptable symbols.");
-        setRegex("^[-a-zA-Z0-9()&., ]+");
-        setNegateRegex("[^-a-zA-Z0-9()&., ]");
-    }
-}
-
-// This subclass handles book author validation
-class APUAuthorValidation extends APUStringValidation {
-        APUAuthorValidation(){
-        super();
-        setPopup("Invalid book author!", "Book author can only consist of letters, numbers, spacing and acceptable symbols.");
-        setRegex("^[-a-zA-Z0-9()&., ]+");
-        setNegateRegex("[^-a-zA-Z0-9()&., ]");
+class UserIDValidation extends StringValidation {
+    public UserIDValidation(){
+        super(); 
+        setPopup("Invalid user ID format", "User ID must only containts letters and number without spacing and symbols.");
+        setRegex("^[a-zA-Z0-9]+");
+        setNegateRegex("[^a-zA-Z0-9]");
     }
 }
 // </editor-fold>

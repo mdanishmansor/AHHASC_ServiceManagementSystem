@@ -81,6 +81,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
         lblPhoneNumber = new javax.swing.JLabel();
         lblGender = new javax.swing.JLabel();
         txtPhoneNumber1 = new javax.swing.JFormattedTextField();
+        btnLogout = new javax.swing.JButton();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -254,6 +255,15 @@ public class APUMUserProfile extends javax.swing.JFrame {
         txtPhoneNumber1.setToolTipText("Customer Phone Number");
         txtPhoneNumber1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
 
+        btnLogout.setBackground(new java.awt.Color(255, 46, 99));
+        btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/logout.png"))); // NOI18N
+        btnLogout.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, java.awt.Color.red, null, java.awt.Color.red));
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -261,7 +271,9 @@ public class APUMUserProfile extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(456, 456, 456)
+                        .addGap(30, 30, 30)
+                        .addComponent(btnLogout)
+                        .addGap(370, 370, 370)
                         .addComponent(lblTitle))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(jPanel1Layout.createSequentialGroup()
@@ -307,8 +319,10 @@ public class APUMUserProfile extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addComponent(lblTitle)
+                .addGap(50, 50, 50)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblTitle)
+                    .addComponent(btnLogout))
                 .addGap(49, 49, 49)
                 .addComponent(lblUserType)
                 .addGap(18, 18, 18)
@@ -517,7 +531,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
                     txtEmail.setText(matchedID[4]);
                     txtUsername.setText(matchedID[5]);
                     txtPassword.setText(matchedID[6]);
-                    txtPhoneNumber.setText(matchedID[7]);
+                    txtPhoneNumber1.setText(matchedID[7]);
                     switch (matchedID[8]) {
                         case "Male":
                             cmbGender.setSelectedIndex(1);
@@ -746,7 +760,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
                     matchedID[4] = txtEmail.getText();
                     matchedID[5] = txtUsername.getText();
                     matchedID[6] = String.valueOf(txtPassword.getPassword());
-                    matchedID[7] = txtPhoneNumber.getText();
+                    matchedID[7] = txtPhoneNumber1.getText();
                     matchedID[8] = (String) cmbGender.getSelectedItem();
                     matchedID[9] = "true";
                     // JOptionPane.showMessageDialog(null, "Yes it worked");
@@ -1066,6 +1080,14 @@ public class APUMUserProfile extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Customer record has not been deleted!", "Customer deletion", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        int selection = JOptionPane.showConfirmDialog(null, "Are you sure to go back?", "Back to Main Menu", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (selection == JOptionPane.YES_OPTION) {
+           new APUCMMenu().setVisible(true);
+           this.dispose();
+        }
+    }//GEN-LAST:event_btnLogoutActionPerformed
    
     // </editor-fold>  
     
@@ -1088,6 +1110,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnRegister;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> cmbGender;

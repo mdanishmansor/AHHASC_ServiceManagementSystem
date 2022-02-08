@@ -21,6 +21,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -38,13 +40,14 @@ public class APUBookAppointment extends javax.swing.JFrame {
     private final String custSource = System.getProperty("user.dir") + "\\src\\TextFiles\\Customer.txt"; //Retrieving Directory of Appointment.txt File.
     private final String techSource = System.getProperty("user.dir") + "\\src\\TextFiles\\UserProfile.txt"; //Retrieving Directory of Appointment.txt File.
     private final String paymentSource = System.getProperty("user.dir") + "\\src\\TextFiles\\Payment.txt";
-   
+    
     private String generatedStaffID, FileDir, uID, generatedPaymentID;
     final DecimalFormat idformat = new DecimalFormat("00000");
 
     public APUBookAppointment() {
         initComponents();
         initForm();
+        
         
     }
 
@@ -95,6 +98,11 @@ public class APUBookAppointment extends javax.swing.JFrame {
         cmbTechID.setForeground(new java.awt.Color(37, 42, 52));
         cmbTechID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Technician ID" }));
         cmbTechID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 0, 0, new java.awt.Color(0, 0, 0)));
+        cmbTechID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbTechIDActionPerformed(evt);
+            }
+        });
 
         txtCustName.setEditable(false);
         txtCustName.setBackground(new java.awt.Color(68, 68, 68));
@@ -112,17 +120,17 @@ public class APUBookAppointment extends javax.swing.JFrame {
         txtManagerID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         txtManagerID.setToolTipText("Manager ID");
         txtManagerID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
-        txtManagerID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtManagerIDActionPerformed(evt);
-            }
-        });
 
         cmbAppliance.setBackground(new java.awt.Color(8, 217, 214));
         cmbAppliance.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         cmbAppliance.setForeground(new java.awt.Color(37, 42, 52));
         cmbAppliance.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Appliance", "Television", "Refrigerator", "Air-conditioner", "Washing Machine", "PC" }));
         cmbAppliance.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 0, 0, new java.awt.Color(0, 0, 0)));
+        cmbAppliance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbApplianceActionPerformed(evt);
+            }
+        });
 
         btnBook.setBackground(new java.awt.Color(255, 46, 99));
         btnBook.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -136,14 +144,29 @@ public class APUBookAppointment extends javax.swing.JFrame {
         btnReset.setBackground(new java.awt.Color(255, 46, 99));
         btnReset.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         btnReset.setText("Reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
 
         cmbTime.setBackground(new java.awt.Color(8, 217, 214));
         cmbTime.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         cmbTime.setForeground(new java.awt.Color(37, 42, 52));
         cmbTime.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Time", "0800", "1000", "1200", "1400", "1600", "1800" }));
         cmbTime.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 0, 0, new java.awt.Color(0, 0, 0)));
+        cmbTime.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbTimeActionPerformed(evt);
+            }
+        });
 
         appDateChooser.setBackground(new java.awt.Color(68, 68, 68));
+        appDateChooser.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                appDateChooserPropertyChange(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -224,17 +247,83 @@ public class APUBookAppointment extends javax.swing.JFrame {
     private void btnBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookActionPerformed
         IDincrement();
         paymentIDIncrement();
-        insertData();
-        insertPayment();
+        try {
+            insertData();
+        } catch (Exception ex) {
+            Logger.getLogger(APUBookAppointment.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            insertPayment();
+        } catch (Exception ex) {
+            Logger.getLogger(APUBookAppointment.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnBookActionPerformed
 
     private void cmbCustomerIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCustomerIDActionPerformed
         readCustData(cmbCustomerID.getSelectedItem().toString());
+        Date selectedDate = appDateChooser.getDate();
+        if(cmbCustomerID.getSelectedIndex() > 0 && cmbTechID.getSelectedIndex() > 0 && cmbAppliance.getSelectedIndex() > 0 && cmbTime.getSelectedIndex() > 0 && selectedDate != null ){
+            btnBook.setEnabled(true);
+            btnReset.setEnabled(true);
+        }else {
+            btnBook.setEnabled(false);
+            btnReset.setEnabled(false);
+        }
     }//GEN-LAST:event_cmbCustomerIDActionPerformed
 
-    private void txtManagerIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtManagerIDActionPerformed
+    private void cmbTechIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTechIDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtManagerIDActionPerformed
+        Date selectedDate = appDateChooser.getDate();
+        if(cmbCustomerID.getSelectedIndex() > 0 && cmbTechID.getSelectedIndex() > 0 && cmbAppliance.getSelectedIndex() > 0 && cmbTime.getSelectedIndex() > 0 && selectedDate != null ){
+            btnBook.setEnabled(true);
+            btnReset.setEnabled(true);
+        }else {
+            btnBook.setEnabled(false);
+            btnReset.setEnabled(false);
+        }
+ 
+    }//GEN-LAST:event_cmbTechIDActionPerformed
+
+    private void cmbApplianceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbApplianceActionPerformed
+        // TODO add your handling code here:
+        Date selectedDate = appDateChooser.getDate();
+         if(cmbCustomerID.getSelectedIndex() > 0 && cmbTechID.getSelectedIndex() > 0 && cmbAppliance.getSelectedIndex() > 0 && cmbTime.getSelectedIndex() > 0 && selectedDate != null ){
+            btnBook.setEnabled(true);
+            btnReset.setEnabled(true);
+        }else {
+            btnBook.setEnabled(false);
+            btnReset.setEnabled(false);
+        }
+    }//GEN-LAST:event_cmbApplianceActionPerformed
+
+    private void cmbTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTimeActionPerformed
+        // TODO add your handling code here:
+        Date selectedDate = appDateChooser.getDate();
+         if(cmbCustomerID.getSelectedIndex() > 0 && cmbTechID.getSelectedIndex() > 0 && cmbAppliance.getSelectedIndex() > 0 && cmbTime.getSelectedIndex() > 0 && selectedDate != null ){
+            btnBook.setEnabled(true);
+            btnReset.setEnabled(true);
+        }else {
+            btnBook.setEnabled(false);
+            btnReset.setEnabled(false);
+        }
+    }//GEN-LAST:event_cmbTimeActionPerformed
+
+    private void appDateChooserPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_appDateChooserPropertyChange
+        // TODO add your handling code here:
+         Date selectedDate = appDateChooser.getDate();
+         if(cmbCustomerID.getSelectedIndex() > 0 && cmbTechID.getSelectedIndex() > 0 && cmbAppliance.getSelectedIndex() > 0 && cmbTime.getSelectedIndex() > 0 && selectedDate != null ){
+            btnBook.setEnabled(true);
+            btnReset.setEnabled(true);
+        }else {
+            btnBook.setEnabled(false);
+            btnReset.setEnabled(false);
+        }
+    }//GEN-LAST:event_appDateChooserPropertyChange
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        // TODO add your handling code here:
+        clearAppointment();
+    }//GEN-LAST:event_btnResetActionPerformed
 
     //<editor-fold defaultstate="collapsed" desc="Methods">
      
@@ -357,10 +446,10 @@ public class APUBookAppointment extends javax.swing.JFrame {
 
     }
 
-    private void insertData() {
+    private void insertData() throws Exception {
 
         try {
-            
+            emptyFields();
             File file = new File(source);
             FileWriter fw = new FileWriter(file, true);
             BufferedWriter bf = new BufferedWriter(fw);
@@ -407,9 +496,10 @@ public class APUBookAppointment extends javax.swing.JFrame {
 
     }
     
-    private void insertPayment() {
+    private void insertPayment() throws Exception {
 
         try {
+            emptyFields();
             File file = new File(paymentSource);
             FileWriter fw = new FileWriter(file, true);
             BufferedWriter bf = new BufferedWriter(fw);
@@ -460,6 +550,16 @@ public class APUBookAppointment extends javax.swing.JFrame {
         }
 
     }
+    
+    private void clearAppointment(){
+        txtCustName.setText("");
+        cmbCustomerID.setSelectedIndex(0);
+        cmbTechID.setSelectedIndex(0);
+        cmbTime.setSelectedIndex(0);
+        cmbAppliance.setSelectedIndex(0);
+        appDateChooser.setDate(null);
+    
+    }
     private void clearCache() {
         try {
             FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
@@ -478,6 +578,11 @@ public class APUBookAppointment extends javax.swing.JFrame {
         loadUserProfile();
         readCustData();
         readTechData();
+        btnBook.setEnabled(false);
+        btnReset.setEnabled(false);
+        appDateChooser.setEnabled(false);
+        appDateChooser.getCalendarButton().setEnabled(true);
+        appDateChooser.setMinSelectableDate(new Date());
         // Set the initial value for new book
         // This anon class handles window closing event
         addWindowListener(new WindowAdapter() {
@@ -497,6 +602,32 @@ public class APUBookAppointment extends javax.swing.JFrame {
     // </editor-fold>
     
     
+     private void emptyFields() throws Exception {
+         Date selectedDate = appDateChooser.getDate();
+        if ("".equals(txtCustName.getText())) {
+            throw new Exception("Empty customer name");
+        }
+        if (cmbCustomerID.getSelectedIndex() < 1) {
+            throw new Exception("Empty customer ID");
+        }
+        if (cmbTechID.getSelectedIndex() < 1) {
+            throw new Exception("Empty technician ID");
+        }
+        if(cmbAppliance.getSelectedIndex() < 1){
+            throw new Exception("Empty appliance");
+        }
+        if (cmbTime.getSelectedIndex() < 1) {
+            throw new Exception("Empty appointment time");
+        }
+        if ("".equals(txtManagerID.getText())) {
+            throw new Exception("Empty manager ID");
+        }
+        if (selectedDate == null) {
+            throw new Exception("Empty appointment date");
+        }
+        
+    }
+     
     /**
      * @param args the command line arguments
      */

@@ -39,17 +39,17 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          <Component id="pnlHandleTask" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          <Component id="pnlHandleTask" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="jPanel1">
+    <Container class="javax.swing.JPanel" name="pnlHandleTask">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="44" green="44" red="44" type="rgb"/>
@@ -60,82 +60,140 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="552" max="-2" attributes="0"/>
-                          <Component id="lblPageTitle" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="528" max="-2" attributes="0"/>
-                          <Component id="btnUpdate" min="-2" pref="106" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace pref="560" max="32767" attributes="0"/>
+                  <EmptySpace min="496" pref="496" max="-2" attributes="0"/>
+                  <Component id="lblPageTitle" min="-2" max="-2" attributes="0"/>
               </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="226" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="cmbPaymentStatus" min="-2" pref="260" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="txttotalAmount" min="-2" pref="260" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="txtpaymentAmount" min="-2" pref="260" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="txtApptTime" min="-2" pref="260" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="txtPaymentDate" min="-2" pref="260" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="txtCustomerName" min="-2" pref="260" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="txtAppliance" min="-2" pref="260" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="cmbApptID" min="-2" pref="260" max="-2" attributes="0"/>
-                          <EmptySpace pref="127" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblApptDate" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtApptDate" min="-2" pref="260" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                  </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="226" pref="226" max="-2" attributes="0"/>
+                  <Component id="lblApptID" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="250" pref="250" max="-2" attributes="0"/>
+                  <Component id="lblApptDate" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="226" pref="226" max="-2" attributes="0"/>
+                  <Component id="cmbApptID" min="-2" pref="260" max="-2" attributes="0"/>
+                  <EmptySpace min="116" pref="116" max="-2" attributes="0"/>
+                  <Component id="txtApptDate" min="-2" pref="260" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="226" pref="226" max="-2" attributes="0"/>
+                  <Component id="lblCustomerName" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="242" pref="242" max="-2" attributes="0"/>
+                  <Component id="lblAppliance" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="226" pref="226" max="-2" attributes="0"/>
+                  <Component id="txtCustomerName" min="-2" pref="260" max="-2" attributes="0"/>
+                  <EmptySpace min="116" pref="116" max="-2" attributes="0"/>
+                  <Component id="txtAppliance" min="-2" pref="260" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="226" pref="226" max="-2" attributes="0"/>
+                  <Component id="lblApptTime" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="227" pref="227" max="-2" attributes="0"/>
+                  <Component id="lblPaymenDate" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="226" pref="226" max="-2" attributes="0"/>
+                  <Component id="txtApptTime" min="-2" pref="260" max="-2" attributes="0"/>
+                  <EmptySpace min="116" pref="116" max="-2" attributes="0"/>
+                  <Component id="txtPaymentDate" min="-2" pref="260" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="226" pref="226" max="-2" attributes="0"/>
+                  <Component id="lblTotalAmount" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="263" pref="263" max="-2" attributes="0"/>
+                  <Component id="lblPaymentAmount" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="226" pref="226" max="-2" attributes="0"/>
+                  <Component id="txttotalAmount" min="-2" pref="260" max="-2" attributes="0"/>
+                  <EmptySpace min="117" pref="117" max="-2" attributes="0"/>
+                  <Component id="txtpaymentAmount" min="-2" pref="260" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="230" pref="230" max="-2" attributes="0"/>
+                  <Component id="lblPaymentStatus" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="239" pref="239" max="-2" attributes="0"/>
+                  <Component id="lblFeedback" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="220" pref="220" max="-2" attributes="0"/>
+                  <Component id="cmbPaymentStatus" min="-2" pref="260" max="-2" attributes="0"/>
+                  <EmptySpace min="120" pref="120" max="-2" attributes="0"/>
+                  <Component id="txtApptFeedback" min="-2" pref="260" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="357" pref="357" max="-2" attributes="0"/>
+                  <Component id="btnUpdate" min="-2" pref="106" max="-2" attributes="0"/>
+                  <EmptySpace min="140" pref="140" max="-2" attributes="0"/>
+                  <Component id="btnReset" min="-2" pref="106" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="28" pref="28" max="-2" attributes="0"/>
                   <Component id="lblPageTitle" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                  <Component id="lblApptDate" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="cmbApptID" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="txtApptDate" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                  <EmptySpace min="41" pref="41" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="lblApptID" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblApptDate" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtCustomerName" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="txtAppliance" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                  <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="cmbApptID" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
+                          <Component id="txtApptDate" min="-2" pref="35" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtApptTime" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="txtPaymentDate" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                  <EmptySpace min="41" pref="41" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="lblCustomerName" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblAppliance" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txttotalAmount" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="txtpaymentAmount" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="txtCustomerName" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="txtAppliance" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="70" max="32767" attributes="0"/>
-                  <Component id="cmbPaymentStatus" min="-2" pref="35" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                  <Component id="btnUpdate" min="-2" pref="45" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                  <EmptySpace min="35" pref="35" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="lblApptTime" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblPaymenDate" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="txtApptTime" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="txtPaymentDate" min="-2" pref="35" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="36" pref="36" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="lblTotalAmount" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblPaymentAmount" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="txttotalAmount" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="txtpaymentAmount" min="-2" pref="35" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="25" pref="25" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="lblPaymentStatus" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblFeedback" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="cmbPaymentStatus" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="txtApptFeedback" min="-2" pref="35" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="42" pref="42" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="btnUpdate" min="-2" pref="45" max="-2" attributes="0"/>
+                      <Component id="btnReset" min="-2" pref="45" max="-2" attributes="0"/>
+                  </Group>
               </Group>
           </Group>
         </DimensionLayout>
@@ -200,9 +258,12 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblApptDate">
+        <Component class="javax.swing.JLabel" name="lblApptID">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Appointment Date:"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial" size="18" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Appointment ID:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtCustomerName">
@@ -279,6 +340,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ed" green="ed" red="ed" type="rgb"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="MYR"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
                 <MatteColorBorder bottom="2" left="0" right="0" top="0">
@@ -288,7 +350,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txttotalAmountActionPerformed"/>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txttotalAmountFocusLost"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtPaymentDate">
@@ -356,6 +418,27 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUpdateActionPerformed"/>
           </Events>
         </Component>
+        <Component class="javax.swing.JTextField" name="txtApptFeedback">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="44" green="44" red="44" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial" size="18" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ed" green="ed" red="ed" type="rgb"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Customer Feedback"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
+                <MatteColorBorder bottom="2" left="0" right="0" top="0">
+                  <Color PropertyName="color" blue="ed" green="ed" red="ed" type="rgb"/>
+                </MatteColorBorder>
+              </Border>
+            </Property>
+          </Properties>
+        </Component>
         <Component class="javax.swing.JTextField" name="txtpaymentAmount">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -367,6 +450,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ed" green="ed" red="ed" type="rgb"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="MYR"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
                 <MatteColorBorder bottom="2" left="0" right="0" top="0">
@@ -376,8 +460,101 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtpaymentAmountActionPerformed"/>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtpaymentAmountFocusLost"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblApptDate">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial" size="18" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Appointment Date:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblTotalAmount">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial" size="18" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Total Amount:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblAppliance">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial" size="18" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Appliance:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnReset">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="17" green="17" red="17" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial" size="18" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ed" green="ed" red="ed" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Reset"/>
+            <Property name="toolTipText" type="java.lang.String" value="Button to reset every fields"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnResetActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblCustomerName">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial" size="18" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Customer Name:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblApptTime">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial" size="18" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Appointment Time:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblPaymentAmount">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial" size="18" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Payment Amount:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblPaymenDate">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial" size="18" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Payment Date:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblPaymentStatus">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial" size="18" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Payment Status:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblFeedback">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial" size="18" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Feedback:"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
