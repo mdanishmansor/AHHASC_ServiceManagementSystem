@@ -69,14 +69,12 @@ public class APULogin extends javax.swing.JFrame {
         txtUsername.setBackground(new java.awt.Color(68, 68, 68));
         txtUsername.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         txtUsername.setForeground(new java.awt.Color(237, 237, 237));
-        txtUsername.setText("irfan");
         txtUsername.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         txtUsername.setCaretColor(new java.awt.Color(237, 237, 237));
 
         txtPassword.setBackground(new java.awt.Color(68, 68, 68));
         txtPassword.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         txtPassword.setForeground(new java.awt.Color(237, 237, 237));
-        txtPassword.setText("kacang");
         txtPassword.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         txtPassword.setCaretColor(new java.awt.Color(237, 237, 237));
         txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -99,7 +97,7 @@ public class APULogin extends javax.swing.JFrame {
         lblForgetPass.setBackground(new java.awt.Color(68, 68, 68));
         lblForgetPass.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblForgetPass.setForeground(new java.awt.Color(0, 204, 204));
-        lblForgetPass.setText("Forget Password? Click Here");
+        lblForgetPass.setText("Forgot Password? Click Here");
         lblForgetPass.setToolTipText("");
         lblForgetPass.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -321,7 +319,7 @@ public class APULogin extends javax.swing.JFrame {
         createDatabase();
         this.setSize(1170,800);
         this.setLocation(600,150);
-        btnLogin.setVisible(true); // This will prevent the login button from being pressed right after startup
+        btnLogin.setVisible(false); // This will prevent the login button from being pressed right after startup
         // This anon class handles textfield changes for username entry
         txtUsername.getDocument().addDocumentListener(new APUDocumentListener(){
 

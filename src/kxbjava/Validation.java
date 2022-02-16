@@ -163,9 +163,9 @@ class APUPasswordValidation extends StringValidation {
 }
 
 // This subclass handles email validation
-class APUEmailValidation extends StringValidation {
+class EmailValidation extends StringValidation {
     
-    public APUEmailValidation() {
+    public EmailValidation() {
         super();
         setPopup("Invalid email address!", "Email must follow the format 'abc123@mail.com'.");
         setRegex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$");
@@ -220,6 +220,15 @@ class APUNameValidation extends StringValidation {
         setPopup("Invalid name!", "Name can only consist of letters and spacing.");
         setRegex("^[a-zA-Z ]+");
         setNegateRegex("[^a-zA-Z ]");
+    }
+}
+class filterValidation extends StringValidation {
+    
+    public filterValidation() {
+        super();
+        setPopup("Invalid filter format", "Filter can only contains numbers, letters and spacing.");
+        setRegex("^[a-zA-Z0-9 ]+");
+        setNegateRegex("[^a-zA-Z0-9 ]");
     }
 }
 

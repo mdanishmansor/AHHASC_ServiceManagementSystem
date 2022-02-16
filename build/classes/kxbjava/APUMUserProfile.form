@@ -131,23 +131,17 @@
                                       <Component id="txtUsername" alignment="0" min="-2" pref="260" max="-2" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Group type="102" attributes="0">
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="lblUserType" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="lblFullName" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="lblUsername" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace min="-2" pref="286" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="1" attributes="0">
+                                                  <Component id="txtManagerID" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="txtFullName" max="32767" attributes="0"/>
                                               </Group>
-                                              <Group type="102" attributes="0">
-                                                  <Group type="103" groupAlignment="1" attributes="0">
-                                                      <Component id="cmbUserType" alignment="0" max="32767" attributes="0"/>
-                                                      <Component id="txtManagerID" alignment="0" max="32767" attributes="0"/>
-                                                      <Component id="txtFullName" max="32767" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
-                                              </Group>
+                                              <Component id="lblUserType" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblFullName" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblUsername" min="-2" max="-2" attributes="0"/>
+                                              <Component id="cmbUserType" alignment="0" min="-2" pref="260" max="-2" attributes="0"/>
+                                              <Component id="lblManagerID" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
+                                          <EmptySpace min="117" pref="117" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                               <Component id="lblGender" min="-2" max="-2" attributes="0"/>
                                               <Component id="txtPassword" alignment="1" max="32767" attributes="0"/>
@@ -174,14 +168,16 @@
                       <Component id="lblTitle" min="-2" max="-2" attributes="0"/>
                       <Component id="btnLogout" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                   <Component id="lblUserType" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="cmbUserType" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                       <Component id="cmbUserID" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="17" max="32767" attributes="0"/>
+                  <Component id="lblManagerID" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="txtManagerID" min="-2" pref="35" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -642,6 +638,20 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLogoutActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblManagerID">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="44" green="44" red="44" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial" size="18" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ed" green="ed" red="ed" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Manager ID:"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

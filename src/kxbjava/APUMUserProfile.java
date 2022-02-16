@@ -82,6 +82,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
         lblGender = new javax.swing.JLabel();
         txtPhoneNumber1 = new javax.swing.JFormattedTextField();
         btnLogout = new javax.swing.JButton();
+        lblManagerID = new javax.swing.JLabel();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -264,6 +265,11 @@ public class APUMUserProfile extends javax.swing.JFrame {
             }
         });
 
+        lblManagerID.setBackground(new java.awt.Color(68, 68, 68));
+        lblManagerID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblManagerID.setForeground(new java.awt.Color(237, 237, 237));
+        lblManagerID.setText("Manager ID:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -295,18 +301,15 @@ public class APUMUserProfile extends javax.swing.JFrame {
                                     .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(lblUserType)
-                                                    .addComponent(lblFullName)
-                                                    .addComponent(lblUsername))
-                                                .addGap(286, 286, 286))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(cmbUserType, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(txtManagerID, javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(txtFullName))
-                                                .addGap(117, 117, 117)))
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(txtManagerID, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(txtFullName))
+                                            .addComponent(lblUserType)
+                                            .addComponent(lblFullName)
+                                            .addComponent(lblUsername)
+                                            .addComponent(cmbUserType, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblManagerID))
+                                        .addGap(117, 117, 117)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(lblGender)
                                             .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -323,13 +326,15 @@ public class APUMUserProfile extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblTitle)
                     .addComponent(btnLogout))
-                .addGap(49, 49, 49)
+                .addGap(22, 22, 22)
                 .addComponent(lblUserType)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbUserType, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbUserID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addComponent(lblManagerID)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtManagerID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -379,6 +384,81 @@ public class APUMUserProfile extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // <editor-fold defaultstate="collapsed" desc="Methods">
+    
+    
+    private boolean emailChecker(){
+        // Assigning the lID to the selected index value
+        String userTemp = txtEmail.getText();
+        // This is to ensure the entire method have access to borrow matchedID array
+        String[] matchedID = null;
+        boolean notAvailable = false;
+        FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
+        // For debugging purpose only
+        // JOptionPane.showMessageDialog(null, bID);
+        File usertxt = new File(FileDir + "UserProfile.txt");
+        Scanner intUser;
+        try {
+            if (!usertxt.exists()) {
+                usertxt.createNewFile();
+            }   
+            // This part loads all book information
+            intUser = new Scanner(usertxt);
+            // Read lines from the file until no more are left.
+            while (intUser.hasNext())
+            {
+                // Read the next line.
+                String lEntry = intUser.nextLine();
+                // Split the line by using the delimiter ":" (semicolon) and store into array.
+                matchedID = lEntry.split(":");
+                // matchedID[0] = matchedID[0].replace("LIB", "");
+                // JOptionPane.showMessageDialog(null, i);
+                if (userTemp.equals(matchedID[4])) {
+                     notAvailable = true;
+                }
+            }
+            intUser.close();
+        } catch (Exception ex) {
+            
+        }
+        return notAvailable;
+    }
+    
+    private boolean usernameChecker(){
+        // Assigning the lID to the selected index value
+        String userTemp = txtUsername.getText();
+        // This is to ensure the entire method have access to borrow matchedID array
+        String[] matchedID = null;
+        boolean noAvailable = false;
+        FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
+        // For debugging purpose only
+        // JOptionPane.showMessageDialog(null, bID);
+        File usertxt = new File(FileDir + "UserProfile.txt");
+        Scanner intUser;
+        try {
+            if (!usertxt.exists()) {
+                usertxt.createNewFile();
+            }   
+            // This part loads all book information
+            intUser = new Scanner(usertxt);
+            // Read lines from the file until no more are left.
+            while (intUser.hasNext())
+            {
+                // Read the next line.
+                String lEntry = intUser.nextLine();
+                // Split the line by using the delimiter ":" (semicolon) and store into array.
+                matchedID = lEntry.split(":");
+                // matchedID[0] = matchedID[0].replace("LIB", "");
+                // JOptionPane.showMessageDialog(null, i);
+                if (userTemp.equals(matchedID[5])) {
+                     noAvailable = true;
+                }
+            }
+            intUser.close();
+        } catch (Exception ex) {
+            
+        }
+        return noAvailable;
+    }
     private void loadUserProfile() {
         String[] matchedID = null;
         FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
@@ -390,7 +470,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
                 String bEntry = intUser.nextLine();
                 matchedID = bEntry.split(":");
                 managerID = matchedID[0];
-                // uUsername = matchedID[3];
+                txtManagerID.setText(managerID);
             }
             intUser.close();
         } catch (FileNotFoundException ex) {
@@ -546,10 +626,10 @@ public class APUMUserProfile extends javax.swing.JFrame {
             }
             intUser.close();
         } catch (FileNotFoundException ex) {
-            //  Logger.getLogger(unnamedBorrowMenu.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(APUMUserProfile.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    //legacy code 
+    //legacy code PLS DONT USE THIS ANYMORE
 //    private void userIncrementor() {
 //        // This is to ensure the entire method have access to the matchedID array
 //        String[] matchedID = null;
@@ -661,6 +741,12 @@ public class APUMUserProfile extends javax.swing.JFrame {
             uID = dc.format(userIDIncrementor(userSpecies));
             // Check if textfields are empty
             emptyFields();
+            if (emailChecker()) {
+                throw new Exception("There is account with this email. Email cannot be used");
+            }
+            if (usernameChecker()) {
+                throw new Exception("Username is taken. Username Duplicated!");
+            }
             // Checking if gender is unselected
             if (cmbGender.getSelectedIndex() <= 0) {
                 JOptionPane.showMessageDialog(null, "Gender is unset! Autosetting value to male", "Gender unselected!", JOptionPane.ERROR_MESSAGE);
@@ -705,6 +791,12 @@ public class APUMUserProfile extends javax.swing.JFrame {
             }
         } catch (Exception ex) {
             highlightEmpty();
+            if (emailChecker()) {
+                JOptionPane.showMessageDialog(null, "There is account with this email. Email cannot be used", "Duplicated Email", JOptionPane.WARNING_MESSAGE);
+            }
+            if (usernameChecker()) {
+              JOptionPane.showMessageDialog(null, "Username is taken! Use a different username to proceed.", "Username is in use!", JOptionPane.WARNING_MESSAGE);  
+            }
             JOptionPane.showMessageDialog(null, "Invalid input! Please check your input to proceed.", "Invalid insertion detected!", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -714,6 +806,12 @@ public class APUMUserProfile extends javax.swing.JFrame {
         try {
             // Check if textfields are empty
             emptyFields();
+            if (emailChecker()) {
+                throw new Exception("There is account with this email. Email cannot be used");
+            }
+            if (usernameChecker()) {
+                throw new Exception("Username is taken. Username Duplicated!");
+            }
             // To get directory  
             FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
             // To get the book ID
@@ -788,6 +886,12 @@ public class APUMUserProfile extends javax.swing.JFrame {
             loadUserInfo();
         } catch (Exception ex) {
             highlightEmpty();
+             if (emailChecker()) {
+                JOptionPane.showMessageDialog(null, "There is account with this email. Email cannot be used", "Duplicated Email", JOptionPane.WARNING_MESSAGE);
+            }
+            if (usernameChecker()) {
+              JOptionPane.showMessageDialog(null, "Username is taken! Use a different username to proceed.", "Username is in use!", JOptionPane.WARNING_MESSAGE);  
+            }
             JOptionPane.showMessageDialog(null, "Invalid input! Please check your input to proceed.", "Invalid insertion detected!", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -901,7 +1005,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
     
     // <editor-fold defaultstate="collapsed" desc="Validation Methods">
      private void emptyFields() throws Exception {
-        APUEmailValidation vd = new APUEmailValidation();
+        EmailValidation vd = new EmailValidation();
         if ("".equals(txtFullName.getText())) {
             throw new Exception("Empty user full name");
         }
@@ -914,8 +1018,8 @@ public class APUMUserProfile extends javax.swing.JFrame {
         if("".equals(String.valueOf(txtPassword.getPassword()))){
             throw new Exception("Empty user password");
         }
-        if ("".equals(txtPhoneNumber.getText())) {
-            throw new Exception("Empty user phone number");
+        if ("          ".equals(txtPhoneNumber.getText())) {
+            throw new Exception("Empty phone number");
         }
         if (vd.runValidate(txtEmail, false)) {
             throw new Exception("Invalid email address format");
@@ -949,7 +1053,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
         if("".equals(String.valueOf(txtPassword.getPassword()))){
             lblPassword.setForeground(Color.RED);
         }
-        if("".equals(txtPhoneNumber.getText())) {
+        if("          ".equals(txtPhoneNumber.getText())) {
             lblPhoneNumber.setForeground(Color.RED);
         }
     }
@@ -1013,7 +1117,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
     }
     // </editor-fold>
       
-    
+    // <editor-fold defaultstate="collapsed" desc="Button Events">
       
     private void cmbUserTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbUserTypeActionPerformed
         deHighlightEmpty();
@@ -1037,7 +1141,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
 
     private void txtEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusLost
         // TODO add your handling code here:
-        APUEmailValidation vd = new APUEmailValidation();     
+        EmailValidation vd = new EmailValidation();     
         vd.runValidate(txtEmail, true);
     }//GEN-LAST:event_txtEmailFocusLost
 
@@ -1123,6 +1227,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblFullName;
     private javax.swing.JLabel lblGender;
+    private javax.swing.JLabel lblManagerID;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblPhoneNumber;
     private javax.swing.JLabel lblTitle;

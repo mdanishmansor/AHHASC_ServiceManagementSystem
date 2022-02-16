@@ -550,7 +550,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
             }
             intCustomer.close();
         } catch (FileNotFoundException ex) {
-           // Logger.getLogger(unnamedBorrowMenu.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(APUManageCustomer.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
      
@@ -613,7 +613,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
             highlightEmpty();
             JOptionPane.showMessageDialog(null, "Invalid input! Please check your input to proceed.", "Invalid insertion detected!", JOptionPane.ERROR_MESSAGE);
             // Continue with displaying which field was affected. ensure it appears before the mnessagebox
-            System.out.println(ex);
+            
         }      
     }
     private void updateCustomerInfo(){
@@ -810,7 +810,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
     
     // <editor-fold defaultstate="collapsed" desc="Validation Methods">
      private void emptyFields() throws Exception {
-        APUEmailValidation vd = new APUEmailValidation();
+        EmailValidation vd = new EmailValidation();
         
         if ("".equals(txtFullName.getText())) {
             throw new Exception("Empty customer name");
@@ -963,7 +963,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
 
     private void txtEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusLost
         // TODO add your handling code here:
-        APUEmailValidation vd = new APUEmailValidation();     
+        EmailValidation vd = new EmailValidation();     
         vd.runValidate(txtEmail, true);
     }//GEN-LAST:event_txtEmailFocusLost
     //</editor-fold>

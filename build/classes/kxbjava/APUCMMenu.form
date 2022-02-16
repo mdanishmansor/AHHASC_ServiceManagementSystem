@@ -44,28 +44,26 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
+                  <EmptySpace min="-2" pref="272" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
-                          <Component id="btnLogout" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="272" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="btnManageProfile" alignment="0" min="-2" pref="227" max="-2" attributes="0"/>
-                              <Component id="btnManageFeedback2" alignment="0" min="-2" pref="227" max="-2" attributes="0"/>
-                              <Component id="btnManagePayment" alignment="0" min="-2" pref="227" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="btnManageAppointment" pref="227" max="32767" attributes="0"/>
-                              <Component id="btnBookAppointment" max="32767" attributes="0"/>
-                              <Component id="btnManageCustomer" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <Component id="btnManageProfile" alignment="0" min="-2" pref="227" max="-2" attributes="0"/>
+                      <Component id="btnManageFeedback2" alignment="0" min="-2" pref="227" max="-2" attributes="0"/>
+                      <Component id="btnManagePayment" alignment="0" min="-2" pref="227" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="176" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="btnManageAppointment" pref="227" max="32767" attributes="0"/>
+                      <Component id="btnBookAppointment" max="32767" attributes="0"/>
+                      <Component id="btnManageCustomer" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="232" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
+                  <Component id="btnLogout" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Component id="btnProfile" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -73,31 +71,26 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="btnProfile" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="450" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="btnLogout" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="btnManageProfile" alignment="3" min="-2" pref="135" max="-2" attributes="0"/>
-                              <Component id="btnBookAppointment" alignment="3" min="-2" pref="135" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="btnManageFeedback2" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
-                              <Component id="btnManageAppointment" min="-2" pref="135" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="btnManagePayment" alignment="3" min="-2" pref="135" max="-2" attributes="0"/>
-                              <Component id="btnManageCustomer" alignment="3" min="-2" pref="135" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                      </Group>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="btnLogout" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnProfile" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="btnManageProfile" alignment="3" min="-2" pref="135" max="-2" attributes="0"/>
+                      <Component id="btnBookAppointment" alignment="3" min="-2" pref="135" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="btnManageFeedback2" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
+                      <Component id="btnManageAppointment" min="-2" pref="135" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="btnManagePayment" alignment="3" min="-2" pref="135" max="-2" attributes="0"/>
+                      <Component id="btnManageCustomer" alignment="3" min="-2" pref="135" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -269,6 +262,9 @@
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="34" green="2a" red="25" type="rgb"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Icons/rating.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Manage Customer"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">

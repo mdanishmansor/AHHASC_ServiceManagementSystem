@@ -214,7 +214,7 @@ public class ForgetPassword extends javax.swing.JFrame {
                  matchedID[6] = String.valueOf(txtNewPass.getPassword());
                  phoneNumber = matchedID[7];
                  Gender = matchedID[8];
-                 flag = matchedID[9];
+                 matchedID[9] = "true";
              }
                 }
             intUser.close();
@@ -241,6 +241,9 @@ public class ForgetPassword extends javax.swing.JFrame {
         try {
             // Check if textfields are empty
             emptyFields();
+            if (!similarPassword()) {
+                throw new Exception("Password mismatch");
+            }
             // To get directory  
             FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
             // To get the book ID
@@ -278,8 +281,10 @@ public class ForgetPassword extends javax.swing.JFrame {
                 String bEntry = inputFile.nextLine();
                 // Split the line by using the delimiter ":" (semicolon) and store into array.
                 matchedID = bEntry.split(":");
-                 if (matchedID[0].equals(txtUserID.getText()) && matchedID[4].equals(txtEmail.getText())) {
+                 if (matchedID[0].equals(txtUserID.getText())) {
                      if(similarPassword()){
+                         
+                         matchedID[0] = txtUserID.getText();
                          matchedID[1] = managerID;
                          matchedID[2] = userRole;
                          matchedID[3] = fullName;
@@ -290,6 +295,17 @@ public class ForgetPassword extends javax.swing.JFrame {
                          matchedID[8] = Gender;
                          matchedID[9] = flag;
                          
+                         System.out.println(matchedID[0]);
+                         System.out.println(matchedID[1]);
+                         System.out.println(matchedID[2]);
+                         System.out.println(matchedID[3]);
+                         System.out.println(matchedID[4]);
+                         System.out.println(matchedID[5]);
+                         System.out.println(matchedID[6]);
+                         System.out.println(matchedID[7]);
+                         System.out.println(matchedID[8]);
+                         System.out.println(matchedID[9]);
+                         
                          cdp.println(matchedID[0] + ":" +
                             matchedID[1] + ":" +
                             matchedID[2] + ":" +
@@ -299,13 +315,15 @@ public class ForgetPassword extends javax.swing.JFrame {
                             matchedID[6] + ":" +
                             matchedID[7] + ":" +
                             matchedID[8] + ":" +
-                            matchedID[9]);
-                         
-                          JOptionPane.showMessageDialog(null, "Password has been updated", "Password Updated!", JOptionPane.INFORMATION_MESSAGE);
+                            matchedID[9]); 
+                         JOptionPane.showMessageDialog(null, "Password is matching!", "Password mismatch!", JOptionPane.WARNING_MESSAGE);
                      }
                      else {
                          JOptionPane.showMessageDialog(null, "Password is not matching!", "Password mismatch!", JOptionPane.WARNING_MESSAGE);
                      }
+                  
+                 } else {
+                     System.out.println("error");
                  }
             }
             // Close the clientBak.txt reader
@@ -318,12 +336,16 @@ public class ForgetPassword extends javax.swing.JFrame {
             //loadCustomerInfo();
         } catch (Exception ex) {
             highlightEmpty();
+            System.out.println(ex);
+             if (!similarPassword()) {
+                JOptionPane.showMessageDialog(null, "Password is not matching!", "Password mismatch!", JOptionPane.WARNING_MESSAGE);
+            } 
             JOptionPane.showMessageDialog(null, "Invalid input! Please check your input to proceed.", "Invalid insertion detected!", JOptionPane.WARNING_MESSAGE);
             // Continue with displaying which field was affected. ensure it appears before the mnessagebox
         }
     }
     private void emptyFields() throws Exception {
-        APUEmailValidation vd = new APUEmailValidation();
+        EmailValidation vd = new EmailValidation();
         if ("".equals(txtUserID.getText())) {
             throw new Exception("Empty user ID");
         }
@@ -423,7 +445,7 @@ public class ForgetPassword extends javax.swing.JFrame {
 
     private void txtEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusLost
         // TODO add your handling code here:
-        APUEmailValidation vd = new APUEmailValidation();     
+        EmailValidation vd = new EmailValidation();     
         vd.runValidate(txtEmail, true);
     }//GEN-LAST:event_txtEmailFocusLost
 
