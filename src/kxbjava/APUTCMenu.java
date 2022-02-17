@@ -53,6 +53,7 @@ public class APUTCMenu extends javax.swing.JFrame {
         btnCollectPayment = new javax.swing.JButton();
         btnProfile = new javax.swing.JButton();
         lblDesc1 = new javax.swing.JLabel();
+        btnLogout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
@@ -162,6 +163,17 @@ public class APUTCMenu extends javax.swing.JFrame {
         lblDesc1.setText("Welcome Back!");
         jPanel2.add(lblDesc1, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 400, -1, -1));
 
+        btnLogout.setBackground(new java.awt.Color(68, 68, 68));
+        btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/signouty.png"))); // NOI18N
+        btnLogout.setBorder(null);
+        btnLogout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 50, 100, 100));
+
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
 
         pack();
@@ -244,6 +256,14 @@ public class APUTCMenu extends javax.swing.JFrame {
     private void btnProfileMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProfileMouseExited
         lblDesc.setText("Please Select Your Choice");
     }//GEN-LAST:event_btnProfileMouseExited
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        int selection = JOptionPane.showConfirmDialog(null, "Logging out. Are you sure to continue?", "Logout", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (selection == JOptionPane.YES_OPTION) {
+            clearCache();
+            this.dispose();
+        }
+    }//GEN-LAST:event_btnLogoutActionPerformed
                                            
 
     /**
@@ -267,6 +287,7 @@ public class APUTCMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCollectPayment;
     private javax.swing.JButton btnHandlingTask;
+    private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnProfile;
     private javax.swing.JButton btnProvideFeedback;
     private javax.swing.JPanel jPanel2;
