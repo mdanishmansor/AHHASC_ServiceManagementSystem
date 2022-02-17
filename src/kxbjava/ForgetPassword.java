@@ -7,6 +7,7 @@ package kxbjava;
 
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Color;
+import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
@@ -26,8 +27,9 @@ import javax.swing.event.DocumentEvent;
  * @author User
  */
 public class ForgetPassword extends javax.swing.JFrame {
+
     private String FileDir, userID, managerID, userRole, fullName, userEmail, username, phoneNumber, Gender, flag;
-    private final Color ogtxt = new Color(237,237,237);
+    private final Color ogtxt = new Color(237, 237, 237);
 
     /**
      * Creates new form APUProvideFeedback
@@ -35,6 +37,13 @@ public class ForgetPassword extends javax.swing.JFrame {
     public ForgetPassword() {
         initComponents();
         initForm();
+    }
+
+    private void setLogo() {
+        String sourcefolder = System.getProperty("user.dir") + "\\src\\icons\\";
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(sourcefolder + "AHHASCrsmol.png"));
+        this.setTitle("AHHASC Forgor Password Page");
+
     }
 
     /**
@@ -46,34 +55,39 @@ public class ForgetPassword extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlFeedback = new javax.swing.JPanel();
-        lblTitle = new javax.swing.JLabel();
+        mainPnl = new javax.swing.JPanel();
         txtUserID = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
-        btnSubmit = new javax.swing.JButton();
         txtConfirmPass = new javax.swing.JPasswordField();
         txtNewPass = new javax.swing.JPasswordField();
         lblNewPass = new javax.swing.JLabel();
         lblUserID = new javax.swing.JLabel();
         lblEmail = new javax.swing.JLabel();
+        btnPnl = new javax.swing.JPanel();
+        btnSubmit = new javax.swing.JButton();
+        btnback = new javax.swing.JButton();
+        lblTitle1 = new javax.swing.JLabel();
         lblConfirmPass = new javax.swing.JLabel();
+        lblDesc = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1280, 720));
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlFeedback.setBackground(new java.awt.Color(68, 68, 68));
-
-        lblTitle.setBackground(new java.awt.Color(68, 68, 68));
-        lblTitle.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        lblTitle.setForeground(new java.awt.Color(218, 0, 55));
-        lblTitle.setText("Reset Password");
+        mainPnl.setBackground(new java.awt.Color(68, 68, 68));
+        mainPnl.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtUserID.setBackground(new java.awt.Color(68, 68, 68));
-        txtUserID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtUserID.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        txtUserID.setForeground(new java.awt.Color(255, 255, 255));
         txtUserID.setToolTipText("User ID");
         txtUserID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
+        mainPnl.add(txtUserID, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 160, 700, 80));
 
         txtEmail.setBackground(new java.awt.Color(68, 68, 68));
-        txtEmail.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtEmail.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        txtEmail.setForeground(new java.awt.Color(255, 255, 255));
         txtEmail.setToolTipText("User Email");
         txtEmail.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         txtEmail.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -81,150 +95,142 @@ public class ForgetPassword extends javax.swing.JFrame {
                 txtEmailFocusLost(evt);
             }
         });
+        mainPnl.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 700, 80));
 
-        btnSubmit.setBackground(new java.awt.Color(23, 23, 23));
+        txtConfirmPass.setBackground(new java.awt.Color(68, 68, 68));
+        txtConfirmPass.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        txtConfirmPass.setForeground(new java.awt.Color(255, 255, 255));
+        txtConfirmPass.setToolTipText("Confirm Password");
+        txtConfirmPass.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
+        txtConfirmPass.setCaretColor(new java.awt.Color(237, 237, 237));
+        mainPnl.add(txtConfirmPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 390, 700, 80));
+
+        txtNewPass.setBackground(new java.awt.Color(68, 68, 68));
+        txtNewPass.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        txtNewPass.setForeground(new java.awt.Color(255, 255, 255));
+        txtNewPass.setToolTipText("User Password");
+        txtNewPass.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
+        txtNewPass.setCaretColor(new java.awt.Color(237, 237, 237));
+        mainPnl.add(txtNewPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 510, 700, 80));
+
+        lblNewPass.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblNewPass.setForeground(new java.awt.Color(255, 255, 255));
+        lblNewPass.setText("New Password");
+        mainPnl.add(lblNewPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 360, -1, -1));
+
+        lblUserID.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblUserID.setForeground(new java.awt.Color(255, 255, 255));
+        lblUserID.setText("User ID");
+        mainPnl.add(lblUserID, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, -1, -1));
+
+        lblEmail.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblEmail.setForeground(new java.awt.Color(255, 255, 255));
+        lblEmail.setText("Email");
+        mainPnl.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 240, -1, -1));
+
+        btnPnl.setBackground(new java.awt.Color(68, 68, 68));
+
+        btnSubmit.setBackground(new java.awt.Color(68, 68, 68));
         btnSubmit.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         btnSubmit.setForeground(new java.awt.Color(237, 237, 237));
         btnSubmit.setText("Submit");
         btnSubmit.setToolTipText("Button to reset every fields");
-        btnSubmit.setBorder(null);
+        btnSubmit.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        btnSubmit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSubmitActionPerformed(evt);
             }
         });
 
-        txtConfirmPass.setBackground(new java.awt.Color(68, 68, 68));
-        txtConfirmPass.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        txtConfirmPass.setForeground(new java.awt.Color(237, 237, 237));
-        txtConfirmPass.setToolTipText("Confirm Password");
-        txtConfirmPass.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
-        txtConfirmPass.setCaretColor(new java.awt.Color(237, 237, 237));
+        btnback.setBackground(new java.awt.Color(68, 68, 68));
+        btnback.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnback.setForeground(new java.awt.Color(255, 255, 255));
+        btnback.setText("Back");
+        btnback.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        btnback.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbackActionPerformed(evt);
+            }
+        });
 
-        txtNewPass.setBackground(new java.awt.Color(68, 68, 68));
-        txtNewPass.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        txtNewPass.setForeground(new java.awt.Color(237, 237, 237));
-        txtNewPass.setToolTipText("User Password");
-        txtNewPass.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
-        txtNewPass.setCaretColor(new java.awt.Color(237, 237, 237));
-
-        lblNewPass.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblNewPass.setText("New Password:");
-
-        lblUserID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblUserID.setText("User ID:");
-
-        lblEmail.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblEmail.setText("Email:");
-
-        lblConfirmPass.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblConfirmPass.setText("Confirm Password:");
-
-        javax.swing.GroupLayout pnlFeedbackLayout = new javax.swing.GroupLayout(pnlFeedback);
-        pnlFeedback.setLayout(pnlFeedbackLayout);
-        pnlFeedbackLayout.setHorizontalGroup(
-            pnlFeedbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlFeedbackLayout.createSequentialGroup()
-                .addGroup(pnlFeedbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlFeedbackLayout.createSequentialGroup()
-                        .addGap(528, 528, 528)
-                        .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlFeedbackLayout.createSequentialGroup()
-                        .addGap(543, 543, 543)
-                        .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlFeedbackLayout.createSequentialGroup()
-                        .addGap(269, 269, 269)
-                        .addGroup(pnlFeedbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlFeedbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(txtNewPass, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtUserID, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblNewPass)
-                            .addComponent(lblUserID))
-                        .addGap(132, 132, 132)
-                        .addGroup(pnlFeedbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblConfirmPass)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtConfirmPass, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblEmail))))
-                .addContainerGap(437, Short.MAX_VALUE))
+        javax.swing.GroupLayout btnPnlLayout = new javax.swing.GroupLayout(btnPnl);
+        btnPnl.setLayout(btnPnlLayout);
+        btnPnlLayout.setHorizontalGroup(
+            btnPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnPnlLayout.createSequentialGroup()
+                .addContainerGap(793, Short.MAX_VALUE)
+                .addComponent(btnback, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
         );
-        pnlFeedbackLayout.setVerticalGroup(
-            pnlFeedbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlFeedbackLayout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58)
-                .addGroup(pnlFeedbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblEmail)
-                    .addComponent(lblUserID))
-                .addGap(29, 29, 29)
-                .addGroup(pnlFeedbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtUserID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(pnlFeedbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlFeedbackLayout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(lblNewPass))
-                    .addGroup(pnlFeedbackLayout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(lblConfirmPass)))
-                .addGap(32, 32, 32)
-                .addGroup(pnlFeedbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtConfirmPass, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNewPass, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
-                .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(156, 156, 156))
+        btnPnlLayout.setVerticalGroup(
+            btnPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnPnlLayout.createSequentialGroup()
+                .addContainerGap(7, Short.MAX_VALUE)
+                .addGroup(btnPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnback, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlFeedback, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlFeedback, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        mainPnl.add(btnPnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 620, 1280, 100));
+
+        lblTitle1.setBackground(new java.awt.Color(68, 68, 68));
+        lblTitle1.setFont(new java.awt.Font("Segoe UI Variable", 1, 38)); // NOI18N
+        lblTitle1.setForeground(new java.awt.Color(214, 41, 99));
+        lblTitle1.setText("Reset Password ");
+        mainPnl.add(lblTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
+
+        lblConfirmPass.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblConfirmPass.setForeground(new java.awt.Color(255, 255, 255));
+        lblConfirmPass.setText("Confirm Password");
+        mainPnl.add(lblConfirmPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 480, -1, -1));
+
+        lblDesc.setBackground(new java.awt.Color(68, 68, 68));
+        lblDesc.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
+        lblDesc.setForeground(new java.awt.Color(255, 255, 255));
+        lblDesc.setText("Please Provide Your User ID and Email to Reset Your Password");
+        mainPnl.add(lblDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
+
+        getContentPane().add(mainPnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    private void loadUserProfile(){
+    private void loadUserProfile() {
         String[] matchedID = null;
         FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
         File usertext = new File(FileDir + "UserProfile.txt");
         Scanner intUser;
         try {
             intUser = new Scanner(usertext);
-            while (intUser.hasNext())
-            {
-             String bEntry = intUser.nextLine();
-             matchedID = bEntry.split(":");
-             
-             if(matchedID[0].equals(txtUserID.getText()) && matchedID[4].equals(txtEmail.getText())){
-                 userID = matchedID[0];
-                 managerID = matchedID[1];
-                 userRole = matchedID[2];
-                 fullName = matchedID[3];
-                 userEmail = matchedID[4];
-                 username = matchedID[5];
-                 matchedID[6] = String.valueOf(txtNewPass.getPassword());
-                 phoneNumber = matchedID[7];
-                 Gender = matchedID[8];
-                 matchedID[9] = "true";
-             }
+            while (intUser.hasNext()) {
+                String bEntry = intUser.nextLine();
+                matchedID = bEntry.split(":");
+
+                if (matchedID[0].equals(txtUserID.getText()) && matchedID[4].equals(txtEmail.getText())) {
+                    userID = matchedID[0];
+                    managerID = matchedID[1];
+                    userRole = matchedID[2];
+                    fullName = matchedID[3];
+                    userEmail = matchedID[4];
+                    username = matchedID[5];
+                    matchedID[6] = String.valueOf(txtNewPass.getPassword());
+                    phoneNumber = matchedID[7];
+                    Gender = matchedID[8];
+                    matchedID[9] = "true";
                 }
+            }
             intUser.close();
         } catch (FileNotFoundException ex) {
             //Logger.getLogger(.class.getName()).log(Level.SEVERE, null, ex);
         }
-    } 
-    
-   
-    private boolean similarPassword(){
+    }
+
+    private boolean similarPassword() {
         boolean isSimilar = false;
         String currentPass = String.valueOf(txtNewPass.getPassword());
         String comparePass = String.valueOf(txtConfirmPass.getPassword());
@@ -235,8 +241,8 @@ public class ForgetPassword extends javax.swing.JFrame {
         }
         return isSimilar;
     }
-    
-     private void updatePassword(){
+
+    private void updatePassword() {
         // TODO add your handling code here:
         try {
             // Check if textfields are empty
@@ -251,7 +257,7 @@ public class ForgetPassword extends javax.swing.JFrame {
             File userOri = new File(FileDir + "UserProfile.txt");
             File userBack = new File(FileDir + "UserProfileBack.txt");
             // To check if clientBak.txt is present or not
-            if (!userBack.exists()){
+            if (!userBack.exists()) {
                 userOri.createNewFile();
             }
             // This is for debugging only!
@@ -261,9 +267,9 @@ public class ForgetPassword extends javax.swing.JFrame {
             // This is to open, find and replace a specific book record
             // Requires temporary file to store current state
             // FileWriter to write into a new file called book.txt
-            FileWriter cd = new FileWriter(FileDir + "UserProfile.txt"); 
+            FileWriter cd = new FileWriter(FileDir + "UserProfile.txt");
             // PrintWriter to print into book.txt
-            PrintWriter cdp = new PrintWriter(cd); 
+            PrintWriter cdp = new PrintWriter(cd);
             // This is to open and read clientBak.txt 
             File usertxt = new File(FileDir + "UserProfileBack.txt");
             // This is to instantiate the file opened earlier
@@ -273,58 +279,55 @@ public class ForgetPassword extends javax.swing.JFrame {
             // This is only for debugging!
             // boolean itWorked = false;
             // Read lines from the file until no more are left.
-            while (inputFile.hasNext())
-            {
-                // This is for debugging only!
-                // JOptionPane.showMessageDialog(null, "In loop");
-                // Read the next line.
-                String bEntry = inputFile.nextLine();
-                // Split the line by using the delimiter ":" (semicolon) and store into array.
-                matchedID = bEntry.split(":");
-                 if (matchedID[0].equals(txtUserID.getText())) {
-                     if(similarPassword()){
-                         
-                         matchedID[0] = txtUserID.getText();
-                         matchedID[1] = managerID;
-                         matchedID[2] = userRole;
-                         matchedID[3] = fullName;
-                         matchedID[4] = userEmail;
-                         matchedID[5] = username;
-                         matchedID[6] = String.valueOf(txtNewPass.getPassword());
-                         matchedID[7] = phoneNumber;
-                         matchedID[8] = Gender;
-                         matchedID[9] = flag;
-                         
-                         System.out.println(matchedID[0]);
-                         System.out.println(matchedID[1]);
-                         System.out.println(matchedID[2]);
-                         System.out.println(matchedID[3]);
-                         System.out.println(matchedID[4]);
-                         System.out.println(matchedID[5]);
-                         System.out.println(matchedID[6]);
-                         System.out.println(matchedID[7]);
-                         System.out.println(matchedID[8]);
-                         System.out.println(matchedID[9]);
-                         
-                         cdp.println(matchedID[0] + ":" +
-                            matchedID[1] + ":" +
-                            matchedID[2] + ":" +
-                            matchedID[3] + ":" +
-                            matchedID[4] + ":" +
-                            matchedID[5] + ":" +
-                            matchedID[6] + ":" +
-                            matchedID[7] + ":" +
-                            matchedID[8] + ":" +
-                            matchedID[9]); 
-                         JOptionPane.showMessageDialog(null, "Password is matching!", "Password mismatch!", JOptionPane.WARNING_MESSAGE);
-                     }
-                     else {
-                         JOptionPane.showMessageDialog(null, "Password is not matching!", "Password mismatch!", JOptionPane.WARNING_MESSAGE);
-                     }
-                  
-                 } else {
-                     System.out.println("error");
-                 }
+            boolean foundValue = false;
+
+            if (similarPassword()) {
+
+                while (inputFile.hasNext()) {
+                    // This is for debugging only!
+                    // JOptionPane.showMessageDialog(null, "In loop");
+                    // Read the next line.
+                    String bEntry = inputFile.nextLine();
+                    // Split the line by using the delimiter ":" (semicolon) and store into array.
+                    matchedID = bEntry.split(":");
+
+                    if (matchedID[0].equals(txtUserID.getText()) && matchedID[4].equals(txtEmail.getText())) {
+
+                        foundValue = true;
+                        matchedID[1] = managerID;
+                        matchedID[2] = userRole;
+                        matchedID[3] = fullName;
+                        matchedID[4] = userEmail;
+                        matchedID[5] = username;
+                        matchedID[6] = String.valueOf(txtNewPass.getPassword());
+                        matchedID[7] = phoneNumber;
+                        matchedID[8] = Gender;
+                        matchedID[9] = flag;
+
+
+                        JOptionPane.showMessageDialog(null, "Your password has been updated, you may login now.", "Password Updated!", JOptionPane.INFORMATION_MESSAGE);
+                        new APULogin().setVisible(true);
+                        this.dispose();
+                    }
+                    
+                    cdp.println(matchedID[0] + ":"
+                            + matchedID[1] + ":"
+                            + matchedID[2] + ":"
+                            + matchedID[3] + ":"
+                            + matchedID[4] + ":"
+                            + matchedID[5] + ":"
+                            + matchedID[6] + ":"
+                            + matchedID[7] + ":"
+                            + matchedID[8] + ":"
+                            + matchedID[9]);
+
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Password is not matching!", "Password mismatch!", JOptionPane.WARNING_MESSAGE);
+            }
+
+            if (!foundValue) {
+                JOptionPane.showMessageDialog(null, "Invalid User ID or Email.", "Record not found!", JOptionPane.WARNING_MESSAGE);
             }
             // Close the clientBak.txt reader
             inputFile.close();
@@ -332,37 +335,39 @@ public class ForgetPassword extends javax.swing.JFrame {
             userBack.delete();
             // This closes the book.txt printer 
             cdp.close();
-           
+
             //loadCustomerInfo();
         } catch (Exception ex) {
             highlightEmpty();
             System.out.println(ex);
-             if (!similarPassword()) {
+            if (!similarPassword()) {
                 JOptionPane.showMessageDialog(null, "Password is not matching!", "Password mismatch!", JOptionPane.WARNING_MESSAGE);
-            } 
+            }
             JOptionPane.showMessageDialog(null, "Invalid input! Please check your input to proceed.", "Invalid insertion detected!", JOptionPane.WARNING_MESSAGE);
             // Continue with displaying which field was affected. ensure it appears before the mnessagebox
         }
     }
+
     private void emptyFields() throws Exception {
         EmailValidation vd = new EmailValidation();
         if ("".equals(txtUserID.getText())) {
             throw new Exception("Empty user ID");
         }
-        if("".equals(txtNewPass.getPassword())){
+        if ("".equals(txtNewPass.getPassword())) {
             throw new Exception("Empty new password");
         }
-        if("".equals(txtConfirmPass.getPassword())){
+        if ("".equals(txtConfirmPass.getPassword())) {
             throw new Exception("Empty new password");
         }
-        if("".equals(txtEmail.getText())){
+        if ("".equals(txtEmail.getText())) {
             throw new Exception("Empty new email");
         }
         if (vd.runValidate(txtEmail, false)) {
             throw new Exception("Invalid email address format");
         }
     }
-    private void highlightEmpty(){
+
+    private void highlightEmpty() {
         if ("".equals(txtUserID.getText())) {
             lblUserID.setForeground(Color.RED);
         }
@@ -376,42 +381,50 @@ public class ForgetPassword extends javax.swing.JFrame {
             lblEmail.setForeground(Color.RED);
         }
     }
-    private void deHighlightEmpty(){
+
+    private void deHighlightEmpty() {
         lblUserID.setForeground(ogtxt);
         lblEmail.setForeground(ogtxt);
         lblNewPass.setForeground(ogtxt);
         lblConfirmPass.setForeground(ogtxt);
-        
+
     }
-     private void inputCharacterValidation(){
+
+    private void inputCharacterValidation() {
         txtNewPass.getDocument().addDocumentListener(new APUDocumentListener() {
             APUPasswordValidation vd = new APUPasswordValidation();
+
             @Override
-            public void changedUpdate(DocumentEvent e){
+            public void changedUpdate(DocumentEvent e) {
                 vd.runValidate(txtNewPass);
                 vd.setRegex("test");
                 vd.getRegex();
             }
+
             @Override
             public void insertUpdate(DocumentEvent e) {
                 vd.runValidate(txtNewPass);
             }
+
             @Override
             public void removeUpdate(DocumentEvent e) {
                 vd.runValidate(txtNewPass);
             }
-            
+
         });
         txtConfirmPass.getDocument().addDocumentListener(new APUDocumentListener() {
             APUPasswordValidation vd = new APUPasswordValidation();
+
             @Override
-            public void changedUpdate(DocumentEvent e){
+            public void changedUpdate(DocumentEvent e) {
                 vd.runValidate(txtConfirmPass);
             }
+
             @Override
             public void insertUpdate(DocumentEvent e) {
                 vd.runValidate(txtConfirmPass);
             }
+
             @Override
             public void removeUpdate(DocumentEvent e) {
                 vd.runValidate(txtConfirmPass);
@@ -419,57 +432,64 @@ public class ForgetPassword extends javax.swing.JFrame {
         });
         txtUserID.getDocument().addDocumentListener(new APUDocumentListener() {
             UserIDValidation vd = new UserIDValidation();
+
             @Override
-            public void changedUpdate(DocumentEvent e){
+            public void changedUpdate(DocumentEvent e) {
                 vd.runValidate(txtUserID);
             }
+
             @Override
             public void insertUpdate(DocumentEvent e) {
                 vd.runValidate(txtUserID);
             }
+
             @Override
             public void removeUpdate(DocumentEvent e) {
                 vd.runValidate(txtUserID);
             }
         });
     }
-    
-    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
-
-        
-            deHighlightEmpty();
-            loadUserProfile();
-            updatePassword();
-
-    }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void txtEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusLost
         // TODO add your handling code here:
-        EmailValidation vd = new EmailValidation();     
+        EmailValidation vd = new EmailValidation();
         vd.runValidate(txtEmail, true);
     }//GEN-LAST:event_txtEmailFocusLost
 
-    private void clearCache(){
-        try {  
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
+
+        deHighlightEmpty();
+        loadUserProfile();
+        updatePassword();
+    }//GEN-LAST:event_btnSubmitActionPerformed
+
+    private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
+        new APULogin().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnbackActionPerformed
+
+    private void clearCache() {
+        try {
             FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
             File cache = new File(FileDir + "UserCache.txt");
             if (cache.exists()) {
                 cache.delete();
             }
         } catch (Exception ex) {
-            
+
         }
     }
-   private void initForm(){
-        this.setSize(1170,750);
-        this.setLocation(600,150);
+
+    private void initForm() {
+        this.setLocationRelativeTo(null);
+        setLogo();
         // Set the initial value for new book
         // This anon class handles window closing event
         addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e){
+            public void windowClosing(WindowEvent e) {
                 int selection = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Closing Window", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if (selection == JOptionPane.YES_OPTION) {
-                   clearCache();
+                    clearCache();
                     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 } else {
                     setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -477,10 +497,8 @@ public class ForgetPassword extends javax.swing.JFrame {
             }
         });
         inputCharacterValidation();
-     }
-    
-    
-    
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -506,13 +524,16 @@ public class ForgetPassword extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel btnPnl;
     private javax.swing.JButton btnSubmit;
+    private javax.swing.JButton btnback;
     private javax.swing.JLabel lblConfirmPass;
+    private javax.swing.JLabel lblDesc;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblNewPass;
-    private javax.swing.JLabel lblTitle;
+    private javax.swing.JLabel lblTitle1;
     private javax.swing.JLabel lblUserID;
-    private javax.swing.JPanel pnlFeedback;
+    private javax.swing.JPanel mainPnl;
     private javax.swing.JPasswordField txtConfirmPass;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JPasswordField txtNewPass;

@@ -70,6 +70,7 @@ public class APULogin extends javax.swing.JFrame {
         lblsuer = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
         txtUsername = new javax.swing.JTextField();
+        lblDesc = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
@@ -178,6 +179,12 @@ public class APULogin extends javax.swing.JFrame {
         txtUsername.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         txtUsername.setCaretColor(new java.awt.Color(237, 237, 237));
         jPanel2.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, 700, 80));
+
+        lblDesc.setBackground(new java.awt.Color(68, 68, 68));
+        lblDesc.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
+        lblDesc.setForeground(new java.awt.Color(255, 255, 255));
+        lblDesc.setText("Please Provide Your Username and Password");
+        jPanel2.add(lblDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, -1));
 
@@ -474,6 +481,7 @@ public class APULogin extends javax.swing.JFrame {
     private javax.swing.JPanel btnPnl;
     private javax.swing.JButton btnback;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblDesc;
     private javax.swing.JLabel lblPass;
     private javax.swing.JLabel lblTitle1;
     private javax.swing.JLabel lblsuer;

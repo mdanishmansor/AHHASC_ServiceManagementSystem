@@ -6,6 +6,7 @@
 package kxbjava;
 
 import com.formdev.flatlaf.FlatDarkLaf;
+import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
@@ -27,6 +28,13 @@ public class APUTCMenu extends javax.swing.JFrame {
         initForm();
     }
 
+    private void setLogo() {
+        String sourcefolder = System.getProperty("user.dir") + "\\src\\icons\\";
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(sourcefolder + "AHHASCrsmol.png"));
+        this.setTitle("AHHASC Technician Home Page");
+
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,100 +44,125 @@ public class APUTCMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        btnCollectPayment = new javax.swing.JButton();
-        btnProvideFeedback = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        lblTitle = new javax.swing.JLabel();
+        lblDesc = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
         btnHandlingTask = new javax.swing.JButton();
+        btnProvideFeedback = new javax.swing.JButton();
+        btnCollectPayment = new javax.swing.JButton();
         btnProfile = new javax.swing.JButton();
+        lblDesc1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1280, 720));
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(68, 68, 68));
+        jPanel2.setBackground(new java.awt.Color(68, 68, 68));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnCollectPayment.setBackground(new java.awt.Color(8, 217, 214));
-        btnCollectPayment.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        btnCollectPayment.setForeground(new java.awt.Color(68, 68, 68));
-        btnCollectPayment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/dollar.png"))); // NOI18N
-        btnCollectPayment.setText("Collect Payment");
-        btnCollectPayment.setBorder(null);
-        btnCollectPayment.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCollectPaymentActionPerformed(evt);
-            }
-        });
+        lblTitle.setBackground(new java.awt.Color(68, 68, 68));
+        lblTitle.setFont(new java.awt.Font("Segoe UI Variable", 1, 38)); // NOI18N
+        lblTitle.setForeground(new java.awt.Color(214, 41, 99));
+        lblTitle.setText("Technician Home Page");
+        jPanel2.add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
 
-        btnProvideFeedback.setBackground(new java.awt.Color(8, 217, 214));
-        btnProvideFeedback.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        btnProvideFeedback.setForeground(new java.awt.Color(68, 68, 68));
-        btnProvideFeedback.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/feedback.png"))); // NOI18N
-        btnProvideFeedback.setText("Provide Feedback");
-        btnProvideFeedback.setBorder(null);
+        lblDesc.setBackground(new java.awt.Color(68, 68, 68));
+        lblDesc.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
+        lblDesc.setForeground(new java.awt.Color(255, 255, 255));
+        lblDesc.setText("Please Select Your Choice");
+        jPanel2.add(lblDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
 
-        btnHandlingTask.setBackground(new java.awt.Color(8, 217, 214));
+        jPanel3.setBackground(new java.awt.Color(68, 68, 68));
+        jPanel3.setLayout(new java.awt.GridLayout(2, 2, 5, 5));
+
+        btnHandlingTask.setBackground(new java.awt.Color(255, 102, 0));
         btnHandlingTask.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         btnHandlingTask.setForeground(new java.awt.Color(68, 68, 68));
         btnHandlingTask.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/task.png"))); // NOI18N
-        btnHandlingTask.setText("Handling Task");
         btnHandlingTask.setBorder(null);
+        btnHandlingTask.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnHandlingTask.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnHandlingTaskMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnHandlingTaskMouseExited(evt);
+            }
+        });
         btnHandlingTask.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHandlingTaskActionPerformed(evt);
             }
         });
+        jPanel3.add(btnHandlingTask);
+
+        btnProvideFeedback.setBackground(new java.awt.Color(102, 51, 255));
+        btnProvideFeedback.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnProvideFeedback.setForeground(new java.awt.Color(68, 68, 68));
+        btnProvideFeedback.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/feedback.png"))); // NOI18N
+        btnProvideFeedback.setBorder(null);
+        btnProvideFeedback.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnProvideFeedback.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnProvideFeedbackMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnProvideFeedbackMouseExited(evt);
+            }
+        });
+        jPanel3.add(btnProvideFeedback);
+
+        btnCollectPayment.setBackground(new java.awt.Color(0, 153, 0));
+        btnCollectPayment.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnCollectPayment.setForeground(new java.awt.Color(68, 68, 68));
+        btnCollectPayment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/dollar.png"))); // NOI18N
+        btnCollectPayment.setBorder(null);
+        btnCollectPayment.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCollectPayment.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCollectPaymentMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnCollectPaymentMouseExited(evt);
+            }
+        });
+        btnCollectPayment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCollectPaymentActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnCollectPayment);
 
         btnProfile.setBackground(new java.awt.Color(255, 46, 99));
         btnProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/programmer.png"))); // NOI18N
-        btnProfile.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, java.awt.Color.red, null, null));
+        btnProfile.setBorder(null);
+        btnProfile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnProfile.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnProfileMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnProfileMouseExited(evt);
+            }
+        });
         btnProfile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProfileActionPerformed(evt);
             }
         });
+        jPanel3.add(btnProfile);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(453, 453, 453)
-                        .addComponent(btnHandlingTask, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(274, 274, 274)
-                        .addComponent(btnCollectPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(89, 89, 89)
-                        .addComponent(btnProvideFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(123, 367, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnProfile)
-                .addGap(134, 134, 134))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(108, 108, 108)
-                .addComponent(btnProfile)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnProvideFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCollectPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
-                .addComponent(btnHandlingTask, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(111, Short.MAX_VALUE))
-        );
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 520, 480));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        lblDesc1.setBackground(new java.awt.Color(68, 68, 68));
+        lblDesc1.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
+        lblDesc1.setForeground(new java.awt.Color(255, 255, 255));
+        lblDesc1.setText("Welcome Back!");
+        jPanel2.add(lblDesc1, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 400, -1, -1));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -147,8 +180,8 @@ public class APUTCMenu extends javax.swing.JFrame {
     }
     
     private void initForm(){
-        this.setSize(1170,750);
-        this.setLocation(600,150);
+        this.setLocationRelativeTo(null);
+        setLogo();
         //userIncrementor();
         // This anon class handles window closing event
         addWindowListener(new WindowAdapter() {
@@ -180,6 +213,39 @@ public class APUTCMenu extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnHandlingTaskActionPerformed
 
+    private void btnHandlingTaskMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHandlingTaskMouseEntered
+        lblDesc.setText("Handling Tasks");
+    }//GEN-LAST:event_btnHandlingTaskMouseEntered
+
+    private void btnHandlingTaskMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHandlingTaskMouseExited
+        lblDesc.setText("Please Select Your Choice");
+    }//GEN-LAST:event_btnHandlingTaskMouseExited
+
+    private void btnProvideFeedbackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProvideFeedbackMouseEntered
+        lblDesc.setText("View Customer Feedback");
+    }//GEN-LAST:event_btnProvideFeedbackMouseEntered
+
+    private void btnProvideFeedbackMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProvideFeedbackMouseExited
+        lblDesc.setText("Please Select Your Choice");
+    }//GEN-LAST:event_btnProvideFeedbackMouseExited
+
+    private void btnCollectPaymentMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCollectPaymentMouseEntered
+        lblDesc.setText("View Payments Made");
+    }//GEN-LAST:event_btnCollectPaymentMouseEntered
+
+    private void btnCollectPaymentMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCollectPaymentMouseExited
+        lblDesc.setText("Please Select Your Choice");
+    }//GEN-LAST:event_btnCollectPaymentMouseExited
+
+    private void btnProfileMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProfileMouseEntered
+        lblDesc.setText("View Your Profile");
+    }//GEN-LAST:event_btnProfileMouseEntered
+
+    private void btnProfileMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProfileMouseExited
+        lblDesc.setText("Please Select Your Choice");
+    }//GEN-LAST:event_btnProfileMouseExited
+                                           
+
     /**
      * @param args the command line arguments
      */
@@ -203,6 +269,10 @@ public class APUTCMenu extends javax.swing.JFrame {
     private javax.swing.JButton btnHandlingTask;
     private javax.swing.JButton btnProfile;
     private javax.swing.JButton btnProvideFeedback;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lblDesc;
+    private javax.swing.JLabel lblDesc1;
+    private javax.swing.JLabel lblTitle;
     // End of variables declaration//GEN-END:variables
 }
