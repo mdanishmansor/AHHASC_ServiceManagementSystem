@@ -7,23 +7,35 @@ package kxbjava;
 
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.event.DocumentEvent;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import org.apache.commons.io.FilenameUtils;
 
 /**
  *
@@ -32,7 +44,7 @@ import javax.swing.event.DocumentEvent;
 public class APUMUserProfile extends javax.swing.JFrame {
 
     int UserType;
-    private String userSpecies, uID, FileDir, managerID;
+    private String userSpecies, uID, FileDir, managerID, imgDir, fullID, currentUserID, currentUsername;
     private int newUserID, userType;
     private DefaultComboBoxModel userList;
     private final Color ogtxt = new Color(237, 237, 237);
@@ -82,7 +94,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
         lblPhoneNumber = new javax.swing.JLabel();
         txtPhoneNumber = new javax.swing.JFormattedTextField();
         jPanel3 = new javax.swing.JPanel();
-        lblApptID2 = new javax.swing.JLabel();
+        lblApptID = new javax.swing.JLabel();
         lblPassword = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
         txtUsername = new javax.swing.JTextField();
@@ -95,6 +107,12 @@ public class APUMUserProfile extends javax.swing.JFrame {
         iconSee = new javax.swing.JLabel();
         iconNoSee = new javax.swing.JLabel();
         chkpass = new javax.swing.JCheckBox();
+        jPanel4 = new javax.swing.JPanel();
+        profilePnl = new javax.swing.JPanel();
+        lblSelectedPic = new javax.swing.JLabel();
+        lblPfp = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        btnSelectImg = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
@@ -256,7 +274,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(89, 89, 89)
+                .addGap(32, 32, 32)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPhoneNumber)
@@ -266,7 +284,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
                     .addComponent(lblGender)
                     .addComponent(txtManagerID, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblManagerID))
-                .addContainerGap(181, Short.MAX_VALUE))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -289,13 +307,13 @@ public class APUMUserProfile extends javax.swing.JFrame {
                 .addGap(0, 124, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 150, 630, 470));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 150, 490, 470));
 
         jPanel3.setBackground(new java.awt.Color(68, 68, 68));
 
-        lblApptID2.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
-        lblApptID2.setForeground(new java.awt.Color(255, 255, 255));
-        lblApptID2.setText("User ID");
+        lblApptID.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblApptID.setForeground(new java.awt.Color(255, 255, 255));
+        lblApptID.setText("User ID");
 
         lblPassword.setBackground(new java.awt.Color(68, 68, 68));
         lblPassword.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
@@ -387,7 +405,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(206, Short.MAX_VALUE)
+                .addContainerGap(36, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblEmail)
@@ -396,7 +414,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
                     .addComponent(cmbUserType, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblUsername)
                     .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblApptID2)
+                    .addComponent(lblApptID)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -414,7 +432,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmbUserType, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(lblApptID2)
+                .addComponent(lblApptID)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmbUserID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -440,7 +458,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 630, 470));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 460, 470));
 
         chkpass.setFocusable(false);
         chkpass.addActionListener(new java.awt.event.ActionListener() {
@@ -449,6 +467,80 @@ public class APUMUserProfile extends javax.swing.JFrame {
             }
         });
         jPanel1.add(chkpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 0, -1, -1));
+
+        jPanel4.setBackground(new java.awt.Color(68, 68, 68));
+
+        profilePnl.setBackground(new java.awt.Color(51, 51, 51));
+        profilePnl.setPreferredSize(new java.awt.Dimension(200, 200));
+
+        lblSelectedPic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/defaultUser.png"))); // NOI18N
+
+        javax.swing.GroupLayout profilePnlLayout = new javax.swing.GroupLayout(profilePnl);
+        profilePnl.setLayout(profilePnlLayout);
+        profilePnlLayout.setHorizontalGroup(
+            profilePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblSelectedPic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        profilePnlLayout.setVerticalGroup(
+            profilePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(profilePnlLayout.createSequentialGroup()
+                .addComponent(lblSelectedPic, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        lblPfp.setBackground(new java.awt.Color(68, 68, 68));
+        lblPfp.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblPfp.setForeground(new java.awt.Color(237, 237, 237));
+        lblPfp.setText("Profile Picture");
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI Variable", 0, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Only .png are supported!");
+
+        btnSelectImg.setBackground(new java.awt.Color(68, 68, 68));
+        btnSelectImg.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnSelectImg.setForeground(new java.awt.Color(237, 237, 237));
+        btnSelectImg.setText("Choose Image");
+        btnSelectImg.setToolTipText("Button to reset every fields");
+        btnSelectImg.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        btnSelectImg.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSelectImg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelectImgActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(lblPfp)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnSelectImg, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(profilePnl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(63, 63, 63))))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(lblPfp)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(profilePnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnSelectImg, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(130, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 150, 290, 470));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -465,7 +557,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // <editor-fold defaultstate="collapsed" desc="Methods">
-    private boolean emailChecker() {
+    private boolean emailChecker(){
         // Assigning the lID to the selected index value
         String userTemp = txtEmail.getText();
         // This is to ensure the entire method have access to borrow matchedID array
@@ -479,19 +571,20 @@ public class APUMUserProfile extends javax.swing.JFrame {
         try {
             if (!usertxt.exists()) {
                 usertxt.createNewFile();
-            }
+            }   
             // This part loads all book information
             intUser = new Scanner(usertxt);
             // Read lines from the file until no more are left.
-            while (intUser.hasNext()) {
+            while (intUser.hasNext())
+            {
                 // Read the next line.
                 String lEntry = intUser.nextLine();
-                // Split the line by using the delimiter ":" (semicolon) and store into array.
+                // Split the line by using the delimiter ":" (semicolon) and store into array.
                 matchedID = lEntry.split(":");
                 // matchedID[0] = matchedID[0].replace("LIB", "");
                 // JOptionPane.showMessageDialog(null, i);
-                if (userTemp.equals(matchedID[4])) {
-                    notAvailable = true;
+                if (userTemp.equals(matchedID[4]) && !currentUserID.equals(matchedID[0])) {
+                     notAvailable = true;
                 }
             }
             intUser.close();
@@ -501,7 +594,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
         return notAvailable;
     }
 
-    private boolean usernameChecker() {
+    private boolean usernameChecker(){
         // Assigning the lID to the selected index value
         String userTemp = txtUsername.getText();
         // This is to ensure the entire method have access to borrow matchedID array
@@ -515,19 +608,20 @@ public class APUMUserProfile extends javax.swing.JFrame {
         try {
             if (!usertxt.exists()) {
                 usertxt.createNewFile();
-            }
+            }   
             // This part loads all book information
             intUser = new Scanner(usertxt);
             // Read lines from the file until no more are left.
-            while (intUser.hasNext()) {
+            while (intUser.hasNext())
+            {
                 // Read the next line.
                 String lEntry = intUser.nextLine();
-                // Split the line by using the delimiter ":" (semicolon) and store into array.
+                // Split the line by using the delimiter ":" (semicolon) and store into array.
                 matchedID = lEntry.split(":");
                 // matchedID[0] = matchedID[0].replace("LIB", "");
                 // JOptionPane.showMessageDialog(null, i);
-                if (userTemp.equals(matchedID[5])) {
-                    noAvailable = true;
+                if (userTemp.equals(matchedID[5]) && !currentUsername.equals(matchedID[5])) {
+                     noAvailable = true;
                 }
             }
             intUser.close();
@@ -651,7 +745,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
         }
     }
 
-    private void loadUserInfo() {
+    private void loadUserInfo() throws IOException {
         // Assigning the cID to the selected index value
         uID = (String) cmbUserID.getSelectedItem();
         // This is to ensure the entire method have access to borrow matchedID array
@@ -687,6 +781,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
                     txtFullName.setText(matchedID[3]);
                     txtEmail.setText(matchedID[4]);
                     txtUsername.setText(matchedID[5]);
+                    currentUsername = matchedID[5];
                     txtPassword.setText(matchedID[6]);
                     txtPhoneNumber.setText(matchedID[7]);
                     switch (matchedID[8]) {
@@ -699,6 +794,31 @@ public class APUMUserProfile extends javax.swing.JFrame {
                         default:
                             cmbGender.setSelectedIndex(1);
                     }
+
+                    switch (matchedID[2]) {
+                        case "Centre Manager":
+                            currentUserID = "CM" + uID;
+                            
+                            break;
+                        case "Technician":
+                            currentUserID = "TC" + uID;
+                            break;
+                        default:
+                    }
+
+                    // To set profile picture on label
+                    File imgPng = new File(System.getProperty("user.dir") + "\\src\\UserProfilePictures\\" + currentUserID + ".png");
+                    String identifiedImg;
+                    if (imgPng.exists()) {
+                        identifiedImg = System.getProperty("user.dir") + "\\src\\UserProfilePictures\\" + currentUserID + ".png";
+                    } else {
+                        identifiedImg = System.getProperty("user.dir") + "\\src\\Icons\\defaultUser.png";
+                    }
+                    BufferedImage bufImg = ImageIO.read(new File(identifiedImg));
+                    Image imgScale = bufImg.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+                    ImageIcon scaledIcon = new ImageIcon(imgScale);
+                    lblSelectedPic.setIcon(scaledIcon);
+
                 }
             }
             intUser.close();
@@ -855,6 +975,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
                         + "true"); // true to indicate user is available and not deleted
                 cdp.close();
                 // To display completed registration process status
+                saveImage();
                 JOptionPane.showMessageDialog(null, userSpecies + uID + " is successfully added! Press OK to return to user management form.", "Adding user succeeded!", JOptionPane.INFORMATION_MESSAGE);
                 // To refresh new ID 
                 userIDIncrementor(userSpecies);
@@ -959,6 +1080,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
             userBack.delete();
             // This closes the book.txt printer 
             cdp.close();
+            saveImage();
             JOptionPane.showMessageDialog(null, "Client record has been updated!", "Client updated!", JOptionPane.INFORMATION_MESSAGE);
             loadUserInfo();
         } catch (Exception ex) {
@@ -1053,6 +1175,67 @@ public class APUMUserProfile extends javax.swing.JFrame {
         }
     }
 
+    private void selectImage() {
+
+        try {
+            JFileChooser fileChooser = new JFileChooser();
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("3 Extensions Supported", "Jpg", "png", "jpeg");
+            fileChooser.setFileFilter(filter);
+            int selected = fileChooser.showOpenDialog(null);
+            if (selected == JFileChooser.APPROVE_OPTION) { //Opens Window To Select Image File To Upload As Thumbnail Image.
+
+                File file = fileChooser.getSelectedFile(); //Store Image as File Object.
+                String getselectedImage = file.getAbsolutePath(); //Assigns Variable Containing Directory Where It Was Selected.
+
+                BufferedImage bufImg = ImageIO.read(new File(getselectedImage));
+                Image imgScale = bufImg.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+                ImageIcon scaledIcon = new ImageIcon(imgScale);
+
+                lblSelectedPic.setIcon(scaledIcon); //Sets Icon Image on Label As A Preview.
+                imgDir = getselectedImage; //Sets Directory of Selected Image Which Will Be Sent To the insertData() Method.
+
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error Occured While Trying To Retrieve Image");
+        }
+
+    }
+
+    private void saveImage() {
+
+        File file = new File(imgDir); //Create A File Object With The Directory of the Selected Image.
+
+        String source = System.getProperty("user.dir"); //Retrieving Directory of The Source Files.
+        String destination = source + "\\src\\UserProfilePictures\\"; //Sets the Directory Folder Containing Thumbnail Image Files.
+        String extensionName = FilenameUtils.getExtension(imgDir); // Retrieve File Extension of Selected File.
+        String newFileName = destination + userSpecies + uID + "." + "png"; // Assigning New Directory and New Image Filename.
+
+        File newFile = new File(newFileName);  // Create File Objects of the Image File That Will Be Transfered To The Source Folder.
+        File oriFileName = new File(destination);
+
+        if (newFile.exists()) { //Checks If An Image With The Same Name Already Exist.
+            Path imagesPath = Paths.get(newFileName);
+            try {
+                Files.delete(imagesPath);
+            } catch (IOException ex) {
+
+            }
+        }
+
+        try {
+
+            Files.copy(file.toPath(), newFile.toPath(), StandardCopyOption.REPLACE_EXISTING); //Copies File To The Thumbnail Image Folder.
+            boolean success = oriFileName.renameTo(newFile); //After Copying, The Image Will Be Renamed.
+
+            if (!success) {
+                // File was not successfully renamed
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     private void initForm() {
         this.setLocationRelativeTo(null);
         this.chkpass.setSelected(true);
@@ -1064,6 +1247,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
         btnRegister.setEnabled(true);
         btnUpdate.setEnabled(false);
         btnDelete.setEnabled(false);
+
         //userIncrementor();
         // This anon class handles window closing event
         addWindowListener(new WindowAdapter() {
@@ -1109,6 +1293,9 @@ public class APUMUserProfile extends javax.swing.JFrame {
 
     private void clearUser() {
         // To clean up previous or default values from fields
+        String fileDesti = System.getProperty("user.dir") + "\\src\\Icons\\defaultUser.png"; //Sets the Directory Folder Containing Default Image.
+        ImageIcon imgThisImg = new ImageIcon(fileDesti);
+        lblSelectedPic.setIcon(imgThisImg);
         txtManagerID.setText("");
         txtFullName.setText("");
         txtEmail.setText("");
@@ -1188,7 +1375,8 @@ public class APUMUserProfile extends javax.swing.JFrame {
             }
         });
         txtPassword.getDocument().addDocumentListener(new APUDocumentListener() {
-            PasswordValidation  vd = new PasswordValidation ();
+            PasswordValidation vd = new PasswordValidation();
+
             @Override
             public void changedUpdate(DocumentEvent e) {
                 vd.runValidate(txtPassword);
@@ -1250,7 +1438,11 @@ public class APUMUserProfile extends javax.swing.JFrame {
         deHighlightEmpty();
         // Loads index with Book ID only
         if (cmbUserID.getSelectedIndex() > 0) {
-            loadUserInfo();
+            try {
+                loadUserInfo();
+            } catch (IOException ex) {
+                Logger.getLogger(APUMUserProfile.class.getName()).log(Level.SEVERE, null, ex);
+            }
             btnRegister.setEnabled(false);
             btnDelete.setEnabled(true);
             btnUpdate.setEnabled(true);
@@ -1303,6 +1495,10 @@ public class APUMUserProfile extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_chkpassActionPerformed
 
+    private void btnSelectImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectImgActionPerformed
+        selectImage();
+    }//GEN-LAST:event_btnSelectImgActionPerformed
+
     // </editor-fold>  
     /**
      * @param args the command line arguments
@@ -1326,6 +1522,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
     private javax.swing.JButton btnDelete;
     private javax.swing.JPanel btnPnl;
     private javax.swing.JButton btnRegister;
+    private javax.swing.JButton btnSelectImg;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JCheckBox chkpass;
     private javax.swing.JComboBox<String> cmbGender;
@@ -1333,20 +1530,25 @@ public class APUMUserProfile extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbUserType;
     private javax.swing.JLabel iconNoSee;
     private javax.swing.JLabel iconSee;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JLabel lblApptID2;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel lblApptID;
     private javax.swing.JLabel lblDesc;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblFullName;
     private javax.swing.JLabel lblGender;
     private javax.swing.JLabel lblManagerID;
     private javax.swing.JLabel lblPassword;
+    private javax.swing.JLabel lblPfp;
     private javax.swing.JLabel lblPhoneNumber;
+    private javax.swing.JLabel lblSelectedPic;
     private javax.swing.JLabel lblTitle1;
     private javax.swing.JLabel lblUserType;
     private javax.swing.JLabel lblUsername;
+    private javax.swing.JPanel profilePnl;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFullName;
     private javax.swing.JTextField txtManagerID;
