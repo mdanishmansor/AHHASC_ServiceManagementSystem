@@ -26,7 +26,6 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.scene.text.TextAlignment;
 import javax.swing.GroupLayout;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;

@@ -6,6 +6,7 @@
 package kxbjava;
 
 import com.formdev.flatlaf.FlatDarkLaf;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -31,8 +32,10 @@ import javax.swing.event.DocumentEvent;
  * @author User
  */
 public class APULogin extends javax.swing.JFrame {
+
     private boolean Username = false, Password = false;
     private String UserID, username, FileDir, fullname, email, password, phonenumber, gender, ManagerID, currentdate, userRole;
+
     /**
      * Creates new form APULogin
      */
@@ -41,6 +44,13 @@ public class APULogin extends javax.swing.JFrame {
         initForm();
     }
     
+    private void setLogo() {
+        String sourcefolder = System.getProperty("user.dir") + "\\src\\icons\\";
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(sourcefolder + "AHHASCrsmol.png"));
+        this.setTitle("AHHASC Login Page");
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -50,30 +60,108 @@ public class APULogin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        lblTitle = new javax.swing.JLabel();
-        txtUsername = new javax.swing.JTextField();
-        txtPassword = new javax.swing.JPasswordField();
+        jPanel2 = new javax.swing.JPanel();
+        lblTitle1 = new javax.swing.JLabel();
+        btnPnl = new javax.swing.JPanel();
+        btnForgor = new javax.swing.JButton();
+        btnback = new javax.swing.JButton();
         btnLogin = new javax.swing.JButton();
-        lblForgetPass = new javax.swing.JLabel();
+        lblPass = new javax.swing.JLabel();
+        lblsuer = new javax.swing.JLabel();
+        txtPassword = new javax.swing.JPasswordField();
+        txtUsername = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1280, 720));
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(68, 68, 68));
+        jPanel2.setBackground(new java.awt.Color(68, 68, 68));
+        jPanel2.setMaximumSize(new java.awt.Dimension(1280, 720));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblTitle.setBackground(new java.awt.Color(68, 68, 68));
-        lblTitle.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        lblTitle.setForeground(new java.awt.Color(218, 0, 55));
-        lblTitle.setText("Login");
+        lblTitle1.setBackground(new java.awt.Color(68, 68, 68));
+        lblTitle1.setFont(new java.awt.Font("Segoe UI Variable", 1, 38)); // NOI18N
+        lblTitle1.setForeground(new java.awt.Color(214, 41, 99));
+        lblTitle1.setText("Login");
+        jPanel2.add(lblTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
 
-        txtUsername.setBackground(new java.awt.Color(68, 68, 68));
-        txtUsername.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        txtUsername.setForeground(new java.awt.Color(237, 237, 237));
-        txtUsername.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
-        txtUsername.setCaretColor(new java.awt.Color(237, 237, 237));
+        btnPnl.setBackground(new java.awt.Color(68, 68, 68));
+
+        btnForgor.setBackground(new java.awt.Color(68, 68, 68));
+        btnForgor.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnForgor.setForeground(new java.awt.Color(255, 255, 255));
+        btnForgor.setText("I Forgot My Password");
+        btnForgor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        btnForgor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnForgor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnForgorActionPerformed(evt);
+            }
+        });
+
+        btnback.setBackground(new java.awt.Color(68, 68, 68));
+        btnback.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnback.setForeground(new java.awt.Color(255, 255, 255));
+        btnback.setText("Back");
+        btnback.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        btnback.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbackActionPerformed(evt);
+            }
+        });
+
+        btnLogin.setBackground(new java.awt.Color(68, 68, 68));
+        btnLogin.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnLogin.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogin.setText("Login");
+        btnLogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout btnPnlLayout = new javax.swing.GroupLayout(btnPnl);
+        btnPnl.setLayout(btnPnlLayout);
+        btnPnlLayout.setHorizontalGroup(
+            btnPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnPnlLayout.createSequentialGroup()
+                .addContainerGap(555, Short.MAX_VALUE)
+                .addComponent(btnForgor, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnback, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
+        );
+        btnPnlLayout.setVerticalGroup(
+            btnPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnPnlLayout.createSequentialGroup()
+                .addContainerGap(7, Short.MAX_VALUE)
+                .addGroup(btnPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnForgor, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnback, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29))
+        );
+
+        jPanel2.add(btnPnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 620, 1280, 100));
+
+        lblPass.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblPass.setForeground(new java.awt.Color(255, 255, 255));
+        lblPass.setText("Password");
+        jPanel2.add(lblPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 350, -1, -1));
+
+        lblsuer.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblsuer.setForeground(new java.awt.Color(255, 255, 255));
+        lblsuer.setText("Username");
+        jPanel2.add(lblsuer, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, -1, -1));
 
         txtPassword.setBackground(new java.awt.Color(68, 68, 68));
-        txtPassword.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtPassword.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
         txtPassword.setForeground(new java.awt.Color(237, 237, 237));
         txtPassword.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         txtPassword.setCaretColor(new java.awt.Color(237, 237, 237));
@@ -82,108 +170,49 @@ public class APULogin extends javax.swing.JFrame {
                 txtPasswordKeyReleased(evt);
             }
         });
+        jPanel2.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 390, 700, 80));
 
-        btnLogin.setBackground(new java.awt.Color(23, 23, 23));
-        btnLogin.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        btnLogin.setForeground(new java.awt.Color(218, 0, 55));
-        btnLogin.setText("Login");
-        btnLogin.setBorder(null);
-        btnLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoginActionPerformed(evt);
-            }
-        });
+        txtUsername.setBackground(new java.awt.Color(68, 68, 68));
+        txtUsername.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        txtUsername.setForeground(new java.awt.Color(237, 237, 237));
+        txtUsername.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
+        txtUsername.setCaretColor(new java.awt.Color(237, 237, 237));
+        jPanel2.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, 700, 80));
 
-        lblForgetPass.setBackground(new java.awt.Color(68, 68, 68));
-        lblForgetPass.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lblForgetPass.setForeground(new java.awt.Color(0, 204, 204));
-        lblForgetPass.setText("Forgot Password? Click Here");
-        lblForgetPass.setToolTipText("");
-        lblForgetPass.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblForgetPassMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(523, 523, 523)
-                        .addComponent(lblTitle))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(565, 565, 565)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtUsername)
-                                .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE))
-                            .addComponent(lblForgetPass))))
-                .addContainerGap(385, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(116, 116, 116)
-                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75)
-                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74)
-                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblForgetPass, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(114, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     // <editor-fold defaultstate="collapsed" desc="Validation Methods">
-    private void showLoginButton(){
-        if (Username && Password){
-            btnLogin.setVisible(true);
+    private void showLoginButton() {
+        if (Username && Password) {
+            btnLogin.setEnabled(true);
+        } else {
+            btnLogin.setEnabled(false);
         }
-        else
-        {
-            btnLogin.setVisible(false);
-        }
-     }
-     private void showLoginButton(JTextField txt){
-        if ("".equals(txt.getText())){
+    }
+
+    private void showLoginButton(JTextField txt) {
+        if ("".equals(txt.getText())) {
             Username = false;
-        } 
-        else {
+        } else {
             Username = true;
         }
         showLoginButton();
-     }
-           private void showLoginButton(JPasswordField txt){
-        if ("".equals(String.valueOf(txtPassword.getPassword()))){
+    }
+
+    private void showLoginButton(JPasswordField txt) {
+        if ("".equals(String.valueOf(txtPassword.getPassword()))) {
             Password = false;
-        } 
-        else {
+        } else {
             Password = true;
         }
         showLoginButton();
-    
+
     }
-            private void createDir(){
+
+    private void createDir() {
         try {
             FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
             Path dir = Paths.get(FileDir);
@@ -192,7 +221,8 @@ public class APULogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
         }
     }
-             private void createDatabase(){
+
+    private void createDatabase() {
         try {
             FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
             File usertxt = new File(FileDir + "UserProfile.txt");
@@ -211,11 +241,11 @@ public class APULogin extends javax.swing.JFrame {
             if (!paymenttxt.exists()) {
                 paymenttxt.createNewFile();
             }
-        } catch(IOException ex) {
+        } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
     }
-            
+
     // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="Methods">
@@ -234,7 +264,7 @@ public class APULogin extends javax.swing.JFrame {
             while (inputFile.hasNext()) {
                 String lEntry = inputFile.nextLine();
                 matchedID = lEntry.split(":");
-                if (User.equals(matchedID[5]) && Pass.equals(matchedID[6])){
+                if (User.equals(matchedID[5]) && Pass.equals(matchedID[6])) {
                     Authenticate = true;
                     UserID = matchedID[0];
                     ManagerID = matchedID[1];
@@ -245,7 +275,7 @@ public class APULogin extends javax.swing.JFrame {
                     password = matchedID[6];
                     phonenumber = matchedID[7];
                     gender = matchedID[8];
-                   } 
+                }
             }
             inputFile.close();
         } catch (Exception ex) {
@@ -254,74 +284,77 @@ public class APULogin extends javax.swing.JFrame {
         }
         return Authenticate;
     }
+
     //Start the session for the user
-    private void userSession(){
-         try {
-        FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
-        File cache = new File(FileDir + "UserCache.txt");
-        if (!cache.exists()) {
-            cache.createNewFile();
-        }
-        FileWriter ld = new FileWriter(FileDir + "UserCache.txt", true); 
-        PrintWriter ldp = new PrintWriter(ld);
-        ldp.println(UserID + ":" + ManagerID + ":" + userRole + ":" + fullname + ":" + email + ":" + username + ":" + password + ":" + phonenumber + ":" + gender);
-        ldp.close();
+    private void userSession() {
+        try {
+            FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
+            File cache = new File(FileDir + "UserCache.txt");
+            if (!cache.exists()) {
+                cache.createNewFile();
+            }
+            FileWriter ld = new FileWriter(FileDir + "UserCache.txt", true);
+            PrintWriter ldp = new PrintWriter(ld);
+            ldp.println(UserID + ":" + ManagerID + ":" + userRole + ":" + fullname + ":" + email + ":" + username + ":" + password + ":" + phonenumber + ":" + gender);
+            ldp.close();
         } catch (Exception ex) {
-            
+
         }
     }
-    private void clearCache(){
-        try {  
+
+    private void clearCache() {
+        try {
             FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
             File cache = new File(FileDir + "UserCache.txt");
             if (cache.exists()) {
                 cache.delete();
             }
         } catch (Exception ex) {
-            
+
         }
     }
-    
+
     //Store the records of the session of the user
-    private void storeSession(){
+    private void storeSession() {
         try {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy, HH.mm.ss");  
-        LocalDateTime now = LocalDateTime.now();  
-        currentdate = dtf.format(now);
-        FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
-        File records = new File(FileDir + "LoginRecords.txt");
-        if (!records.exists()) {
-            records.createNewFile();
-        }
-        FileWriter ld = new FileWriter(FileDir + "LoginRecords.txt", true); 
-        PrintWriter ldp = new PrintWriter(ld);
-        ldp.println(UserID + ":" + ManagerID + ":" +  userRole +  ":" + fullname + ":" + currentdate);
-        ldp.close();
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy, HH.mm.ss");
+            LocalDateTime now = LocalDateTime.now();
+            currentdate = dtf.format(now);
+            FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
+            File records = new File(FileDir + "LoginRecords.txt");
+            if (!records.exists()) {
+                records.createNewFile();
+            }
+            FileWriter ld = new FileWriter(FileDir + "LoginRecords.txt", true);
+            PrintWriter ldp = new PrintWriter(ld);
+            ldp.println(UserID + ":" + ManagerID + ":" + userRole + ":" + fullname + ":" + currentdate);
+            ldp.close();
         } catch (Exception ex) {
-            
+
         }
     }
-    
-    private void checkUserType(){
-         if (UserID.contains("CM")) {
-                    new APUCMMenu().setVisible(true);
-                    this.dispose();
-                }
-         if(UserID.contains("TC")){
-             new APUTCMenu().setVisible(true);
-             this.dispose();
-         }
+
+    private void checkUserType() {
+        if (UserID.contains("CM")) {
+            new APUCMMenu().setVisible(true);
+            this.dispose();
+        }
+        if (UserID.contains("TC")) {
+            new APUTCMenu().setVisible(true);
+            this.dispose();
+        }
     }
-    private void initForm(){
+
+    private void initForm() {
         // Create the required directory for first time boot
         createDir();
         // Create the required database textfiles for first time boot
         createDatabase();
-        this.setSize(1170,800);
-        this.setLocation(600,150);
-        btnLogin.setVisible(false); // This will prevent the login button from being pressed right after startup
+        setLogo();
+        this.setLocationRelativeTo(null);
+        btnLogin.setEnabled(false); // This will prevent the login button from being pressed right after startup
         // This anon class handles textfield changes for username entry
-        txtUsername.getDocument().addDocumentListener(new APUDocumentListener(){
+        txtUsername.getDocument().addDocumentListener(new APUDocumentListener() {
 
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -339,9 +372,9 @@ public class APULogin extends javax.swing.JFrame {
 
             }
         });
-        
+
         // This anon class handles textfield changes for password entry
-        txtPassword.getDocument().addDocumentListener(new APUDocumentListener(){
+        txtPassword.getDocument().addDocumentListener(new APUDocumentListener() {
 
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -362,7 +395,7 @@ public class APULogin extends javax.swing.JFrame {
 
         // This anon class handles window closing event
         addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e){
+            public void windowClosing(WindowEvent e) {
                 int selection = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Closing Window", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if (selection == JOptionPane.YES_OPTION) {
                     clearCache();
@@ -374,52 +407,55 @@ public class APULogin extends javax.swing.JFrame {
         });
     }
     //</editor-fold>
-    
-    // <editor-fold defaultstate="collapsed" desc="Button Events">
-    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
-        if(validateAccount()){
-            JOptionPane.showMessageDialog(null, "Login Successfully! Going to Main Menu", "Authentication Successfully!", JOptionPane.INFORMATION_MESSAGE);
-           userSession();
-           storeSession();
-           checkUserType();
-        } else {
-            JOptionPane.showMessageDialog(null, "Authentication failed! Wrong password or username", "Failure of Authentication", JOptionPane.ERROR_MESSAGE);
-        
-        }
-    }//GEN-LAST:event_btnLoginActionPerformed
 
     private void txtPasswordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyReleased
         // TODO add your handling code here:
-        if("".equals(String.valueOf(txtPassword.getPassword())) && "".equals(txtUsername.getText())){
+        if ("".equals(String.valueOf(txtPassword.getPassword())) && "".equals(txtUsername.getText())) {
             JOptionPane.showMessageDialog(null, "Please enter the password!", "Failure of Authentication", JOptionPane.ERROR_MESSAGE);
-        }else {
-             if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-              if(validateAccount()){
-              JOptionPane.showMessageDialog(null, "Login Successfully! Going to Main Menu", "Authentication Successfully!", JOptionPane.INFORMATION_MESSAGE);
-              userSession();
-              checkUserType();
         } else {
-            JOptionPane.showMessageDialog(null, "Authentication failed! Wrong password or username", "Failure of Authentication", JOptionPane.ERROR_MESSAGE);
-        
+            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                if (validateAccount()) {
+                    JOptionPane.showMessageDialog(null, "Login Successfully! Going to Main Menu", "Authentication Successfully!", JOptionPane.INFORMATION_MESSAGE);
+                    userSession();
+                    checkUserType();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Authentication failed! Wrong password or username", "Failure of Authentication", JOptionPane.ERROR_MESSAGE);
+
+                }
+            }
         }
-        }
-        }
-       
+
     }//GEN-LAST:event_txtPasswordKeyReleased
 
-    private void lblForgetPassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblForgetPassMouseClicked
-        // TODO add your handling code here:
-         new ForgetPassword().setVisible(true);
+    private void btnForgorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnForgorActionPerformed
+        new ForgetPassword().setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_lblForgetPassMouseClicked
+    }//GEN-LAST:event_btnForgorActionPerformed
+
+    private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
+        new APUHome().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnbackActionPerformed
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        // TODO add your handling code here:
+        if (validateAccount()) {
+            JOptionPane.showMessageDialog(null, "Login Successfully! Going to Main Menu", "Authentication Successfully!", JOptionPane.INFORMATION_MESSAGE);
+            userSession();
+            storeSession();
+            checkUserType();
+        } else {
+            JOptionPane.showMessageDialog(null, "Authentication failed! Wrong password or username", "Failure of Authentication", JOptionPane.ERROR_MESSAGE);
+
+        }
+    }//GEN-LAST:event_btnLoginActionPerformed
     // </editor-fold>
-    
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-       try {
+        try {
             UIManager.setLookAndFeel(new FlatDarkLaf());
         } catch (Exception ex) {
             System.err.println("Fail Look and Feel");
@@ -433,10 +469,14 @@ public class APULogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnForgor;
     private javax.swing.JButton btnLogin;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblForgetPass;
-    private javax.swing.JLabel lblTitle;
+    private javax.swing.JPanel btnPnl;
+    private javax.swing.JButton btnback;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblPass;
+    private javax.swing.JLabel lblTitle1;
+    private javax.swing.JLabel lblsuer;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
