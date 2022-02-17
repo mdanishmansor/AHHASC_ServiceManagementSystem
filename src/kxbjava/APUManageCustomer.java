@@ -204,6 +204,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
         cmbCustID.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
         cmbCustID.setForeground(new java.awt.Color(255, 255, 255));
         cmbCustID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Existing Customer" }));
+        cmbCustID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         cmbCustID.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cmbCustID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -332,6 +333,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
         cmbGender.setForeground(new java.awt.Color(255, 255, 255));
         cmbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Gender", "Male", "Female" }));
         cmbGender.setToolTipText("Customer Gender");
+        cmbGender.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         cmbGender.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cmbGender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

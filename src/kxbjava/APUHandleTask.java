@@ -235,6 +235,7 @@ public class APUHandleTask extends javax.swing.JFrame {
         cmbApptID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         cmbApptID.setForeground(new java.awt.Color(237, 237, 237));
         cmbApptID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Appointment ID" }));
+        cmbApptID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         cmbApptID.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cmbApptID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -269,6 +270,7 @@ public class APUHandleTask extends javax.swing.JFrame {
         cmbPaymentStatus.setForeground(new java.awt.Color(237, 237, 237));
         cmbPaymentStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Payment Status", "Unpaid", "Paid" }));
         cmbPaymentStatus.setToolTipText("Payment Status of the Task");
+        cmbPaymentStatus.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         cmbPaymentStatus.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         lblApptID.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N

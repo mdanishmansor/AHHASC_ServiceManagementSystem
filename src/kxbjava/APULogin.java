@@ -71,6 +71,9 @@ public class APULogin extends javax.swing.JFrame {
         txtPassword = new javax.swing.JPasswordField();
         txtUsername = new javax.swing.JTextField();
         lblDesc = new javax.swing.JLabel();
+        chkpass = new javax.swing.JCheckBox();
+        iconNoSee = new javax.swing.JLabel();
+        iconSee = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
@@ -140,13 +143,13 @@ public class APULogin extends javax.swing.JFrame {
         );
         btnPnlLayout.setVerticalGroup(
             btnPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnPnlLayout.createSequentialGroup()
-                .addContainerGap(7, Short.MAX_VALUE)
+            .addGroup(btnPnlLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(btnPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnForgor, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnback, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29))
+                .addGap(53, 53, 53))
         );
 
         jPanel2.add(btnPnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 620, 1280, 100));
@@ -185,6 +188,32 @@ public class APULogin extends javax.swing.JFrame {
         lblDesc.setForeground(new java.awt.Color(255, 255, 255));
         lblDesc.setText("Please Provide Your Username and Password");
         jPanel2.add(lblDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
+
+        chkpass.setFocusable(false);
+        chkpass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkpassActionPerformed(evt);
+            }
+        });
+        jPanel2.add(chkpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 10, -1, -1));
+
+        iconNoSee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/nosee.png"))); // NOI18N
+        iconNoSee.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        iconNoSee.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                iconNoSeeMousePressed(evt);
+            }
+        });
+        jPanel2.add(iconNoSee, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 410, 40, 40));
+
+        iconSee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/see.png"))); // NOI18N
+        iconSee.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        iconSee.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                iconSeeMousePressed(evt);
+            }
+        });
+        jPanel2.add(iconSee, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 410, 40, 40));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, -1));
 
@@ -360,6 +389,10 @@ public class APULogin extends javax.swing.JFrame {
         setLogo();
         this.setLocationRelativeTo(null);
         btnLogin.setEnabled(false); // This will prevent the login button from being pressed right after startup
+        this.chkpass.setSelected(true);
+        this.chkpass.setVisible(false);
+        this.iconNoSee.setVisible(false);
+        this.txtPassword.setEchoChar('*');
         // This anon class handles textfield changes for username entry
         txtUsername.getDocument().addDocumentListener(new APUDocumentListener() {
 
@@ -456,6 +489,26 @@ public class APULogin extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void iconSeeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconSeeMousePressed
+        iconNoSee.setVisible(true);
+        iconSee.setVisible(false);
+        txtPassword.setEchoChar((char) 0);
+    }//GEN-LAST:event_iconSeeMousePressed
+
+    private void iconNoSeeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconNoSeeMousePressed
+        iconNoSee.setVisible(false);
+        iconSee.setVisible(true);
+        txtPassword.setEchoChar('*');
+    }//GEN-LAST:event_iconNoSeeMousePressed
+
+    private void chkpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkpassActionPerformed
+        if (chkpass.isSelected()) {
+            txtPassword.setEchoChar((char) 0);
+        } else {
+            txtPassword.setEchoChar('*');
+        }
+    }//GEN-LAST:event_chkpassActionPerformed
     // </editor-fold>
 
     /**
@@ -480,6 +533,9 @@ public class APULogin extends javax.swing.JFrame {
     private javax.swing.JButton btnLogin;
     private javax.swing.JPanel btnPnl;
     private javax.swing.JButton btnback;
+    private javax.swing.JCheckBox chkpass;
+    private javax.swing.JLabel iconNoSee;
+    private javax.swing.JLabel iconSee;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblDesc;
     private javax.swing.JLabel lblPass;

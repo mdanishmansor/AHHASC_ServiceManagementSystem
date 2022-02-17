@@ -66,10 +66,13 @@ public class APUUserProfile extends javax.swing.JFrame {
         txtUsername = new javax.swing.JTextField();
         lblFullName = new javax.swing.JLabel();
         txtFullName = new javax.swing.JTextField();
+        iconNoSee = new javax.swing.JLabel();
+        iconSee = new javax.swing.JLabel();
         btnPnl = new javax.swing.JPanel();
         btnUpdate = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         lblDesc = new javax.swing.JLabel();
+        chkpass = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
@@ -91,7 +94,7 @@ public class APUUserProfile extends javax.swing.JFrame {
         cmbGender.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         cmbGender.setForeground(new java.awt.Color(237, 237, 237));
         cmbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Gender", "Male", "Female" }));
-        cmbGender.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(237, 237, 237)));
+        cmbGender.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         cmbGender.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         lblGender.setBackground(new java.awt.Color(68, 68, 68));
@@ -160,6 +163,22 @@ public class APUUserProfile extends javax.swing.JFrame {
         txtFullName.setForeground(new java.awt.Color(237, 237, 237));
         txtFullName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
 
+        iconNoSee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/nosee.png"))); // NOI18N
+        iconNoSee.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        iconNoSee.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                iconNoSeeMousePressed(evt);
+            }
+        });
+
+        iconSee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/see.png"))); // NOI18N
+        iconSee.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        iconSee.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                iconSeeMousePressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -169,14 +188,23 @@ public class APUUserProfile extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblPassword)
-                            .addComponent(lblEmail)
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtPassField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 571, Short.MAX_VALUE)
-                                .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 571, Short.MAX_VALUE)
-                                .addComponent(txtUserID, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 571, Short.MAX_VALUE)
-                                .addComponent(lblUserID, javax.swing.GroupLayout.Alignment.LEADING)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblUserID)
+                                    .addComponent(lblPassword)
+                                    .addComponent(lblEmail))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtEmail)
+                                    .addComponent(txtPassField)
+                                    .addComponent(txtUserID)
+                                    .addComponent(cmbGender, javax.swing.GroupLayout.Alignment.LEADING, 0, 521, Short.MAX_VALUE))
+                                .addGap(4, 4, 4)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(iconSee)
+                                    .addComponent(iconNoSee))
+                                .addGap(42, 42, 42)))
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblUsername)
                             .addComponent(lblPhoneNumber)
@@ -186,10 +214,8 @@ public class APUUserProfile extends javax.swing.JFrame {
                             .addComponent(txtFullName))
                         .addContainerGap())
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblGender)
-                            .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 613, Short.MAX_VALUE))))
+                        .addComponent(lblGender)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,10 +240,13 @@ public class APUUserProfile extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPassword)
                     .addComponent(lblPhoneNumber))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPassField, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtPassField, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(iconSee)
+                    .addComponent(iconNoSee))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblGender)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -225,7 +254,7 @@ public class APUUserProfile extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        mainPnl.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 1190, 420));
+        mainPnl.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 1190, 440));
 
         btnPnl.setBackground(new java.awt.Color(68, 68, 68));
 
@@ -281,6 +310,14 @@ public class APUUserProfile extends javax.swing.JFrame {
         lblDesc.setForeground(new java.awt.Color(255, 255, 255));
         lblDesc.setText("View or Update Your Information Details");
         mainPnl.add(lblDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, -1, -1));
+
+        chkpass.setFocusable(false);
+        chkpass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkpassActionPerformed(evt);
+            }
+        });
+        mainPnl.add(chkpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 10, -1, -1));
 
         getContentPane().add(mainPnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -488,6 +525,10 @@ public class APUUserProfile extends javax.swing.JFrame {
     private void initForm(){
         setLogo();
         this.setLocationRelativeTo(null);
+        this.chkpass.setSelected(true);
+        this.chkpass.setVisible(false);
+        this.iconNoSee.setVisible(false);
+        this.txtPassField.setEchoChar('*');
         loadUserProfile();
         // Set the initial value for new book
         // This anon class handles window closing event
@@ -519,6 +560,26 @@ public class APUUserProfile extends javax.swing.JFrame {
             checkUserType();
         }
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void iconNoSeeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconNoSeeMousePressed
+        iconNoSee.setVisible(false);
+        iconSee.setVisible(true);
+        txtPassField.setEchoChar('*');
+    }//GEN-LAST:event_iconNoSeeMousePressed
+
+    private void iconSeeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconSeeMousePressed
+        iconNoSee.setVisible(true);
+        iconSee.setVisible(false);
+        txtPassField.setEchoChar((char) 0);
+    }//GEN-LAST:event_iconSeeMousePressed
+
+    private void chkpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkpassActionPerformed
+        if (chkpass.isSelected()) {
+            txtPassField.setEchoChar((char) 0);
+        } else {
+            txtPassField.setEchoChar('*');
+        }
+    }//GEN-LAST:event_chkpassActionPerformed
     //</editor-fold>
     
     
@@ -543,7 +604,10 @@ public class APUUserProfile extends javax.swing.JFrame {
     private javax.swing.JButton btnBack;
     private javax.swing.JPanel btnPnl;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JCheckBox chkpass;
     private javax.swing.JComboBox<String> cmbGender;
+    private javax.swing.JLabel iconNoSee;
+    private javax.swing.JLabel iconSee;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel lblDesc;
     private javax.swing.JLabel lblEmail;

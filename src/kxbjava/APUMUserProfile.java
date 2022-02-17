@@ -92,6 +92,9 @@ public class APUMUserProfile extends javax.swing.JFrame {
         lblUserType = new javax.swing.JLabel();
         lblEmail = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
+        iconSee = new javax.swing.JLabel();
+        iconNoSee = new javax.swing.JLabel();
+        chkpass = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
@@ -217,7 +220,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
         cmbGender.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
         cmbGender.setForeground(new java.awt.Color(237, 237, 237));
         cmbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Gender", "Male", "Female" }));
-        cmbGender.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 0, 0, new java.awt.Color(237, 237, 237)));
+        cmbGender.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         cmbGender.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         lblFullName.setBackground(new java.awt.Color(68, 68, 68));
@@ -253,7 +256,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(107, 107, 107)
+                .addGap(89, 89, 89)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPhoneNumber)
@@ -263,7 +266,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
                     .addComponent(lblGender)
                     .addComponent(txtManagerID, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblManagerID))
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addContainerGap(181, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -321,7 +324,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
         cmbUserType.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
         cmbUserType.setForeground(new java.awt.Color(255, 255, 255));
         cmbUserType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select User Type", "Centre Manager", "Technician" }));
-        cmbUserType.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(237, 237, 237)));
+        cmbUserType.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         cmbUserType.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cmbUserType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -333,7 +336,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
         cmbUserID.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
         cmbUserID.setForeground(new java.awt.Color(255, 255, 255));
         cmbUserID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select User ID" }));
-        cmbUserID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(237, 237, 237)));
+        cmbUserID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         cmbUserID.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cmbUserID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -363,12 +366,28 @@ public class APUMUserProfile extends javax.swing.JFrame {
             }
         });
 
+        iconSee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/see.png"))); // NOI18N
+        iconSee.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        iconSee.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                iconSeeMousePressed(evt);
+            }
+        });
+
+        iconNoSee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/nosee.png"))); // NOI18N
+        iconNoSee.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        iconNoSee.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                iconNoSeeMousePressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(224, Short.MAX_VALUE)
+                .addContainerGap(206, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblEmail)
@@ -377,10 +396,16 @@ public class APUMUserProfile extends javax.swing.JFrame {
                     .addComponent(cmbUserType, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblUsername)
                     .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPassword)
-                    .addComponent(lblApptID2))
-                .addGap(46, 46, 46))
+                    .addComponent(lblApptID2)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPassword))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(iconNoSee)
+                            .addComponent(iconSee))))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -396,11 +421,19 @@ public class APUMUserProfile extends javax.swing.JFrame {
                 .addComponent(lblUsername)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19)
-                .addComponent(lblPassword)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(lblPassword)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(iconNoSee)
+                            .addComponent(iconSee))
+                        .addGap(23, 23, 23)))
                 .addComponent(lblEmail)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -408,6 +441,14 @@ public class APUMUserProfile extends javax.swing.JFrame {
         );
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 630, 470));
+
+        chkpass.setFocusable(false);
+        chkpass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkpassActionPerformed(evt);
+            }
+        });
+        jPanel1.add(chkpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1014,6 +1055,10 @@ public class APUMUserProfile extends javax.swing.JFrame {
 
     private void initForm() {
         this.setLocationRelativeTo(null);
+        this.chkpass.setSelected(true);
+        this.chkpass.setVisible(false);
+        this.iconNoSee.setVisible(false);
+        this.txtPassword.setEchoChar('*');
         setLogo();
         cmbUserID.setEnabled(false);
         btnRegister.setEnabled(true);
@@ -1238,6 +1283,26 @@ public class APUMUserProfile extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cmbUserTypeActionPerformed
 
+    private void iconNoSeeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconNoSeeMousePressed
+        iconNoSee.setVisible(false);
+        iconSee.setVisible(true);
+        txtPassword.setEchoChar('*');
+    }//GEN-LAST:event_iconNoSeeMousePressed
+
+    private void iconSeeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconSeeMousePressed
+        iconNoSee.setVisible(true);
+        iconSee.setVisible(false);
+        txtPassword.setEchoChar((char) 0);
+    }//GEN-LAST:event_iconSeeMousePressed
+
+    private void chkpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkpassActionPerformed
+        if (chkpass.isSelected()) {
+            txtPassword.setEchoChar((char) 0);
+        } else {
+            txtPassword.setEchoChar('*');
+        }
+    }//GEN-LAST:event_chkpassActionPerformed
+
     // </editor-fold>  
     /**
      * @param args the command line arguments
@@ -1262,9 +1327,12 @@ public class APUMUserProfile extends javax.swing.JFrame {
     private javax.swing.JPanel btnPnl;
     private javax.swing.JButton btnRegister;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JCheckBox chkpass;
     private javax.swing.JComboBox<String> cmbGender;
     private javax.swing.JComboBox<String> cmbUserID;
     private javax.swing.JComboBox<String> cmbUserType;
+    private javax.swing.JLabel iconNoSee;
+    private javax.swing.JLabel iconSee;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

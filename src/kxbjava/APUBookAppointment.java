@@ -225,7 +225,7 @@ public class APUBookAppointment extends javax.swing.JFrame {
         cmbCustomerID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         cmbCustomerID.setForeground(new java.awt.Color(255, 255, 255));
         cmbCustomerID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Customer ID" }));
-        cmbCustomerID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
+        cmbCustomerID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         cmbCustomerID.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cmbCustomerID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -248,7 +248,7 @@ public class APUBookAppointment extends javax.swing.JFrame {
         cmbTechID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         cmbTechID.setForeground(new java.awt.Color(255, 255, 255));
         cmbTechID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Technician ID" }));
-        cmbTechID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
+        cmbTechID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         cmbTechID.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cmbTechID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -260,7 +260,7 @@ public class APUBookAppointment extends javax.swing.JFrame {
         cmbTime.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         cmbTime.setForeground(new java.awt.Color(255, 255, 255));
         cmbTime.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Time", "0800", "1000", "1200", "1400", "1600", "1800" }));
-        cmbTime.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
+        cmbTime.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         cmbTime.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cmbTime.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -279,7 +279,7 @@ public class APUBookAppointment extends javax.swing.JFrame {
         cmbAppliance.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         cmbAppliance.setForeground(new java.awt.Color(255, 255, 255));
         cmbAppliance.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Appliance", "Television", "Refrigerator", "Air-conditioner", "Washing Machine", "PC" }));
-        cmbAppliance.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
+        cmbAppliance.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         cmbAppliance.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cmbAppliance.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

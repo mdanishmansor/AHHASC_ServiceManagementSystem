@@ -260,18 +260,18 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtPhoneNumber" min="-2" pref="360" max="-2" attributes="0"/>
-                          <Component id="lblPhoneNumber" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtFullName" min="-2" pref="360" max="-2" attributes="0"/>
-                          <Component id="lblFullName" min="-2" max="-2" attributes="0"/>
-                          <Component id="cmbGender" min="-2" pref="360" max="-2" attributes="0"/>
-                          <Component id="lblGender" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtManagerID" min="-2" pref="360" max="-2" attributes="0"/>
-                          <Component id="lblManagerID" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtPhoneNumber" alignment="0" min="-2" pref="360" max="-2" attributes="0"/>
+                          <Component id="lblPhoneNumber" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtFullName" alignment="0" min="-2" pref="360" max="-2" attributes="0"/>
+                          <Component id="lblFullName" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="cmbGender" alignment="0" min="-2" pref="360" max="-2" attributes="0"/>
+                          <Component id="lblGender" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtManagerID" alignment="0" min="-2" pref="360" max="-2" attributes="0"/>
+                          <Component id="lblManagerID" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="163" max="32767" attributes="0"/>
+                      <EmptySpace pref="181" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -368,7 +368,7 @@
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-                    <MatteColorBorder bottom="0" left="1" right="0" top="0">
+                    <MatteColorBorder bottom="2" left="0" right="0" top="0">
                       <Color PropertyName="color" blue="ed" green="ed" red="ed" type="rgb"/>
                     </MatteColorBorder>
                   </Border>
@@ -471,7 +471,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="224" max="32767" attributes="0"/>
+                      <EmptySpace pref="206" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="txtEmail" min="-2" pref="360" max="-2" attributes="0"/>
                           <Component id="lblEmail" min="-2" max="-2" attributes="0"/>
@@ -480,11 +480,20 @@
                           <Component id="cmbUserType" alignment="0" min="-2" pref="360" max="-2" attributes="0"/>
                           <Component id="lblUsername" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="txtUsername" alignment="0" min="-2" pref="360" max="-2" attributes="0"/>
-                          <Component id="txtPassword" alignment="0" min="-2" pref="360" max="-2" attributes="0"/>
-                          <Component id="lblPassword" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblApptID2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="txtPassword" alignment="0" min="-2" pref="360" max="-2" attributes="0"/>
+                                  <Component id="lblPassword" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="iconNoSee" min="-2" max="-2" attributes="0"/>
+                                  <Component id="iconSee" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -502,11 +511,23 @@
                       <Component id="lblUsername" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="txtUsername" min="-2" pref="35" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                      <Component id="lblPassword" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtPassword" min="-2" pref="35" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                              <Component id="lblPassword" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtPassword" min="-2" pref="35" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="iconNoSee" min="-2" max="-2" attributes="0"/>
+                                  <Component id="iconSee" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                       <Component id="lblEmail" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="txtEmail" min="-2" pref="35" max="-2" attributes="0"/>
@@ -620,7 +641,7 @@
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-                    <MatteColorBorder bottom="1" left="0" right="0" top="0">
+                    <MatteColorBorder bottom="2" left="0" right="0" top="0">
                       <Color PropertyName="color" blue="ed" green="ed" red="ed" type="rgb"/>
                     </MatteColorBorder>
                   </Border>
@@ -654,7 +675,7 @@
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-                    <MatteColorBorder bottom="1" left="0" right="0" top="0">
+                    <MatteColorBorder bottom="2" left="0" right="0" top="0">
                       <Color PropertyName="color" blue="ed" green="ed" red="ed" type="rgb"/>
                     </MatteColorBorder>
                   </Border>
@@ -725,8 +746,47 @@
                 <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtEmailFocusLost"/>
               </Events>
             </Component>
+            <Component class="javax.swing.JLabel" name="iconSee">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Icons/see.png"/>
+                </Property>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="iconSeeMousePressed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="iconNoSee">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Icons/nosee.png"/>
+                </Property>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="iconNoSeeMousePressed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JCheckBox" name="chkpass">
+          <Properties>
+            <Property name="focusable" type="boolean" value="false"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chkpassActionPerformed"/>
+          </Events>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="1260" y="0" width="-1" height="-1"/>
+            </Constraint>
+          </Constraints>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

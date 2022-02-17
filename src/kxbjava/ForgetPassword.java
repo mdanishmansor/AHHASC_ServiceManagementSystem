@@ -67,6 +67,12 @@ public class ForgetPassword extends javax.swing.JFrame {
         lblTitle1 = new javax.swing.JLabel();
         lblConfirmPass = new javax.swing.JLabel();
         lblDesc = new javax.swing.JLabel();
+        iconNoSee = new javax.swing.JLabel();
+        iconSee = new javax.swing.JLabel();
+        chkpass = new javax.swing.JCheckBox();
+        iconNoSee1 = new javax.swing.JLabel();
+        iconSee1 = new javax.swing.JLabel();
+        chkpass1 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
@@ -192,6 +198,58 @@ public class ForgetPassword extends javax.swing.JFrame {
         lblDesc.setForeground(new java.awt.Color(255, 255, 255));
         lblDesc.setText("Please Provide Your User ID and Email to Reset Your Password");
         mainPnl.add(lblDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
+
+        iconNoSee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/nosee.png"))); // NOI18N
+        iconNoSee.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        iconNoSee.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                iconNoSeeMousePressed(evt);
+            }
+        });
+        mainPnl.add(iconNoSee, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 530, 40, 40));
+
+        iconSee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/see.png"))); // NOI18N
+        iconSee.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        iconSee.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                iconSeeMousePressed(evt);
+            }
+        });
+        mainPnl.add(iconSee, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 530, 40, 40));
+
+        chkpass.setFocusable(false);
+        chkpass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkpassActionPerformed(evt);
+            }
+        });
+        mainPnl.add(chkpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 10, -1, -1));
+
+        iconNoSee1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/nosee.png"))); // NOI18N
+        iconNoSee1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        iconNoSee1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                iconNoSee1MousePressed(evt);
+            }
+        });
+        mainPnl.add(iconNoSee1, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 410, 40, 40));
+
+        iconSee1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/see.png"))); // NOI18N
+        iconSee1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        iconSee1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                iconSee1MousePressed(evt);
+            }
+        });
+        mainPnl.add(iconSee1, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 410, 40, 40));
+
+        chkpass1.setFocusable(false);
+        chkpass1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkpass1ActionPerformed(evt);
+            }
+        });
+        mainPnl.add(chkpass1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 30, -1, -1));
 
         getContentPane().add(mainPnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, -1));
 
@@ -456,6 +514,46 @@ public class ForgetPassword extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnbackActionPerformed
 
+    private void iconNoSeeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconNoSeeMousePressed
+        iconNoSee.setVisible(false);
+        iconSee.setVisible(true);
+        txtNewPass.setEchoChar('*');
+    }//GEN-LAST:event_iconNoSeeMousePressed
+
+    private void iconSeeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconSeeMousePressed
+        iconNoSee.setVisible(true);
+        iconSee.setVisible(false);
+        txtNewPass.setEchoChar((char) 0);
+    }//GEN-LAST:event_iconSeeMousePressed
+
+    private void chkpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkpassActionPerformed
+        if (chkpass.isSelected()) {
+            txtNewPass.setEchoChar((char) 0);
+        } else {
+            txtNewPass.setEchoChar('*');
+        }
+    }//GEN-LAST:event_chkpassActionPerformed
+
+    private void iconNoSee1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconNoSee1MousePressed
+        iconNoSee1.setVisible(false);
+        iconSee1.setVisible(true);
+        txtConfirmPass.setEchoChar('*');
+    }//GEN-LAST:event_iconNoSee1MousePressed
+
+    private void iconSee1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconSee1MousePressed
+        iconNoSee1.setVisible(true);
+        iconSee1.setVisible(false);
+        txtConfirmPass.setEchoChar((char) 0);
+    }//GEN-LAST:event_iconSee1MousePressed
+
+    private void chkpass1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkpass1ActionPerformed
+        if (chkpass1.isSelected()) {
+            txtConfirmPass.setEchoChar((char) 0);
+        } else {
+            txtConfirmPass.setEchoChar('*');
+        }
+    }//GEN-LAST:event_chkpass1ActionPerformed
+
     private void clearCache() {
         try {
             FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
@@ -471,6 +569,14 @@ public class ForgetPassword extends javax.swing.JFrame {
     private void initForm() {
         this.setLocationRelativeTo(null);
         setLogo();
+        this.chkpass.setSelected(true);
+        this.chkpass.setVisible(false);
+        this.iconNoSee.setVisible(false);
+        this.txtNewPass.setEchoChar('*');
+        this.chkpass1.setSelected(true);
+        this.chkpass1.setVisible(false);
+        this.iconNoSee1.setVisible(false);
+        this.txtConfirmPass.setEchoChar('*');
         // Set the initial value for new book
         // This anon class handles window closing event
         addWindowListener(new WindowAdapter() {
@@ -515,6 +621,12 @@ public class ForgetPassword extends javax.swing.JFrame {
     private javax.swing.JPanel btnPnl;
     private javax.swing.JButton btnSubmit;
     private javax.swing.JButton btnback;
+    private javax.swing.JCheckBox chkpass;
+    private javax.swing.JCheckBox chkpass1;
+    private javax.swing.JLabel iconNoSee;
+    private javax.swing.JLabel iconNoSee1;
+    private javax.swing.JLabel iconSee;
+    private javax.swing.JLabel iconSee1;
     private javax.swing.JLabel lblConfirmPass;
     private javax.swing.JLabel lblDesc;
     private javax.swing.JLabel lblEmail;
