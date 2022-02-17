@@ -10,6 +10,8 @@ import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -35,6 +37,27 @@ public class APUTCMenu extends javax.swing.JFrame {
 
     }
     
+     private void loadUserProfile() {
+        String[] matchedID = null;
+        FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
+        File usertext = new File(FileDir + "UserCache.txt");
+        Scanner intUser;
+        try {
+            intUser = new Scanner(usertext);
+            while (intUser.hasNext()) {
+                String bEntry = intUser.nextLine();
+                matchedID = bEntry.split(":");
+                lblDesc1.setText("Welcome Back "
+                        + "\n" 
+                        + matchedID[5] 
+                        + "!");
+            }
+            intUser.close();
+        } catch (FileNotFoundException ex) {
+            //Logger.getLogger(.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -52,8 +75,8 @@ public class APUTCMenu extends javax.swing.JFrame {
         btnProvideFeedback = new javax.swing.JButton();
         btnCollectPayment = new javax.swing.JButton();
         btnProfile = new javax.swing.JButton();
-        lblDesc1 = new javax.swing.JLabel();
         btnLogout = new javax.swing.JButton();
+        lblDesc1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
@@ -113,6 +136,11 @@ public class APUTCMenu extends javax.swing.JFrame {
                 btnProvideFeedbackMouseExited(evt);
             }
         });
+        btnProvideFeedback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProvideFeedbackActionPerformed(evt);
+            }
+        });
         jPanel3.add(btnProvideFeedback);
 
         btnCollectPayment.setBackground(new java.awt.Color(0, 153, 0));
@@ -157,12 +185,6 @@ public class APUTCMenu extends javax.swing.JFrame {
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 520, 480));
 
-        lblDesc1.setBackground(new java.awt.Color(68, 68, 68));
-        lblDesc1.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
-        lblDesc1.setForeground(new java.awt.Color(255, 255, 255));
-        lblDesc1.setText("Welcome Back!");
-        jPanel2.add(lblDesc1, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 400, -1, -1));
-
         btnLogout.setBackground(new java.awt.Color(68, 68, 68));
         btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/signouty.png"))); // NOI18N
         btnLogout.setBorder(null);
@@ -173,6 +195,13 @@ public class APUTCMenu extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 50, 100, 100));
+
+        lblDesc1.setBackground(new java.awt.Color(68, 68, 68));
+        lblDesc1.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
+        lblDesc1.setForeground(new java.awt.Color(255, 255, 255));
+        lblDesc1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblDesc1.setText("Welcome Back!");
+        jPanel2.add(lblDesc1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 390, 600, 80));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
 
@@ -194,6 +223,7 @@ public class APUTCMenu extends javax.swing.JFrame {
     private void initForm(){
         this.setLocationRelativeTo(null);
         setLogo();
+        loadUserProfile();
         //userIncrementor();
         // This anon class handles window closing event
         addWindowListener(new WindowAdapter() {
@@ -210,7 +240,8 @@ public class APUTCMenu extends javax.swing.JFrame {
     }
     
     private void btnCollectPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCollectPaymentActionPerformed
-        // TODO add your handling code here:
+        new ViewPayment().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnCollectPaymentActionPerformed
 
     private void btnProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfileActionPerformed
@@ -264,6 +295,11 @@ public class APUTCMenu extends javax.swing.JFrame {
             this.dispose();
         }
     }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void btnProvideFeedbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProvideFeedbackActionPerformed
+        new ViewFeedback().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnProvideFeedbackActionPerformed
                                            
 
     /**

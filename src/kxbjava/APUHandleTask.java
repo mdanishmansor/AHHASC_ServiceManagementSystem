@@ -24,9 +24,11 @@ import com.itextpdf.layout.element.Text;
 import com.itextpdf.layout.properties.TextAlignment;
 import static com.itextpdf.layout.properties.TextAlignment.CENTER;
 import static com.itextpdf.layout.properties.TextAlignment.LEFT;
+import static com.itextpdf.layout.properties.TextAlignment.RIGHT;
 import com.itextpdf.layout.properties.VerticalAlignment;
 import com.itextpdf.styledxmlparser.jsoup.nodes.Element;
 import java.awt.Color;
+import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.BufferedWriter;
@@ -60,11 +62,12 @@ public class APUHandleTask extends javax.swing.JFrame {
     
     private final String apptPrefix = "APPT";
     private final String feedPrefix = "FEED";
-    private String FileDir, techID, ApptID, feedID, paymentID;
+    private String FileDir, techID, ApptID, feedID, paymentID, cID, tcID, cmID, custname, appDate, appTime, applncs, bDate, atID;
     private int newFeedID;
     private DefaultComboBoxModel ApptList;
     private final String source = System.getProperty("user.dir") + "\\src\\TextFiles\\Feedback.txt";
     private final String invoicesource = System.getProperty("user.dir") + "\\src\\PDF\\Invoice.pdf";
+     private final String receiptSource = System.getProperty("user.dir") + "\\src\\PDF\\Receipt.pdf";
     private Money totalAmount, paymentAmount, balanceAmount; 
     private final Color ogtxt = new Color(237,237,237);
     
@@ -89,30 +92,34 @@ public class APUHandleTask extends javax.swing.JFrame {
 
         lblTitle = new javax.swing.JLabel();
         pnlHandleTask = new javax.swing.JPanel();
-        lblPageTitle = new javax.swing.JLabel();
+        btnPnl = new javax.swing.JPanel();
+        btnPrintInvoice = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        btnReset = new javax.swing.JButton();
+        lblDesc = new javax.swing.JLabel();
+        lblTitle1 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
         cmbApptID = new javax.swing.JComboBox<>();
-        txtApptDate = new javax.swing.JTextField();
-        lblApptID = new javax.swing.JLabel();
         txtCustomerName = new javax.swing.JTextField();
-        txtAppliance = new javax.swing.JTextField();
         txtApptTime = new javax.swing.JTextField();
         txttotalAmount = new javax.swing.JTextField();
-        txtPaymentDate = new javax.swing.JTextField();
         cmbPaymentStatus = new javax.swing.JComboBox<>();
-        btnUpdate = new javax.swing.JButton();
+        lblApptID = new javax.swing.JLabel();
+        lblCustomerName = new javax.swing.JLabel();
+        lblApptTime = new javax.swing.JLabel();
+        lblTotalAmount = new javax.swing.JLabel();
+        lblPaymentStatus = new javax.swing.JLabel();
+        txtApptDate = new javax.swing.JTextField();
+        txtAppliance = new javax.swing.JTextField();
+        txtPaymentDate = new javax.swing.JTextField();
         txtApptFeedback = new javax.swing.JTextField();
         txtpaymentAmount = new javax.swing.JTextField();
         lblApptDate = new javax.swing.JLabel();
-        lblTotalAmount = new javax.swing.JLabel();
         lblAppliance = new javax.swing.JLabel();
-        btnReset = new javax.swing.JButton();
-        lblCustomerName = new javax.swing.JLabel();
-        lblApptTime = new javax.swing.JLabel();
         lblPaymentAmount = new javax.swing.JLabel();
         lblPaymenDate = new javax.swing.JLabel();
-        lblPaymentStatus = new javax.swing.JLabel();
         lblFeedback = new javax.swing.JLabel();
-        btnPrintInvoice = new javax.swing.JButton();
 
         lblTitle.setBackground(new java.awt.Color(68, 68, 68));
         lblTitle.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
@@ -120,44 +127,125 @@ public class APUHandleTask extends javax.swing.JFrame {
         lblTitle.setText("User Profile");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1280, 720));
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlHandleTask.setBackground(new java.awt.Color(68, 68, 68));
+        pnlHandleTask.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblPageTitle.setBackground(new java.awt.Color(68, 68, 68));
-        lblPageTitle.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        lblPageTitle.setForeground(new java.awt.Color(218, 0, 55));
-        lblPageTitle.setText("Handle Task");
+        btnPnl.setBackground(new java.awt.Color(68, 68, 68));
+
+        btnPrintInvoice.setBackground(new java.awt.Color(68, 68, 68));
+        btnPrintInvoice.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnPrintInvoice.setForeground(new java.awt.Color(237, 237, 237));
+        btnPrintInvoice.setText("Print Invoice");
+        btnPrintInvoice.setToolTipText("Button to reset every fields");
+        btnPrintInvoice.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        btnPrintInvoice.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPrintInvoice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrintInvoiceActionPerformed(evt);
+            }
+        });
+
+        btnBack.setBackground(new java.awt.Color(68, 68, 68));
+        btnBack.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnBack.setForeground(new java.awt.Color(237, 237, 237));
+        btnBack.setText("Back");
+        btnBack.setToolTipText("Button to reset every fields");
+        btnBack.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        btnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
+        btnUpdate.setBackground(new java.awt.Color(68, 68, 68));
+        btnUpdate.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnUpdate.setForeground(new java.awt.Color(237, 237, 237));
+        btnUpdate.setText("Pay");
+        btnUpdate.setToolTipText("Button to reset every fields");
+        btnUpdate.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        btnUpdate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+
+        btnReset.setBackground(new java.awt.Color(68, 68, 68));
+        btnReset.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnReset.setForeground(new java.awt.Color(237, 237, 237));
+        btnReset.setText("Reset");
+        btnReset.setToolTipText("Button to reset every fields");
+        btnReset.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        btnReset.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout btnPnlLayout = new javax.swing.GroupLayout(btnPnl);
+        btnPnl.setLayout(btnPnlLayout);
+        btnPnlLayout.setHorizontalGroup(
+            btnPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnPnlLayout.createSequentialGroup()
+                .addContainerGap(317, Short.MAX_VALUE)
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnPrintInvoice, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
+        );
+        btnPnlLayout.setVerticalGroup(
+            btnPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnPnlLayout.createSequentialGroup()
+                .addContainerGap(7, Short.MAX_VALUE)
+                .addGroup(btnPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPrintInvoice, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29))
+        );
+
+        pnlHandleTask.add(btnPnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 620, 1280, 100));
+
+        lblDesc.setBackground(new java.awt.Color(68, 68, 68));
+        lblDesc.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
+        lblDesc.setForeground(new java.awt.Color(255, 255, 255));
+        lblDesc.setText("Insert Payment Provided By Customers");
+        pnlHandleTask.add(lblDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
+
+        lblTitle1.setBackground(new java.awt.Color(68, 68, 68));
+        lblTitle1.setFont(new java.awt.Font("Segoe UI Variable", 1, 38)); // NOI18N
+        lblTitle1.setForeground(new java.awt.Color(214, 41, 99));
+        lblTitle1.setText("Handle Tasks");
+        pnlHandleTask.add(lblTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
+
+        jPanel3.setBackground(new java.awt.Color(68, 68, 68));
 
         cmbApptID.setBackground(new java.awt.Color(68, 68, 68));
         cmbApptID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         cmbApptID.setForeground(new java.awt.Color(237, 237, 237));
         cmbApptID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Appointment ID" }));
+        cmbApptID.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cmbApptID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbApptIDActionPerformed(evt);
             }
         });
 
-        txtApptDate.setEditable(false);
-        txtApptDate.setBackground(new java.awt.Color(68, 68, 68));
-        txtApptDate.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        txtApptDate.setForeground(new java.awt.Color(237, 237, 237));
-        txtApptDate.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
-
-        lblApptID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblApptID.setText("Appointment ID:");
-
-        txtCustomerName.setEditable(false);
         txtCustomerName.setBackground(new java.awt.Color(68, 68, 68));
         txtCustomerName.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         txtCustomerName.setForeground(new java.awt.Color(237, 237, 237));
         txtCustomerName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
-
-        txtAppliance.setEditable(false);
-        txtAppliance.setBackground(new java.awt.Color(68, 68, 68));
-        txtAppliance.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        txtAppliance.setForeground(new java.awt.Color(237, 237, 237));
-        txtAppliance.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
 
         txtApptTime.setEditable(false);
         txtApptTime.setBackground(new java.awt.Color(68, 68, 68));
@@ -176,28 +264,43 @@ public class APUHandleTask extends javax.swing.JFrame {
             }
         });
 
-        txtPaymentDate.setEditable(false);
-        txtPaymentDate.setBackground(new java.awt.Color(68, 68, 68));
-        txtPaymentDate.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        txtPaymentDate.setForeground(new java.awt.Color(237, 237, 237));
-        txtPaymentDate.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
-
         cmbPaymentStatus.setBackground(new java.awt.Color(68, 68, 68));
         cmbPaymentStatus.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         cmbPaymentStatus.setForeground(new java.awt.Color(237, 237, 237));
         cmbPaymentStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Payment Status", "Unpaid", "Paid" }));
         cmbPaymentStatus.setToolTipText("Payment Status of the Task");
+        cmbPaymentStatus.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        btnUpdate.setBackground(new java.awt.Color(23, 23, 23));
-        btnUpdate.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        btnUpdate.setForeground(new java.awt.Color(237, 237, 237));
-        btnUpdate.setText("Pay ");
-        btnUpdate.setBorder(null);
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
-            }
-        });
+        lblApptID.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblApptID.setText("Appointment ID");
+
+        lblCustomerName.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblCustomerName.setText("Customer Name");
+
+        lblApptTime.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblApptTime.setText("Appointment Time");
+
+        lblTotalAmount.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblTotalAmount.setText("Total Amount");
+
+        lblPaymentStatus.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblPaymentStatus.setText("Payment Status");
+
+        txtApptDate.setBackground(new java.awt.Color(68, 68, 68));
+        txtApptDate.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtApptDate.setForeground(new java.awt.Color(237, 237, 237));
+        txtApptDate.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
+
+        txtAppliance.setBackground(new java.awt.Color(68, 68, 68));
+        txtAppliance.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtAppliance.setForeground(new java.awt.Color(237, 237, 237));
+        txtAppliance.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
+
+        txtPaymentDate.setEditable(false);
+        txtPaymentDate.setBackground(new java.awt.Color(68, 68, 68));
+        txtPaymentDate.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtPaymentDate.setForeground(new java.awt.Color(237, 237, 237));
+        txtPaymentDate.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
 
         txtApptFeedback.setBackground(new java.awt.Color(68, 68, 68));
         txtApptFeedback.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -216,201 +319,120 @@ public class APUHandleTask extends javax.swing.JFrame {
             }
         });
 
-        lblApptDate.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblApptDate.setText("Appointment Date:");
+        lblApptDate.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblApptDate.setText("Appointment Date");
 
-        lblTotalAmount.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblTotalAmount.setText("Total Amount:");
+        lblAppliance.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblAppliance.setText("Appliance");
 
-        lblAppliance.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblAppliance.setText("Appliance:");
+        lblPaymentAmount.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblPaymentAmount.setText("Payment Amount");
 
-        btnReset.setBackground(new java.awt.Color(23, 23, 23));
-        btnReset.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        btnReset.setForeground(new java.awt.Color(237, 237, 237));
-        btnReset.setText("Reset");
-        btnReset.setToolTipText("Button to reset every fields");
-        btnReset.setBorder(null);
-        btnReset.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnResetActionPerformed(evt);
-            }
-        });
+        lblPaymenDate.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblPaymenDate.setText("Payment Date");
 
-        lblCustomerName.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblCustomerName.setText("Customer Name:");
+        lblFeedback.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblFeedback.setText("Feedback");
 
-        lblApptTime.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblApptTime.setText("Appointment Time:");
-
-        lblPaymentAmount.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblPaymentAmount.setText("Payment Amount:");
-
-        lblPaymenDate.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblPaymenDate.setText("Payment Date:");
-
-        lblPaymentStatus.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblPaymentStatus.setText("Payment Status:");
-
-        lblFeedback.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblFeedback.setText("Feedback:");
-
-        btnPrintInvoice.setBackground(new java.awt.Color(23, 23, 23));
-        btnPrintInvoice.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        btnPrintInvoice.setForeground(new java.awt.Color(237, 237, 237));
-        btnPrintInvoice.setText("Print Invoice");
-        btnPrintInvoice.setToolTipText("Button to reset every fields");
-        btnPrintInvoice.setBorder(null);
-        btnPrintInvoice.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPrintInvoiceActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnlHandleTaskLayout = new javax.swing.GroupLayout(pnlHandleTask);
-        pnlHandleTask.setLayout(pnlHandleTaskLayout);
-        pnlHandleTaskLayout.setHorizontalGroup(
-            pnlHandleTaskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlHandleTaskLayout.createSequentialGroup()
-                .addGroup(pnlHandleTaskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlHandleTaskLayout.createSequentialGroup()
-                        .addGap(496, 496, 496)
-                        .addComponent(lblPageTitle))
-                    .addGroup(pnlHandleTaskLayout.createSequentialGroup()
-                        .addGap(226, 226, 226)
-                        .addComponent(lblApptID)
-                        .addGap(250, 250, 250)
-                        .addComponent(lblApptDate))
-                    .addGroup(pnlHandleTaskLayout.createSequentialGroup()
-                        .addGap(226, 226, 226)
-                        .addComponent(cmbApptID, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(116, 116, 116)
-                        .addComponent(txtApptDate, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlHandleTaskLayout.createSequentialGroup()
-                        .addGap(226, 226, 226)
-                        .addComponent(lblCustomerName)
-                        .addGap(242, 242, 242)
-                        .addComponent(lblAppliance))
-                    .addGroup(pnlHandleTaskLayout.createSequentialGroup()
-                        .addGap(226, 226, 226)
-                        .addComponent(txtCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(116, 116, 116)
-                        .addComponent(txtAppliance, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlHandleTaskLayout.createSequentialGroup()
-                        .addGap(226, 226, 226)
-                        .addComponent(lblApptTime)
-                        .addGap(227, 227, 227)
-                        .addComponent(lblPaymenDate))
-                    .addGroup(pnlHandleTaskLayout.createSequentialGroup()
-                        .addGap(226, 226, 226)
-                        .addComponent(txtApptTime, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(116, 116, 116)
-                        .addComponent(txtPaymentDate, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlHandleTaskLayout.createSequentialGroup()
-                        .addGap(226, 226, 226)
-                        .addComponent(lblTotalAmount)
-                        .addGap(263, 263, 263)
-                        .addComponent(lblPaymentAmount))
-                    .addGroup(pnlHandleTaskLayout.createSequentialGroup()
-                        .addGap(226, 226, 226)
-                        .addComponent(txttotalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(117, 117, 117)
-                        .addComponent(txtpaymentAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlHandleTaskLayout.createSequentialGroup()
-                        .addGap(230, 230, 230)
-                        .addGroup(pnlHandleTaskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlHandleTaskLayout.createSequentialGroup()
-                                .addComponent(lblPaymentStatus)
-                                .addGap(239, 239, 239)
-                                .addComponent(lblFeedback))
-                            .addGroup(pnlHandleTaskLayout.createSequentialGroup()
-                                .addComponent(cmbPaymentStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(110, 110, 110)
-                                .addGroup(pnlHandleTaskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(pnlHandleTaskLayout.createSequentialGroup()
-                                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(97, 97, 97)
-                                        .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(txtApptFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(pnlHandleTaskLayout.createSequentialGroup()
-                .addContainerGap(394, Short.MAX_VALUE)
-                .addComponent(btnPrintInvoice, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(812, 812, 812))
-        );
-        pnlHandleTaskLayout.setVerticalGroup(
-            pnlHandleTaskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlHandleTaskLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(lblPageTitle)
-                .addGap(41, 41, 41)
-                .addGroup(pnlHandleTaskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblApptID)
-                    .addComponent(lblApptDate))
-                .addGap(12, 12, 12)
-                .addGroup(pnlHandleTaskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cmbApptID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pnlHandleTaskLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(txtApptDate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(41, 41, 41)
-                .addGroup(pnlHandleTaskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblCustomerName)
-                    .addComponent(lblAppliance))
-                .addGap(6, 6, 6)
-                .addGroup(pnlHandleTaskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtAppliance, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addGroup(pnlHandleTaskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblApptTime)
-                    .addComponent(lblPaymenDate))
-                .addGap(6, 6, 6)
-                .addGroup(pnlHandleTaskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtApptTime, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPaymentDate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(pnlHandleTaskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlHandleTaskLayout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(lblPaymentAmount))
-                    .addGroup(pnlHandleTaskLayout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(lblTotalAmount)))
-                .addGap(18, 18, 18)
-                .addGroup(pnlHandleTaskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtpaymentAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txttotalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addGroup(pnlHandleTaskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(221, 221, 221)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblPaymentStatus)
-                    .addComponent(lblFeedback))
-                .addGap(18, 18, 18)
-                .addGroup(pnlHandleTaskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cmbPaymentStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtApptFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
-                .addGroup(pnlHandleTaskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPrintInvoice, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(57, Short.MAX_VALUE))
+                    .addComponent(lblTotalAmount)
+                    .addComponent(lblApptTime)
+                    .addComponent(lblCustomerName)
+                    .addComponent(lblApptID)
+                    .addComponent(cmbPaymentStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txttotalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtApptTime, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbApptID, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblApptDate)
+                            .addComponent(txtApptDate, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(245, 245, 245))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblAppliance)
+                            .addComponent(txtAppliance, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPaymenDate)
+                            .addComponent(txtPaymentDate, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPaymentAmount)
+                            .addComponent(txtpaymentAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblFeedback)
+                            .addComponent(txtApptFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(lblApptDate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtApptDate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblAppliance)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtAppliance, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblPaymenDate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtPaymentDate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblPaymentAmount)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtpaymentAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblFeedback)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtApptFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(lblApptID)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmbApptID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblCustomerName)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblApptTime)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtApptTime, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19)
+                        .addComponent(lblTotalAmount)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txttotalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblPaymentStatus)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmbPaymentStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlHandleTask, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlHandleTask, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        pnlHandleTask.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 1260, 470));
+
+        getContentPane().add(pnlHandleTask, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     // <editor-fold defaultstate="collapsed" desc="Methods">   
+    
+    private void setLogo() {
+        String sourcefolder = System.getProperty("user.dir") + "\\src\\icons\\";
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(sourcefolder + "AHHASCrsmol.png"));
+        this.setTitle("AHHASC Handle Tasks Page");
+
+    }
     
      private void loadUserProfile(){
         String[] matchedID = null;
@@ -430,6 +452,37 @@ public class APUHandleTask extends javax.swing.JFrame {
             //Logger.getLogger(.class.getName()).log(Level.SEVERE, null, ex);
         }
     } 
+      
+     private void loadAppoitnment(){
+        String[] matchedID = null;
+        FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
+        File appttext = new File(FileDir + "Appointment.txt");
+        atID = (String)cmbApptID.getSelectedItem();
+        Scanner intUser;
+        try {
+            intUser = new Scanner(appttext);
+            while (intUser.hasNext())
+            {
+             String bEntry = intUser.nextLine();
+             matchedID = bEntry.split(":");
+             matchedID[0] = matchedID[0].replace(apptPrefix, "");
+             if(matchedID[0].equals(atID)){
+                 cID = matchedID[1];
+                 tcID = matchedID[2];
+                 cmID = matchedID[3];
+                 custname = matchedID[4];
+                 appDate = matchedID[5];
+                 appTime = matchedID[6];
+                 applncs = matchedID[7];
+                 bDate = matchedID[8];
+                 
+             }
+                }
+            intUser.close();
+        } catch (FileNotFoundException ex) {
+            //Logger.getLogger(.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     }
      
     private void setAppointmentID(){
         // This is to ensure the entire method have access to borrow matchedID array
@@ -613,6 +666,7 @@ public class APUHandleTask extends javax.swing.JFrame {
                 
                          
                         JOptionPane.showMessageDialog(null, "Customer has paid for the service, balance is: " + balanceAmount, "Payment made", JOptionPane.INFORMATION_MESSAGE);
+                        printReceipt();
                     }
                     //JOptionPane.showMessageDialog(null, "Customer has paid for the service, balance is:RM" + balanceAmount, "Payment made", JOptionPane.INFORMATION_MESSAGE);
                     // Inserting the new information from the text fields into the book line
@@ -628,6 +682,93 @@ public class APUHandleTask extends javax.swing.JFrame {
             cdp.close();
         } catch (Exception ex) {
             highlightEmpty();
+            JOptionPane.showMessageDialog(null, "Invalid input! Please check your input to proceed.", "Invalid insertion detected!", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+      
+      private void updateApptStatus(){
+        // TODO add your handling code here:
+        try {
+            // Check if textfields are empty
+            //emptyFields();
+            // To get directory  
+            FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
+            // To get the book ID
+            //ApptID = (String) cmbApptID.getSelectedItem();
+            // To rename original book.txt to book.bak
+            File ApptOri = new File(FileDir + "Appointment.txt");
+            File ApptBack = new File(FileDir + "AppointmentBack.txt");
+            // To check if clientBak.txt is present or not
+            if (!ApptBack.exists()){
+                ApptOri.createNewFile();
+            }
+            // This is for debugging only!
+            // JOptionPane.showMessageDialog(null, "renamed");
+            // This is to rename the existing book.txt to clientBak.txt
+            ApptOri.renameTo(ApptBack);
+            // This is to open, find and replace a specific book record
+            // Requires temporary file to store current state
+            // FileWriter to write into a new file called book.txt
+            FileWriter cd = new FileWriter(FileDir + "Appointment.txt"); 
+            // PrintWriter to print into book.txt
+            PrintWriter cdp = new PrintWriter(cd); 
+            // This is to open and read clientBak.txt 
+            File appttxt = new File(FileDir + "AppointmentBack.txt");
+            // This is to instantiate the file opened earlier
+            Scanner inputFile = new Scanner(appttxt);
+            // This array is to contain all lines
+            String[] matchedID;
+            // This is only for debugging!
+            // boolean itWorked = false;
+            // Read lines from the file until no more are left.
+            while (inputFile.hasNext())
+            {
+                // This is for debugging only!
+                // JOptionPane.showMessageDialog(null, "In loop");
+                // Read the next line.
+                String bEntry = inputFile.nextLine();
+                // Split the line by using the delimiter ":" (semicolon) and store into array.
+                matchedID = bEntry.split(":");
+                // Check if the read line has current book ID
+                if (matchedID[0].equals(apptPrefix + atID)) {
+                        matchedID[1] = cID;
+                        matchedID[2] = tcID;
+                        matchedID[3] = cmID;
+                        matchedID[4] = custname;
+                        matchedID[5] = appDate;
+                        matchedID[6] = appTime; 
+                        matchedID[7] = applncs;
+                        matchedID[8] = bDate;
+                        matchedID[9] = "COMPLETED";
+                        matchedID[10] = "true";
+                       
+                    }
+                    //JOptionPane.showMessageDialog(null, "Customer has paid for the service, balance is:RM" + balanceAmount, "Payment made", JOptionPane.INFORMATION_MESSAGE);
+                    // Inserting the new information from the text fields into the book line
+                    cdp.println(matchedID[0] + ":"
+                          + matchedID[1] + ":"
+                          + matchedID[2] + ":"
+                          + matchedID[3] + ":"
+                          + matchedID[4] + ":"
+                          + matchedID[5] + ":"
+                          + matchedID[6] + ":"
+                          + matchedID[7] + ":"
+                          + matchedID[8] + ":"
+                          + matchedID[9] + ":"
+                          + matchedID[10]);
+                
+                         
+                        
+                   }
+                // Rewrite the new book.txt with values found in clientBak.txtcd
+            // Close the clientBak.txt reader
+            inputFile.close();
+            // This deletes clientBak.txt
+            ApptBack.delete();
+            // This closes the book.txt printer 
+            cdp.close();
+        } catch (Exception ex) {
+           //highlightEmpty();
             JOptionPane.showMessageDialog(null, "Invalid input! Please check your input to proceed.", "Invalid insertion detected!", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -791,34 +932,140 @@ public class APUHandleTask extends javax.swing.JFrame {
           tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
           tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
       
-          tbl.addCell(new Cell().add(new Paragraph("APPLIANCE").setFontColor(ColorConstants.WHITE)).setBackgroundColor(new DeviceRgb(66,133,244)));
-          tbl.addCell(new Cell().add(new Paragraph("APPOINTMENT TIME").setFontColor(ColorConstants.WHITE)).setBackgroundColor(new DeviceRgb(66,133,244)));
-          tbl.addCell(new Cell().add(new Paragraph("TOTAL AMOUNT").setFontColor(ColorConstants.WHITE)).setBackgroundColor(new DeviceRgb(66,133,244)));
+          
+          float itemColWidth[] = {403,200}; 
+          Table itemTable = new Table(itemColWidth);
+          
+          itemTable.addCell("Description").setBackgroundColor(new DeviceRgb(0,157,196)).setFontColor(new DeviceRgb(237,237,237)).setTextAlignment(CENTER);
+          itemTable.addCell("Amount").setBackgroundColor(new DeviceRgb(0,157,196)).setFontColor(new DeviceRgb(237,237,237)).setTextAlignment(CENTER);
           
           
+          Table dataTable = new Table(itemColWidth);
+          String APPLIANCE = txtAppliance.getText();
+          String ttlAmount = txttotalAmount.getText();
           
-
-       
-
-         
+          dataTable.addCell(APPLIANCE).setBackgroundColor(WHITE).setTextAlignment(CENTER);
+          dataTable.addCell(ttlAmount).setBackgroundColor(WHITE).setTextAlignment(CENTER);
            
-           
-            
-//            Style titlestyle = new Style();
-//            titlestyle.setBold()
-//                      .setFontSize(18f)
-//                      .setTextAlignment(com.itextpdf.layout.properties.TextAlignment.CENTER);
-//            
-//            String title = "Login Records of the Users Using the System";
-//            Paragraph doctitle = new Paragraph(title).addStyle(titlestyle);
-            
-            
-            
-            
+          
+          Table paymentTable = new Table(itemColWidth);
+          
+          paymentTable.addCell(new Cell().add(new Paragraph("Total Amount:")).setBorder(Border.NO_BORDER).setTextAlignment(RIGHT));
+          paymentTable.addCell(new Cell().add(new Paragraph(ttlAmount)).setBorder(Border.NO_BORDER).setTextAlignment(CENTER));
+          
+          Paragraph tc = new Paragraph("\n PAYMENT MUST BE MADE ASAP");
+          //tbl.addCell(new Cell().add(new Paragraph("test")));
            //write into the pdf
            document.add(tbl);
+           document.add(itemTable);
+           document.add(dataTable);
+           document.add(paymentTable);
+           document.add(tc);
            document.close();
-        JOptionPane.showMessageDialog(null, "Printed to PDF Successfully!", "Records Printed!", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Invoice created successfully", "Records Printed!", JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    private void printReceipt() throws IOException, FileNotFoundException{
+            
+            PdfWriter writer = new PdfWriter(receiptSource);
+            PdfDocument pdfdoc = new PdfDocument(writer);
+            Document document = new Document(pdfdoc);
+            pdfdoc.setDefaultPageSize(PageSize.A4);
+            
+           float width = 280f;
+           float columnWidth[] = {width, width};
+           Table tbl = new Table(columnWidth);
+          
+           
+          tbl.addCell(new Cell(1,2).add(new Paragraph("AHHASC").setFontSize(30f).setBold().setFontColor(new DeviceRgb(66, 133, 244))).setBorder(Border.NO_BORDER));
+
+          tbl.addCell(new Cell().add(new Paragraph("Danish & Irfan Service")).setBold().setBorder(Border.NO_BORDER).setTextAlignment(LEFT));
+          tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+          
+          tbl.addCell(new Cell().add(new Paragraph("0126764728")).setBold().setBorder(Border.NO_BORDER).setTextAlignment(LEFT));
+          
+          
+          tbl.addCell(new Cell().add(new Paragraph("\n")).setBorder(Border.NO_BORDER));
+          tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+          tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+          tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+          tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+          
+          
+         
+          Text textBilledTo = new Text("RECEIPT TO\n");
+          textBilledTo.setBold();
+          textBilledTo.setFontColor(new DeviceRgb(66, 133, 244));
+          Paragraph billedto = new Paragraph();
+          billedto.add(textBilledTo);
+          String customerName = txtCustomerName.getText();
+          billedto.add(customerName);
+          
+          tbl.addCell(new Cell().add(billedto).setBorder(Border.NO_BORDER));
+          tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+          
+          tbl.addCell(new Cell(2,1).add(new Paragraph("PAYMENT RECEIPT").setBold().setFontSize(24).setFontColor(new DeviceRgb(66, 133, 244))).setBorder(Border.NO_BORDER).setTextAlignment(LEFT));
+          tbl.addCell(new Cell().add(new Paragraph("\n")).setBorder(Border.NO_BORDER));
+          tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+          tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+          tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+          
+          Text textDateOfIssue = new Text("DATE OF ISSUE\n");
+          textDateOfIssue.setBold().setFontColor(new DeviceRgb(23,23,23));
+          Paragraph paragraphDateOfIssue = new Paragraph();
+          paragraphDateOfIssue.add(textDateOfIssue);
+          String invoiceiIssue = txtPaymentDate.getText();
+          paragraphDateOfIssue.add(invoiceiIssue);
+          
+          tbl.addCell(new Cell(3,1).add(paragraphDateOfIssue).setBorder(Border.NO_BORDER));
+          tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+          tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+          tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+      
+          
+          float itemColWidth[] = {400,200}; 
+          Table itemTable = new Table(itemColWidth);
+          
+          itemTable.addCell("Description").setBackgroundColor(new DeviceRgb(0,157,196)).setFontColor(new DeviceRgb(237,237,237)).setTextAlignment(CENTER);
+          itemTable.addCell("Amount").setBackgroundColor(new DeviceRgb(0,157,196)).setFontColor(new DeviceRgb(237,237,237)).setTextAlignment(CENTER);
+          
+          float dataColWidth[] = {420, 200};
+          Table dataTable = new Table(dataColWidth);
+          String APPLIANCE = txtAppliance.getText();
+          String ttlAmount = txttotalAmount.getText();
+          
+          String pymentAmount = txtpaymentAmount.getText();
+          
+          
+          
+          
+          dataTable.addCell(APPLIANCE).setBackgroundColor(WHITE).setTextAlignment(CENTER);
+          dataTable.addCell(ttlAmount).setBackgroundColor(WHITE).setTextAlignment(CENTER);
+           
+          
+          Table paymentTable = new Table(dataColWidth);
+          
+          paymentTable.addCell(new Cell().add(new Paragraph("Total Amount:")).setBorder(Border.NO_BORDER).setTextAlignment(RIGHT));
+          paymentTable.addCell(new Cell().add(new Paragraph(ttlAmount)).setBorder(Border.NO_BORDER).setTextAlignment(CENTER));
+          
+          paymentTable.addCell(new Cell().add(new Paragraph("Payment Amount:")).setBorder(Border.NO_BORDER).setTextAlignment(RIGHT));
+          paymentTable.addCell(new Cell().add(new Paragraph(pymentAmount)).setBorder(Border.NO_BORDER).setTextAlignment(CENTER));
+          
+          paymentTable.addCell(new Cell().add(new Paragraph("Balance Amount:")).setBorder(Border.NO_BORDER).setTextAlignment(RIGHT));
+          paymentTable.addCell(new Cell().add(new Paragraph(balanceAmount.toString())).setBorder(Border.NO_BORDER).setTextAlignment(CENTER));
+          
+          
+          
+          Paragraph tc = new Paragraph("\n Payment has been made by" + "" + customerName);
+          //tbl.addCell(new Cell().add(new Paragraph("test")));
+           //write into the pdf
+           document.add(tbl);
+           document.add(itemTable);
+           document.add(dataTable);
+           document.add(paymentTable);
+           document.add(tc);
+           document.close();
+        JOptionPane.showMessageDialog(null, "Receipt has been printed!", "Records printed into PDF!", JOptionPane.INFORMATION_MESSAGE);
     }
     
     private void setCurrentDate(){
@@ -930,8 +1177,8 @@ public class APUHandleTask extends javax.swing.JFrame {
     }
      
      private void initForm(){
-        this.setSize(1170,750);
-        this.setLocation(600,150);
+        this.setLocationRelativeTo(null);
+        setLogo();
        btnUpdate.setEnabled(false);
         loadUserProfile();
         setAppointmentID();
@@ -955,18 +1202,13 @@ public class APUHandleTask extends javax.swing.JFrame {
      }
     // </editor-fold>
     
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-       deHighlightEmpty();
-       updatePayment();
-       insertFeedback();
-    }//GEN-LAST:event_btnUpdateActionPerformed
-
     private void cmbApptIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbApptIDActionPerformed
         // TODO add your handling code here:
        // clearUser();
         if (cmbApptID.getSelectedIndex() > 0) {
             loadApptInfo();
-           btnUpdate.setEnabled(true);
+            loadAppoitnment();
+            btnUpdate.setEnabled(true);
             
         } else {
            btnUpdate.setEnabled(false);
@@ -986,11 +1228,6 @@ public class APUHandleTask extends javax.swing.JFrame {
         vd.runValidate(txtpaymentAmount, true);
     }//GEN-LAST:event_txtpaymentAmountFocusLost
 
-    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-        // TODO add your handling code here:
-        clearPayment();
-    }//GEN-LAST:event_btnResetActionPerformed
-
     private void btnPrintInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintInvoiceActionPerformed
         try {
             printInvoice();
@@ -998,6 +1235,25 @@ public class APUHandleTask extends javax.swing.JFrame {
             Logger.getLogger(APUHandleTask.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnPrintInvoiceActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        int selection = JOptionPane.showConfirmDialog(null, "Are you sure to go back?", "Back to Main Menu", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (selection == JOptionPane.YES_OPTION) {
+            new APUTCMenu().setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        deHighlightEmpty();
+       updatePayment();
+       insertFeedback();
+       updateApptStatus();
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        clearPayment();
+    }//GEN-LAST:event_btnResetActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1019,22 +1275,26 @@ public class APUHandleTask extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
+    private javax.swing.JPanel btnPnl;
     private javax.swing.JButton btnPrintInvoice;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> cmbApptID;
     private javax.swing.JComboBox<String> cmbPaymentStatus;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblAppliance;
     private javax.swing.JLabel lblApptDate;
     private javax.swing.JLabel lblApptID;
     private javax.swing.JLabel lblApptTime;
     private javax.swing.JLabel lblCustomerName;
+    private javax.swing.JLabel lblDesc;
     private javax.swing.JLabel lblFeedback;
-    private javax.swing.JLabel lblPageTitle;
     private javax.swing.JLabel lblPaymenDate;
     private javax.swing.JLabel lblPaymentAmount;
     private javax.swing.JLabel lblPaymentStatus;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JLabel lblTitle1;
     private javax.swing.JLabel lblTotalAmount;
     private javax.swing.JPanel pnlHandleTask;
     private javax.swing.JTextField txtAppliance;

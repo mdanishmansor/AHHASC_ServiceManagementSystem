@@ -1143,8 +1143,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
             }
         });
         txtPassword.getDocument().addDocumentListener(new APUDocumentListener() {
-            APUPasswordValidation vd = new APUPasswordValidation();
-
+            PasswordValidation  vd = new PasswordValidation ();
             @Override
             public void changedUpdate(DocumentEvent e) {
                 vd.runValidate(txtPassword);

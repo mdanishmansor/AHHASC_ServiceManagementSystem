@@ -388,22 +388,18 @@ public class ForgetPassword extends javax.swing.JFrame {
 
     }
 
-    private void inputCharacterValidation() {
+    private void inputCharacterValidation(){
         txtNewPass.getDocument().addDocumentListener(new APUDocumentListener() {
-            APUPasswordValidation vd = new APUPasswordValidation();
-
+            PasswordValidation vd = new PasswordValidation();
             @Override
-            public void changedUpdate(DocumentEvent e) {
+            public void changedUpdate(DocumentEvent e){
                 vd.runValidate(txtNewPass);
-                vd.setRegex("test");
-                vd.getRegex();
-            }
 
+            }
             @Override
             public void insertUpdate(DocumentEvent e) {
                 vd.runValidate(txtNewPass);
             }
-
             @Override
             public void removeUpdate(DocumentEvent e) {
                 vd.runValidate(txtNewPass);
@@ -411,18 +407,15 @@ public class ForgetPassword extends javax.swing.JFrame {
 
         });
         txtConfirmPass.getDocument().addDocumentListener(new APUDocumentListener() {
-            APUPasswordValidation vd = new APUPasswordValidation();
-
+            PasswordValidation vd = new PasswordValidation();
             @Override
-            public void changedUpdate(DocumentEvent e) {
+            public void changedUpdate(DocumentEvent e){
                 vd.runValidate(txtConfirmPass);
             }
-
             @Override
             public void insertUpdate(DocumentEvent e) {
                 vd.runValidate(txtConfirmPass);
             }
-
             @Override
             public void removeUpdate(DocumentEvent e) {
                 vd.runValidate(txtConfirmPass);
@@ -430,17 +423,14 @@ public class ForgetPassword extends javax.swing.JFrame {
         });
         txtUserID.getDocument().addDocumentListener(new APUDocumentListener() {
             UserIDValidation vd = new UserIDValidation();
-
             @Override
-            public void changedUpdate(DocumentEvent e) {
+            public void changedUpdate(DocumentEvent e){
                 vd.runValidate(txtUserID);
             }
-
             @Override
             public void insertUpdate(DocumentEvent e) {
                 vd.runValidate(txtUserID);
             }
-
             @Override
             public void removeUpdate(DocumentEvent e) {
                 vd.runValidate(txtUserID);

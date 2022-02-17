@@ -133,9 +133,9 @@ class APUUsernameValidation extends StringValidation {
 }
 
 // This subclass handles password validation
-class APUPasswordValidation extends StringValidation {
+class PasswordValidation extends StringValidation {
     
-    public APUPasswordValidation() {
+    public PasswordValidation() {
         super();
         setPopup("Invalid password!", "Password can only consist of letters, numbers and escaped symbols.");
         setRegex("^[-a-zA-Z0-9!@#$%^&*()\\{\\}\\[\\]\"\';\\\\/?|.,><~`_+=]+");

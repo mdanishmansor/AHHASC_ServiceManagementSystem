@@ -44,8 +44,6 @@ public class APUManageAppointment extends javax.swing.JFrame {
         initComponents();
         initForm();
     }
-    
-    
 
     //<editor-fold defaultstate="collapsed" desc="Methods">
     private void setLogo() {
@@ -378,11 +376,11 @@ public class APUManageAppointment extends javax.swing.JFrame {
 
     private void initForm() {
         this.setLocationRelativeTo(null);
+        setLogo();
         loadUserProfile();
         setAppointmentID();
         readCustData();
         readTechData();
-        setLogo();
         btnDelete.setEnabled(false);
         btnUpdate.setEnabled(false);
         appDateChooser.setEnabled(false);

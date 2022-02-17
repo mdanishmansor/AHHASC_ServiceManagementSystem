@@ -6,16 +6,7 @@
 package kxbjava;
 
 import com.formdev.flatlaf.FlatDarkLaf;
-import com.itextpdf.io.exceptions.IOException;
-import static com.itextpdf.kernel.colors.ColorConstants.BLACK;
-import static com.itextpdf.kernel.colors.ColorConstants.BLUE;
-import com.itextpdf.kernel.colors.DeviceRgb;
-import com.itextpdf.kernel.pdf.PdfDocument;
-import com.itextpdf.kernel.pdf.PdfWriter;
-import com.itextpdf.layout.Document;
-import com.itextpdf.layout.Style;
-import com.itextpdf.layout.element.Paragraph;
-import com.itextpdf.layout.element.Table;
+import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
@@ -50,6 +41,13 @@ public class ManageFeedback extends javax.swing.JFrame {
         initForm();
        
     }
+    
+    private void setLogo() {
+        String sourcefolder = System.getProperty("user.dir") + "\\src\\icons\\";
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(sourcefolder + "AHHASCrsmol.png"));
+        this.setTitle("AHHASC View and Manage Feedbacks Page");
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -62,30 +60,34 @@ public class ManageFeedback extends javax.swing.JFrame {
 
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jPanel1 = new javax.swing.JPanel();
-        lblTitle = new javax.swing.JLabel();
+        mainPnl = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblFeedback = new javax.swing.JTable();
         txtFeedback = new javax.swing.JTextField();
         btnFilter = new javax.swing.JButton();
-        btnUpdate = new javax.swing.JButton();
         txtFilter = new javax.swing.JTextField();
+        lblDesc = new javax.swing.JLabel();
+        lblTitle = new javax.swing.JLabel();
+        btnPnl = new javax.swing.JPanel();
+        btnUpdate = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
+        lblSearch = new javax.swing.JLabel();
+        lblSearch1 = new javax.swing.JLabel();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane2.setViewportView(jTextArea1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1280, 720));
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(68, 68, 68));
-
-        lblTitle.setBackground(new java.awt.Color(68, 68, 68));
-        lblTitle.setFont(new java.awt.Font("Arial", 0, 28)); // NOI18N
-        lblTitle.setForeground(new java.awt.Color(218, 0, 55));
-        lblTitle.setText("Manage Feedback");
+        mainPnl.setBackground(new java.awt.Color(68, 68, 68));
+        mainPnl.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblFeedback.setBackground(new java.awt.Color(68, 68, 68));
-        tblFeedback.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        tblFeedback.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
         tblFeedback.setForeground(new java.awt.Color(237, 237, 237));
         tblFeedback.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -117,33 +119,27 @@ public class ManageFeedback extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblFeedback);
 
+        mainPnl.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 1210, 302));
+
         txtFeedback.setBackground(new java.awt.Color(68, 68, 68));
-        txtFeedback.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtFeedback.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         txtFeedback.setForeground(new java.awt.Color(237, 237, 237));
         txtFeedback.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         txtFeedback.setCaretColor(new java.awt.Color(237, 237, 237));
+        mainPnl.add(txtFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 530, 750, 70));
 
-        btnFilter.setBackground(new java.awt.Color(23, 23, 23));
+        btnFilter.setBackground(new java.awt.Color(68, 68, 68));
         btnFilter.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         btnFilter.setForeground(new java.awt.Color(237, 237, 237));
-        btnFilter.setText("Filter Records");
+        btnFilter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/search.png"))); // NOI18N
         btnFilter.setBorder(null);
+        btnFilter.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFilterActionPerformed(evt);
             }
         });
-
-        btnUpdate.setBackground(new java.awt.Color(23, 23, 23));
-        btnUpdate.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        btnUpdate.setForeground(new java.awt.Color(237, 237, 237));
-        btnUpdate.setText("Update");
-        btnUpdate.setBorder(null);
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
-            }
-        });
+        mainPnl.add(btnFilter, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 30, 100, 100));
 
         txtFilter.setBackground(new java.awt.Color(68, 68, 68));
         txtFilter.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -155,60 +151,86 @@ public class ManageFeedback extends javax.swing.JFrame {
                 txtFilterActionPerformed(evt);
             }
         });
+        txtFilter.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                txtFilterPropertyChange(evt);
+            }
+        });
+        mainPnl.add(txtFilter, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 80, 422, 50));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(47, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(73, 73, 73)
-                        .addComponent(btnFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(202, 202, 202))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1204, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(157, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(204, 204, 204)
-                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(205, 205, 205))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(546, 546, 546)
-                .addComponent(lblTitle)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        lblDesc.setBackground(new java.awt.Color(68, 68, 68));
+        lblDesc.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
+        lblDesc.setForeground(new java.awt.Color(255, 255, 255));
+        lblDesc.setText("Search for a Feedback To View and Update");
+        mainPnl.add(lblDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
+
+        lblTitle.setBackground(new java.awt.Color(68, 68, 68));
+        lblTitle.setFont(new java.awt.Font("Segoe UI Variable", 1, 38)); // NOI18N
+        lblTitle.setForeground(new java.awt.Color(214, 41, 99));
+        lblTitle.setText("View and Manage Feedbacks");
+        mainPnl.add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
+
+        btnPnl.setBackground(new java.awt.Color(68, 68, 68));
+
+        btnUpdate.setBackground(new java.awt.Color(68, 68, 68));
+        btnUpdate.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
+        btnUpdate.setText("Update");
+        btnUpdate.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        btnUpdate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+
+        btnBack.setBackground(new java.awt.Color(68, 68, 68));
+        btnBack.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnBack.setForeground(new java.awt.Color(237, 237, 237));
+        btnBack.setText("Back");
+        btnBack.setToolTipText("Button to reset every fields");
+        btnBack.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        btnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout btnPnlLayout = new javax.swing.GroupLayout(btnPnl);
+        btnPnl.setLayout(btnPnlLayout);
+        btnPnlLayout.setHorizontalGroup(
+            btnPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnPnlLayout.createSequentialGroup()
+                .addContainerGap(793, Short.MAX_VALUE)
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(144, Short.MAX_VALUE))
+        btnPnlLayout.setVerticalGroup(
+            btnPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnPnlLayout.createSequentialGroup()
+                .addContainerGap(7, Short.MAX_VALUE)
+                .addGroup(btnPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        mainPnl.add(btnPnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 620, 1280, 100));
+
+        lblSearch.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblSearch.setForeground(new java.awt.Color(255, 255, 255));
+        lblSearch.setText("Provide Search Term");
+        mainPnl.add(lblSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 50, -1, 30));
+
+        lblSearch1.setFont(new java.awt.Font("Segoe UI Variable", 0, 36)); // NOI18N
+        lblSearch1.setForeground(new java.awt.Color(255, 255, 255));
+        lblSearch1.setText("Feedback:");
+        mainPnl.add(lblSearch1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 540, 170, 50));
+
+        getContentPane().add(mainPnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -229,11 +251,6 @@ public class ManageFeedback extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnFilterActionPerformed
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-     // TODO add your handling code here:
-     updateUserInfo();
-    }//GEN-LAST:event_btnUpdateActionPerformed
-
     private void txtFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFilterActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFilterActionPerformed
@@ -242,6 +259,26 @@ public class ManageFeedback extends javax.swing.JFrame {
         // TODO add your handling code here:
         selectRow();
     }//GEN-LAST:event_tblFeedbackMouseClicked
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        updateUserInfo();
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        int selection = JOptionPane.showConfirmDialog(null, "Are you sure to go back?", "Back to Main Menu", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (selection == JOptionPane.YES_OPTION) {
+            new APUCMMenu().setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void txtFilterPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_txtFilterPropertyChange
+        if(txtFilter.getText().equals("")) {
+            btnFilter.setEnabled(false);
+        } else {
+            btnFilter.setEnabled(true);
+        }
+    }//GEN-LAST:event_txtFilterPropertyChange
 
     // </editor-fold>
     
@@ -389,6 +426,9 @@ public class ManageFeedback extends javax.swing.JFrame {
             // This closes the book.txt printer 
             cdp.close();
             JOptionPane.showMessageDialog(null, "Client record has been updated!", "Client updated!", JOptionPane.INFORMATION_MESSAGE);
+            clearTable();
+            insertFeedbackRecords();
+            
            // loadUserInfo();
         } catch (Exception ex) {
             System.out.println(ex);
@@ -558,11 +598,11 @@ public class ManageFeedback extends javax.swing.JFrame {
     }
     private void showLoginButton(){
         if (filter){
-            btnFilter.setVisible(true);
+            btnFilter.setEnabled(true);
         }
         else
         {
-            btnFilter.setVisible(false);
+            btnFilter.setEnabled(false);
         }
      } 
     private void showLoginButton(JTextField txt){
@@ -590,12 +630,10 @@ public class ManageFeedback extends javax.swing.JFrame {
         }
     }     
      private void initForm() throws java.io.IOException{
-        //this.setSize(1170,750);
-        //this.setLocation(600,150);
-        //btnUpdate.setEnabled(false);
-       // btnDelete.setEnabled(false);
+         setLogo();
+        this.setLocationRelativeTo(null);
         insertFeedbackRecords();
-        btnFilter.setVisible(false);
+        btnFilter.setEnabled(false);
         // Set the initial value for new book
         // This anon class handles window closing event
          txtFeedback.getDocument().addDocumentListener(new APUDocumentListener(){
@@ -658,13 +696,18 @@ public class ManageFeedback extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnFilter;
+    private javax.swing.JPanel btnPnl;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel lblDesc;
+    private javax.swing.JLabel lblSearch;
+    private javax.swing.JLabel lblSearch1;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JPanel mainPnl;
     private javax.swing.JTable tblFeedback;
     private javax.swing.JTextField txtFeedback;
     private javax.swing.JTextField txtFilter;

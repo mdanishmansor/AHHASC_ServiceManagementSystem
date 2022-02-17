@@ -97,7 +97,6 @@ public class APUManageCustomer extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -107,7 +106,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
         lblDesc.setBackground(new java.awt.Color(68, 68, 68));
         lblDesc.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
         lblDesc.setForeground(new java.awt.Color(255, 255, 255));
-        lblDesc.setText("Select Your Appointment To Update");
+        lblDesc.setText("Update or Delete Customer Details ");
         jPanel1.add(lblDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
 
         lblTitle1.setBackground(new java.awt.Color(68, 68, 68));
@@ -121,7 +120,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
         btnRegister.setBackground(new java.awt.Color(68, 68, 68));
         btnRegister.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         btnRegister.setForeground(new java.awt.Color(237, 237, 237));
-        btnRegister.setText("Reset");
+        btnRegister.setText("Register");
         btnRegister.setToolTipText("Button to reset every fields");
         btnRegister.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         btnRegister.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -205,6 +204,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
         cmbCustID.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
         cmbCustID.setForeground(new java.awt.Color(255, 255, 255));
         cmbCustID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Existing Customer" }));
+        cmbCustID.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cmbCustID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbCustIDActionPerformed(evt);
@@ -332,6 +332,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
         cmbGender.setForeground(new java.awt.Color(255, 255, 255));
         cmbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Gender", "Male", "Female" }));
         cmbGender.setToolTipText("Customer Gender");
+        cmbGender.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cmbGender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbGenderActionPerformed(evt);
@@ -848,6 +849,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Validation Methods">
     private void emptyFields() throws Exception {
         EmailValidation vd = new EmailValidation();
+        DOBValidation vds = new DOBValidation();
 
         if ("".equals(txtFullName.getText())) {
             throw new Exception("Empty customer name");
@@ -867,7 +869,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
         if ("".equals(txtManagerID.getText())) {
             throw new Exception("Empty Manager ID");
         }
-        if (vd.runValidate(txtDOB, false)) {
+        if (vds.runValidate(txtDOB, false)) {
             throw new Exception("Invalid DOB format");
         }
         if (vd.runValidate(txtEmail, false)) {
