@@ -7,6 +7,7 @@ package kxbjava;
 
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Color;
+import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
@@ -22,8 +23,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
-import java.time.format.DateTimeFormatter;  
-import java.time.LocalDateTime; 
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.event.DocumentEvent;
@@ -33,14 +34,13 @@ import javax.swing.event.DocumentEvent;
  * @author User
  */
 public class APUManageCustomer extends javax.swing.JFrame {
-    
+
     private final String CustPrefix = "CUST";
     private String FileDir, CustID, uID, uUsername;
     private int newCustID;
     private DefaultComboBoxModel CustList;
-    private final Color ogtxt = new Color(237,237,237);
-            
-    
+    private final Color ogtxt = new Color(237, 237, 237);
+
     /**
      * Creates new form APUManageUserProfile
      */
@@ -48,7 +48,14 @@ public class APUManageCustomer extends javax.swing.JFrame {
         initComponents();
         loadUserProfile();
         initForm();
-        
+
+    }
+    
+    private void setLogo() {
+        String sourcefolder = System.getProperty("user.dir") + "\\src\\icons\\";
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(sourcefolder + "AHHASCrsmol.png"));
+        this.setTitle("AHHASC Manage Customers Details Page");
+
     }
 
     /**
@@ -61,108 +68,142 @@ public class APUManageCustomer extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        lblTitle = new javax.swing.JLabel();
-        cmbGender = new javax.swing.JComboBox<>();
-        txtDOB = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txaHomeAddress = new javax.swing.JTextArea();
-        txtManagerID = new javax.swing.JTextField();
+        lblDesc = new javax.swing.JLabel();
+        lblTitle1 = new javax.swing.JLabel();
+        btnPnl = new javax.swing.JPanel();
         btnRegister = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
         cmbCustID = new javax.swing.JComboBox<>();
         txtFullName = new javax.swing.JTextField();
-        lblCustomerID = new javax.swing.JLabel();
-        lblHomeAddress = new javax.swing.JLabel();
-        lblFullName = new javax.swing.JLabel();
-        lblGender = new javax.swing.JLabel();
-        lblManagerID = new javax.swing.JLabel();
-        lblPhoneNumber = new javax.swing.JLabel();
-        lblDOB = new javax.swing.JLabel();
-        lblEmail = new javax.swing.JLabel();
-        txtPhoneNumber = new javax.swing.JFormattedTextField();
         txtEmail = new javax.swing.JTextField();
+        txtDOB = new javax.swing.JTextField();
+        txtPhoneNumber = new javax.swing.JFormattedTextField();
+        lblCustomerID = new javax.swing.JLabel();
+        lblFullName = new javax.swing.JLabel();
+        lblEmail = new javax.swing.JLabel();
+        lblDOB = new javax.swing.JLabel();
+        lblPhoneNumber = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        txtManagerID = new javax.swing.JTextField();
+        cmbGender = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txaHomeAddress = new javax.swing.JTextArea();
+        lblManagerID = new javax.swing.JLabel();
+        lblGender = new javax.swing.JLabel();
+        lblHomeAddress = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1280, 720));
+        setPreferredSize(new java.awt.Dimension(1280, 720));
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(68, 68, 68));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblTitle.setBackground(new java.awt.Color(68, 68, 68));
-        lblTitle.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        lblTitle.setForeground(new java.awt.Color(218, 0, 55));
-        lblTitle.setText("Customer Management");
+        lblDesc.setBackground(new java.awt.Color(68, 68, 68));
+        lblDesc.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
+        lblDesc.setForeground(new java.awt.Color(255, 255, 255));
+        lblDesc.setText("Select Your Appointment To Update");
+        jPanel1.add(lblDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
 
-        cmbGender.setBackground(new java.awt.Color(8, 217, 214));
-        cmbGender.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        cmbGender.setForeground(new java.awt.Color(68, 68, 68));
-        cmbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Gender", "Male", "Female" }));
-        cmbGender.setToolTipText("Customer Gender");
-        cmbGender.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbGenderActionPerformed(evt);
-            }
-        });
+        lblTitle1.setBackground(new java.awt.Color(68, 68, 68));
+        lblTitle1.setFont(new java.awt.Font("Segoe UI Variable", 1, 38)); // NOI18N
+        lblTitle1.setForeground(new java.awt.Color(214, 41, 99));
+        lblTitle1.setText("Manage Customers Details");
+        jPanel1.add(lblTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
 
-        txtDOB.setBackground(new java.awt.Color(68, 68, 68));
-        txtDOB.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        txtDOB.setToolTipText("Customer Email");
-        txtDOB.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
-        txtDOB.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtDOBFocusLost(evt);
-            }
-        });
+        btnPnl.setBackground(new java.awt.Color(68, 68, 68));
 
-        txaHomeAddress.setBackground(new java.awt.Color(68, 68, 68));
-        txaHomeAddress.setColumns(20);
-        txaHomeAddress.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        txaHomeAddress.setForeground(new java.awt.Color(237, 237, 237));
-        txaHomeAddress.setRows(5);
-        txaHomeAddress.setToolTipText("Customer Home Address");
-        txaHomeAddress.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(237, 237, 237)));
-        jScrollPane1.setViewportView(txaHomeAddress);
-
-        txtManagerID.setEditable(false);
-        txtManagerID.setBackground(new java.awt.Color(68, 68, 68));
-        txtManagerID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        txtManagerID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
-
-        btnRegister.setBackground(new java.awt.Color(23, 23, 23));
+        btnRegister.setBackground(new java.awt.Color(68, 68, 68));
         btnRegister.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         btnRegister.setForeground(new java.awt.Color(237, 237, 237));
-        btnRegister.setText("Register");
-        btnRegister.setBorder(null);
+        btnRegister.setText("Reset");
+        btnRegister.setToolTipText("Button to reset every fields");
+        btnRegister.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        btnRegister.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRegister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegisterActionPerformed(evt);
             }
         });
 
-        btnUpdate.setBackground(new java.awt.Color(23, 23, 23));
+        btnBack.setBackground(new java.awt.Color(68, 68, 68));
+        btnBack.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnBack.setForeground(new java.awt.Color(237, 237, 237));
+        btnBack.setText("Back");
+        btnBack.setToolTipText("Button to reset every fields");
+        btnBack.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        btnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
+        btnUpdate.setBackground(new java.awt.Color(68, 68, 68));
         btnUpdate.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         btnUpdate.setForeground(new java.awt.Color(237, 237, 237));
         btnUpdate.setText("Update");
-        btnUpdate.setBorder(null);
+        btnUpdate.setToolTipText("Button to reset every fields");
+        btnUpdate.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        btnUpdate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
             }
         });
 
-        btnDelete.setBackground(new java.awt.Color(23, 23, 23));
+        btnDelete.setBackground(new java.awt.Color(68, 68, 68));
         btnDelete.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         btnDelete.setForeground(new java.awt.Color(237, 237, 237));
         btnDelete.setText("Delete");
-        btnDelete.setBorder(null);
+        btnDelete.setToolTipText("Button to reset every fields");
+        btnDelete.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        btnDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
             }
         });
 
-        cmbCustID.setBackground(new java.awt.Color(8, 217, 214));
-        cmbCustID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        cmbCustID.setForeground(new java.awt.Color(68, 68, 68));
+        javax.swing.GroupLayout btnPnlLayout = new javax.swing.GroupLayout(btnPnl);
+        btnPnl.setLayout(btnPnlLayout);
+        btnPnlLayout.setHorizontalGroup(
+            btnPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnPnlLayout.createSequentialGroup()
+                .addContainerGap(317, Short.MAX_VALUE)
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
+        );
+        btnPnlLayout.setVerticalGroup(
+            btnPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnPnlLayout.createSequentialGroup()
+                .addContainerGap(7, Short.MAX_VALUE)
+                .addGroup(btnPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29))
+        );
+
+        jPanel1.add(btnPnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 620, 1280, 100));
+
+        jPanel3.setBackground(new java.awt.Color(68, 68, 68));
+
+        cmbCustID.setBackground(new java.awt.Color(68, 68, 68));
+        cmbCustID.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        cmbCustID.setForeground(new java.awt.Color(255, 255, 255));
         cmbCustID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Existing Customer" }));
         cmbCustID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,49 +212,29 @@ public class APUManageCustomer extends javax.swing.JFrame {
         });
 
         txtFullName.setBackground(new java.awt.Color(68, 68, 68));
-        txtFullName.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtFullName.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
         txtFullName.setToolTipText("Customer Full Name");
         txtFullName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
 
-        lblCustomerID.setBackground(new java.awt.Color(68, 68, 68));
-        lblCustomerID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblCustomerID.setForeground(new java.awt.Color(237, 237, 237));
-        lblCustomerID.setText("Customer ID:");
+        txtEmail.setBackground(new java.awt.Color(68, 68, 68));
+        txtEmail.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        txtEmail.setToolTipText("Customer Email");
+        txtEmail.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
+        txtEmail.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtEmailFocusLost(evt);
+            }
+        });
 
-        lblHomeAddress.setBackground(new java.awt.Color(68, 68, 68));
-        lblHomeAddress.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblHomeAddress.setForeground(new java.awt.Color(237, 237, 237));
-        lblHomeAddress.setText("Home Address:");
-
-        lblFullName.setBackground(new java.awt.Color(68, 68, 68));
-        lblFullName.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblFullName.setForeground(new java.awt.Color(237, 237, 237));
-        lblFullName.setText("Full Name:");
-
-        lblGender.setBackground(new java.awt.Color(68, 68, 68));
-        lblGender.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblGender.setForeground(new java.awt.Color(237, 237, 237));
-        lblGender.setText("Gender:");
-
-        lblManagerID.setBackground(new java.awt.Color(68, 68, 68));
-        lblManagerID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblManagerID.setForeground(new java.awt.Color(237, 237, 237));
-        lblManagerID.setText("Manager ID:");
-
-        lblPhoneNumber.setBackground(new java.awt.Color(68, 68, 68));
-        lblPhoneNumber.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblPhoneNumber.setForeground(new java.awt.Color(237, 237, 237));
-        lblPhoneNumber.setText("Phone Number:");
-
-        lblDOB.setBackground(new java.awt.Color(68, 68, 68));
-        lblDOB.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblDOB.setForeground(new java.awt.Color(237, 237, 237));
-        lblDOB.setText("Date of Birth:");
-
-        lblEmail.setBackground(new java.awt.Color(68, 68, 68));
-        lblEmail.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblEmail.setForeground(new java.awt.Color(237, 237, 237));
-        lblEmail.setText("Email:");
+        txtDOB.setBackground(new java.awt.Color(68, 68, 68));
+        txtDOB.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        txtDOB.setToolTipText("Customer Email");
+        txtDOB.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
+        txtDOB.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtDOBFocusLost(evt);
+            }
+        });
 
         txtPhoneNumber.setBackground(new java.awt.Color(68, 68, 68));
         txtPhoneNumber.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(222, 222, 222)));
@@ -227,159 +248,181 @@ public class APUManageCustomer extends javax.swing.JFrame {
         txtPhoneNumber.setToolTipText("Customer Phone Number");
         txtPhoneNumber.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
 
-        txtEmail.setBackground(new java.awt.Color(68, 68, 68));
-        txtEmail.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        txtEmail.setToolTipText("Customer Email");
-        txtEmail.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
-        txtEmail.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtEmailFocusLost(evt);
+        lblCustomerID.setBackground(new java.awt.Color(68, 68, 68));
+        lblCustomerID.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblCustomerID.setForeground(new java.awt.Color(237, 237, 237));
+        lblCustomerID.setText("Customer ID");
+
+        lblFullName.setBackground(new java.awt.Color(68, 68, 68));
+        lblFullName.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblFullName.setForeground(new java.awt.Color(237, 237, 237));
+        lblFullName.setText("Full Name");
+
+        lblEmail.setBackground(new java.awt.Color(68, 68, 68));
+        lblEmail.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblEmail.setForeground(new java.awt.Color(237, 237, 237));
+        lblEmail.setText("Email");
+
+        lblDOB.setBackground(new java.awt.Color(68, 68, 68));
+        lblDOB.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblDOB.setForeground(new java.awt.Color(237, 237, 237));
+        lblDOB.setText("Date of Birth");
+
+        lblPhoneNumber.setBackground(new java.awt.Color(68, 68, 68));
+        lblPhoneNumber.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblPhoneNumber.setForeground(new java.awt.Color(237, 237, 237));
+        lblPhoneNumber.setText("Phone Number");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(224, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblPhoneNumber)
+                    .addComponent(lblDOB)
+                    .addComponent(lblEmail)
+                    .addComponent(lblFullName)
+                    .addComponent(lblCustomerID)
+                    .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDOB, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbCustID, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblCustomerID)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cmbCustID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21)
+                .addComponent(lblFullName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblEmail)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
+                .addComponent(lblDOB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtDOB, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblPhoneNumber)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 630, 470));
+
+        jPanel4.setBackground(new java.awt.Color(68, 68, 68));
+
+        txtManagerID.setEditable(false);
+        txtManagerID.setBackground(new java.awt.Color(68, 68, 68));
+        txtManagerID.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        txtManagerID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
+
+        cmbGender.setBackground(new java.awt.Color(68, 68, 68));
+        cmbGender.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        cmbGender.setForeground(new java.awt.Color(255, 255, 255));
+        cmbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Gender", "Male", "Female" }));
+        cmbGender.setToolTipText("Customer Gender");
+        cmbGender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbGenderActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(450, 450, 450)
-                        .addComponent(lblTitle))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(250, 250, 250)
-                        .addComponent(lblCustomerID)
-                        .addGap(296, 296, 296)
-                        .addComponent(lblFullName))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(357, 357, 357)
-                        .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(74, 74, 74)
-                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62)
-                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(250, 250, 250)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(5, 5, 5)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblPhoneNumber)
-                                    .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblGender)
-                                    .addComponent(txtManagerID, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblManagerID)
-                                    .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(136, 136, 136)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblHomeAddress)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(cmbCustID, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(141, 141, 141)
-                                .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(259, 259, 259)
-                        .addComponent(lblEmail)
-                        .addGap(342, 342, 342)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtDOB, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblDOB))))
-                .addContainerGap(259, Short.MAX_VALUE))
+        txaHomeAddress.setBackground(new java.awt.Color(40, 40, 40));
+        txaHomeAddress.setColumns(20);
+        txaHomeAddress.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        txaHomeAddress.setForeground(new java.awt.Color(237, 237, 237));
+        txaHomeAddress.setRows(5);
+        txaHomeAddress.setToolTipText("Customer Home Address");
+        txaHomeAddress.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
+        jScrollPane1.setViewportView(txaHomeAddress);
+
+        lblManagerID.setBackground(new java.awt.Color(68, 68, 68));
+        lblManagerID.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblManagerID.setForeground(new java.awt.Color(237, 237, 237));
+        lblManagerID.setText("Manager ID");
+
+        lblGender.setBackground(new java.awt.Color(68, 68, 68));
+        lblGender.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblGender.setForeground(new java.awt.Color(237, 237, 237));
+        lblGender.setText("Gender:");
+
+        lblHomeAddress.setBackground(new java.awt.Color(68, 68, 68));
+        lblHomeAddress.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblHomeAddress.setForeground(new java.awt.Color(237, 237, 237));
+        lblHomeAddress.setText("Home Address");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(86, 86, 86)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblHomeAddress)
+                    .addComponent(lblGender)
+                    .addComponent(lblManagerID)
+                    .addComponent(cmbGender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtManagerID)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(194, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addComponent(lblTitle)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCustomerID)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(lblFullName)))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cmbCustID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(lblHomeAddress)
-                        .addGap(9, 9, 9))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblPhoneNumber)))
-                .addGap(16, 16, 16)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(13, 13, 13)
-                        .addComponent(lblGender)
-                        .addGap(18, 18, 18)
-                        .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(lblDOB))
-                    .addComponent(lblEmail))
-                .addGap(43, 43, 43)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDOB, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(lblManagerID)
-                .addGap(40, 40, 40)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtManagerID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGap(21, 21, 21)
+                .addComponent(lblGender)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21)
+                .addComponent(lblHomeAddress)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 150, 640, 470));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
     //<editor-fold defaultstate="collapsed" desc="Methods">
-    
-    private void loadUserProfile(){
+    private void loadUserProfile() {
         String[] matchedID = null;
         FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
         File usertext = new File(FileDir + "UserCache.txt");
         Scanner intUser;
         try {
             intUser = new Scanner(usertext);
-            while (intUser.hasNext())
-            {
-             String bEntry = intUser.nextLine();
-             matchedID = bEntry.split(":");
-             uID = matchedID[0];
-             uUsername = matchedID[3];
-                }
+            while (intUser.hasNext()) {
+                String bEntry = intUser.nextLine();
+                matchedID = bEntry.split(":");
+                uID = matchedID[0];
+                uUsername = matchedID[3];
+            }
             intUser.close();
         } catch (FileNotFoundException ex) {
             //Logger.getLogger(.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    private void setCustomerID(){
+
+    private void setCustomerID() {
         // This is to ensure the entire method have access to borrow matchedID array
         String[] matchedID = null;
         CustList = new DefaultComboBoxModel();
@@ -401,7 +444,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
         // For debugging purpose only
         // JOptionPane.showMessageDialog(null, bID);
         File customertxt = new File(FileDir + "Customer.txt");
-        
+
         Scanner intCustomer;
         try {
             // This part loads all book information
@@ -409,8 +452,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
             // This is to increment the discovered client assignment index
             int i = 0;
             // Read lines from the file until no more are left.
-            while (intCustomer.hasNext())
-            {
+            while (intCustomer.hasNext()) {
                 // Read the next line.
                 String bEntry = intCustomer.nextLine();
                 // Split the line by using the delimiterÂ ":" (semicolon) and store into array.
@@ -453,9 +495,9 @@ public class APUManageCustomer extends javax.swing.JFrame {
             //Logger.getLogger(unnamedBorrowMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-     //
-     private void custIDIncrementor(){
+
+    //
+    private void custIDIncrementor() {
         // This is to ensure the entire method have access to the matchedID array
         String[] matchedID = null;
         // This flag is to check if the while loop is triggered or not. Triggered while loop indicates presence of records but relevance might not
@@ -472,20 +514,19 @@ public class APUManageCustomer extends javax.swing.JFrame {
             try {
                 inputFile = new Scanner(customertxt);
                 // Read lines from the file until no more are left.
-                while (inputFile.hasNext())
-                {
-                   // Read the next line.
-                   String bEntry = inputFile.nextLine();
-                   // Split the line by using the delimiterÂ ":" (semicolon) and store into array.
-                   matchedID = bEntry.split(":");
-                   String temptype = null;
+                while (inputFile.hasNext()) {
+                    // Read the next line.
+                    String bEntry = inputFile.nextLine();
+                    // Split the line by using the delimiterÂ ":" (semicolon) and store into array.
+                    matchedID = bEntry.split(":");
+                    String temptype = null;
 //                   if (matchedID[0].contains("STA")) {
 //                       temptype = "STA";
 //                   } else if (matchedID[0].contains("STU")) {
 //                       temptype = "STU";
 //                   }
-                   matchedID[0] = matchedID[0].replace(CustPrefix, "");
-                   hasRecord = true;
+                    matchedID[0] = matchedID[0].replace(CustPrefix, "");
+                    hasRecord = true;
                 }
                 inputFile.close();
                 if (!hasRecord) {
@@ -498,13 +539,13 @@ public class APUManageCustomer extends javax.swing.JFrame {
             } catch (FileNotFoundException ex) {
                 //Logger.getLogger(unnamedBorrowMenu.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
             JOptionPane.showMessageDialog(null, "Invalid input! Customer can only consist of numbers", "Invalid input type!", JOptionPane.ERROR_MESSAGE);
         }
     }
-     private void loadCustomerInfo(){
+
+    private void loadCustomerInfo() {
         // Assigning the cID to the selected index value
         CustID = (String) cmbCustID.getSelectedItem();
         // This is to ensure the entire method have access to borrow matchedID array
@@ -514,24 +555,23 @@ public class APUManageCustomer extends javax.swing.JFrame {
         // JOptionPane.showMessageDialog(null, bID);
         File customertxt = new File(FileDir + "Customer.txt");
         Scanner intCustomer;
-        
+
         try {
             // This part loads all book information
             intCustomer = new Scanner(customertxt);
             // Read lines from the file until no more are left.
-            while (intCustomer.hasNext())
-            {
+            while (intCustomer.hasNext()) {
                 // Read the next line.
                 String bEntry = intCustomer.nextLine();
                 // Split the line by using the delimiter ":" (semicolon) and store into array.
                 matchedID = bEntry.split(":");
                 matchedID[0] = matchedID[0].replace(CustPrefix, "");
-                
+
                 // JOptionPane.showMessageDialog(null, i);
                 if (cmbCustID.getSelectedItem().equals(matchedID[0])) {
                     txtManagerID.setText(matchedID[1]);
                     txtFullName.setText(matchedID[2]);
-                    
+
                     txtPhoneNumber.setText(matchedID[3]);
                     txaHomeAddress.setText(matchedID[4]);
                     switch (matchedID[5]) {
@@ -550,11 +590,11 @@ public class APUManageCustomer extends javax.swing.JFrame {
             }
             intCustomer.close();
         } catch (FileNotFoundException ex) {
-           Logger.getLogger(APUManageCustomer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(APUManageCustomer.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-     
-    private void registerCustomer(){
+
+    private void registerCustomer() {
         // Declaring file extension used
         FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
         // Formatting ID into formal 6-digit mask
@@ -579,20 +619,20 @@ public class APUManageCustomer extends javax.swing.JFrame {
             // FileWriter and PrintWriter to create and write into book.txt
             try {
                 // FileWriter to write into a new file called client.txt
-                FileWriter cd = new FileWriter(FileDir + "Customer.txt", true); 
+                FileWriter cd = new FileWriter(FileDir + "Customer.txt", true);
                 // PrintWriter to print into client.txt
-                PrintWriter cdp = new PrintWriter(cd); 
+                PrintWriter cdp = new PrintWriter(cd);
                 // To print the line into Borrowing textfile
-                cdp.println(CustPrefix + CustID + ":" +
-                            uID + ":" +
-                            CustFullName + ":" +
-                            CustPhoneNumber + ":" +
-                            CustAddress + ":" +
-                            CustGender + ":" +
-                            CustEmail + ":" + 
-                            CustDOB + ":" +
-                             "true"); //true boolean indicating the user is exisiting (non-deleted)
-                
+                cdp.println(CustPrefix + CustID + ":"
+                        + uID + ":"
+                        + CustFullName + ":"
+                        + CustPhoneNumber + ":"
+                        + CustAddress + ":"
+                        + CustGender + ":"
+                        + CustEmail + ":"
+                        + CustDOB + ":"
+                        + "true"); //true boolean indicating the user is exisiting (non-deleted)
+
                 cdp.close();
                 cd.close();
                 // To display completed borrowing process status
@@ -608,15 +648,15 @@ public class APUManageCustomer extends javax.swing.JFrame {
             } catch (IOException ex) {
                 //Logger.getLogger(unnamedBorrowMenu.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             highlightEmpty();
             JOptionPane.showMessageDialog(null, "Invalid input! Please check your input to proceed.", "Invalid insertion detected!", JOptionPane.ERROR_MESSAGE);
             // Continue with displaying which field was affected. ensure it appears before the mnessagebox
-            
-        }      
+
+        }
     }
-    private void updateCustomerInfo(){
+
+    private void updateCustomerInfo() {
         // TODO add your handling code here:
         try {
             // Check if textfields are empty
@@ -629,7 +669,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
             File customerOri = new File(FileDir + "Customer.txt");
             File customerBack = new File(FileDir + "CustomerBack.txt");
             // To check if clientBak.txt is present or not
-            if (!customerBack.exists()){
+            if (!customerBack.exists()) {
                 customerOri.createNewFile();
             }
             // This is for debugging only!
@@ -639,9 +679,9 @@ public class APUManageCustomer extends javax.swing.JFrame {
             // This is to open, find and replace a specific book record
             // Requires temporary file to store current state
             // FileWriter to write into a new file called book.txt
-            FileWriter cd = new FileWriter(FileDir + "Customer.txt"); 
+            FileWriter cd = new FileWriter(FileDir + "Customer.txt");
             // PrintWriter to print into book.txt
-            PrintWriter cdp = new PrintWriter(cd); 
+            PrintWriter cdp = new PrintWriter(cd);
             // This is to open and read clientBak.txt 
             File customertxt = new File(FileDir + "customerBack.txt");
             // This is to instantiate the file opened earlier
@@ -651,8 +691,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
             // This is only for debugging!
             // boolean itWorked = false;
             // Read lines from the file until no more are left.
-            while (inputFile.hasNext())
-            {
+            while (inputFile.hasNext()) {
                 // This is for debugging only!
                 // JOptionPane.showMessageDialog(null, "In loop");
                 // Read the next line.
@@ -673,15 +712,15 @@ public class APUManageCustomer extends javax.swing.JFrame {
                     // JOptionPane.showMessageDialog(null, "Yes it worked");
                 }
                 // Rewrite the new book.txt with values found in clientBak.txt
-                cdp.println(matchedID[0] + ":" +
-                            matchedID[1] + ":" +
-                            matchedID[2] + ":" +
-                            matchedID[3] + ":" +
-                            matchedID[4] + ":" +
-                            matchedID[5] + ":" +
-                            matchedID[6] + ":" +
-                            matchedID[7] + ":" +
-                            matchedID[8]);
+                cdp.println(matchedID[0] + ":"
+                        + matchedID[1] + ":"
+                        + matchedID[2] + ":"
+                        + matchedID[3] + ":"
+                        + matchedID[4] + ":"
+                        + matchedID[5] + ":"
+                        + matchedID[6] + ":"
+                        + matchedID[7] + ":"
+                        + matchedID[8]);
 
             }
             // Close the clientBak.txt reader
@@ -697,15 +736,15 @@ public class APUManageCustomer extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Invalid input! Please check your input to proceed.", "Invalid insertion detected!", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-    private void deleteCustomer(){
+
+    private void deleteCustomer() {
         // TODO add your handling code here:
         try {
             // To rename original book.txt to book.bak
             File customerOri = new File(FileDir + "Customer.txt");
             File customerBack = new File(FileDir + "CustomerBack.txt");
             // To check if clientBak.txt is present or not
-            if (!customerBack.exists()){
+            if (!customerBack.exists()) {
                 customerOri.createNewFile();
             }
             // This is for debugging only!
@@ -715,9 +754,9 @@ public class APUManageCustomer extends javax.swing.JFrame {
             // This is to open, find and replace a specific book record
             // Requires temporary file to store current state
             // FileWriter to write into a new file called book.txt
-            FileWriter cd = new FileWriter(FileDir + "Customer.txt"); 
+            FileWriter cd = new FileWriter(FileDir + "Customer.txt");
             // PrintWriter to print into book.txt
-            PrintWriter cdp = new PrintWriter(cd); 
+            PrintWriter cdp = new PrintWriter(cd);
             // This is to open and read clientBak.txt 
             File customertxt = new File(FileDir + "CustomerBack.txt");
             // This is to instantiate the file opened earlier
@@ -727,8 +766,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
             // This is only for debugging!
             // boolean itWorked = false;
             // Read lines from the file until no more are left.
-            while (inputFile.hasNext())
-            {
+            while (inputFile.hasNext()) {
                 // This is for debugging only!
                 // JOptionPane.showMessageDialog(null, "In loop");
                 // Read the next line.
@@ -742,15 +780,15 @@ public class APUManageCustomer extends javax.swing.JFrame {
                     // JOptionPane.showMessageDialog(null, "Yes it worked");
                 }
                 // Rewrite the new book.txt with values found in clientBak.txt
-                cdp.println(matchedID[0] + ":" +
-                            matchedID[1] + ":" +
-                            matchedID[2] + ":" +
-                            matchedID[3] + ":" +
-                            matchedID[4] + ":" +
-                            matchedID[5] + ":" +
-                            matchedID[6] + ":" +
-                            matchedID[7] + ":" +
-                            matchedID[8]);
+                cdp.println(matchedID[0] + ":"
+                        + matchedID[1] + ":"
+                        + matchedID[2] + ":"
+                        + matchedID[3] + ":"
+                        + matchedID[4] + ":"
+                        + matchedID[5] + ":"
+                        + matchedID[6] + ":"
+                        + matchedID[7] + ":"
+                        + matchedID[8]);
 
             }
             // Close the clientBak.txt reader
@@ -760,39 +798,39 @@ public class APUManageCustomer extends javax.swing.JFrame {
             // This closes the book.txt printer 
             cdp.close();
             JOptionPane.showMessageDialog(null, "Customer record has been deleted!", "Customer deleted!", JOptionPane.INFORMATION_MESSAGE);
-            
+
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
 
         }
     }
-     
+
     //Clear session
-    private void clearCache(){
-        try {  
+    private void clearCache() {
+        try {
             FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
             File cache = new File(FileDir + "UserCache.txt");
             if (cache.exists()) {
                 cache.delete();
             }
         } catch (Exception ex) {
-            
+
         }
     }
-    
+
     //form load method during init of the form
-     private void initForm(){
-        this.setSize(1170,750);
-        this.setLocation(600,150);
+    private void initForm() {
+        setLogo();
+        this.setLocationRelativeTo(null);
         btnUpdate.setEnabled(false);
         btnDelete.setEnabled(false);
-        
+
         setCustomerID();
         // Set the initial value for new book
         custIDIncrementor();
         // This anon class handles window closing event
         addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e){
+            public void windowClosing(WindowEvent e) {
                 int selection = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Closing Window", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if (selection == JOptionPane.YES_OPTION) {
                     clearCache();
@@ -804,14 +842,13 @@ public class APUManageCustomer extends javax.swing.JFrame {
         });
         txaHomeAddress.getDocument().putProperty("filterNewlines", Boolean.TRUE);
         inputCharacterValidation();
-     }
-     
+    }
+
     //</editor-fold>
-    
     // <editor-fold defaultstate="collapsed" desc="Validation Methods">
-     private void emptyFields() throws Exception {
+    private void emptyFields() throws Exception {
         EmailValidation vd = new EmailValidation();
-        
+
         if ("".equals(txtFullName.getText())) {
             throw new Exception("Empty customer name");
         }
@@ -821,24 +858,24 @@ public class APUManageCustomer extends javax.swing.JFrame {
         if ("          ".equals(txtPhoneNumber.getText())) {
             throw new Exception("Empty phone number");
         }
-        if("".equals(txtEmail.getText())){
+        if ("".equals(txtEmail.getText())) {
             throw new Exception("Empty email");
         }
         if ("".equals(txtDOB.getText())) {
             throw new Exception("Empty customer date of birth");
         }
-        if("".equals(txtManagerID.getText())){
+        if ("".equals(txtManagerID.getText())) {
             throw new Exception("Empty Manager ID");
         }
         if (vd.runValidate(txtDOB, false)) {
             throw new Exception("Invalid DOB format");
         }
-         if (vd.runValidate(txtEmail, false)) {
+        if (vd.runValidate(txtEmail, false)) {
             throw new Exception("Invalid email format");
         }
     }
-     
-     private void clearUser(){
+
+    private void clearUser() {
         txtFullName.setText("");
         txtPhoneNumber.setText("");
         txaHomeAddress.setText("");
@@ -848,61 +885,70 @@ public class APUManageCustomer extends javax.swing.JFrame {
         cmbGender.setSelectedIndex(0);
         CustID = "";
     }
-     private void highlightEmpty() {
-        if("".equals(txtFullName.getText())) {
+
+    private void highlightEmpty() {
+        if ("".equals(txtFullName.getText())) {
             lblFullName.setForeground(Color.RED);
         }
-        if("          ".equals(txtPhoneNumber.getText())) {
+        if ("          ".equals(txtPhoneNumber.getText())) {
             lblPhoneNumber.setForeground(Color.RED);
         }
-        if("".equals(txaHomeAddress.getText())) {
+        if ("".equals(txaHomeAddress.getText())) {
             lblHomeAddress.setForeground(Color.RED);
         }
-        if("".equals(txtDOB.getText())){
+        if ("".equals(txtDOB.getText())) {
             lblEmail.setForeground(Color.RED);
         }
-        if("".equals(txtDOB.getText())){
+        if ("".equals(txtDOB.getText())) {
             lblDOB.setForeground(Color.RED);
         }
-        if("".equals(txtManagerID.getText())) {
+        if ("".equals(txtManagerID.getText())) {
             lblManagerID.setForeground(Color.RED);
         }
     }
-      private void deHighlightEmpty(){
+
+    private void deHighlightEmpty() {
         lblHomeAddress.setForeground(ogtxt);
         lblDOB.setForeground(ogtxt);
         lblPhoneNumber.setForeground(ogtxt);
         lblEmail.setForeground(ogtxt);
         lblFullName.setForeground(ogtxt);
-       // lblClientHomeAddress.setForeground(ogtxt);
+        // lblClientHomeAddress.setForeground(ogtxt);
     }
-    private void inputCharacterValidation(){
+
+    private void inputCharacterValidation() {
         txtFullName.getDocument().addDocumentListener(new APUDocumentListener() {
             APUFullNameValidation vd = new APUFullNameValidation();
+
             @Override
-            public void changedUpdate(DocumentEvent e){
+            public void changedUpdate(DocumentEvent e) {
                 vd.runValidate(txtFullName);
             }
+
             @Override
             public void insertUpdate(DocumentEvent e) {
                 vd.runValidate(txtFullName);
             }
+
             @Override
             public void removeUpdate(DocumentEvent e) {
                 vd.runValidate(txtFullName);
             }
-            
+
         });
         txaHomeAddress.getDocument().addDocumentListener(new APUDocumentListener() {
             APUAddressValidation vd = new APUAddressValidation();
+
             @Override
-            public void changedUpdate(DocumentEvent e){
+            public void changedUpdate(DocumentEvent e) {
                 vd.runValidate(txaHomeAddress);
             }
+
             @Override
             public void insertUpdate(DocumentEvent e) {
                 vd.runValidate(txaHomeAddress);
             }
+
             @Override
             public void removeUpdate(DocumentEvent e) {
                 vd.runValidate(txaHomeAddress);
@@ -910,17 +956,11 @@ public class APUManageCustomer extends javax.swing.JFrame {
         });
     }
     // </editor-fold>  
-    
+
     // <editor-fold defaultstate="collapsed" desc="Button Events">
     private void cmbGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbGenderActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbGenderActionPerformed
-
-    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-        // TODO add your handling code here:
-        deHighlightEmpty();
-        registerCustomer();
-    }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void cmbCustIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCustIDActionPerformed
         // TODO add your handling code here:
@@ -930,7 +970,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
             btnRegister.setEnabled(false);
             btnUpdate.setEnabled(true);
             btnDelete.setEnabled(true);
-            
+
         } else {
             // Disabling action buttons when no book is loaded. Add button is still available to accept new book
             btnRegister.setEnabled(true);
@@ -940,41 +980,50 @@ public class APUManageCustomer extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cmbCustIDActionPerformed
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        updateCustomerInfo();
-        
-    }//GEN-LAST:event_btnUpdateActionPerformed
-
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
-        int selection = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete customer record?", "Deleting customer", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-                if (selection == JOptionPane.YES_OPTION) {
-                deleteCustomer();
-                loadCustomerInfo();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Customer record has not been deleted!", "Customer deletion", JOptionPane.INFORMATION_MESSAGE);
-                }
-    }//GEN-LAST:event_btnDeleteActionPerformed
-
     private void txtDOBFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDOBFocusLost
-       DOBValidation vd = new DOBValidation();
-       vd.runValidate(txtDOB, true);
+        DOBValidation vd = new DOBValidation();
+        vd.runValidate(txtDOB, true);
     }//GEN-LAST:event_txtDOBFocusLost
 
     private void txtEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusLost
         // TODO add your handling code here:
-        EmailValidation vd = new EmailValidation();     
+        EmailValidation vd = new EmailValidation();
         vd.runValidate(txtEmail, true);
     }//GEN-LAST:event_txtEmailFocusLost
+
+    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+        deHighlightEmpty();
+        registerCustomer();
+    }//GEN-LAST:event_btnRegisterActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        int selection = JOptionPane.showConfirmDialog(null, "Are you sure to go back?", "Back to Main Menu", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (selection == JOptionPane.YES_OPTION) {
+            new APUCMMenu().setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        updateCustomerInfo();
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        int selection = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete customer record?", "Deleting customer", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (selection == JOptionPane.YES_OPTION) {
+            deleteCustomer();
+            loadCustomerInfo();
+        } else {
+            JOptionPane.showMessageDialog(null, "Customer record has not been deleted!", "Customer deletion", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
     //</editor-fold>
-    
-    
-    
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-          try {
+        try {
             UIManager.setLookAndFeel(new FlatDarkLaf());
         } catch (Exception ex) {
             System.err.println("Failed to initialize LaF");
@@ -988,22 +1037,27 @@ public class APUManageCustomer extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JPanel btnPnl;
     private javax.swing.JButton btnRegister;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> cmbCustID;
     private javax.swing.JComboBox<String> cmbGender;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCustomerID;
     private javax.swing.JLabel lblDOB;
+    private javax.swing.JLabel lblDesc;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblFullName;
     private javax.swing.JLabel lblGender;
     private javax.swing.JLabel lblHomeAddress;
     private javax.swing.JLabel lblManagerID;
     private javax.swing.JLabel lblPhoneNumber;
-    private javax.swing.JLabel lblTitle;
+    private javax.swing.JLabel lblTitle1;
     private javax.swing.JTextArea txaHomeAddress;
     private javax.swing.JTextField txtDOB;
     private javax.swing.JTextField txtEmail;

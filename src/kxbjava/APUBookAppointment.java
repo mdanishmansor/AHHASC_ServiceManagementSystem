@@ -6,6 +6,7 @@
 package kxbjava;
 
 import com.formdev.flatlaf.FlatDarkLaf;
+import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
@@ -40,15 +41,21 @@ public class APUBookAppointment extends javax.swing.JFrame {
     private final String custSource = System.getProperty("user.dir") + "\\src\\TextFiles\\Customer.txt"; //Retrieving Directory of Appointment.txt File.
     private final String techSource = System.getProperty("user.dir") + "\\src\\TextFiles\\UserProfile.txt"; //Retrieving Directory of Appointment.txt File.
     private final String paymentSource = System.getProperty("user.dir") + "\\src\\TextFiles\\Payment.txt";
-    
+
     private String generatedStaffID, FileDir, uID, generatedPaymentID;
     final DecimalFormat idformat = new DecimalFormat("00000");
 
     public APUBookAppointment() {
         initComponents();
         initForm();
-        
-        
+
+    }
+
+    private void setLogo() {
+        String sourcefolder = System.getProperty("user.dir") + "\\src\\icons\\";
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(sourcefolder + "AHHASCrsmol.png"));
+        this.setTitle("AHHASC Book Appointment Page");
+
     }
 
     /**
@@ -60,50 +67,169 @@ public class APUBookAppointment extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        lblTitle = new javax.swing.JLabel();
-        cmbCustomerID = new javax.swing.JComboBox<>();
-        cmbTechID = new javax.swing.JComboBox<>();
-        txtCustName = new javax.swing.JTextField();
-        txtManagerID = new javax.swing.JTextField();
-        cmbAppliance = new javax.swing.JComboBox<>();
-        btnBook = new javax.swing.JButton();
+        mainPnl = new javax.swing.JPanel();
+        btnPnl = new javax.swing.JPanel();
         btnReset = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
+        btnBook = new javax.swing.JButton();
+        lblDesc = new javax.swing.JLabel();
+        lblTitle1 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        lblGender = new javax.swing.JLabel();
+        lblPassword = new javax.swing.JLabel();
+        lblEmail = new javax.swing.JLabel();
+        lblUserID = new javax.swing.JLabel();
+        lblPhoneNumber = new javax.swing.JLabel();
+        lblUsername = new javax.swing.JLabel();
+        lblFullName = new javax.swing.JLabel();
+        txtManagerID = new javax.swing.JTextField();
+        cmbCustomerID = new javax.swing.JComboBox<>();
+        txtCustName = new javax.swing.JTextField();
+        cmbTechID = new javax.swing.JComboBox<>();
         cmbTime = new javax.swing.JComboBox<>();
         appDateChooser = new com.toedter.calendar.JDateChooser();
+        cmbAppliance = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(68, 68, 68));
-        jPanel1.setToolTipText("");
+        mainPnl.setBackground(new java.awt.Color(68, 68, 68));
+        mainPnl.setToolTipText("");
+        mainPnl.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblTitle.setBackground(new java.awt.Color(68, 68, 68));
-        lblTitle.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblTitle.setForeground(new java.awt.Color(218, 0, 55));
-        lblTitle.setText("Book Appointment");
+        btnPnl.setBackground(new java.awt.Color(68, 68, 68));
 
-        cmbCustomerID.setBackground(new java.awt.Color(8, 217, 214));
-        cmbCustomerID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        cmbCustomerID.setForeground(new java.awt.Color(37, 42, 52));
-        cmbCustomerID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Customer ID" }));
-        cmbCustomerID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 0, 0, new java.awt.Color(0, 0, 0)));
-        cmbCustomerID.addActionListener(new java.awt.event.ActionListener() {
+        btnReset.setBackground(new java.awt.Color(68, 68, 68));
+        btnReset.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnReset.setForeground(new java.awt.Color(237, 237, 237));
+        btnReset.setText("Reset");
+        btnReset.setToolTipText("Button to reset every fields");
+        btnReset.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        btnReset.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbCustomerIDActionPerformed(evt);
+                btnResetActionPerformed(evt);
             }
         });
 
-        cmbTechID.setBackground(new java.awt.Color(8, 217, 214));
-        cmbTechID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        cmbTechID.setForeground(new java.awt.Color(37, 42, 52));
-        cmbTechID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Technician ID" }));
-        cmbTechID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 0, 0, new java.awt.Color(0, 0, 0)));
-        cmbTechID.addActionListener(new java.awt.event.ActionListener() {
+        btnBack.setBackground(new java.awt.Color(68, 68, 68));
+        btnBack.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnBack.setForeground(new java.awt.Color(237, 237, 237));
+        btnBack.setText("Back");
+        btnBack.setToolTipText("Button to reset every fields");
+        btnBack.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        btnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbTechIDActionPerformed(evt);
+                btnBackActionPerformed(evt);
+            }
+        });
+
+        btnBook.setBackground(new java.awt.Color(68, 68, 68));
+        btnBook.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnBook.setForeground(new java.awt.Color(237, 237, 237));
+        btnBook.setText("Book Appointment");
+        btnBook.setToolTipText("Button to reset every fields");
+        btnBook.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        btnBook.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBookActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout btnPnlLayout = new javax.swing.GroupLayout(btnPnl);
+        btnPnl.setLayout(btnPnlLayout);
+        btnPnlLayout.setHorizontalGroup(
+            btnPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnPnlLayout.createSequentialGroup()
+                .addContainerGap(555, Short.MAX_VALUE)
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnBook, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
+        );
+        btnPnlLayout.setVerticalGroup(
+            btnPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnPnlLayout.createSequentialGroup()
+                .addContainerGap(7, Short.MAX_VALUE)
+                .addGroup(btnPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBook, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29))
+        );
+
+        mainPnl.add(btnPnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 620, 1280, 100));
+
+        lblDesc.setBackground(new java.awt.Color(68, 68, 68));
+        lblDesc.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
+        lblDesc.setForeground(new java.awt.Color(255, 255, 255));
+        lblDesc.setText("Book Appointments for Customers");
+        mainPnl.add(lblDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
+
+        lblTitle1.setBackground(new java.awt.Color(68, 68, 68));
+        lblTitle1.setFont(new java.awt.Font("Segoe UI Variable", 1, 38)); // NOI18N
+        lblTitle1.setForeground(new java.awt.Color(214, 41, 99));
+        lblTitle1.setText("Book New Appointments");
+        mainPnl.add(lblTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
+
+        jPanel4.setBackground(new java.awt.Color(68, 68, 68));
+
+        lblGender.setBackground(new java.awt.Color(68, 68, 68));
+        lblGender.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblGender.setForeground(new java.awt.Color(237, 237, 237));
+        lblGender.setText("Appointment Date");
+
+        lblPassword.setBackground(new java.awt.Color(68, 68, 68));
+        lblPassword.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblPassword.setForeground(new java.awt.Color(237, 237, 237));
+        lblPassword.setText("Customer Name");
+
+        lblEmail.setBackground(new java.awt.Color(68, 68, 68));
+        lblEmail.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblEmail.setForeground(new java.awt.Color(237, 237, 237));
+        lblEmail.setText("Customer ID");
+
+        lblUserID.setBackground(new java.awt.Color(68, 68, 68));
+        lblUserID.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblUserID.setForeground(new java.awt.Color(237, 237, 237));
+        lblUserID.setText("Manager ID");
+
+        lblPhoneNumber.setBackground(new java.awt.Color(68, 68, 68));
+        lblPhoneNumber.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblPhoneNumber.setForeground(new java.awt.Color(237, 237, 237));
+        lblPhoneNumber.setText("Select Appliance Type");
+
+        lblUsername.setBackground(new java.awt.Color(68, 68, 68));
+        lblUsername.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblUsername.setForeground(new java.awt.Color(237, 237, 237));
+        lblUsername.setText("Appointment Time Slot");
+
+        lblFullName.setBackground(new java.awt.Color(68, 68, 68));
+        lblFullName.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblFullName.setForeground(new java.awt.Color(237, 237, 237));
+        lblFullName.setText("Technician ID");
+
+        txtManagerID.setEditable(false);
+        txtManagerID.setBackground(new java.awt.Color(68, 68, 68));
+        txtManagerID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtManagerID.setToolTipText("Manager ID");
+        txtManagerID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
+
+        cmbCustomerID.setBackground(new java.awt.Color(68, 68, 68));
+        cmbCustomerID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        cmbCustomerID.setForeground(new java.awt.Color(255, 255, 255));
+        cmbCustomerID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Customer ID" }));
+        cmbCustomerID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
+        cmbCustomerID.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cmbCustomerID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbCustomerIDActionPerformed(evt);
             }
         });
 
@@ -118,46 +244,24 @@ public class APUBookAppointment extends javax.swing.JFrame {
             }
         });
 
-        txtManagerID.setEditable(false);
-        txtManagerID.setBackground(new java.awt.Color(68, 68, 68));
-        txtManagerID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        txtManagerID.setToolTipText("Manager ID");
-        txtManagerID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
-
-        cmbAppliance.setBackground(new java.awt.Color(8, 217, 214));
-        cmbAppliance.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        cmbAppliance.setForeground(new java.awt.Color(37, 42, 52));
-        cmbAppliance.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Appliance", "Television", "Refrigerator", "Air-conditioner", "Washing Machine", "PC" }));
-        cmbAppliance.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 0, 0, new java.awt.Color(0, 0, 0)));
-        cmbAppliance.addActionListener(new java.awt.event.ActionListener() {
+        cmbTechID.setBackground(new java.awt.Color(68, 68, 68));
+        cmbTechID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        cmbTechID.setForeground(new java.awt.Color(255, 255, 255));
+        cmbTechID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Technician ID" }));
+        cmbTechID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
+        cmbTechID.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cmbTechID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbApplianceActionPerformed(evt);
+                cmbTechIDActionPerformed(evt);
             }
         });
 
-        btnBook.setBackground(new java.awt.Color(255, 46, 99));
-        btnBook.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        btnBook.setText("Book");
-        btnBook.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBookActionPerformed(evt);
-            }
-        });
-
-        btnReset.setBackground(new java.awt.Color(255, 46, 99));
-        btnReset.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        btnReset.setText("Reset");
-        btnReset.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnResetActionPerformed(evt);
-            }
-        });
-
-        cmbTime.setBackground(new java.awt.Color(8, 217, 214));
+        cmbTime.setBackground(new java.awt.Color(68, 68, 68));
         cmbTime.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        cmbTime.setForeground(new java.awt.Color(37, 42, 52));
+        cmbTime.setForeground(new java.awt.Color(255, 255, 255));
         cmbTime.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Time", "0800", "1000", "1200", "1400", "1600", "1800" }));
-        cmbTime.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 0, 0, new java.awt.Color(0, 0, 0)));
+        cmbTime.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
+        cmbTime.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cmbTime.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbTimeActionPerformed(evt);
@@ -171,65 +275,86 @@ public class APUBookAppointment extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(477, 477, 477)
-                        .addComponent(lblTitle))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(409, 409, 409)
-                        .addComponent(btnBook, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
-                        .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cmbCustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtManagerID, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbAppliance, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 830, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cmbTechID, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCustName, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbTime, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(168, 168, 168)
-                        .addComponent(appDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(30, 30, 30))
+        cmbAppliance.setBackground(new java.awt.Color(68, 68, 68));
+        cmbAppliance.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        cmbAppliance.setForeground(new java.awt.Color(255, 255, 255));
+        cmbAppliance.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Appliance", "Television", "Refrigerator", "Air-conditioner", "Washing Machine", "PC" }));
+        cmbAppliance.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
+        cmbAppliance.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cmbAppliance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbApplianceActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(appDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblPassword)
+                            .addComponent(lblEmail)
+                            .addComponent(lblUserID)
+                            .addComponent(txtManagerID, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbCustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCustName, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblFullName)
+                            .addComponent(cmbTechID, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblUsername)
+                            .addComponent(lblPhoneNumber)
+                            .addComponent(cmbTime, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbAppliance, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(lblGender))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(81, 81, 81)
-                .addComponent(lblTitle)
-                .addGap(67, 67, 67)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbCustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbTechID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCustName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtManagerID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
-                .addComponent(appDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbAppliance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 208, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBook)
-                    .addComponent(btnReset))
-                .addGap(29, 29, 29))
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblUserID)
+                                    .addComponent(lblFullName))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtManagerID, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cmbTechID, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblEmail)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cmbCustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(lblPhoneNumber)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cmbAppliance, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblPassword)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCustName, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(lblUsername)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmbTime, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblGender)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(appDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, -1));
+        mainPnl.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 1190, 460));
+
+        getContentPane().add(mainPnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -238,6 +363,80 @@ public class APUBookAppointment extends javax.swing.JFrame {
     private void txtCustNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCustNameActionPerformed
+
+    private void cmbCustomerIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCustomerIDActionPerformed
+        readCustData(cmbCustomerID.getSelectedItem().toString());
+        Date selectedDate = appDateChooser.getDate();
+        if (cmbCustomerID.getSelectedIndex() > 0 && cmbTechID.getSelectedIndex() > 0 && cmbAppliance.getSelectedIndex() > 0 && cmbTime.getSelectedIndex() > 0 && selectedDate != null) {
+            btnBook.setEnabled(true);
+            btnReset.setEnabled(true);
+        } else {
+            btnBook.setEnabled(false);
+            btnReset.setEnabled(false);
+        }
+    }//GEN-LAST:event_cmbCustomerIDActionPerformed
+
+    private void cmbTechIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTechIDActionPerformed
+        // TODO add your handling code here:
+        Date selectedDate = appDateChooser.getDate();
+        if (cmbCustomerID.getSelectedIndex() > 0 && cmbTechID.getSelectedIndex() > 0 && cmbAppliance.getSelectedIndex() > 0 && cmbTime.getSelectedIndex() > 0 && selectedDate != null) {
+            btnBook.setEnabled(true);
+            btnReset.setEnabled(true);
+        } else {
+            btnBook.setEnabled(false);
+            btnReset.setEnabled(false);
+        }
+
+    }//GEN-LAST:event_cmbTechIDActionPerformed
+
+    private void cmbApplianceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbApplianceActionPerformed
+        // TODO add your handling code here:
+        Date selectedDate = appDateChooser.getDate();
+        if (cmbCustomerID.getSelectedIndex() > 0 && cmbTechID.getSelectedIndex() > 0 && cmbAppliance.getSelectedIndex() > 0 && cmbTime.getSelectedIndex() > 0 && selectedDate != null) {
+            btnBook.setEnabled(true);
+            btnReset.setEnabled(true);
+        } else {
+            btnBook.setEnabled(false);
+            btnReset.setEnabled(false);
+        }
+    }//GEN-LAST:event_cmbApplianceActionPerformed
+
+    private void cmbTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTimeActionPerformed
+        // TODO add your handling code here:
+        Date selectedDate = appDateChooser.getDate();
+        if (cmbCustomerID.getSelectedIndex() > 0 && cmbTechID.getSelectedIndex() > 0 && cmbAppliance.getSelectedIndex() > 0 && cmbTime.getSelectedIndex() > 0 && selectedDate != null) {
+            btnBook.setEnabled(true);
+            btnReset.setEnabled(true);
+        } else {
+            btnBook.setEnabled(false);
+            btnReset.setEnabled(false);
+        }
+    }//GEN-LAST:event_cmbTimeActionPerformed
+
+    private void appDateChooserPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_appDateChooserPropertyChange
+        // TODO add your handling code here:
+        Date selectedDate = appDateChooser.getDate();
+        if (cmbCustomerID.getSelectedIndex() > 0 && cmbTechID.getSelectedIndex() > 0 && cmbAppliance.getSelectedIndex() > 0 && cmbTime.getSelectedIndex() > 0 && selectedDate != null) {
+            btnBook.setEnabled(true);
+            btnReset.setEnabled(true);
+        } else {
+            btnBook.setEnabled(false);
+            btnReset.setEnabled(false);
+        }
+    }//GEN-LAST:event_appDateChooserPropertyChange
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        clearAppointment();
+    }//GEN-LAST:event_btnResetActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        int selection = JOptionPane.showConfirmDialog(null, "Are you sure to go back?", "Back to Main Menu", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (selection == JOptionPane.YES_OPTION) {
+            new APUCMMenu().setVisible(true);
+            this.dispose();
+        }
+
+    }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookActionPerformed
         IDincrement();
@@ -249,99 +448,33 @@ public class APUBookAppointment extends javax.swing.JFrame {
         }
         try {
             insertPayment();
+
         } catch (Exception ex) {
             Logger.getLogger(APUBookAppointment.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }//GEN-LAST:event_btnBookActionPerformed
 
-    private void cmbCustomerIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCustomerIDActionPerformed
-        readCustData(cmbCustomerID.getSelectedItem().toString());
-        Date selectedDate = appDateChooser.getDate();
-        if(cmbCustomerID.getSelectedIndex() > 0 && cmbTechID.getSelectedIndex() > 0 && cmbAppliance.getSelectedIndex() > 0 && cmbTime.getSelectedIndex() > 0 && selectedDate != null ){
-            btnBook.setEnabled(true);
-            btnReset.setEnabled(true);
-        }else {
-            btnBook.setEnabled(false);
-            btnReset.setEnabled(false);
-        }
-    }//GEN-LAST:event_cmbCustomerIDActionPerformed
-
-    private void cmbTechIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTechIDActionPerformed
-        // TODO add your handling code here:
-        Date selectedDate = appDateChooser.getDate();
-        if(cmbCustomerID.getSelectedIndex() > 0 && cmbTechID.getSelectedIndex() > 0 && cmbAppliance.getSelectedIndex() > 0 && cmbTime.getSelectedIndex() > 0 && selectedDate != null ){
-            btnBook.setEnabled(true);
-            btnReset.setEnabled(true);
-        }else {
-            btnBook.setEnabled(false);
-            btnReset.setEnabled(false);
-        }
- 
-    }//GEN-LAST:event_cmbTechIDActionPerformed
-
-    private void cmbApplianceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbApplianceActionPerformed
-        // TODO add your handling code here:
-        Date selectedDate = appDateChooser.getDate();
-         if(cmbCustomerID.getSelectedIndex() > 0 && cmbTechID.getSelectedIndex() > 0 && cmbAppliance.getSelectedIndex() > 0 && cmbTime.getSelectedIndex() > 0 && selectedDate != null ){
-            btnBook.setEnabled(true);
-            btnReset.setEnabled(true);
-        }else {
-            btnBook.setEnabled(false);
-            btnReset.setEnabled(false);
-        }
-    }//GEN-LAST:event_cmbApplianceActionPerformed
-
-    private void cmbTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTimeActionPerformed
-        // TODO add your handling code here:
-        Date selectedDate = appDateChooser.getDate();
-         if(cmbCustomerID.getSelectedIndex() > 0 && cmbTechID.getSelectedIndex() > 0 && cmbAppliance.getSelectedIndex() > 0 && cmbTime.getSelectedIndex() > 0 && selectedDate != null ){
-            btnBook.setEnabled(true);
-            btnReset.setEnabled(true);
-        }else {
-            btnBook.setEnabled(false);
-            btnReset.setEnabled(false);
-        }
-    }//GEN-LAST:event_cmbTimeActionPerformed
-
-    private void appDateChooserPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_appDateChooserPropertyChange
-        // TODO add your handling code here:
-         Date selectedDate = appDateChooser.getDate();
-         if(cmbCustomerID.getSelectedIndex() > 0 && cmbTechID.getSelectedIndex() > 0 && cmbAppliance.getSelectedIndex() > 0 && cmbTime.getSelectedIndex() > 0 && selectedDate != null ){
-            btnBook.setEnabled(true);
-            btnReset.setEnabled(true);
-        }else {
-            btnBook.setEnabled(false);
-            btnReset.setEnabled(false);
-        }
-    }//GEN-LAST:event_appDateChooserPropertyChange
-
-    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-        // TODO add your handling code here:
-        clearAppointment();
-    }//GEN-LAST:event_btnResetActionPerformed
-
     //<editor-fold defaultstate="collapsed" desc="Methods">
-     
-    private void loadUserProfile(){
+    private void loadUserProfile() {
         String[] matchedID = null;
         FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
         File usertext = new File(FileDir + "UserCache.txt");
         Scanner intUser;
         try {
             intUser = new Scanner(usertext);
-            while (intUser.hasNext())
-            {
-             String bEntry = intUser.nextLine();
-             matchedID = bEntry.split(":");
-             uID = matchedID[0];
-             txtManagerID.setText(uID);
-                }
+            while (intUser.hasNext()) {
+                String bEntry = intUser.nextLine();
+                matchedID = bEntry.split(":");
+                uID = matchedID[0];
+                txtManagerID.setText(uID);
+            }
             intUser.close();
         } catch (FileNotFoundException ex) {
             //Logger.getLogger(.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     private void IDincrement() {
         int countLine = 1;
         try {
@@ -362,6 +495,7 @@ public class APUBookAppointment extends javax.swing.JFrame {
         }
 
     }
+
     private void paymentIDIncrement() {
         int countLine = 1;
         try {
@@ -375,7 +509,7 @@ public class APUBookAppointment extends javax.swing.JFrame {
                 countLine++;
             }
 
-           generatedPaymentID = "PAY" + idformat.format(countLine);
+            generatedPaymentID = "PAY" + idformat.format(countLine);
 
         } catch (Exception e) {
 
@@ -484,12 +618,11 @@ public class APUBookAppointment extends javax.swing.JFrame {
 
             bf.write(datalist); //Writes the Values From The Variables to the Appointment.txt File.
             bf.close();
-             JOptionPane.showMessageDialog(null, "Appointment has been booked", "Appoinment Booking", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException e) {
         }
 
     }
-    
+
     private void insertPayment() throws Exception {
 
         try {
@@ -540,20 +673,29 @@ public class APUBookAppointment extends javax.swing.JFrame {
 
             bf.write(datalist); //Writes the Values From The Variables to the Appointment.txt File.
             bf.close();
+            int selection = JOptionPane.showConfirmDialog(null, "Appointment Booked! \n Would You Like to Book Another Appointment?", "Choose Next Option", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (selection == JOptionPane.NO_OPTION) {
+                new APUCMMenu().setVisible(true);
+                this.dispose();
+            } else if ((selection == JOptionPane.YES_OPTION)) {
+                clearAppointment();
+            }
         } catch (IOException e) {
+            
         }
 
     }
-    
-    private void clearAppointment(){
+
+    private void clearAppointment() {
         txtCustName.setText("");
         cmbCustomerID.setSelectedIndex(0);
         cmbTechID.setSelectedIndex(0);
         cmbTime.setSelectedIndex(0);
         cmbAppliance.setSelectedIndex(0);
         appDateChooser.setDate(null);
-    
+
     }
+
     private void clearCache() {
         try {
             FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
@@ -565,9 +707,10 @@ public class APUBookAppointment extends javax.swing.JFrame {
 
         }
     }
+
     private void initForm() {
-        this.setSize(1170, 750);
-        this.setLocation(600, 150);
+        setLogo();
+        this.setLocationRelativeTo(null);
         //btnUpdate.setEnabled(false);
         loadUserProfile();
         readCustData();
@@ -594,10 +737,9 @@ public class APUBookAppointment extends javax.swing.JFrame {
         //  inputCharacterValidation();
     }
     // </editor-fold>
-    
-    
-     private void emptyFields() throws Exception {
-         Date selectedDate = appDateChooser.getDate();
+
+    private void emptyFields() throws Exception {
+        Date selectedDate = appDateChooser.getDate();
         if ("".equals(txtCustName.getText())) {
             throw new Exception("Empty customer name");
         }
@@ -607,7 +749,7 @@ public class APUBookAppointment extends javax.swing.JFrame {
         if (cmbTechID.getSelectedIndex() < 1) {
             throw new Exception("Empty technician ID");
         }
-        if(cmbAppliance.getSelectedIndex() < 1){
+        if (cmbAppliance.getSelectedIndex() < 1) {
             throw new Exception("Empty appliance");
         }
         if (cmbTime.getSelectedIndex() < 1) {
@@ -619,9 +761,9 @@ public class APUBookAppointment extends javax.swing.JFrame {
         if (selectedDate == null) {
             throw new Exception("Empty appointment date");
         }
-        
+
     }
-     
+
     /**
      * @param args the command line arguments
      */
@@ -643,14 +785,25 @@ public class APUBookAppointment extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser appDateChooser;
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnBook;
+    private javax.swing.JPanel btnPnl;
     private javax.swing.JButton btnReset;
     private javax.swing.JComboBox<String> cmbAppliance;
     private javax.swing.JComboBox<String> cmbCustomerID;
     private javax.swing.JComboBox<String> cmbTechID;
     private javax.swing.JComboBox<String> cmbTime;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblTitle;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel lblDesc;
+    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblFullName;
+    private javax.swing.JLabel lblGender;
+    private javax.swing.JLabel lblPassword;
+    private javax.swing.JLabel lblPhoneNumber;
+    private javax.swing.JLabel lblTitle1;
+    private javax.swing.JLabel lblUserID;
+    private javax.swing.JLabel lblUsername;
+    private javax.swing.JPanel mainPnl;
     private javax.swing.JTextField txtCustName;
     private javax.swing.JTextField txtManagerID;
     // End of variables declaration//GEN-END:variables

@@ -44,6 +44,8 @@ public class APUManageAppointment extends javax.swing.JFrame {
         initComponents();
         initForm();
     }
+    
+    
 
     //<editor-fold defaultstate="collapsed" desc="Methods">
     private void setLogo() {

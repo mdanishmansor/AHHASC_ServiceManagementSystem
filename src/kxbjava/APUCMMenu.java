@@ -94,7 +94,6 @@ public class APUCMMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -198,7 +197,7 @@ public class APUCMMenu extends javax.swing.JFrame {
         });
         jPanel3.add(btnProfile);
 
-        btnBookAppointment.setBackground(new java.awt.Color(0, 102, 102));
+        btnBookAppointment.setBackground(new java.awt.Color(0, 153, 153));
         btnBookAppointment.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         btnBookAppointment.setForeground(new java.awt.Color(37, 42, 52));
         btnBookAppointment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/appointments.png"))); // NOI18N

@@ -1,0 +1,3 @@
+CUST00001:dddd:ddddddddddddddddd:ddddddddddd:Female:ddddddddd:dddddddddddddddd:CM00001:false
+CUST00002:sssssss:ssssssss:sssssssssssss:Male:sssssssssss sssss:ssssssssssssssssssssssssss:CM00001:false
+CUST00003:dddddddddddddd:ddddd:ddddddd:Male:danish@gmail.com:ddddddddddddd:null:true

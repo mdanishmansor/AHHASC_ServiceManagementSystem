@@ -7,6 +7,7 @@ package kxbjava;
 
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Color;
+import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
@@ -34,7 +35,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
     private String userSpecies, uID, FileDir, managerID;
     private int newUserID, userType;
     private DefaultComboBoxModel userList;
-    private final Color ogtxt = new Color(237,237,237);
+    private final Color ogtxt = new Color(237, 237, 237);
 
     /**
      * Creates new form APURegister
@@ -47,6 +48,13 @@ public class APUMUserProfile extends javax.swing.JFrame {
         //setUserOption();
     }
 
+    private void setLogo() {
+        String sourcefolder = System.getProperty("user.dir") + "\\src\\icons\\";
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(sourcefolder + "AHHASCrsmol.png"));
+        this.setTitle("AHHASC Manage User Profile Page");
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,39 +64,177 @@ public class APUMUserProfile extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        txtPhoneNumber = new javax.swing.JFormattedTextField();
         jPanel1 = new javax.swing.JPanel();
-        lblTitle = new javax.swing.JLabel();
-        txtFullName = new javax.swing.JTextField();
-        txtUsername = new javax.swing.JTextField();
-        txtPassword = new javax.swing.JPasswordField();
-        cmbUserType = new javax.swing.JComboBox<>();
-        txtEmail = new javax.swing.JTextField();
-        cmbGender = new javax.swing.JComboBox<>();
-        lblUserType = new javax.swing.JLabel();
+        btnPnl = new javax.swing.JPanel();
         btnRegister = new javax.swing.JButton();
-        cmbUserID = new javax.swing.JComboBox<>();
-        btnDelete = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
-        txtManagerID = new javax.swing.JTextField();
-        lblPassword = new javax.swing.JLabel();
-        lblFullName = new javax.swing.JLabel();
-        lblEmail = new javax.swing.JLabel();
-        lblUsername = new javax.swing.JLabel();
-        lblPhoneNumber = new javax.swing.JLabel();
-        lblGender = new javax.swing.JLabel();
-        txtPhoneNumber1 = new javax.swing.JFormattedTextField();
-        btnLogout = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        lblTitle1 = new javax.swing.JLabel();
+        lblDesc = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         lblManagerID = new javax.swing.JLabel();
+        txtManagerID = new javax.swing.JTextField();
+        lblGender = new javax.swing.JLabel();
+        cmbGender = new javax.swing.JComboBox<>();
+        lblFullName = new javax.swing.JLabel();
+        txtFullName = new javax.swing.JTextField();
+        lblPhoneNumber = new javax.swing.JLabel();
+        txtPhoneNumber = new javax.swing.JFormattedTextField();
+        jPanel3 = new javax.swing.JPanel();
+        lblApptID2 = new javax.swing.JLabel();
+        lblPassword = new javax.swing.JLabel();
+        txtPassword = new javax.swing.JPasswordField();
+        txtUsername = new javax.swing.JTextField();
+        lblUsername = new javax.swing.JLabel();
+        cmbUserType = new javax.swing.JComboBox<>();
+        cmbUserID = new javax.swing.JComboBox<>();
+        lblUserType = new javax.swing.JLabel();
+        lblEmail = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1280, 720));
+        setResizable(false);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.setBackground(new java.awt.Color(68, 68, 68));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnPnl.setBackground(new java.awt.Color(68, 68, 68));
+
+        btnRegister.setBackground(new java.awt.Color(68, 68, 68));
+        btnRegister.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnRegister.setForeground(new java.awt.Color(237, 237, 237));
+        btnRegister.setText("Register");
+        btnRegister.setToolTipText("Button to reset every fields");
+        btnRegister.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        btnRegister.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegisterActionPerformed(evt);
+            }
+        });
+
+        btnBack.setBackground(new java.awt.Color(68, 68, 68));
+        btnBack.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnBack.setForeground(new java.awt.Color(237, 237, 237));
+        btnBack.setText("Back");
+        btnBack.setToolTipText("Button to reset every fields");
+        btnBack.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        btnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
+        btnUpdate.setBackground(new java.awt.Color(68, 68, 68));
+        btnUpdate.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnUpdate.setForeground(new java.awt.Color(237, 237, 237));
+        btnUpdate.setText("Update");
+        btnUpdate.setToolTipText("Button to reset every fields");
+        btnUpdate.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        btnUpdate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+
+        btnDelete.setBackground(new java.awt.Color(68, 68, 68));
+        btnDelete.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnDelete.setForeground(new java.awt.Color(237, 237, 237));
+        btnDelete.setText("Delete");
+        btnDelete.setToolTipText("Button to reset every fields");
+        btnDelete.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        btnDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout btnPnlLayout = new javax.swing.GroupLayout(btnPnl);
+        btnPnl.setLayout(btnPnlLayout);
+        btnPnlLayout.setHorizontalGroup(
+            btnPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnPnlLayout.createSequentialGroup()
+                .addContainerGap(317, Short.MAX_VALUE)
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
+        );
+        btnPnlLayout.setVerticalGroup(
+            btnPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnPnlLayout.createSequentialGroup()
+                .addContainerGap(7, Short.MAX_VALUE)
+                .addGroup(btnPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29))
+        );
+
+        jPanel1.add(btnPnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 620, 1280, 100));
+
+        lblTitle1.setBackground(new java.awt.Color(68, 68, 68));
+        lblTitle1.setFont(new java.awt.Font("Segoe UI Variable", 1, 38)); // NOI18N
+        lblTitle1.setForeground(new java.awt.Color(214, 41, 99));
+        lblTitle1.setText("Manage User Profiles");
+        jPanel1.add(lblTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
+
+        lblDesc.setBackground(new java.awt.Color(68, 68, 68));
+        lblDesc.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
+        lblDesc.setForeground(new java.awt.Color(255, 255, 255));
+        lblDesc.setText("Register, Update or Delete a User");
+        jPanel1.add(lblDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
+
+        jPanel2.setBackground(new java.awt.Color(68, 68, 68));
+
+        lblManagerID.setBackground(new java.awt.Color(68, 68, 68));
+        lblManagerID.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblManagerID.setForeground(new java.awt.Color(237, 237, 237));
+        lblManagerID.setText("Manager ID");
+
+        txtManagerID.setEditable(false);
+        txtManagerID.setBackground(new java.awt.Color(68, 68, 68));
+        txtManagerID.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        txtManagerID.setForeground(new java.awt.Color(237, 237, 237));
+        txtManagerID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
+
+        lblGender.setBackground(new java.awt.Color(68, 68, 68));
+        lblGender.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblGender.setForeground(new java.awt.Color(237, 237, 237));
+        lblGender.setText("Gender");
+
+        cmbGender.setBackground(new java.awt.Color(68, 68, 68));
+        cmbGender.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        cmbGender.setForeground(new java.awt.Color(237, 237, 237));
+        cmbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Gender", "Male", "Female" }));
+        cmbGender.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 0, 0, new java.awt.Color(237, 237, 237)));
+        cmbGender.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        lblFullName.setBackground(new java.awt.Color(68, 68, 68));
+        lblFullName.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblFullName.setForeground(new java.awt.Color(237, 237, 237));
+        lblFullName.setText("Full Name");
+
+        txtFullName.setBackground(new java.awt.Color(68, 68, 68));
+        txtFullName.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        txtFullName.setForeground(new java.awt.Color(237, 237, 237));
+        txtFullName.setToolTipText("User's Full Name");
+        txtFullName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
+
+        lblPhoneNumber.setBackground(new java.awt.Color(68, 68, 68));
+        lblPhoneNumber.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblPhoneNumber.setForeground(new java.awt.Color(237, 237, 237));
+        lblPhoneNumber.setText("Phone Number");
 
         txtPhoneNumber.setBackground(new java.awt.Color(68, 68, 68));
         txtPhoneNumber.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(222, 222, 222)));
@@ -102,48 +248,111 @@ public class APUMUserProfile extends javax.swing.JFrame {
         txtPhoneNumber.setToolTipText("Customer Phone Number");
         txtPhoneNumber.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1179, 639));
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(107, 107, 107)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPhoneNumber)
+                    .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblFullName)
+                    .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblGender)
+                    .addComponent(txtManagerID, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblManagerID))
+                .addContainerGap(163, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(lblManagerID)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtManagerID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblGender)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblFullName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblPhoneNumber)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 124, Short.MAX_VALUE))
+        );
 
-        jPanel1.setBackground(new java.awt.Color(68, 68, 68));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 150, 630, 470));
 
-        lblTitle.setBackground(new java.awt.Color(68, 68, 68));
-        lblTitle.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        lblTitle.setForeground(new java.awt.Color(218, 0, 55));
-        lblTitle.setText("User Profile");
+        jPanel3.setBackground(new java.awt.Color(68, 68, 68));
 
-        txtFullName.setBackground(new java.awt.Color(68, 68, 68));
-        txtFullName.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        txtFullName.setForeground(new java.awt.Color(237, 237, 237));
-        txtFullName.setToolTipText("User's Full Name");
-        txtFullName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
+        lblApptID2.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblApptID2.setForeground(new java.awt.Color(255, 255, 255));
+        lblApptID2.setText("User ID");
 
-        txtUsername.setBackground(new java.awt.Color(68, 68, 68));
-        txtUsername.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        txtUsername.setForeground(new java.awt.Color(237, 237, 237));
-        txtUsername.setToolTipText("User Username");
-        txtUsername.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
+        lblPassword.setBackground(new java.awt.Color(68, 68, 68));
+        lblPassword.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblPassword.setForeground(new java.awt.Color(237, 237, 237));
+        lblPassword.setText("Password");
 
         txtPassword.setBackground(new java.awt.Color(68, 68, 68));
-        txtPassword.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtPassword.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
         txtPassword.setForeground(new java.awt.Color(237, 237, 237));
         txtPassword.setToolTipText("User Password");
         txtPassword.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         txtPassword.setCaretColor(new java.awt.Color(237, 237, 237));
 
+        txtUsername.setBackground(new java.awt.Color(68, 68, 68));
+        txtUsername.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        txtUsername.setForeground(new java.awt.Color(237, 237, 237));
+        txtUsername.setToolTipText("User Username");
+        txtUsername.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
+
+        lblUsername.setBackground(new java.awt.Color(68, 68, 68));
+        lblUsername.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblUsername.setForeground(new java.awt.Color(237, 237, 237));
+        lblUsername.setText("Username");
+
         cmbUserType.setBackground(new java.awt.Color(68, 68, 68));
-        cmbUserType.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        cmbUserType.setForeground(new java.awt.Color(237, 237, 237));
+        cmbUserType.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        cmbUserType.setForeground(new java.awt.Color(255, 255, 255));
         cmbUserType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select User Type", "Centre Manager", "Technician" }));
-        cmbUserType.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 0, 0, new java.awt.Color(237, 237, 237)));
+        cmbUserType.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(237, 237, 237)));
+        cmbUserType.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cmbUserType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbUserTypeActionPerformed(evt);
             }
         });
 
+        cmbUserID.setBackground(new java.awt.Color(68, 68, 68));
+        cmbUserID.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        cmbUserID.setForeground(new java.awt.Color(255, 255, 255));
+        cmbUserID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select User ID" }));
+        cmbUserID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(237, 237, 237)));
+        cmbUserID.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cmbUserID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbUserIDActionPerformed(evt);
+            }
+        });
+
+        lblUserType.setBackground(new java.awt.Color(68, 68, 68));
+        lblUserType.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblUserType.setForeground(new java.awt.Color(237, 237, 237));
+        lblUserType.setText("User Type");
+
+        lblEmail.setBackground(new java.awt.Color(68, 68, 68));
+        lblEmail.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblEmail.setForeground(new java.awt.Color(237, 237, 237));
+        lblEmail.setText("Email Address:");
+
         txtEmail.setBackground(new java.awt.Color(68, 68, 68));
-        txtEmail.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtEmail.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
         txtEmail.setForeground(new java.awt.Color(237, 237, 237));
         txtEmail.setToolTipText("User Email");
         txtEmail.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
@@ -154,220 +363,51 @@ public class APUMUserProfile extends javax.swing.JFrame {
             }
         });
 
-        cmbGender.setBackground(new java.awt.Color(68, 68, 68));
-        cmbGender.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        cmbGender.setForeground(new java.awt.Color(237, 237, 237));
-        cmbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Gender", "Male", "Female" }));
-        cmbGender.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 0, 0, new java.awt.Color(237, 237, 237)));
-
-        lblUserType.setBackground(new java.awt.Color(68, 68, 68));
-        lblUserType.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblUserType.setForeground(new java.awt.Color(237, 237, 237));
-        lblUserType.setText("User Type:");
-
-        btnRegister.setBackground(new java.awt.Color(23, 23, 23));
-        btnRegister.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        btnRegister.setForeground(new java.awt.Color(237, 237, 237));
-        btnRegister.setText("Register");
-        btnRegister.setBorder(null);
-        btnRegister.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegisterActionPerformed(evt);
-            }
-        });
-
-        cmbUserID.setBackground(new java.awt.Color(255, 46, 99));
-        cmbUserID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        cmbUserID.setForeground(new java.awt.Color(237, 237, 237));
-        cmbUserID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select User ID" }));
-        cmbUserID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbUserIDActionPerformed(evt);
-            }
-        });
-
-        btnDelete.setBackground(new java.awt.Color(23, 23, 23));
-        btnDelete.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        btnDelete.setForeground(new java.awt.Color(237, 237, 237));
-        btnDelete.setText("Delete");
-        btnDelete.setBorder(null);
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
-            }
-        });
-
-        btnUpdate.setBackground(new java.awt.Color(23, 23, 23));
-        btnUpdate.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        btnUpdate.setForeground(new java.awt.Color(237, 237, 237));
-        btnUpdate.setText("Update");
-        btnUpdate.setBorder(null);
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
-            }
-        });
-
-        txtManagerID.setEditable(false);
-        txtManagerID.setBackground(new java.awt.Color(68, 68, 68));
-        txtManagerID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        txtManagerID.setForeground(new java.awt.Color(237, 237, 237));
-        txtManagerID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
-
-        lblPassword.setBackground(new java.awt.Color(68, 68, 68));
-        lblPassword.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblPassword.setForeground(new java.awt.Color(237, 237, 237));
-        lblPassword.setText("Password:");
-
-        lblFullName.setBackground(new java.awt.Color(68, 68, 68));
-        lblFullName.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblFullName.setForeground(new java.awt.Color(237, 237, 237));
-        lblFullName.setText("Full Name: ");
-
-        lblEmail.setBackground(new java.awt.Color(68, 68, 68));
-        lblEmail.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblEmail.setForeground(new java.awt.Color(237, 237, 237));
-        lblEmail.setText("Email Address:");
-
-        lblUsername.setBackground(new java.awt.Color(68, 68, 68));
-        lblUsername.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblUsername.setForeground(new java.awt.Color(237, 237, 237));
-        lblUsername.setText("Username:");
-
-        lblPhoneNumber.setBackground(new java.awt.Color(68, 68, 68));
-        lblPhoneNumber.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblPhoneNumber.setForeground(new java.awt.Color(237, 237, 237));
-        lblPhoneNumber.setText("Phone Number:");
-
-        lblGender.setBackground(new java.awt.Color(68, 68, 68));
-        lblGender.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblGender.setForeground(new java.awt.Color(237, 237, 237));
-        lblGender.setText("Gender:");
-
-        txtPhoneNumber1.setBackground(new java.awt.Color(68, 68, 68));
-        txtPhoneNumber1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(222, 222, 222)));
-        try {
-            txtPhoneNumber1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##########")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        txtPhoneNumber1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtPhoneNumber1.setText("");
-        txtPhoneNumber1.setToolTipText("Customer Phone Number");
-        txtPhoneNumber1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-
-        btnLogout.setBackground(new java.awt.Color(255, 46, 99));
-        btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/logout.png"))); // NOI18N
-        btnLogout.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, java.awt.Color.red, null, java.awt.Color.red));
-        btnLogout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLogoutActionPerformed(evt);
-            }
-        });
-
-        lblManagerID.setBackground(new java.awt.Color(68, 68, 68));
-        lblManagerID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblManagerID.setForeground(new java.awt.Color(237, 237, 237));
-        lblManagerID.setText("Manager ID:");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(btnLogout)
-                        .addGap(370, 370, 370)
-                        .addComponent(lblTitle))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(342, 342, 342)
-                            .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(96, 96, 96)
-                            .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
-                            .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addGap(222, 222, 222)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblPhoneNumber)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(txtPhoneNumber1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(117, 117, 117)
-                                        .addComponent(cmbGender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(txtManagerID, javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(txtFullName))
-                                            .addComponent(lblUserType)
-                                            .addComponent(lblFullName)
-                                            .addComponent(lblUsername)
-                                            .addComponent(cmbUserType, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblManagerID))
-                                        .addGap(117, 117, 117)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(lblGender)
-                                            .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(lblEmail)
-                                            .addComponent(txtEmail)
-                                            .addComponent(cmbUserID, 0, 260, Short.MAX_VALUE)
-                                            .addComponent(lblPassword))))))))
-                .addContainerGap(311, Short.MAX_VALUE))
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(224, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblEmail)
+                    .addComponent(lblUserType)
+                    .addComponent(cmbUserID, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbUserType, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblUsername)
+                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPassword)
+                    .addComponent(lblApptID2))
+                .addGap(46, 46, 46))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblTitle)
-                    .addComponent(btnLogout))
-                .addGap(22, 22, 22)
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addComponent(lblUserType)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbUserType, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbUserID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addComponent(lblManagerID)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtManagerID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmbUserType, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblFullName, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblEmail))
+                .addComponent(lblApptID2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cmbUserID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPassword)
-                    .addComponent(lblUsername))
+                .addComponent(lblUsername)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblGender)
+                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
+                .addComponent(lblPassword)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblPhoneNumber)
+                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPhoneNumber1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addComponent(lblEmail)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(44, Short.MAX_VALUE))
         );
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 630, 470));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -384,9 +424,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // <editor-fold defaultstate="collapsed" desc="Methods">
-    
-    
-    private boolean emailChecker(){
+    private boolean emailChecker() {
         // Assigning the lID to the selected index value
         String userTemp = txtEmail.getText();
         // This is to ensure the entire method have access to borrow matchedID array
@@ -400,12 +438,11 @@ public class APUMUserProfile extends javax.swing.JFrame {
         try {
             if (!usertxt.exists()) {
                 usertxt.createNewFile();
-            }   
+            }
             // This part loads all book information
             intUser = new Scanner(usertxt);
             // Read lines from the file until no more are left.
-            while (intUser.hasNext())
-            {
+            while (intUser.hasNext()) {
                 // Read the next line.
                 String lEntry = intUser.nextLine();
                 // Split the line by using the delimiter ":" (semicolon) and store into array.
@@ -413,17 +450,17 @@ public class APUMUserProfile extends javax.swing.JFrame {
                 // matchedID[0] = matchedID[0].replace("LIB", "");
                 // JOptionPane.showMessageDialog(null, i);
                 if (userTemp.equals(matchedID[4])) {
-                     notAvailable = true;
+                    notAvailable = true;
                 }
             }
             intUser.close();
         } catch (Exception ex) {
-            
+
         }
         return notAvailable;
     }
-    
-    private boolean usernameChecker(){
+
+    private boolean usernameChecker() {
         // Assigning the lID to the selected index value
         String userTemp = txtUsername.getText();
         // This is to ensure the entire method have access to borrow matchedID array
@@ -437,12 +474,11 @@ public class APUMUserProfile extends javax.swing.JFrame {
         try {
             if (!usertxt.exists()) {
                 usertxt.createNewFile();
-            }   
+            }
             // This part loads all book information
             intUser = new Scanner(usertxt);
             // Read lines from the file until no more are left.
-            while (intUser.hasNext())
-            {
+            while (intUser.hasNext()) {
                 // Read the next line.
                 String lEntry = intUser.nextLine();
                 // Split the line by using the delimiter ":" (semicolon) and store into array.
@@ -450,15 +486,16 @@ public class APUMUserProfile extends javax.swing.JFrame {
                 // matchedID[0] = matchedID[0].replace("LIB", "");
                 // JOptionPane.showMessageDialog(null, i);
                 if (userTemp.equals(matchedID[5])) {
-                     noAvailable = true;
+                    noAvailable = true;
                 }
             }
             intUser.close();
         } catch (Exception ex) {
-            
+
         }
         return noAvailable;
     }
+
     private void loadUserProfile() {
         String[] matchedID = null;
         FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
@@ -538,7 +575,6 @@ public class APUMUserProfile extends javax.swing.JFrame {
                     temptype = "CM";
                 } else if (matchedID[0].contains("TC")) {
                     temptype = "TC";
-                    
 
                 }
                 // Get the digits out
@@ -611,7 +647,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
                     txtEmail.setText(matchedID[4]);
                     txtUsername.setText(matchedID[5]);
                     txtPassword.setText(matchedID[6]);
-                    txtPhoneNumber1.setText(matchedID[7]);
+                    txtPhoneNumber.setText(matchedID[7]);
                     switch (matchedID[8]) {
                         case "Male":
                             cmbGender.setSelectedIndex(1);
@@ -756,7 +792,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
             String userEmail = txtEmail.getText();
             String userUsername = txtUsername.getText();
             String userPassword = String.valueOf(txtPassword.getPassword());
-            String userPhoneNumber = txtPhoneNumber1.getText();
+            String userPhoneNumber = txtPhoneNumber.getText();
             String userGender = (String) cmbGender.getSelectedItem();
             String userRole = (String) cmbUserType.getSelectedItem();
             // FileWriter and PrintWriter to create and write into UserProfile.txt
@@ -795,7 +831,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "There is account with this email. Email cannot be used", "Duplicated Email", JOptionPane.WARNING_MESSAGE);
             }
             if (usernameChecker()) {
-              JOptionPane.showMessageDialog(null, "Username is taken! Use a different username to proceed.", "Username is in use!", JOptionPane.WARNING_MESSAGE);  
+                JOptionPane.showMessageDialog(null, "Username is taken! Use a different username to proceed.", "Username is in use!", JOptionPane.WARNING_MESSAGE);
             }
             JOptionPane.showMessageDialog(null, "Invalid input! Please check your input to proceed.", "Invalid insertion detected!", JOptionPane.ERROR_MESSAGE);
         }
@@ -858,7 +894,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
                     matchedID[4] = txtEmail.getText();
                     matchedID[5] = txtUsername.getText();
                     matchedID[6] = String.valueOf(txtPassword.getPassword());
-                    matchedID[7] = txtPhoneNumber1.getText();
+                    matchedID[7] = txtPhoneNumber.getText();
                     matchedID[8] = (String) cmbGender.getSelectedItem();
                     matchedID[9] = "true";
                     // JOptionPane.showMessageDialog(null, "Yes it worked");
@@ -872,7 +908,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
                         + matchedID[5] + ":"
                         + matchedID[6] + ":"
                         + matchedID[7] + ":"
-                        + matchedID[8] + ":" 
+                        + matchedID[8] + ":"
                         + matchedID[9]);
 
             }
@@ -886,23 +922,24 @@ public class APUMUserProfile extends javax.swing.JFrame {
             loadUserInfo();
         } catch (Exception ex) {
             highlightEmpty();
-             if (emailChecker()) {
+            if (emailChecker()) {
                 JOptionPane.showMessageDialog(null, "There is account with this email. Email cannot be used", "Duplicated Email", JOptionPane.WARNING_MESSAGE);
             }
             if (usernameChecker()) {
-              JOptionPane.showMessageDialog(null, "Username is taken! Use a different username to proceed.", "Username is in use!", JOptionPane.WARNING_MESSAGE);  
+                JOptionPane.showMessageDialog(null, "Username is taken! Use a different username to proceed.", "Username is in use!", JOptionPane.WARNING_MESSAGE);
             }
             JOptionPane.showMessageDialog(null, "Invalid input! Please check your input to proceed.", "Invalid insertion detected!", JOptionPane.ERROR_MESSAGE);
         }
     }
-    private void deleteUserInfo(){
+
+    private void deleteUserInfo() {
         // TODO add your handling code here:
         try {
             // To rename original book.txt to book.bak
             File userOri = new File(FileDir + "UserProfile.txt");
             File userBack = new File(FileDir + "UserProfileBack.txt");
             // To check if clientBak.txt is present or not
-            if (!userBack.exists()){
+            if (!userBack.exists()) {
                 userOri.createNewFile();
             }
             // This is for debugging only!
@@ -912,9 +949,9 @@ public class APUMUserProfile extends javax.swing.JFrame {
             // This is to open, find and replace a specific book record
             // Requires temporary file to store current state
             // FileWriter to write into a new file called book.txt
-            FileWriter cd = new FileWriter(FileDir + "UserProfile.txt"); 
+            FileWriter cd = new FileWriter(FileDir + "UserProfile.txt");
             // PrintWriter to print into book.txt
-            PrintWriter cdp = new PrintWriter(cd); 
+            PrintWriter cdp = new PrintWriter(cd);
             // This is to open and read clientBak.txt 
             File usertxt = new File(FileDir + "UserProfileBack.txt");
             // This is to instantiate the file opened earlier
@@ -924,8 +961,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
             // This is only for debugging!
             // boolean itWorked = false;
             // Read lines from the file until no more are left.
-            while (inputFile.hasNext())
-            {
+            while (inputFile.hasNext()) {
                 // This is for debugging only!
                 // JOptionPane.showMessageDialog(null, "In loop");
                 // Read the next line.
@@ -939,16 +975,16 @@ public class APUMUserProfile extends javax.swing.JFrame {
                     // JOptionPane.showMessageDialog(null, "Yes it worked");
                 }
                 // Rewrite the new book.txt with values found in clientBak.txt
-                cdp.println(matchedID[0] + ":" +
-                            matchedID[1] + ":" +
-                            matchedID[2] + ":" +
-                            matchedID[3] + ":" +
-                            matchedID[4] + ":" +
-                            matchedID[5] + ":" +
-                            matchedID[6] + ":" +
-                            matchedID[7] + ":" +
-                            matchedID[8] + ":" +
-                            matchedID[9]);
+                cdp.println(matchedID[0] + ":"
+                        + matchedID[1] + ":"
+                        + matchedID[2] + ":"
+                        + matchedID[3] + ":"
+                        + matchedID[4] + ":"
+                        + matchedID[5] + ":"
+                        + matchedID[6] + ":"
+                        + matchedID[7] + ":"
+                        + matchedID[8] + ":"
+                        + matchedID[9]);
 
             }
             // Close the clientBak.txt reader
@@ -975,10 +1011,10 @@ public class APUMUserProfile extends javax.swing.JFrame {
 
         }
     }
-    
+
     private void initForm() {
-        this.setSize(1170,750);
-        this.setLocation(600,150);
+        this.setLocationRelativeTo(null);
+        setLogo();
         cmbUserID.setEnabled(false);
         btnRegister.setEnabled(true);
         btnUpdate.setEnabled(false);
@@ -997,14 +1033,14 @@ public class APUMUserProfile extends javax.swing.JFrame {
             }
         });
         // This property disables newline creation in JTextField
-        
+
         // Check if invalid input is inserted
         inputCharacterValidation();
     }
     // </editor-fold>
-    
+
     // <editor-fold defaultstate="collapsed" desc="Validation Methods">
-     private void emptyFields() throws Exception {
+    private void emptyFields() throws Exception {
         EmailValidation vd = new EmailValidation();
         if ("".equals(txtFullName.getText())) {
             throw new Exception("Empty user full name");
@@ -1015,7 +1051,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
         if ("".equals(txtUsername.getText())) {
             throw new Exception("Empty username");
         }
-        if("".equals(String.valueOf(txtPassword.getPassword()))){
+        if ("".equals(String.valueOf(txtPassword.getPassword()))) {
             throw new Exception("Empty user password");
         }
         if ("          ".equals(txtPhoneNumber.getText())) {
@@ -1025,8 +1061,8 @@ public class APUMUserProfile extends javax.swing.JFrame {
             throw new Exception("Invalid email address format");
         }
     }
-     
-     private void clearUser() {
+
+    private void clearUser() {
         // To clean up previous or default values from fields
         txtManagerID.setText("");
         txtFullName.setText("");
@@ -1037,47 +1073,52 @@ public class APUMUserProfile extends javax.swing.JFrame {
         cmbGender.setSelectedIndex(0);
         uID = "";
     }
-     private void highlightEmpty() {
+
+    private void highlightEmpty() {
         if (cmbUserType.getSelectedIndex() <= 0) {
             lblUserType.setForeground(Color.RED);
         }
-        if("".equals(txtFullName.getText())) {
+        if ("".equals(txtFullName.getText())) {
             lblFullName.setForeground(Color.RED);
         }
-        if("".equals(txtEmail.getText())) {
+        if ("".equals(txtEmail.getText())) {
             lblEmail.setForeground(Color.RED);
         }
-        if("".equals(txtUsername.getText())) {
+        if ("".equals(txtUsername.getText())) {
             lblUsername.setForeground(Color.RED);
         }
-        if("".equals(String.valueOf(txtPassword.getPassword()))){
+        if ("".equals(String.valueOf(txtPassword.getPassword()))) {
             lblPassword.setForeground(Color.RED);
         }
-        if("          ".equals(txtPhoneNumber.getText())) {
+        if ("          ".equals(txtPhoneNumber.getText())) {
             lblPhoneNumber.setForeground(Color.RED);
         }
     }
-      private void deHighlightEmpty(){
+
+    private void deHighlightEmpty() {
         lblUserType.setForeground(ogtxt);
         lblFullName.setForeground(ogtxt);
         lblEmail.setForeground(ogtxt);
         lblUsername.setForeground(ogtxt);
         lblPassword.setForeground(ogtxt);
         lblPhoneNumber.setForeground(ogtxt);
-       // lblClientHomeAddress.setForeground(ogtxt);
+        // lblClientHomeAddress.setForeground(ogtxt);
     }
-      
-      private void inputCharacterValidation(){
+
+    private void inputCharacterValidation() {
         txtFullName.getDocument().addDocumentListener(new APUDocumentListener() {
             APUFullNameValidation vd = new APUFullNameValidation();
+
             @Override
-            public void changedUpdate(DocumentEvent e){
+            public void changedUpdate(DocumentEvent e) {
                 vd.runValidate(txtFullName);
             }
+
             @Override
             public void insertUpdate(DocumentEvent e) {
                 vd.runValidate(txtFullName);
             }
+
             @Override
             public void removeUpdate(DocumentEvent e) {
                 vd.runValidate(txtFullName);
@@ -1085,14 +1126,17 @@ public class APUMUserProfile extends javax.swing.JFrame {
         });
         txtUsername.getDocument().addDocumentListener(new APUDocumentListener() {
             APUUsernameValidation vd = new APUUsernameValidation();
+
             @Override
-            public void changedUpdate(DocumentEvent e){
+            public void changedUpdate(DocumentEvent e) {
                 vd.runValidate(txtUsername);
             }
+
             @Override
             public void insertUpdate(DocumentEvent e) {
                 vd.runValidate(txtUsername);
             }
+
             @Override
             public void removeUpdate(DocumentEvent e) {
                 vd.runValidate(txtUsername);
@@ -1100,67 +1144,25 @@ public class APUMUserProfile extends javax.swing.JFrame {
         });
         txtPassword.getDocument().addDocumentListener(new APUDocumentListener() {
             APUPasswordValidation vd = new APUPasswordValidation();
+
             @Override
-            public void changedUpdate(DocumentEvent e){
+            public void changedUpdate(DocumentEvent e) {
                 vd.runValidate(txtPassword);
             }
+
             @Override
             public void insertUpdate(DocumentEvent e) {
                 vd.runValidate(txtPassword);
             }
+
             @Override
             public void removeUpdate(DocumentEvent e) {
                 vd.runValidate(txtPassword);
             }
         });
-        
+
     }
     // </editor-fold>
-      
-    // <editor-fold defaultstate="collapsed" desc="Button Events">
-      
-    private void cmbUserTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbUserTypeActionPerformed
-        deHighlightEmpty();
-        clearUser();
-        // Loads index with Client type only
-        if (cmbUserType.getSelectedIndex() > 0) {
-            getUserType();
-            setUserOption();
-            cmbUserID.setEnabled(true);
-            btnRegister.setEnabled(true);
-        } else {
-            // Disabling action buttons when no client is loaded. Add button is still available to accept new book
-            getUserType();
-            setUserOption();
-            cmbUserID.setEnabled(false);
-            btnRegister.setEnabled(false);
-            btnUpdate.setEnabled(false);
-            btnDelete.setEnabled(false);
-        }
-    }//GEN-LAST:event_cmbUserTypeActionPerformed
-
-    private void txtEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusLost
-        // TODO add your handling code here:
-        EmailValidation vd = new EmailValidation();     
-        vd.runValidate(txtEmail, true);
-    }//GEN-LAST:event_txtEmailFocusLost
-
-    private void cmbUserIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbUserIDActionPerformed
-        clearUser();
-        deHighlightEmpty();
-        // Loads index with Book ID only
-        if (cmbUserID.getSelectedIndex() > 0) {
-            loadUserInfo();
-            btnRegister.setEnabled(false);
-            btnDelete.setEnabled(true);
-            btnUpdate.setEnabled(true);
-        } else {
-            // Disabling action buttons when no book is loaded. Add button is still available to accept new book
-            btnRegister.setEnabled(true);
-            btnDelete.setEnabled(false);
-            btnUpdate.setEnabled(false);
-        }
-    }//GEN-LAST:event_cmbUserIDActionPerformed
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
@@ -1168,11 +1170,19 @@ public class APUMUserProfile extends javax.swing.JFrame {
         registerUserInfo();
     }//GEN-LAST:event_btnRegisterActionPerformed
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        int selection = JOptionPane.showConfirmDialog(null, "Are you sure to go back?", "Back to Main Menu", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (selection == JOptionPane.YES_OPTION) {
+            new APUCMMenu().setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_btnBackActionPerformed
+
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         deHighlightEmpty();
         updateUserInfo();
     }//GEN-LAST:event_btnUpdateActionPerformed
-    
+
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         int selection = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete customer record?", "Deleting customer", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (selection == JOptionPane.YES_OPTION) {
@@ -1185,16 +1195,51 @@ public class APUMUserProfile extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
-    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-        int selection = JOptionPane.showConfirmDialog(null, "Are you sure to go back?", "Back to Main Menu", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if (selection == JOptionPane.YES_OPTION) {
-           new APUCMMenu().setVisible(true);
-           this.dispose();
+    private void txtEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusLost
+        // TODO add your handling code here:
+        EmailValidation vd = new EmailValidation();
+        vd.runValidate(txtEmail, true);
+    }//GEN-LAST:event_txtEmailFocusLost
+
+    private void cmbUserIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbUserIDActionPerformed
+
+        deHighlightEmpty();
+        // Loads index with Book ID only
+        if (cmbUserID.getSelectedIndex() > 0) {
+            loadUserInfo();
+            btnRegister.setEnabled(false);
+            btnDelete.setEnabled(true);
+            btnUpdate.setEnabled(true);
+        } else {
+            // Disabling action buttons when no book is loaded. Add button is still available to accept new book
+            clearUser();
+            btnRegister.setEnabled(true);
+            btnDelete.setEnabled(false);
+            btnUpdate.setEnabled(false);
         }
-    }//GEN-LAST:event_btnLogoutActionPerformed
-   
+    }//GEN-LAST:event_cmbUserIDActionPerformed
+
+    private void cmbUserTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbUserTypeActionPerformed
+        deHighlightEmpty();
+        // Loads index with Client type only
+        if (cmbUserType.getSelectedIndex() > 0) {
+            getUserType();
+            setUserOption();
+            cmbUserID.setEnabled(true);
+            btnRegister.setEnabled(true);
+        } else {
+            // Disabling action buttons when no client is loaded. Add button is still available to accept new book
+            getUserType();
+            setUserOption();
+            clearUser();
+            cmbUserID.setEnabled(false);
+            btnRegister.setEnabled(false);
+            btnUpdate.setEnabled(false);
+            btnDelete.setEnabled(false);
+        }
+    }//GEN-LAST:event_cmbUserTypeActionPerformed
+
     // </editor-fold>  
-    
     /**
      * @param args the command line arguments
      */
@@ -1213,24 +1258,26 @@ public class APUMUserProfile extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnLogout;
+    private javax.swing.JPanel btnPnl;
     private javax.swing.JButton btnRegister;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> cmbGender;
     private javax.swing.JComboBox<String> cmbUserID;
     private javax.swing.JComboBox<String> cmbUserType;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lblApptID2;
+    private javax.swing.JLabel lblDesc;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblFullName;
     private javax.swing.JLabel lblGender;
     private javax.swing.JLabel lblManagerID;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblPhoneNumber;
-    private javax.swing.JLabel lblTitle;
+    private javax.swing.JLabel lblTitle1;
     private javax.swing.JLabel lblUserType;
     private javax.swing.JLabel lblUsername;
     private javax.swing.JTextField txtEmail;
@@ -1238,7 +1285,6 @@ public class APUMUserProfile extends javax.swing.JFrame {
     private javax.swing.JTextField txtManagerID;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JFormattedTextField txtPhoneNumber;
-    private javax.swing.JFormattedTextField txtPhoneNumber1;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }
