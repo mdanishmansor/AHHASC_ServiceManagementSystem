@@ -132,13 +132,13 @@ public class APUCMMenu extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblDesc.setBackground(new java.awt.Color(68, 68, 68));
-        lblDesc.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
+        lblDesc.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblDesc.setForeground(new java.awt.Color(255, 255, 255));
         lblDesc.setText("Please Select Your Choice");
         jPanel1.add(lblDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
 
         lblTitle.setBackground(new java.awt.Color(68, 68, 68));
-        lblTitle.setFont(new java.awt.Font("Segoe UI Variable", 1, 38)); // NOI18N
+        lblTitle.setFont(new java.awt.Font("Arial", 1, 38)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(214, 41, 99));
         lblTitle.setText("Centre Manager Home Page");
         jPanel1.add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
@@ -273,7 +273,7 @@ public class APUCMMenu extends javax.swing.JFrame {
         jPanel1.add(pnlBtn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 210, 620, 400));
 
         lblDesc1.setBackground(new java.awt.Color(68, 68, 68));
-        lblDesc1.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
+        lblDesc1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblDesc1.setForeground(new java.awt.Color(255, 255, 255));
         lblDesc1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblDesc1.setText("Welcome Back!");
@@ -402,8 +402,12 @@ public class APUCMMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnManageFeedbackActionPerformed
 
     private void btnProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfileActionPerformed
-        // TODO add your handling code here:
-        new APUUserProfile().setVisible(true);
+        try {
+            // TODO add your handling code here:
+            new APUUserProfile().setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(APUCMMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
     }//GEN-LAST:event_btnProfileActionPerformed
 

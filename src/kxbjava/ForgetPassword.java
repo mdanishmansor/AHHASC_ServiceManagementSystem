@@ -83,14 +83,14 @@ public class ForgetPassword extends javax.swing.JFrame {
         mainPnl.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtUserID.setBackground(new java.awt.Color(68, 68, 68));
-        txtUserID.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        txtUserID.setFont(new java.awt.Font("Segoe UI Variable", 1, 18)); // NOI18N
         txtUserID.setForeground(new java.awt.Color(255, 255, 255));
         txtUserID.setToolTipText("User ID");
         txtUserID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         mainPnl.add(txtUserID, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 160, 700, 80));
 
         txtEmail.setBackground(new java.awt.Color(68, 68, 68));
-        txtEmail.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        txtEmail.setFont(new java.awt.Font("Segoe UI Variable", 1, 18)); // NOI18N
         txtEmail.setForeground(new java.awt.Color(255, 255, 255));
         txtEmail.setToolTipText("User Email");
         txtEmail.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
@@ -102,7 +102,7 @@ public class ForgetPassword extends javax.swing.JFrame {
         mainPnl.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 700, 80));
 
         txtConfirmPass.setBackground(new java.awt.Color(68, 68, 68));
-        txtConfirmPass.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        txtConfirmPass.setFont(new java.awt.Font("Segoe UI Variable", 1, 18)); // NOI18N
         txtConfirmPass.setForeground(new java.awt.Color(255, 255, 255));
         txtConfirmPass.setToolTipText("Confirm Password");
         txtConfirmPass.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
@@ -110,24 +110,24 @@ public class ForgetPassword extends javax.swing.JFrame {
         mainPnl.add(txtConfirmPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 390, 700, 80));
 
         txtNewPass.setBackground(new java.awt.Color(68, 68, 68));
-        txtNewPass.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        txtNewPass.setFont(new java.awt.Font("Segoe UI Variable", 1, 18)); // NOI18N
         txtNewPass.setForeground(new java.awt.Color(255, 255, 255));
         txtNewPass.setToolTipText("User Password");
         txtNewPass.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         txtNewPass.setCaretColor(new java.awt.Color(237, 237, 237));
         mainPnl.add(txtNewPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 510, 700, 80));
 
-        lblNewPass.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblNewPass.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblNewPass.setForeground(new java.awt.Color(255, 255, 255));
         lblNewPass.setText("New Password");
         mainPnl.add(lblNewPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 360, -1, -1));
 
-        lblUserID.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblUserID.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblUserID.setForeground(new java.awt.Color(255, 255, 255));
         lblUserID.setText("User ID");
         mainPnl.add(lblUserID, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, -1, -1));
 
-        lblEmail.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblEmail.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblEmail.setForeground(new java.awt.Color(255, 255, 255));
         lblEmail.setText("Email");
         mainPnl.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 240, -1, -1));
@@ -183,18 +183,18 @@ public class ForgetPassword extends javax.swing.JFrame {
         mainPnl.add(btnPnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 620, 1280, 100));
 
         lblTitle1.setBackground(new java.awt.Color(68, 68, 68));
-        lblTitle1.setFont(new java.awt.Font("Segoe UI Variable", 1, 38)); // NOI18N
+        lblTitle1.setFont(new java.awt.Font("Arial", 1, 38)); // NOI18N
         lblTitle1.setForeground(new java.awt.Color(214, 41, 99));
         lblTitle1.setText("Reset Password ");
         mainPnl.add(lblTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
 
-        lblConfirmPass.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblConfirmPass.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblConfirmPass.setForeground(new java.awt.Color(255, 255, 255));
         lblConfirmPass.setText("Confirm Password");
         mainPnl.add(lblConfirmPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 480, -1, -1));
 
         lblDesc.setBackground(new java.awt.Color(68, 68, 68));
-        lblDesc.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
+        lblDesc.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblDesc.setForeground(new java.awt.Color(255, 255, 255));
         lblDesc.setText("Please Provide Your User ID and Email to Reset Your Password");
         mainPnl.add(lblDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));

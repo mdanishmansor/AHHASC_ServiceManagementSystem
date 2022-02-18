@@ -11,7 +11,10 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -87,13 +90,13 @@ public class APUTCMenu extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTitle.setBackground(new java.awt.Color(68, 68, 68));
-        lblTitle.setFont(new java.awt.Font("Segoe UI Variable", 1, 38)); // NOI18N
+        lblTitle.setFont(new java.awt.Font("Arial", 1, 38)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(214, 41, 99));
         lblTitle.setText("Technician Home Page");
         jPanel2.add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
 
         lblDesc.setBackground(new java.awt.Color(68, 68, 68));
-        lblDesc.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
+        lblDesc.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblDesc.setForeground(new java.awt.Color(255, 255, 255));
         lblDesc.setText("Please Select Your Choice");
         jPanel2.add(lblDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
@@ -197,7 +200,7 @@ public class APUTCMenu extends javax.swing.JFrame {
         jPanel2.add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 50, 100, 100));
 
         lblDesc1.setBackground(new java.awt.Color(68, 68, 68));
-        lblDesc1.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
+        lblDesc1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblDesc1.setForeground(new java.awt.Color(255, 255, 255));
         lblDesc1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblDesc1.setText("Welcome Back!");
@@ -245,8 +248,12 @@ public class APUTCMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCollectPaymentActionPerformed
 
     private void btnProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfileActionPerformed
-        // TODO add your handling code here:
-        new APUUserProfile().setVisible(true);
+        try {
+            // TODO add your handling code here:
+            new APUUserProfile().setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(APUTCMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
     }//GEN-LAST:event_btnProfileActionPerformed
 

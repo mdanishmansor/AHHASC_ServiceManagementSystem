@@ -133,7 +133,7 @@ public class ManagePayment extends javax.swing.JFrame {
         mainPnl.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 1268, 302));
 
         txtFilter.setBackground(new java.awt.Color(68, 68, 68));
-        txtFilter.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtFilter.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txtFilter.setForeground(new java.awt.Color(237, 237, 237));
         txtFilter.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         txtFilter.setCaretColor(new java.awt.Color(237, 237, 237));
@@ -158,45 +158,45 @@ public class ManagePayment extends javax.swing.JFrame {
         mainPnl.add(btnFilter, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 50, 100, 100));
 
         txtPaymentAmount.setBackground(new java.awt.Color(68, 68, 68));
-        txtPaymentAmount.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtPaymentAmount.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txtPaymentAmount.setForeground(new java.awt.Color(237, 237, 237));
         txtPaymentAmount.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         txtPaymentAmount.setCaretColor(new java.awt.Color(237, 237, 237));
         mainPnl.add(txtPaymentAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 540, 422, 50));
 
         txtTotalAmount.setBackground(new java.awt.Color(68, 68, 68));
-        txtTotalAmount.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtTotalAmount.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txtTotalAmount.setForeground(new java.awt.Color(237, 237, 237));
         txtTotalAmount.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         txtTotalAmount.setCaretColor(new java.awt.Color(237, 237, 237));
         mainPnl.add(txtTotalAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 540, 422, 50));
 
         lblTotalAmount.setBackground(new java.awt.Color(68, 68, 68));
-        lblTotalAmount.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblTotalAmount.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblTotalAmount.setForeground(new java.awt.Color(237, 237, 237));
         lblTotalAmount.setText("Total Amount");
         mainPnl.add(lblTotalAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 510, -1, -1));
 
         lblFilter.setBackground(new java.awt.Color(68, 68, 68));
-        lblFilter.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblFilter.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblFilter.setForeground(new java.awt.Color(237, 237, 237));
         lblFilter.setText("Filter");
         mainPnl.add(lblFilter, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 50, -1, -1));
 
         lblPaymentAmount.setBackground(new java.awt.Color(68, 68, 68));
-        lblPaymentAmount.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblPaymentAmount.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblPaymentAmount.setForeground(new java.awt.Color(237, 237, 237));
         lblPaymentAmount.setText("Payment Amount");
         mainPnl.add(lblPaymentAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 510, -1, -1));
 
         lblDesc.setBackground(new java.awt.Color(68, 68, 68));
-        lblDesc.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
+        lblDesc.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblDesc.setForeground(new java.awt.Color(255, 255, 255));
         lblDesc.setText("View and Update Payment Made By Customers");
         mainPnl.add(lblDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
 
         lblTitle1.setBackground(new java.awt.Color(68, 68, 68));
-        lblTitle1.setFont(new java.awt.Font("Segoe UI Variable", 1, 38)); // NOI18N
+        lblTitle1.setFont(new java.awt.Font("Arial", 1, 38)); // NOI18N
         lblTitle1.setForeground(new java.awt.Color(214, 41, 99));
         lblTitle1.setText("Manage Appointment Payments");
         mainPnl.add(lblTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));

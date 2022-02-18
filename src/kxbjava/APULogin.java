@@ -85,7 +85,7 @@ public class APULogin extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTitle1.setBackground(new java.awt.Color(68, 68, 68));
-        lblTitle1.setFont(new java.awt.Font("Segoe UI Variable", 1, 38)); // NOI18N
+        lblTitle1.setFont(new java.awt.Font("Arial", 1, 38)); // NOI18N
         lblTitle1.setForeground(new java.awt.Color(214, 41, 99));
         lblTitle1.setText("Login");
         jPanel2.add(lblTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
@@ -154,18 +154,18 @@ public class APULogin extends javax.swing.JFrame {
 
         jPanel2.add(btnPnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 620, 1280, 100));
 
-        lblPass.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblPass.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblPass.setForeground(new java.awt.Color(255, 255, 255));
         lblPass.setText("Password");
         jPanel2.add(lblPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 350, -1, -1));
 
-        lblsuer.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblsuer.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblsuer.setForeground(new java.awt.Color(255, 255, 255));
         lblsuer.setText("Username");
         jPanel2.add(lblsuer, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, -1, -1));
 
         txtPassword.setBackground(new java.awt.Color(68, 68, 68));
-        txtPassword.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        txtPassword.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txtPassword.setForeground(new java.awt.Color(237, 237, 237));
         txtPassword.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         txtPassword.setCaretColor(new java.awt.Color(237, 237, 237));
@@ -177,14 +177,14 @@ public class APULogin extends javax.swing.JFrame {
         jPanel2.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 390, 700, 80));
 
         txtUsername.setBackground(new java.awt.Color(68, 68, 68));
-        txtUsername.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        txtUsername.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txtUsername.setForeground(new java.awt.Color(237, 237, 237));
         txtUsername.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         txtUsername.setCaretColor(new java.awt.Color(237, 237, 237));
         jPanel2.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, 700, 80));
 
         lblDesc.setBackground(new java.awt.Color(68, 68, 68));
-        lblDesc.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
+        lblDesc.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblDesc.setForeground(new java.awt.Color(255, 255, 255));
         lblDesc.setText("Please Provide Your Username and Password");
         jPanel2.add(lblDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));

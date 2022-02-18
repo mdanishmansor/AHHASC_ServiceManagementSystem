@@ -122,7 +122,7 @@ public class ManageFeedback extends javax.swing.JFrame {
         mainPnl.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 1210, 302));
 
         txtFeedback.setBackground(new java.awt.Color(68, 68, 68));
-        txtFeedback.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        txtFeedback.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         txtFeedback.setForeground(new java.awt.Color(237, 237, 237));
         txtFeedback.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         txtFeedback.setCaretColor(new java.awt.Color(237, 237, 237));
@@ -142,7 +142,7 @@ public class ManageFeedback extends javax.swing.JFrame {
         mainPnl.add(btnFilter, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 30, 100, 100));
 
         txtFilter.setBackground(new java.awt.Color(68, 68, 68));
-        txtFilter.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtFilter.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txtFilter.setForeground(new java.awt.Color(237, 237, 237));
         txtFilter.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         txtFilter.setCaretColor(new java.awt.Color(237, 237, 237));
@@ -159,13 +159,13 @@ public class ManageFeedback extends javax.swing.JFrame {
         mainPnl.add(txtFilter, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 80, 422, 50));
 
         lblDesc.setBackground(new java.awt.Color(68, 68, 68));
-        lblDesc.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
+        lblDesc.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblDesc.setForeground(new java.awt.Color(255, 255, 255));
         lblDesc.setText("Search for a Feedback To View and Update");
         mainPnl.add(lblDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
 
         lblTitle.setBackground(new java.awt.Color(68, 68, 68));
-        lblTitle.setFont(new java.awt.Font("Segoe UI Variable", 1, 38)); // NOI18N
+        lblTitle.setFont(new java.awt.Font("Arial", 1, 38)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(214, 41, 99));
         lblTitle.setText("View and Manage Feedbacks");
         mainPnl.add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
@@ -220,15 +220,15 @@ public class ManageFeedback extends javax.swing.JFrame {
 
         mainPnl.add(btnPnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 620, 1280, 100));
 
-        lblSearch.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblSearch.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblSearch.setForeground(new java.awt.Color(255, 255, 255));
         lblSearch.setText("Provide Search Term");
         mainPnl.add(lblSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 50, -1, 30));
 
-        lblSearch1.setFont(new java.awt.Font("Segoe UI Variable", 0, 36)); // NOI18N
+        lblSearch1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         lblSearch1.setForeground(new java.awt.Color(255, 255, 255));
         lblSearch1.setText("Feedback:");
-        mainPnl.add(lblSearch1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 540, 170, 50));
+        mainPnl.add(lblSearch1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 540, 190, 50));
 
         getContentPane().add(mainPnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
 

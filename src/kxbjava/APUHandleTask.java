@@ -218,13 +218,13 @@ public class APUHandleTask extends javax.swing.JFrame {
         pnlHandleTask.add(btnPnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 620, 1280, 100));
 
         lblDesc.setBackground(new java.awt.Color(68, 68, 68));
-        lblDesc.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
+        lblDesc.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblDesc.setForeground(new java.awt.Color(255, 255, 255));
         lblDesc.setText("Insert Payment Provided By Customers");
         pnlHandleTask.add(lblDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
 
         lblTitle1.setBackground(new java.awt.Color(68, 68, 68));
-        lblTitle1.setFont(new java.awt.Font("Segoe UI Variable", 1, 38)); // NOI18N
+        lblTitle1.setFont(new java.awt.Font("Arial", 1, 38)); // NOI18N
         lblTitle1.setForeground(new java.awt.Color(214, 41, 99));
         lblTitle1.setText("Handle Tasks");
         pnlHandleTask.add(lblTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
@@ -273,19 +273,19 @@ public class APUHandleTask extends javax.swing.JFrame {
         cmbPaymentStatus.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         cmbPaymentStatus.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        lblApptID.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblApptID.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblApptID.setText("Appointment ID");
 
-        lblCustomerName.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblCustomerName.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblCustomerName.setText("Customer Name");
 
-        lblApptTime.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblApptTime.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblApptTime.setText("Appointment Time");
 
-        lblTotalAmount.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblTotalAmount.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblTotalAmount.setText("Total Amount");
 
-        lblPaymentStatus.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblPaymentStatus.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblPaymentStatus.setText("Payment Status");
 
         txtApptDate.setBackground(new java.awt.Color(68, 68, 68));
@@ -321,19 +321,19 @@ public class APUHandleTask extends javax.swing.JFrame {
             }
         });
 
-        lblApptDate.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblApptDate.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblApptDate.setText("Appointment Date");
 
-        lblAppliance.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblAppliance.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblAppliance.setText("Appliance");
 
-        lblPaymentAmount.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblPaymentAmount.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblPaymentAmount.setText("Payment Amount");
 
-        lblPaymenDate.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblPaymenDate.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblPaymenDate.setText("Payment Date");
 
-        lblFeedback.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblFeedback.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblFeedback.setText("Feedback");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -417,7 +417,7 @@ public class APUHandleTask extends javax.swing.JFrame {
                         .addComponent(lblPaymentStatus)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cmbPaymentStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         pnlHandleTask.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 1260, 470));

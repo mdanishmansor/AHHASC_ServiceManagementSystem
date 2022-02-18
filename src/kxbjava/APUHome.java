@@ -56,7 +56,7 @@ public class APUHome extends javax.swing.JFrame {
         pnlHome.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblDesc.setBackground(new java.awt.Color(68, 68, 68));
-        lblDesc.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
+        lblDesc.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblDesc.setForeground(new java.awt.Color(255, 255, 255));
         lblDesc.setText("APU Hostel Home Appliances Service Centre");
         pnlHome.add(lblDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
@@ -65,7 +65,7 @@ public class APUHome extends javax.swing.JFrame {
         pnlHome.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 160, 500, 531));
 
         lblTitle.setBackground(new java.awt.Color(68, 68, 68));
-        lblTitle.setFont(new java.awt.Font("Segoe UI Variable", 1, 38)); // NOI18N
+        lblTitle.setFont(new java.awt.Font("Arial", 1, 38)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(214, 41, 99));
         lblTitle.setText("Welcome To AHHASC");
         pnlHome.add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));

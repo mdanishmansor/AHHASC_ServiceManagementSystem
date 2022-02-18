@@ -104,75 +104,75 @@ public class APUUserProfile extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(68, 68, 68));
 
         cmbGender.setBackground(new java.awt.Color(68, 68, 68));
-        cmbGender.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        cmbGender.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         cmbGender.setForeground(new java.awt.Color(237, 237, 237));
         cmbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Gender", "Male", "Female" }));
         cmbGender.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         cmbGender.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         lblGender.setBackground(new java.awt.Color(68, 68, 68));
-        lblGender.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblGender.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblGender.setForeground(new java.awt.Color(237, 237, 237));
         lblGender.setText("Gender");
 
         txtPassField.setBackground(new java.awt.Color(68, 68, 68));
-        txtPassField.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        txtPassField.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txtPassField.setForeground(new java.awt.Color(237, 237, 237));
         txtPassField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
 
         lblPassword.setBackground(new java.awt.Color(68, 68, 68));
-        lblPassword.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblPassword.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblPassword.setForeground(new java.awt.Color(237, 237, 237));
         lblPassword.setText("Password");
 
         txtEmail.setBackground(new java.awt.Color(68, 68, 68));
-        txtEmail.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        txtEmail.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txtEmail.setForeground(new java.awt.Color(237, 237, 237));
         txtEmail.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
 
         lblEmail.setBackground(new java.awt.Color(68, 68, 68));
-        lblEmail.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblEmail.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblEmail.setForeground(new java.awt.Color(237, 237, 237));
         lblEmail.setText("Email");
 
         txtUserID.setEditable(false);
         txtUserID.setBackground(new java.awt.Color(68, 68, 68));
-        txtUserID.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        txtUserID.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txtUserID.setForeground(new java.awt.Color(237, 237, 237));
         txtUserID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
 
         lblUserID.setBackground(new java.awt.Color(68, 68, 68));
-        lblUserID.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblUserID.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblUserID.setForeground(new java.awt.Color(237, 237, 237));
         lblUserID.setText("User ID");
 
         txtPhoneNumber.setBackground(new java.awt.Color(68, 68, 68));
-        txtPhoneNumber.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        txtPhoneNumber.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txtPhoneNumber.setForeground(new java.awt.Color(237, 237, 237));
         txtPhoneNumber.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
 
         lblPhoneNumber.setBackground(new java.awt.Color(68, 68, 68));
-        lblPhoneNumber.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblPhoneNumber.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblPhoneNumber.setForeground(new java.awt.Color(237, 237, 237));
         lblPhoneNumber.setText("Phone Number");
 
         lblUsername.setBackground(new java.awt.Color(68, 68, 68));
-        lblUsername.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblUsername.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblUsername.setForeground(new java.awt.Color(237, 237, 237));
         lblUsername.setText("Username");
 
         txtUsername.setBackground(new java.awt.Color(68, 68, 68));
-        txtUsername.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        txtUsername.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txtUsername.setForeground(new java.awt.Color(237, 237, 237));
         txtUsername.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
 
         lblFullName.setBackground(new java.awt.Color(68, 68, 68));
-        lblFullName.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblFullName.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblFullName.setForeground(new java.awt.Color(237, 237, 237));
         lblFullName.setText("Full Name");
 
         txtFullName.setBackground(new java.awt.Color(68, 68, 68));
-        txtFullName.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        txtFullName.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txtFullName.setForeground(new java.awt.Color(237, 237, 237));
         txtFullName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
 
@@ -193,12 +193,12 @@ public class APUUserProfile extends javax.swing.JFrame {
         });
 
         lblDesc.setBackground(new java.awt.Color(68, 68, 68));
-        lblDesc.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
+        lblDesc.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblDesc.setForeground(new java.awt.Color(255, 255, 255));
         lblDesc.setText("View or Update Your Information Details");
 
         lblTitle.setBackground(new java.awt.Color(68, 68, 68));
-        lblTitle.setFont(new java.awt.Font("Segoe UI Variable", 1, 38)); // NOI18N
+        lblTitle.setFont(new java.awt.Font("Arial", 1, 38)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(214, 41, 99));
         lblTitle.setText("User Profile");
 
@@ -210,11 +210,11 @@ public class APUUserProfile extends javax.swing.JFrame {
         profilePnl.add(lblSelectedPic, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 200));
 
         lblPfp.setBackground(new java.awt.Color(68, 68, 68));
-        lblPfp.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblPfp.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblPfp.setForeground(new java.awt.Color(237, 237, 237));
         lblPfp.setText("Profile Picture");
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI Variable", 0, 12)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Only .png are supported!");
