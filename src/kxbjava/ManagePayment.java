@@ -44,11 +44,11 @@ import org.joda.money.Money;
  */
 public class ManagePayment extends javax.swing.JFrame {
 
-    private String FileDir, paymentID, apptID, techID, custName, apptDate, apptTime, appliance,paymentStatus, paymentDate, totalAmount,paymentAmount,balanceAmount;
+    private String FileDir, paymentID, apptID, techID, custName, apptDate, apptTime, appliance, paymentStatus, paymentDate, totalAmount, paymentAmount, balanceAmount;
     private boolean filter = false;
     private Money tAmount, pAmount, bAmount;
-    private final Color ogtxt = new Color(237,237,237);
-    
+    private final Color ogtxt = new Color(237, 237, 237);
+
     /**
      * Creates new form ViewFeedback
      */
@@ -56,7 +56,7 @@ public class ManagePayment extends javax.swing.JFrame {
         initComponents();
         initForm();
     }
-    
+
     private void setLogo() {
         String sourcefolder = System.getProperty("user.dir") + "\\src\\icons\\";
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(sourcefolder + "AHHASCrsmol.png"));
@@ -261,10 +261,12 @@ public class ManagePayment extends javax.swing.JFrame {
 
         clearTable();
         try {
-            if(filterPayment()){
+            if (filterPayment()) {
                 JOptionPane.showMessageDialog(null, "Record(s) filtered accordingly", "Records Filtered!", JOptionPane.INFORMATION_MESSAGE);
-            } else{
+            } else {
                 JOptionPane.showMessageDialog(null, "No record(s) found according to the filter", "No Record(s)", JOptionPane.ERROR_MESSAGE);
+                insertPaymentRecords();
+
             }
         } catch (java.io.IOException ex) {
             Logger.getLogger(ManagePayment.class.getName()).log(Level.SEVERE, null, ex);
@@ -279,7 +281,11 @@ public class ManagePayment extends javax.swing.JFrame {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         deHighlightEmpty();
-        updatePayment();
+        try {
+            updatePayment();
+        } catch (java.io.IOException ex) {
+            Logger.getLogger(ManagePayment.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -295,12 +301,10 @@ public class ManagePayment extends javax.swing.JFrame {
     }//GEN-LAST:event_txtFilterActionPerformed
 
     // </editor-fold>
-    
     // <editor-fold defaultstate="collapsed" desc="Methods">   
-    
-    private void selectRow(){
+    private void selectRow() {
         int i = tblFeedback.getSelectedRow();
-        
+
         paymentID = tblFeedback.getValueAt(i, 0).toString();
         apptID = tblFeedback.getValueAt(i, 1).toString();
         techID = tblFeedback.getValueAt(i, 2).toString();
@@ -313,10 +317,10 @@ public class ManagePayment extends javax.swing.JFrame {
         totalAmount = tblFeedback.getValueAt(i, 9).toString();
         paymentAmount = tblFeedback.getValueAt(i, 10).toString();
         balanceAmount = tblFeedback.getValueAt(i, 11).toString();
-        
-        txtTotalAmount.setText(totalAmount);
-        txtPaymentAmount.setText(paymentAmount);
-       
+
+        txtTotalAmount.setText(totalAmount.replaceAll("\\s", ""));
+        txtPaymentAmount.setText(paymentAmount.replaceAll("\\s", ""));
+
     }
 //    private void printRecords() throws IOException, FileNotFoundException{
 //        
@@ -389,7 +393,8 @@ public class ManagePayment extends javax.swing.JFrame {
 //       JOptionPane.showMessageDialog(null, "Printed to PDF Successfully!", "Records Printed!", JOptionPane.INFORMATION_MESSAGE);
 //    
 //    }
-     private void updatePayment(){
+
+    private void updatePayment() throws java.io.IOException {
         // TODO add your handling code here:
         try {
             // Check if textfields are empty
@@ -397,12 +402,12 @@ public class ManagePayment extends javax.swing.JFrame {
             // To get directory  
             FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
             // To get the book ID
-            
+
             // To rename original book.txt to book.bak
             File paymentOri = new File(FileDir + "Payment.txt");
             File paymentBack = new File(FileDir + "PaymentBack.txt");
             // To check if clientBak.txt is present or not
-            if (!paymentBack.exists()){
+            if (!paymentBack.exists()) {
                 paymentOri.createNewFile();
             }
             // This is for debugging only!
@@ -412,9 +417,9 @@ public class ManagePayment extends javax.swing.JFrame {
             // This is to open, find and replace a specific book record
             // Requires temporary file to store current state
             // FileWriter to write into a new file called book.txt
-            FileWriter cd = new FileWriter(FileDir + "Payment.txt"); 
+            FileWriter cd = new FileWriter(FileDir + "Payment.txt");
             // PrintWriter to print into book.txt
-            PrintWriter cdp = new PrintWriter(cd); 
+            PrintWriter cdp = new PrintWriter(cd);
             // This is to open and read clientBak.txt 
             File paymenttxt = new File(FileDir + "PaymentBack.txt");
             // This is to instantiate the file opened earlier
@@ -424,8 +429,7 @@ public class ManagePayment extends javax.swing.JFrame {
             // This is only for debugging!
             // boolean itWorked = false;
             // Read lines from the file until no more are left.
-            while (inputFile.hasNext())
-            {
+            while (inputFile.hasNext()) {
                 // This is for debugging only!
                 // JOptionPane.showMessageDialog(null, "In loop");
                 // Read the next line.
@@ -434,14 +438,14 @@ public class ManagePayment extends javax.swing.JFrame {
                 matchedID = bEntry.split(":");
                 // Check if the read line has current book ID
                 if (matchedID[0].equals(paymentID)) {
-                    
+
                     tAmount = Money.parse(txtTotalAmount.getText());
                     pAmount = Money.parse(txtPaymentAmount.getText());
-                    
-                    if(pAmount.isLessThan(tAmount)){
+
+                    if (pAmount.isLessThan(tAmount)) {
                         JOptionPane.showMessageDialog(null, "Total payment is not enough", "Payment failed", JOptionPane.ERROR_MESSAGE);
                     } else {
-                        
+
                         bAmount = pAmount.minus(tAmount);
                         matchedID[1] = apptID;
                         matchedID[2] = techID;
@@ -455,31 +459,29 @@ public class ManagePayment extends javax.swing.JFrame {
                         matchedID[10] = pAmount.toString();
                         matchedID[11] = bAmount.toString();
                         matchedID[12] = "true";
-                        
-                         cdp.println(matchedID[0] + ":"
-                          + matchedID[1] + ":"
-                          + matchedID[2] + ":"
-                          + matchedID[3] + ":"
-                          + matchedID[4] + ":"
-                          + matchedID[5] + ":"
-                          + matchedID[6] + ":"
-                          + matchedID[7] + ":"
-                          + matchedID[8] + ":"
-                          + matchedID[9] + ":"
-                          + matchedID[10] + ":"
-                          + matchedID[11] + ":"
-                          + matchedID[12]);
-                
-                         
+
                         JOptionPane.showMessageDialog(null, "Customer payment has been updated, balance is: " + bAmount, "Payment made", JOptionPane.INFORMATION_MESSAGE);
-                        clearTable();
-                        insertPaymentRecords();
+
                     }
                     //JOptionPane.showMessageDialog(null, "Customer has paid for the service, balance is:RM" + balanceAmount, "Payment made", JOptionPane.INFORMATION_MESSAGE);
                     // Inserting the new information from the text fields into the book line
-                   }
+
+                }
                 // Rewrite the new book.txt with values found in clientBak.txt
-                
+
+                cdp.println(matchedID[0] + ":"
+                        + matchedID[1] + ":"
+                        + matchedID[2] + ":"
+                        + matchedID[3] + ":"
+                        + matchedID[4] + ":"
+                        + matchedID[5] + ":"
+                        + matchedID[6] + ":"
+                        + matchedID[7] + ":"
+                        + matchedID[8] + ":"
+                        + matchedID[9] + ":"
+                        + matchedID[10] + ":"
+                        + matchedID[11] + ":"
+                        + matchedID[12]);
             }
             // Close the clientBak.txt reader
             inputFile.close();
@@ -491,18 +493,21 @@ public class ManagePayment extends javax.swing.JFrame {
             highlightEmpty();
             JOptionPane.showMessageDialog(null, "Invalid input! Please check your input to proceed.", "Invalid insertion detected!", JOptionPane.ERROR_MESSAGE);
         }
+        clearTable();
+        insertPaymentRecords();
+
     }
-     
-     private void highlightEmpty() {
-        if("".equals(txtTotalAmount.getText()) || "MYR".equals(txtTotalAmount.getText())) {
+
+    private void highlightEmpty() {
+        if ("".equals(txtTotalAmount.getText()) || "MYR".equals(txtTotalAmount.getText())) {
             lblTotalAmount.setForeground(Color.RED);
         }
-        if("".equals(txtTotalAmount.getText()) || "MYR".equals(txtTotalAmount.getText())){
+        if ("".equals(txtTotalAmount.getText()) || "MYR".equals(txtTotalAmount.getText())) {
             lblPaymentAmount.setForeground(Color.RED);
         }
     }
-     
-      private void emptyFields() throws Exception {
+
+    private void emptyFields() throws Exception {
         PaymentValidation vd = new PaymentValidation();
         if ("".equals(txtTotalAmount.getText()) || "MYR".equals(txtTotalAmount.getText())) {
             throw new Exception("Empty total amount");
@@ -513,138 +518,138 @@ public class ManagePayment extends javax.swing.JFrame {
         if (vd.runValidate(txtTotalAmount, false)) {
             throw new Exception("Invalid total amount");
         }
-         if (vd.runValidate(txtPaymentAmount, false)) {
+        if (vd.runValidate(txtPaymentAmount, false)) {
             throw new Exception("Invalid payment amount");
         }
     }
-      private void deHighlightEmpty(){
+
+    private void deHighlightEmpty() {
         lblTotalAmount.setForeground(ogtxt);
         lblPaymentAmount.setForeground(ogtxt);
-        
-       // lblClientHomeAddress.setForeground(ogtxt);
+
+        // lblClientHomeAddress.setForeground(ogtxt);
     }
-      
-    private void insertPaymentRecords() throws java.io.IOException{
+
+    private void insertPaymentRecords() throws java.io.IOException {
         try {
-             FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
-             File paymenttxt = new File(FileDir + "Payment.txt");
-             BufferedReader br = new BufferedReader(new FileReader(paymenttxt));
+            FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
+            File paymenttxt = new File(FileDir + "Payment.txt");
+            BufferedReader br = new BufferedReader(new FileReader(paymenttxt));
             Object[] tableLines = br.lines().toArray();
-            DefaultTableModel model = (DefaultTableModel)tblFeedback.getModel();
-            for(int i = 0; i < tableLines.length; i++)
-            {
+            DefaultTableModel model = (DefaultTableModel) tblFeedback.getModel();
+            for (int i = 0; i < tableLines.length; i++) {
                 String line = tableLines[i].toString().trim();
                 String[] dataRow = line.split(":");
                 //if(txticpass.getText().equals(dataRow[1])){
-                     model.addRow(dataRow);
-              //  }
-             
-        }
+                model.addRow(dataRow);
+                //  }
+
+            }
             br.close();
-        }
-        catch (FileNotFoundException ex){
+        } catch (FileNotFoundException ex) {
             Logger.getLogger(LoginRecords.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    private boolean filterPayment() throws java.io.IOException{
+
+    private boolean filterPayment() throws java.io.IOException {
         boolean Records = false;
         try {
-             
-             FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
-             File paymenttxt = new File(FileDir + "Payment.txt");
-             BufferedReader br = new BufferedReader(new FileReader(paymenttxt));
+
+            FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
+            File paymenttxt = new File(FileDir + "Payment.txt");
+            BufferedReader br = new BufferedReader(new FileReader(paymenttxt));
             Object[] tableLines = br.lines().toArray();
-            DefaultTableModel model = (DefaultTableModel)tblFeedback.getModel();
-            for(int i = 0; i < tableLines.length; i++)
-            {
+            DefaultTableModel model = (DefaultTableModel) tblFeedback.getModel();
+            for (int i = 0; i < tableLines.length; i++) {
                 String line = tableLines[i].toString().trim();
                 String[] dataRow = line.split(":");
-               if(dataRow[0].contains(txtFilter.getText()) || dataRow[1].contains(txtFilter.getText()) || dataRow[2].contains(txtFilter.getText()) || dataRow[3].contains(txtFilter.getText()) || dataRow[4].contains(txtFilter.getText())
-                    || dataRow[5].contains(txtFilter.getText()) || dataRow[6].contains(txtFilter.getText()) || dataRow[7].contains(txtFilter.getText()) || dataRow[8].contains(txtFilter.getText()) || dataRow[9].contains(txtFilter.getText())
-                       || dataRow[10].contains(txtFilter.getText()) || dataRow[11].contains(txtFilter.getText())){
-                     model.addRow(dataRow);
-                     Records = true;
-                     
-               }
+                if (dataRow[0].contains(txtFilter.getText()) || dataRow[1].contains(txtFilter.getText()) || dataRow[2].contains(txtFilter.getText()) || dataRow[3].contains(txtFilter.getText()) || dataRow[4].contains(txtFilter.getText())
+                        || dataRow[5].contains(txtFilter.getText()) || dataRow[6].contains(txtFilter.getText()) || dataRow[7].contains(txtFilter.getText()) || dataRow[8].contains(txtFilter.getText()) || dataRow[9].contains(txtFilter.getText())
+                        || dataRow[10].contains(txtFilter.getText()) || dataRow[11].contains(txtFilter.getText())) {
+                    model.addRow(dataRow);
+                    Records = true;
+
+                }
+
             }
-             br.close();
+            br.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(ManagePayment.class.getName()).log(Level.SEVERE, null, ex);
         }
-        catch (FileNotFoundException ex){
-           Logger.getLogger(ManagePayment.class.getName()).log(Level.SEVERE, null, ex);
-       }
-         return Records;
+        return Records;
     }
-    
-    
-    private void clearTable(){
-        DefaultTableModel model = (DefaultTableModel)tblFeedback.getModel();
-        while(model.getRowCount()>0){
-            model.removeRow(0);
+
+    private void clearTable() {
+        DefaultTableModel model = (DefaultTableModel) tblFeedback.getModel();
+        while (model.getRowCount() > 0) {
+            model.setRowCount(0);
         }
     }
-    
-     //<editor-fold defaultstate="collapsed" desc="Validation Methods">
-         private void inputCharacterValidation(){
+
+    //<editor-fold defaultstate="collapsed" desc="Validation Methods">
+    private void inputCharacterValidation() {
         txtFilter.getDocument().addDocumentListener(new APUDocumentListener() {
             filterValidation vd = new filterValidation();
+
             @Override
-            public void changedUpdate(DocumentEvent e){
+            public void changedUpdate(DocumentEvent e) {
                 vd.runValidate(txtFilter);
             }
+
             @Override
             public void insertUpdate(DocumentEvent e) {
                 vd.runValidate(txtFilter);
             }
+
             @Override
             public void removeUpdate(DocumentEvent e) {
                 vd.runValidate(txtFilter);
             }
-            
+
         });
     }
-    private void showLoginButton(){
-        if (filter){
-            btnFilter.setVisible(true);
+
+    private void showLoginButton() {
+        if (filter) {
+        btnFilter.setEnabled(true);
+        } else {
+        btnFilter.setEnabled(false);
         }
-        else
-        {
-            btnFilter.setVisible(false);
-        }
-     } 
-    private void showLoginButton(JTextField txt){
-        if ("".equals(txt.getText())){
+    }
+
+    private void showLoginButton(JTextField txt) {
+        if ("".equals(txt.getText())) {
             filter = false;
-        } 
-        else {
+        } else {
             filter = true;
         }
         showLoginButton();
-     }
-    
+    }
+
     // </editor-fold>
-    
-    
-    private void clearCache(){
-        try {  
+    private void clearCache() {
+        try {
             FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
             File cache = new File(FileDir + "UserCache.txt");
             if (cache.exists()) {
                 cache.delete();
             }
         } catch (Exception ex) {
-            
+
         }
-    }     
-     private void initForm() throws java.io.IOException{
+    }
+
+    private void initForm() throws java.io.IOException {
         this.setLocationRelativeTo(null);
         setLogo();
         //btnUpdate.setEnabled(false);
-       // btnDelete.setEnabled(false);
+        // btnDelete.setEnabled(false);
         insertPaymentRecords();
-        btnFilter.setVisible(false);
+
+        btnFilter.setEnabled(false);
         // Set the initial value for new book
         // This anon class handles window closing event
-         txtFilter.getDocument().addDocumentListener(new APUDocumentListener(){
+        txtFilter.getDocument().addDocumentListener(new APUDocumentListener() {
 
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -663,7 +668,7 @@ public class ManagePayment extends javax.swing.JFrame {
             }
         });
         addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e){
+            public void windowClosing(WindowEvent e) {
                 int selection = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Closing Window", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if (selection == JOptionPane.YES_OPTION) {
                     clearCache();
@@ -674,22 +679,20 @@ public class ManagePayment extends javax.swing.JFrame {
             }
         });
         inputCharacterValidation();
-     }
-    
-     // </editor-fold>
-    
-     
+    }
+
+    // </editor-fold>
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code">
-         try {
+        try {
             UIManager.setLookAndFeel(new FlatDarkLaf());
         } catch (Exception ex) {
             System.err.println("Fail Look and Feel");
         }
-       // </editor-fold>
+        // </editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

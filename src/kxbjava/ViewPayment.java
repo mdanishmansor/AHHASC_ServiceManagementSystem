@@ -117,7 +117,7 @@ public class ViewPayment extends javax.swing.JFrame {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 186, 1250, 420));
 
         txtFilter.setBackground(new java.awt.Color(68, 68, 68));
-        txtFilter.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtFilter.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txtFilter.setForeground(new java.awt.Color(237, 237, 237));
         txtFilter.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         txtFilter.setCaretColor(new java.awt.Color(237, 237, 237));

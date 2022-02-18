@@ -210,6 +210,7 @@ public class LoginRecords extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Record(s) filtered accordingly", "Records Filtered!", JOptionPane.INFORMATION_MESSAGE);
         } else{
             JOptionPane.showMessageDialog(null, "No record(s) found according to the filter", "No Record(s)", JOptionPane.ERROR_MESSAGE);
+            insertLoginRecords();
         }
        
     
@@ -361,11 +362,11 @@ public class LoginRecords extends javax.swing.JFrame {
     }
     private void showLoginButton(){
         if (filter){
-            btnFilter.setVisible(true);
+            btnFilter.setEnabled(true);
         }
         else
         {
-            btnFilter.setVisible(false);
+            btnFilter.setEnabled(false);
         }
      } 
     private void showLoginButton(JTextField txt){
@@ -400,7 +401,7 @@ public class LoginRecords extends javax.swing.JFrame {
         //btnUpdate.setEnabled(false);
        // btnDelete.setEnabled(false);
         insertLoginRecords();
-        btnFilter.setVisible(false);
+        btnFilter.setEnabled(false);
         // Set the initial value for new book
         // This anon class handles window closing event
          txtFilter.getDocument().addDocumentListener(new APUDocumentListener(){

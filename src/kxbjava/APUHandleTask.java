@@ -59,7 +59,7 @@ import org.joda.money.Money;
  * @author User
  */
 public class APUHandleTask extends javax.swing.JFrame {
-    
+
     private final String apptPrefix = "APPT";
     private final String feedPrefix = "FEED";
     private String FileDir, techID, ApptID, feedID, paymentID, cID, tcID, cmID, custname, appDate, appTime, applncs, bDate, atID;
@@ -67,12 +67,10 @@ public class APUHandleTask extends javax.swing.JFrame {
     private DefaultComboBoxModel ApptList;
     private final String source = System.getProperty("user.dir") + "\\src\\TextFiles\\Feedback.txt";
     private final String invoicesource = System.getProperty("user.dir") + "\\src\\PDF\\Invoice.pdf";
-     private final String receiptSource = System.getProperty("user.dir") + "\\src\\PDF\\Receipt.pdf";
-    private Money totalAmount, paymentAmount, balanceAmount; 
-    private final Color ogtxt = new Color(237,237,237);
-    
-    
-    
+    private final String receiptSource = System.getProperty("user.dir") + "\\src\\PDF\\Receipt.pdf";
+    private Money totalAmount, paymentAmount, balanceAmount;
+    private final Color ogtxt = new Color(237, 237, 237);
+
     /**
      * Creates new form APUHandleTask
      */
@@ -428,74 +426,71 @@ public class APUHandleTask extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // <editor-fold defaultstate="collapsed" desc="Methods">   
-    
     private void setLogo() {
         String sourcefolder = System.getProperty("user.dir") + "\\src\\icons\\";
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(sourcefolder + "AHHASCrsmol.png"));
         this.setTitle("AHHASC Handle Tasks Page");
 
     }
-    
-     private void loadUserProfile(){
+
+    private void loadUserProfile() {
         String[] matchedID = null;
         FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
         File usertext = new File(FileDir + "UserCache.txt");
         Scanner intUser;
         try {
             intUser = new Scanner(usertext);
-            while (intUser.hasNext())
-            {
-             String bEntry = intUser.nextLine();
-             matchedID = bEntry.split(":");
-             techID = matchedID[0];
-                }
+            while (intUser.hasNext()) {
+                String bEntry = intUser.nextLine();
+                matchedID = bEntry.split(":");
+                techID = matchedID[0];
+            }
             intUser.close();
         } catch (FileNotFoundException ex) {
             //Logger.getLogger(.class.getName()).log(Level.SEVERE, null, ex);
         }
-    } 
-      
-     private void loadAppoitnment(){
+    }
+
+    private void loadAppoitnment() {
         String[] matchedID = null;
         FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
         File appttext = new File(FileDir + "Appointment.txt");
-        atID = (String)cmbApptID.getSelectedItem();
+        atID = (String) cmbApptID.getSelectedItem();
         Scanner intUser;
         try {
             intUser = new Scanner(appttext);
-            while (intUser.hasNext())
-            {
-             String bEntry = intUser.nextLine();
-             matchedID = bEntry.split(":");
-             matchedID[0] = matchedID[0].replace(apptPrefix, "");
-             if(matchedID[0].equals(atID)){
-                 cID = matchedID[1];
-                 tcID = matchedID[2];
-                 cmID = matchedID[3];
-                 custname = matchedID[4];
-                 appDate = matchedID[5];
-                 appTime = matchedID[6];
-                 applncs = matchedID[7];
-                 bDate = matchedID[8];
-                 
-             }
+            while (intUser.hasNext()) {
+                String bEntry = intUser.nextLine();
+                matchedID = bEntry.split(":");
+                matchedID[0] = matchedID[0].replace(apptPrefix, "");
+                if (matchedID[0].equals(atID)) {
+                    cID = matchedID[1];
+                    tcID = matchedID[2];
+                    cmID = matchedID[3];
+                    custname = matchedID[4];
+                    appDate = matchedID[5];
+                    appTime = matchedID[6];
+                    applncs = matchedID[7];
+                    bDate = matchedID[8];
+
                 }
+            }
             intUser.close();
         } catch (FileNotFoundException ex) {
             //Logger.getLogger(.class.getName()).log(Level.SEVERE, null, ex);
         }
-     }
-     
-    private void setAppointmentID(){
+    }
+
+    private void setAppointmentID() {
         // This is to ensure the entire method have access to borrow matchedID array
         String[] matchedID = null;
-        ApptList = new DefaultComboBoxModel();       
+        ApptList = new DefaultComboBoxModel();
         // Adding default text
         ApptList.addElement("Select Appointment ID");
         cmbApptID.setModel(ApptList);
         FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
         File appttxt = new File(FileDir + "Payment.txt");
-        
+
         Scanner intAppt;
         try {
             // This part loads all book information
@@ -503,13 +498,12 @@ public class APUHandleTask extends javax.swing.JFrame {
             // This is to increment the discovered client assignment index
             int i = 0;
             // Read lines from the file until no more are left.
-            while (intAppt.hasNext())
-            {
+            while (intAppt.hasNext()) {
                 // Read the next line.
                 String bEntry = intAppt.nextLine();
                 // Split the line by using the delimiterÂ ":" (semicolon) and store into array.
                 matchedID = bEntry.split(":");
-                 if ("true".equals(matchedID[12]) && matchedID[1].contains("APPT") && matchedID[2].equals(techID) && matchedID[7].equals("Unpaid")) {
+                if ("true".equals(matchedID[12]) && matchedID[1].contains("APPT") && matchedID[2].equals(techID) && matchedID[7].equals("Unpaid")) {
                     matchedID[1] = matchedID[1].replace(apptPrefix, "");
                     ApptList.addElement(matchedID[1]);
                     i++;
@@ -531,7 +525,8 @@ public class APUHandleTask extends javax.swing.JFrame {
             //Logger.getLogger(unnamedBorrowMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-     private void loadApptInfo(){
+
+    private void loadApptInfo() {
         // Assigning the cID to the selected index value
         ApptID = (String) cmbApptID.getSelectedItem();
         // This is to ensure the entire method have access to borrow matchedID array
@@ -545,8 +540,7 @@ public class APUHandleTask extends javax.swing.JFrame {
             // This part loads all book information
             intAppt = new Scanner(appttxt);
             // Read lines from the file until no more are left.
-            while (intAppt.hasNext())
-            {
+            while (intAppt.hasNext()) {
                 // Read the next line.
                 String bEntry = intAppt.nextLine();
                 // Split the line by using the delimiter ":" (semicolon) and store into array.
@@ -577,10 +571,11 @@ public class APUHandleTask extends javax.swing.JFrame {
             }
             intAppt.close();
         } catch (FileNotFoundException ex) {
-           // Logger.getLogger(unnamedBorrowMenu.class.getName()).log(Level.SEVERE, null, ex);
+            // Logger.getLogger(unnamedBorrowMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-      private void updatePayment(){
+
+    private void updatePayment() {
         // TODO add your handling code here:
         try {
             // Check if textfields are empty
@@ -593,7 +588,7 @@ public class APUHandleTask extends javax.swing.JFrame {
             File paymentOri = new File(FileDir + "Payment.txt");
             File paymentBack = new File(FileDir + "PaymentBack.txt");
             // To check if clientBak.txt is present or not
-            if (!paymentBack.exists()){
+            if (!paymentBack.exists()) {
                 paymentOri.createNewFile();
             }
             // This is for debugging only!
@@ -603,9 +598,9 @@ public class APUHandleTask extends javax.swing.JFrame {
             // This is to open, find and replace a specific book record
             // Requires temporary file to store current state
             // FileWriter to write into a new file called book.txt
-            FileWriter cd = new FileWriter(FileDir + "Payment.txt"); 
+            FileWriter cd = new FileWriter(FileDir + "Payment.txt");
             // PrintWriter to print into book.txt
-            PrintWriter cdp = new PrintWriter(cd); 
+            PrintWriter cdp = new PrintWriter(cd);
             // This is to open and read clientBak.txt 
             File paymenttxt = new File(FileDir + "PaymentBack.txt");
             // This is to instantiate the file opened earlier
@@ -615,8 +610,7 @@ public class APUHandleTask extends javax.swing.JFrame {
             // This is only for debugging!
             // boolean itWorked = false;
             // Read lines from the file until no more are left.
-            while (inputFile.hasNext())
-            {
+            while (inputFile.hasNext()) {
                 // This is for debugging only!
                 // JOptionPane.showMessageDialog(null, "In loop");
                 // Read the next line.
@@ -625,56 +619,59 @@ public class APUHandleTask extends javax.swing.JFrame {
                 matchedID = bEntry.split(":");
                 // Check if the read line has current book ID
                 if (matchedID[1].equals(apptPrefix + ApptID)) {
-                    
+
                     totalAmount = Money.parse(txttotalAmount.getText());
                     paymentAmount = Money.parse(txtpaymentAmount.getText());
-                    
-                    if(paymentAmount.isLessThan(totalAmount)){
+
+                    if (paymentAmount.isLessThan(totalAmount)) {
                         JOptionPane.showMessageDialog(null, "Total payment is not enough", "Payment failed", JOptionPane.ERROR_MESSAGE);
                     } else {
-                        
-                        if(cmbPaymentStatus.getSelectedIndex() <= 1){
+
+                        if (cmbPaymentStatus.getSelectedIndex() <= 1) {
                             JOptionPane.showMessageDialog(null, "Payment status was not set to paid, autoset it to Paid", "Payment Status unselected!", JOptionPane.ERROR_MESSAGE);
                             cmbPaymentStatus.setSelectedIndex(2);
                         }
-                        
+
                         balanceAmount = paymentAmount.minus(totalAmount);
                         matchedID[0] = paymentID;
                         matchedID[2] = techID;
                         matchedID[3] = txtCustomerName.getText();
                         matchedID[4] = txtApptDate.getText();
                         matchedID[5] = txtApptTime.getText();
-                        matchedID[6] = txtAppliance.getText(); 
+                        matchedID[6] = txtAppliance.getText();
                         matchedID[7] = (String) cmbPaymentStatus.getSelectedItem();
                         matchedID[8] = txtPaymentDate.getText();
                         matchedID[9] = totalAmount.toString();
                         matchedID[10] = paymentAmount.toString();
                         matchedID[11] = balanceAmount.toString();
                         matchedID[12] = "true";
-                        
-                         cdp.println(matchedID[0] + ":"
-                          + matchedID[1] + ":"
-                          + matchedID[2] + ":"
-                          + matchedID[3] + ":"
-                          + matchedID[4] + ":"
-                          + matchedID[5] + ":"
-                          + matchedID[6] + ":"
-                          + matchedID[7] + ":"
-                          + matchedID[8] + ":"
-                          + matchedID[9] + ":"
-                          + matchedID[10] + ":"
-                          + matchedID[11] + ":"
-                          + matchedID[12]);
-                
-                         
+
+                        insertFeedback();
+                        updateApptStatus();
+
                         JOptionPane.showMessageDialog(null, "Customer has paid for the service, balance is: " + balanceAmount, "Payment made", JOptionPane.INFORMATION_MESSAGE);
                         printReceipt();
+
                     }
+
                     //JOptionPane.showMessageDialog(null, "Customer has paid for the service, balance is:RM" + balanceAmount, "Payment made", JOptionPane.INFORMATION_MESSAGE);
                     // Inserting the new information from the text fields into the book line
-                   }
+                }
                 // Rewrite the new book.txt with values found in clientBak.txt
-                
+                cdp.println(matchedID[0] + ":"
+                        + matchedID[1] + ":"
+                        + matchedID[2] + ":"
+                        + matchedID[3] + ":"
+                        + matchedID[4] + ":"
+                        + matchedID[5] + ":"
+                        + matchedID[6] + ":"
+                        + matchedID[7] + ":"
+                        + matchedID[8] + ":"
+                        + matchedID[9] + ":"
+                        + matchedID[10] + ":"
+                        + matchedID[11] + ":"
+                        + matchedID[12]);
+
             }
             // Close the clientBak.txt reader
             inputFile.close();
@@ -682,13 +679,16 @@ public class APUHandleTask extends javax.swing.JFrame {
             paymentBack.delete();
             // This closes the book.txt printer 
             cdp.close();
+            clearPayment();
+            setCurrentDate();
         } catch (Exception ex) {
             highlightEmpty();
             JOptionPane.showMessageDialog(null, "Invalid input! Please check your input to proceed.", "Invalid insertion detected!", JOptionPane.ERROR_MESSAGE);
         }
+
     }
-      
-      private void updateApptStatus(){
+
+    private void updateApptStatus() {
         // TODO add your handling code here:
         try {
             // Check if textfields are empty
@@ -701,7 +701,7 @@ public class APUHandleTask extends javax.swing.JFrame {
             File ApptOri = new File(FileDir + "Appointment.txt");
             File ApptBack = new File(FileDir + "AppointmentBack.txt");
             // To check if clientBak.txt is present or not
-            if (!ApptBack.exists()){
+            if (!ApptBack.exists()) {
                 ApptOri.createNewFile();
             }
             // This is for debugging only!
@@ -711,9 +711,9 @@ public class APUHandleTask extends javax.swing.JFrame {
             // This is to open, find and replace a specific book record
             // Requires temporary file to store current state
             // FileWriter to write into a new file called book.txt
-            FileWriter cd = new FileWriter(FileDir + "Appointment.txt"); 
+            FileWriter cd = new FileWriter(FileDir + "Appointment.txt");
             // PrintWriter to print into book.txt
-            PrintWriter cdp = new PrintWriter(cd); 
+            PrintWriter cdp = new PrintWriter(cd);
             // This is to open and read clientBak.txt 
             File appttxt = new File(FileDir + "AppointmentBack.txt");
             // This is to instantiate the file opened earlier
@@ -723,8 +723,7 @@ public class APUHandleTask extends javax.swing.JFrame {
             // This is only for debugging!
             // boolean itWorked = false;
             // Read lines from the file until no more are left.
-            while (inputFile.hasNext())
-            {
+            while (inputFile.hasNext()) {
                 // This is for debugging only!
                 // JOptionPane.showMessageDialog(null, "In loop");
                 // Read the next line.
@@ -733,36 +732,34 @@ public class APUHandleTask extends javax.swing.JFrame {
                 matchedID = bEntry.split(":");
                 // Check if the read line has current book ID
                 if (matchedID[0].equals(apptPrefix + atID)) {
-                        matchedID[1] = cID;
-                        matchedID[2] = tcID;
-                        matchedID[3] = cmID;
-                        matchedID[4] = custname;
-                        matchedID[5] = appDate;
-                        matchedID[6] = appTime; 
-                        matchedID[7] = applncs;
-                        matchedID[8] = bDate;
-                        matchedID[9] = "COMPLETED";
-                        matchedID[10] = "true";
-                       
-                    }
-                    //JOptionPane.showMessageDialog(null, "Customer has paid for the service, balance is:RM" + balanceAmount, "Payment made", JOptionPane.INFORMATION_MESSAGE);
-                    // Inserting the new information from the text fields into the book line
-                    cdp.println(matchedID[0] + ":"
-                          + matchedID[1] + ":"
-                          + matchedID[2] + ":"
-                          + matchedID[3] + ":"
-                          + matchedID[4] + ":"
-                          + matchedID[5] + ":"
-                          + matchedID[6] + ":"
-                          + matchedID[7] + ":"
-                          + matchedID[8] + ":"
-                          + matchedID[9] + ":"
-                          + matchedID[10]);
-                
-                         
-                        
-                   }
-                // Rewrite the new book.txt with values found in clientBak.txtcd
+                    matchedID[1] = cID;
+                    matchedID[2] = tcID;
+                    matchedID[3] = cmID;
+                    matchedID[4] = custname;
+                    matchedID[5] = appDate;
+                    matchedID[6] = appTime;
+                    matchedID[7] = applncs;
+                    matchedID[8] = bDate;
+                    matchedID[9] = "COMPLETED";
+                    matchedID[10] = "true";
+
+                }
+                //JOptionPane.showMessageDialog(null, "Customer has paid for the service, balance is:RM" + balanceAmount, "Payment made", JOptionPane.INFORMATION_MESSAGE);
+                // Inserting the new information from the text fields into the book line
+                cdp.println(matchedID[0] + ":"
+                        + matchedID[1] + ":"
+                        + matchedID[2] + ":"
+                        + matchedID[3] + ":"
+                        + matchedID[4] + ":"
+                        + matchedID[5] + ":"
+                        + matchedID[6] + ":"
+                        + matchedID[7] + ":"
+                        + matchedID[8] + ":"
+                        + matchedID[9] + ":"
+                        + matchedID[10]);
+
+            }
+            // Rewrite the new book.txt with values found in clientBak.txtcd
             // Close the clientBak.txt reader
             inputFile.close();
             // This deletes clientBak.txt
@@ -770,16 +767,17 @@ public class APUHandleTask extends javax.swing.JFrame {
             // This closes the book.txt printer 
             cdp.close();
         } catch (Exception ex) {
-           //highlightEmpty();
+            //highlightEmpty();
             JOptionPane.showMessageDialog(null, "Invalid input! Please check your input to proceed.", "Invalid insertion detected!", JOptionPane.ERROR_MESSAGE);
         }
     }
-     private void feedbackIDIncrementor(){
+
+    private void feedbackIDIncrementor() {
         // This is to ensure the entire method have access to the matchedID array
         String[] matchedID = null;
         // This flag is to check if the while loop is triggered or not. Triggered while loop indicates presence of records but relevance might not
         boolean hasRecord = false;
-        
+
         try {
             FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
             // For debugging purpose only
@@ -792,20 +790,19 @@ public class APUHandleTask extends javax.swing.JFrame {
             try {
                 inputFile = new Scanner(feedbacktxt);
                 // Read lines from the file until no more are left.
-                while (inputFile.hasNext())
-                {
-                   // Read the next line.
-                   String bEntry = inputFile.nextLine();
-                   // Split the line by using the delimiterÂ ":" (semicolon) and store into array.
-                   matchedID = bEntry.split(":");
-                   String temptype = null;
+                while (inputFile.hasNext()) {
+                    // Read the next line.
+                    String bEntry = inputFile.nextLine();
+                    // Split the line by using the delimiterÂ ":" (semicolon) and store into array.
+                    matchedID = bEntry.split(":");
+                    String temptype = null;
 //                   if (matchedID[0].contains("STA")) {
 //                       temptype = "STA";
 //                   } else if (matchedID[0].contains("STU")) {
 //                       temptype = "STU";
 //                   }
-                   matchedID[0] = matchedID[0].replace(feedPrefix, "");
-                   hasRecord = true;
+                    matchedID[0] = matchedID[0].replace(feedPrefix, "");
+                    hasRecord = true;
                 }
                 inputFile.close();
                 if (!hasRecord) {
@@ -816,13 +813,13 @@ public class APUHandleTask extends javax.swing.JFrame {
             } catch (FileNotFoundException ex) {
                 //Logger.getLogger(unnamedBorrowMenu.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
             JOptionPane.showMessageDialog(null, "Invalid input! Customer can only consist of numbers", "Invalid input type!", JOptionPane.ERROR_MESSAGE);
         }
-    }  
-    private void insertFeedback(){
+    }
+
+    private void insertFeedback() {
         // Declaring file extension used
         String apptPrefix = "APPT";
         FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
@@ -835,24 +832,24 @@ public class APUHandleTask extends javax.swing.JFrame {
             String appointment_ID = (String) cmbApptID.getSelectedItem();
             //String TechID = txtTechID.getText();
             String paymentStatus = (String) cmbPaymentStatus.getSelectedItem();
-            String apptFeedback =txtApptFeedback.getText();
+            String apptFeedback = txtApptFeedback.getText();
             //String CustGender = (String) cmbGender.getSelectedItem();
             //String CustEmail = txtEmail.getText();
-           // String CustDOB = txtDOB.getText();
+            // String CustDOB = txtDOB.getText();
             // FileWriter and PrintWriter to create and write into book.txt
             try {
                 // FileWriter to write into a new file called client.txt
-                FileWriter cd = new FileWriter(FileDir + "Feedback.txt", true); 
+                FileWriter cd = new FileWriter(FileDir + "Feedback.txt", true);
                 // PrintWriter to print into client.txt
-                PrintWriter cdp = new PrintWriter(cd); 
+                PrintWriter cdp = new PrintWriter(cd);
                 // To print the line into Borrowing textfile
-                cdp.println(feedPrefix + feedID + ":" +
-                            apptPrefix + appointment_ID + ":" +
-                            techID + ":" +
-                            paymentStatus + ":" +
-                            apptFeedback + ":" + 
-                            "true"); //true boolean indicating the user is exisiting (non-deleted)
-                
+                cdp.println(feedPrefix + feedID + ":"
+                        + apptPrefix + appointment_ID + ":"
+                        + techID + ":"
+                        + paymentStatus + ":"
+                        + apptFeedback + ":"
+                        + "true"); //true boolean indicating the user is exisiting (non-deleted)
+
                 cdp.close();
                 cd.close();
                 // To display completed borrowing process status
@@ -870,236 +867,219 @@ public class APUHandleTask extends javax.swing.JFrame {
             } catch (IOException ex) {
                 //Logger.getLogger(unnamedBorrowMenu.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             highlightEmpty();
             // Continue with displaying which field was affected. ensure it appears before the mnessagebox
-        }      
+        }
     }
-    
-    private void printInvoice() throws IOException, FileNotFoundException{
-            
-            PdfWriter writer = new PdfWriter(invoicesource);
-            PdfDocument pdfdoc = new PdfDocument(writer);
-            Document document = new Document(pdfdoc);
-            pdfdoc.setDefaultPageSize(PageSize.A4);
-            
-           float width = 280f;
-           float columnWidth[] = {width, width};
-           Table tbl = new Table(columnWidth);
-          
-           
-          tbl.addCell(new Cell(1,2).add(new Paragraph("AHHASC").setFontSize(30f).setBold().setFontColor(new DeviceRgb(66, 133, 244))).setBorder(Border.NO_BORDER));
 
-          tbl.addCell(new Cell().add(new Paragraph("Danish & Irfan Service")).setBorder(Border.NO_BORDER).setTextAlignment(LEFT));
-          tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
-          
-          tbl.addCell(new Cell().add(new Paragraph("0126764728")).setBorder(Border.NO_BORDER).setTextAlignment(LEFT));
-          
-          
-          tbl.addCell(new Cell().add(new Paragraph("\n")).setBorder(Border.NO_BORDER));
-          tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
-          tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
-          tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
-          tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
-          
-          
-         
-          Text textBilledTo = new Text("BILLED TO\n");
-          textBilledTo.setBold();
-          textBilledTo.setFontColor(new DeviceRgb(66, 133, 244));
-          Paragraph billedto = new Paragraph();
-          billedto.add(textBilledTo);
-          String customerName = txtCustomerName.getText();
-          billedto.add(customerName);
-          
-          tbl.addCell(new Cell().add(billedto).setBorder(Border.NO_BORDER));
-          tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
-          
-          tbl.addCell(new Cell(2,1).add(new Paragraph("INVOICE").setBold().setFontSize(24).setFontColor(new DeviceRgb(66, 133, 244))).setBorder(Border.NO_BORDER).setTextAlignment(LEFT));
-          tbl.addCell(new Cell().add(new Paragraph("\n")).setBorder(Border.NO_BORDER));
-          tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
-          tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
-          tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
-          
-          Text textDateOfIssue = new Text("DATE OF ISSUE\n");
-          textDateOfIssue.setBold().setFontColor(new DeviceRgb(23,23,23));
-          Paragraph paragraphDateOfIssue = new Paragraph();
-          paragraphDateOfIssue.add(textDateOfIssue);
-          String invoiceiIssue = txtApptDate.getText();
-          paragraphDateOfIssue.add(invoiceiIssue);
-          
-          tbl.addCell(new Cell(3,1).add(paragraphDateOfIssue).setBorder(Border.NO_BORDER));
-          tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
-          tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
-          tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
-      
-          
-          float itemColWidth[] = {403,200}; 
-          Table itemTable = new Table(itemColWidth);
-          
-          itemTable.addCell("Description").setBackgroundColor(new DeviceRgb(0,157,196)).setFontColor(new DeviceRgb(237,237,237)).setTextAlignment(CENTER);
-          itemTable.addCell("Amount").setBackgroundColor(new DeviceRgb(0,157,196)).setFontColor(new DeviceRgb(237,237,237)).setTextAlignment(CENTER);
-          
-          
-          Table dataTable = new Table(itemColWidth);
-          String APPLIANCE = txtAppliance.getText();
-          String ttlAmount = txttotalAmount.getText();
-          
-          dataTable.addCell(APPLIANCE).setBackgroundColor(WHITE).setTextAlignment(CENTER);
-          dataTable.addCell(ttlAmount).setBackgroundColor(WHITE).setTextAlignment(CENTER);
-           
-          
-          Table paymentTable = new Table(itemColWidth);
-          
-          paymentTable.addCell(new Cell().add(new Paragraph("Total Amount:")).setBorder(Border.NO_BORDER).setTextAlignment(RIGHT));
-          paymentTable.addCell(new Cell().add(new Paragraph(ttlAmount)).setBorder(Border.NO_BORDER).setTextAlignment(CENTER));
-          
-          Paragraph tc = new Paragraph("\n PAYMENT MUST BE MADE ASAP");
-          //tbl.addCell(new Cell().add(new Paragraph("test")));
-           //write into the pdf
-           document.add(tbl);
-           document.add(itemTable);
-           document.add(dataTable);
-           document.add(paymentTable);
-           document.add(tc);
-           document.close();
+    private void printInvoice() throws IOException, FileNotFoundException {
+
+        PdfWriter writer = new PdfWriter(invoicesource);
+        PdfDocument pdfdoc = new PdfDocument(writer);
+        Document document = new Document(pdfdoc);
+        pdfdoc.setDefaultPageSize(PageSize.A4);
+
+        float width = 280f;
+        float columnWidth[] = {width, width};
+        Table tbl = new Table(columnWidth);
+
+        tbl.addCell(new Cell(1, 2).add(new Paragraph("AHHASC").setFontSize(30f).setBold().setFontColor(new DeviceRgb(66, 133, 244))).setBorder(Border.NO_BORDER));
+
+        tbl.addCell(new Cell().add(new Paragraph("Danish & Irfan Service")).setBorder(Border.NO_BORDER).setTextAlignment(LEFT));
+        tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+
+        tbl.addCell(new Cell().add(new Paragraph("0126764728")).setBorder(Border.NO_BORDER).setTextAlignment(LEFT));
+
+        tbl.addCell(new Cell().add(new Paragraph("\n")).setBorder(Border.NO_BORDER));
+        tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+        tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+        tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+        tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+
+        Text textBilledTo = new Text("BILLED TO\n");
+        textBilledTo.setBold();
+        textBilledTo.setFontColor(new DeviceRgb(66, 133, 244));
+        Paragraph billedto = new Paragraph();
+        billedto.add(textBilledTo);
+        String customerName = txtCustomerName.getText();
+        billedto.add(customerName);
+
+        tbl.addCell(new Cell().add(billedto).setBorder(Border.NO_BORDER));
+        tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+
+        tbl.addCell(new Cell(2, 1).add(new Paragraph("INVOICE").setBold().setFontSize(24).setFontColor(new DeviceRgb(66, 133, 244))).setBorder(Border.NO_BORDER).setTextAlignment(LEFT));
+        tbl.addCell(new Cell().add(new Paragraph("\n")).setBorder(Border.NO_BORDER));
+        tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+        tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+        tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+
+        Text textDateOfIssue = new Text("DATE OF ISSUE\n");
+        textDateOfIssue.setBold().setFontColor(new DeviceRgb(23, 23, 23));
+        Paragraph paragraphDateOfIssue = new Paragraph();
+        paragraphDateOfIssue.add(textDateOfIssue);
+        String invoiceiIssue = txtApptDate.getText();
+        paragraphDateOfIssue.add(invoiceiIssue);
+
+        tbl.addCell(new Cell(3, 1).add(paragraphDateOfIssue).setBorder(Border.NO_BORDER));
+        tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+        tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+        tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+
+        float itemColWidth[] = {403, 200};
+        Table itemTable = new Table(itemColWidth);
+
+        itemTable.addCell("Description").setBackgroundColor(new DeviceRgb(0, 157, 196)).setFontColor(new DeviceRgb(237, 237, 237)).setTextAlignment(CENTER);
+        itemTable.addCell("Amount").setBackgroundColor(new DeviceRgb(0, 157, 196)).setFontColor(new DeviceRgb(237, 237, 237)).setTextAlignment(CENTER);
+
+        Table dataTable = new Table(itemColWidth);
+        String APPLIANCE = txtAppliance.getText();
+        String ttlAmount = txttotalAmount.getText();
+
+        dataTable.addCell(APPLIANCE).setBackgroundColor(WHITE).setTextAlignment(CENTER);
+        dataTable.addCell(ttlAmount).setBackgroundColor(WHITE).setTextAlignment(CENTER);
+
+        Table paymentTable = new Table(itemColWidth);
+
+        paymentTable.addCell(new Cell().add(new Paragraph("Total Amount:")).setBorder(Border.NO_BORDER).setTextAlignment(RIGHT));
+        paymentTable.addCell(new Cell().add(new Paragraph(ttlAmount)).setBorder(Border.NO_BORDER).setTextAlignment(CENTER));
+
+        Paragraph tc = new Paragraph("\n PAYMENT MUST BE MADE ASAP");
+        //tbl.addCell(new Cell().add(new Paragraph("test")));
+        //write into the pdf
+        document.add(tbl);
+        document.add(itemTable);
+        document.add(dataTable);
+        document.add(paymentTable);
+        document.add(tc);
+        document.close();
         JOptionPane.showMessageDialog(null, "Invoice created successfully", "Records Printed!", JOptionPane.INFORMATION_MESSAGE);
     }
-    
-    private void printReceipt() throws IOException, FileNotFoundException{
-            
-            PdfWriter writer = new PdfWriter(receiptSource);
-            PdfDocument pdfdoc = new PdfDocument(writer);
-            Document document = new Document(pdfdoc);
-            pdfdoc.setDefaultPageSize(PageSize.A4);
-            
-           float width = 280f;
-           float columnWidth[] = {width, width};
-           Table tbl = new Table(columnWidth);
-          
-           
-          tbl.addCell(new Cell(1,2).add(new Paragraph("AHHASC").setFontSize(30f).setBold().setFontColor(new DeviceRgb(66, 133, 244))).setBorder(Border.NO_BORDER));
 
-          tbl.addCell(new Cell().add(new Paragraph("Danish & Irfan Service")).setBold().setBorder(Border.NO_BORDER).setTextAlignment(LEFT));
-          tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
-          
-          tbl.addCell(new Cell().add(new Paragraph("0126764728")).setBold().setBorder(Border.NO_BORDER).setTextAlignment(LEFT));
-          
-          
-          tbl.addCell(new Cell().add(new Paragraph("\n")).setBorder(Border.NO_BORDER));
-          tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
-          tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
-          tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
-          tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
-          
-          
-         
-          Text textBilledTo = new Text("RECEIPT TO\n");
-          textBilledTo.setBold();
-          textBilledTo.setFontColor(new DeviceRgb(66, 133, 244));
-          Paragraph billedto = new Paragraph();
-          billedto.add(textBilledTo);
-          String customerName = txtCustomerName.getText();
-          billedto.add(customerName);
-          
-          tbl.addCell(new Cell().add(billedto).setBorder(Border.NO_BORDER));
-          tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
-          
-          tbl.addCell(new Cell(2,1).add(new Paragraph("PAYMENT RECEIPT").setBold().setFontSize(24).setFontColor(new DeviceRgb(66, 133, 244))).setBorder(Border.NO_BORDER).setTextAlignment(LEFT));
-          tbl.addCell(new Cell().add(new Paragraph("\n")).setBorder(Border.NO_BORDER));
-          tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
-          tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
-          tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
-          
-          Text textDateOfIssue = new Text("DATE OF ISSUE\n");
-          textDateOfIssue.setBold().setFontColor(new DeviceRgb(23,23,23));
-          Paragraph paragraphDateOfIssue = new Paragraph();
-          paragraphDateOfIssue.add(textDateOfIssue);
-          String invoiceiIssue = txtPaymentDate.getText();
-          paragraphDateOfIssue.add(invoiceiIssue);
-          
-          tbl.addCell(new Cell(3,1).add(paragraphDateOfIssue).setBorder(Border.NO_BORDER));
-          tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
-          tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
-          tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
-      
-          
-          float itemColWidth[] = {400,200}; 
-          Table itemTable = new Table(itemColWidth);
-          
-          itemTable.addCell("Description").setBackgroundColor(new DeviceRgb(0,157,196)).setFontColor(new DeviceRgb(237,237,237)).setTextAlignment(CENTER);
-          itemTable.addCell("Amount").setBackgroundColor(new DeviceRgb(0,157,196)).setFontColor(new DeviceRgb(237,237,237)).setTextAlignment(CENTER);
-          
-          float dataColWidth[] = {420, 200};
-          Table dataTable = new Table(dataColWidth);
-          String APPLIANCE = txtAppliance.getText();
-          String ttlAmount = txttotalAmount.getText();
-          
-          String pymentAmount = txtpaymentAmount.getText();
-          
-          
-          
-          
-          dataTable.addCell(APPLIANCE).setBackgroundColor(WHITE).setTextAlignment(CENTER);
-          dataTable.addCell(ttlAmount).setBackgroundColor(WHITE).setTextAlignment(CENTER);
-           
-          
-          Table paymentTable = new Table(dataColWidth);
-          
-          paymentTable.addCell(new Cell().add(new Paragraph("Total Amount:")).setBorder(Border.NO_BORDER).setTextAlignment(RIGHT));
-          paymentTable.addCell(new Cell().add(new Paragraph(ttlAmount)).setBorder(Border.NO_BORDER).setTextAlignment(CENTER));
-          
-          paymentTable.addCell(new Cell().add(new Paragraph("Payment Amount:")).setBorder(Border.NO_BORDER).setTextAlignment(RIGHT));
-          paymentTable.addCell(new Cell().add(new Paragraph(pymentAmount)).setBorder(Border.NO_BORDER).setTextAlignment(CENTER));
-          
-          paymentTable.addCell(new Cell().add(new Paragraph("Balance Amount:")).setBorder(Border.NO_BORDER).setTextAlignment(RIGHT));
-          paymentTable.addCell(new Cell().add(new Paragraph(balanceAmount.toString())).setBorder(Border.NO_BORDER).setTextAlignment(CENTER));
-          
-          
-          
-          Paragraph tc = new Paragraph("\n Payment has been made by" + "" + customerName);
-          //tbl.addCell(new Cell().add(new Paragraph("test")));
-           //write into the pdf
-           document.add(tbl);
-           document.add(itemTable);
-           document.add(dataTable);
-           document.add(paymentTable);
-           document.add(tc);
-           document.close();
+    private void printReceipt() throws IOException, FileNotFoundException {
+
+        PdfWriter writer = new PdfWriter(receiptSource);
+        PdfDocument pdfdoc = new PdfDocument(writer);
+        Document document = new Document(pdfdoc);
+        pdfdoc.setDefaultPageSize(PageSize.A4);
+
+        float width = 280f;
+        float columnWidth[] = {width, width};
+        Table tbl = new Table(columnWidth);
+
+        tbl.addCell(new Cell(1, 2).add(new Paragraph("AHHASC").setFontSize(30f).setBold().setFontColor(new DeviceRgb(66, 133, 244))).setBorder(Border.NO_BORDER));
+
+        tbl.addCell(new Cell().add(new Paragraph("Danish & Irfan Service")).setBold().setBorder(Border.NO_BORDER).setTextAlignment(LEFT));
+        tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+
+        tbl.addCell(new Cell().add(new Paragraph("0126764728")).setBold().setBorder(Border.NO_BORDER).setTextAlignment(LEFT));
+
+        tbl.addCell(new Cell().add(new Paragraph("\n")).setBorder(Border.NO_BORDER));
+        tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+        tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+        tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+        tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+
+        Text textBilledTo = new Text("RECEIPT TO\n");
+        textBilledTo.setBold();
+        textBilledTo.setFontColor(new DeviceRgb(66, 133, 244));
+        Paragraph billedto = new Paragraph();
+        billedto.add(textBilledTo);
+        String customerName = txtCustomerName.getText();
+        billedto.add(customerName);
+
+        tbl.addCell(new Cell().add(billedto).setBorder(Border.NO_BORDER));
+        tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+
+        tbl.addCell(new Cell(2, 1).add(new Paragraph("PAYMENT RECEIPT").setBold().setFontSize(24).setFontColor(new DeviceRgb(66, 133, 244))).setBorder(Border.NO_BORDER).setTextAlignment(LEFT));
+        tbl.addCell(new Cell().add(new Paragraph("\n")).setBorder(Border.NO_BORDER));
+        tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+        tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+        tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+
+        Text textDateOfIssue = new Text("DATE OF ISSUE\n");
+        textDateOfIssue.setBold().setFontColor(new DeviceRgb(23, 23, 23));
+        Paragraph paragraphDateOfIssue = new Paragraph();
+        paragraphDateOfIssue.add(textDateOfIssue);
+        String invoiceiIssue = txtPaymentDate.getText();
+        paragraphDateOfIssue.add(invoiceiIssue);
+
+        tbl.addCell(new Cell(3, 1).add(paragraphDateOfIssue).setBorder(Border.NO_BORDER));
+        tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+        tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+        tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+
+        float itemColWidth[] = {400, 200};
+        Table itemTable = new Table(itemColWidth);
+
+        itemTable.addCell("Description").setBackgroundColor(new DeviceRgb(0, 157, 196)).setFontColor(new DeviceRgb(237, 237, 237)).setTextAlignment(CENTER);
+        itemTable.addCell("Amount").setBackgroundColor(new DeviceRgb(0, 157, 196)).setFontColor(new DeviceRgb(237, 237, 237)).setTextAlignment(CENTER);
+
+        float dataColWidth[] = {420, 200};
+        Table dataTable = new Table(dataColWidth);
+        String APPLIANCE = txtAppliance.getText();
+        String ttlAmount = txttotalAmount.getText();
+
+        String pymentAmount = txtpaymentAmount.getText();
+
+        dataTable.addCell(APPLIANCE).setBackgroundColor(WHITE).setTextAlignment(CENTER);
+        dataTable.addCell(ttlAmount).setBackgroundColor(WHITE).setTextAlignment(CENTER);
+
+        Table paymentTable = new Table(dataColWidth);
+
+        paymentTable.addCell(new Cell().add(new Paragraph("Total Amount:")).setBorder(Border.NO_BORDER).setTextAlignment(RIGHT));
+        paymentTable.addCell(new Cell().add(new Paragraph(ttlAmount)).setBorder(Border.NO_BORDER).setTextAlignment(CENTER));
+
+        paymentTable.addCell(new Cell().add(new Paragraph("Payment Amount:")).setBorder(Border.NO_BORDER).setTextAlignment(RIGHT));
+        paymentTable.addCell(new Cell().add(new Paragraph(pymentAmount)).setBorder(Border.NO_BORDER).setTextAlignment(CENTER));
+
+        paymentTable.addCell(new Cell().add(new Paragraph("Balance Amount:")).setBorder(Border.NO_BORDER).setTextAlignment(RIGHT));
+        paymentTable.addCell(new Cell().add(new Paragraph(balanceAmount.toString())).setBorder(Border.NO_BORDER).setTextAlignment(CENTER));
+
+        Paragraph tc = new Paragraph("\n Payment has been made by" + "" + customerName);
+        //tbl.addCell(new Cell().add(new Paragraph("test")));
+        //write into the pdf
+        document.add(tbl);
+        document.add(itemTable);
+        document.add(dataTable);
+        document.add(paymentTable);
+        document.add(tc);
+        document.close();
         JOptionPane.showMessageDialog(null, "Receipt has been printed!", "Records printed into PDF!", JOptionPane.INFORMATION_MESSAGE);
     }
-    
-    private void setCurrentDate(){
+
+    private void setCurrentDate() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH.mm.ss, dd-MM-yyyy");
         LocalDateTime now = LocalDateTime.now();
         txtPaymentDate.setText(dtf.format(now));
     }
-    
-     private void clearCache(){
-        try {  
+
+    private void clearCache() {
+        try {
             FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
             File cache = new File(FileDir + "UserCache.txt");
             if (cache.exists()) {
                 cache.delete();
             }
         } catch (Exception ex) {
-            
+
         }
     }
-     private void clearPayment(){
-         cmbApptID.setSelectedIndex(0);
-         txtApptDate.setText("");
-         txtCustomerName.setText("");
-         txtAppliance.setText("");
-         txtApptTime.setText("");
-         txtPaymentDate.setText("");
-         txttotalAmount.setText("MYR");
-         txtpaymentAmount.setText("MYR");
-         txtApptFeedback.setText("");
-         cmbPaymentStatus.setSelectedIndex(1);
-     }
-     private void emptyFields() throws Exception {
+
+    private void clearPayment() {
+        cmbApptID.setSelectedIndex(0);
+        txtApptDate.setText("");
+        txtCustomerName.setText("");
+        txtAppliance.setText("");
+        txtApptTime.setText("");
+        txtPaymentDate.setText("");
+        txttotalAmount.setText("MYR");
+        txtpaymentAmount.setText("MYR");
+        txtApptFeedback.setText("");
+        cmbPaymentStatus.setSelectedIndex(1);
+    }
+
+    private void emptyFields() throws Exception {
         PaymentValidation vd = new PaymentValidation();
         if ("".equals(txtApptDate.getText())) {
             throw new Exception("Empty appt date");
@@ -1110,7 +1090,7 @@ public class APUHandleTask extends javax.swing.JFrame {
         if ("".equals(txtAppliance.getText())) {
             throw new Exception("Empty appliance");
         }
-        if("".equals(txtApptTime.getText())){
+        if ("".equals(txtApptTime.getText())) {
             throw new Exception("Empty appt time");
         }
         if ("".equals(txtPaymentDate.getText())) {
@@ -1128,12 +1108,13 @@ public class APUHandleTask extends javax.swing.JFrame {
         if (cmbApptID.getSelectedIndex() < 1) {
             throw new Exception("Empty appt ID");
         }
-         if (cmbPaymentStatus.getSelectedIndex() < 1) {
+        if (cmbPaymentStatus.getSelectedIndex() < 1) {
             throw new Exception("Not selected payment status");
         }
-       
+
     }
-     private void highlightEmpty() {
+
+    private void highlightEmpty() {
         if ("".equals(txtApptDate.getText())) {
             lblApptDate.setForeground(Color.RED);
         }
@@ -1160,12 +1141,13 @@ public class APUHandleTask extends javax.swing.JFrame {
         }
         if (cmbApptID.getSelectedIndex() < 1) {
             lblApptID.setForeground(Color.RED);
-        }   
+        }
         if (cmbPaymentStatus.getSelectedIndex() < 1) {
             lblPaymentStatus.setForeground(Color.RED);
         }
     }
-      private void deHighlightEmpty(){
+
+    private void deHighlightEmpty() {
         lblApptDate.setForeground(ogtxt);
         lblCustomerName.setForeground(ogtxt);
         lblAppliance.setForeground(ogtxt);
@@ -1175,13 +1157,13 @@ public class APUHandleTask extends javax.swing.JFrame {
         lblPaymentAmount.setForeground(ogtxt);
         lblFeedback.setForeground(ogtxt);
         lblApptID.setForeground(ogtxt);
-        lblPaymentStatus.setForeground(ogtxt); 
+        lblPaymentStatus.setForeground(ogtxt);
     }
-     
-     private void initForm(){
+
+    private void initForm() {
         this.setLocationRelativeTo(null);
         setLogo();
-       btnUpdate.setEnabled(false);
+        btnUpdate.setEnabled(false);
         loadUserProfile();
         setAppointmentID();
         setCurrentDate();
@@ -1189,7 +1171,7 @@ public class APUHandleTask extends javax.swing.JFrame {
         // Set the initial value for new book
         // This anon class handles window closing event
         addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e){
+            public void windowClosing(WindowEvent e) {
                 int selection = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Closing Window", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if (selection == JOptionPane.YES_OPTION) {
                     clearCache();
@@ -1199,34 +1181,34 @@ public class APUHandleTask extends javax.swing.JFrame {
                 }
             }
         });
-       // txaHomeAddress.getDocument().putProperty("filterNewlines", Boolean.TRUE);
-      //  inputCharacterValidation();
-     }
+        // txaHomeAddress.getDocument().putProperty("filterNewlines", Boolean.TRUE);
+        //  inputCharacterValidation();
+    }
     // </editor-fold>
-    
+
     private void cmbApptIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbApptIDActionPerformed
         // TODO add your handling code here:
-       // clearUser();
+        // clearUser();
         if (cmbApptID.getSelectedIndex() > 0) {
             loadApptInfo();
             loadAppoitnment();
             btnUpdate.setEnabled(true);
-            
+
         } else {
-           btnUpdate.setEnabled(false);
+            btnUpdate.setEnabled(false);
         }
-        
+
     }//GEN-LAST:event_cmbApptIDActionPerformed
 
     private void txttotalAmountFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txttotalAmountFocusLost
         // TODO add your handling code here:
-        PaymentValidation vd = new PaymentValidation();     
+        PaymentValidation vd = new PaymentValidation();
         vd.runValidate(txttotalAmount, true);
     }//GEN-LAST:event_txttotalAmountFocusLost
 
     private void txtpaymentAmountFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtpaymentAmountFocusLost
         // TODO add your handling code here:
-        PaymentValidation vd = new PaymentValidation();     
+        PaymentValidation vd = new PaymentValidation();
         vd.runValidate(txtpaymentAmount, true);
     }//GEN-LAST:event_txtpaymentAmountFocusLost
 
@@ -1248,13 +1230,13 @@ public class APUHandleTask extends javax.swing.JFrame {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         deHighlightEmpty();
-       updatePayment();
-       insertFeedback();
-       updateApptStatus();
+        updatePayment();
+
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         clearPayment();
+        setCurrentDate();
     }//GEN-LAST:event_btnResetActionPerformed
 
     /**

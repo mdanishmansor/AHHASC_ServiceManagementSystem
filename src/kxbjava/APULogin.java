@@ -6,11 +6,14 @@
 package kxbjava;
 
 import com.formdev.flatlaf.FlatDarkLaf;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,6 +23,10 @@ import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
@@ -34,16 +41,16 @@ import javax.swing.event.DocumentEvent;
 public class APULogin extends javax.swing.JFrame {
 
     private boolean Username = false, Password = false;
-    private String UserID, username, FileDir, fullname, email, password, phonenumber, gender, ManagerID, currentdate, userRole;
+    private String UserID, username, FileDir, fullname, email, password, phonenumber, gender, ManagerID, currentdate, userRole, uID;
 
     /**
      * Creates new form APULogin
      */
-    public APULogin() {
+    public APULogin() throws IOException {
         initComponents();
         initForm();
     }
-    
+
     private void setLogo() {
         String sourcefolder = System.getProperty("user.dir") + "\\src\\icons\\";
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(sourcefolder + "AHHASCrsmol.png"));
@@ -74,6 +81,8 @@ public class APULogin extends javax.swing.JFrame {
         chkpass = new javax.swing.JCheckBox();
         iconNoSee = new javax.swing.JLabel();
         iconSee = new javax.swing.JLabel();
+        profilePnl = new javax.swing.JPanel();
+        lblSelectedPic = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
@@ -157,12 +166,12 @@ public class APULogin extends javax.swing.JFrame {
         lblPass.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblPass.setForeground(new java.awt.Color(255, 255, 255));
         lblPass.setText("Password");
-        jPanel2.add(lblPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 350, -1, -1));
+        jPanel2.add(lblPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 380, -1, -1));
 
         lblsuer.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblsuer.setForeground(new java.awt.Color(255, 255, 255));
         lblsuer.setText("Username");
-        jPanel2.add(lblsuer, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, -1, -1));
+        jPanel2.add(lblsuer, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 240, -1, -1));
 
         txtPassword.setBackground(new java.awt.Color(68, 68, 68));
         txtPassword.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -174,14 +183,24 @@ public class APULogin extends javax.swing.JFrame {
                 txtPasswordKeyReleased(evt);
             }
         });
-        jPanel2.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 390, 700, 80));
+        jPanel2.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 420, 630, 80));
 
         txtUsername.setBackground(new java.awt.Color(68, 68, 68));
         txtUsername.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txtUsername.setForeground(new java.awt.Color(237, 237, 237));
         txtUsername.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         txtUsername.setCaretColor(new java.awt.Color(237, 237, 237));
-        jPanel2.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, 700, 80));
+        txtUsername.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtUsernameFocusLost(evt);
+            }
+        });
+        txtUsername.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                txtUsernamePropertyChange(evt);
+            }
+        });
+        jPanel2.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 270, 630, 80));
 
         lblDesc.setBackground(new java.awt.Color(68, 68, 68));
         lblDesc.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -204,7 +223,7 @@ public class APULogin extends javax.swing.JFrame {
                 iconNoSeeMousePressed(evt);
             }
         });
-        jPanel2.add(iconNoSee, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 410, 40, 40));
+        jPanel2.add(iconNoSee, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 440, 40, 40));
 
         iconSee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/see.png"))); // NOI18N
         iconSee.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -213,7 +232,29 @@ public class APULogin extends javax.swing.JFrame {
                 iconSeeMousePressed(evt);
             }
         });
-        jPanel2.add(iconSee, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 410, 40, 40));
+        jPanel2.add(iconSee, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 440, 40, 40));
+
+        profilePnl.setBackground(new java.awt.Color(68, 68, 68));
+        profilePnl.setPreferredSize(new java.awt.Dimension(400, 400));
+
+        lblSelectedPic.setMaximumSize(new java.awt.Dimension(400, 400));
+        lblSelectedPic.setMinimumSize(new java.awt.Dimension(400, 400));
+        lblSelectedPic.setPreferredSize(new java.awt.Dimension(400, 400));
+
+        javax.swing.GroupLayout profilePnlLayout = new javax.swing.GroupLayout(profilePnl);
+        profilePnl.setLayout(profilePnlLayout);
+        profilePnlLayout.setHorizontalGroup(
+            profilePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(profilePnlLayout.createSequentialGroup()
+                .addComponent(lblSelectedPic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        profilePnlLayout.setVerticalGroup(
+            profilePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblSelectedPic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jPanel2.add(profilePnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 400, 400));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, -1));
 
@@ -283,7 +324,6 @@ public class APULogin extends javax.swing.JFrame {
     }
 
     // </editor-fold>
-    
     // <editor-fold defaultstate="collapsed" desc="Methods">
     private boolean validateAccount() {
         boolean Authenticate = false;
@@ -319,6 +359,54 @@ public class APULogin extends javax.swing.JFrame {
 
         }
         return Authenticate;
+    }
+
+    private void loadUserProfile() throws IOException {
+
+        String notIdentifiedImg = System.getProperty("user.dir") + "\\src\\Icons\\defaultUser.png";
+
+        BufferedImage bufImgNo = ImageIO.read(new File(notIdentifiedImg));
+        Image imgScaleNo = bufImgNo.getScaledInstance(400, 400, Image.SCALE_SMOOTH);
+        ImageIcon scaledIconNo = new ImageIcon(imgScaleNo);
+        lblSelectedPic.setIcon(scaledIconNo);
+
+        String[] matchedID = null;
+        FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
+        File usertext = new File(FileDir + "UserProfile.txt");
+        Scanner intUser;
+        try {
+            intUser = new Scanner(usertext);
+            while (intUser.hasNext()) {
+                String bEntry = intUser.nextLine();
+                matchedID = bEntry.split(":");
+
+                if (txtUsername.getText().equals(matchedID[5])) {
+                    File imgPng = new File(System.getProperty("user.dir") + "\\src\\UserProfilePictures\\" + matchedID[0] + ".png");
+                    String identifiedImg;
+                    if (imgPng.exists()) {
+                        identifiedImg = System.getProperty("user.dir") + "\\src\\UserProfilePictures\\" + matchedID[0] + ".png";
+                    } else {
+                        identifiedImg = System.getProperty("user.dir") + "\\src\\Icons\\defaultUser.png";
+                    }
+                    BufferedImage bufImg = ImageIO.read(new File(identifiedImg));
+                    Image imgScale = bufImg.getScaledInstance(400, 400, Image.SCALE_SMOOTH);
+                    ImageIcon scaledIcon = new ImageIcon(imgScale);
+                    lblSelectedPic.setIcon(scaledIcon);
+                }
+            }
+            intUser.close();
+        } catch (FileNotFoundException ex) {
+            //Logger.getLogger(.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    private void loadImage() throws IOException {
+        String identifiedImg = System.getProperty("user.dir") + "\\src\\Icons\\defaultUser.png";
+        BufferedImage bufImg = ImageIO.read(new File(identifiedImg));
+        Image imgScale = bufImg.getScaledInstance(400, 400, Image.SCALE_SMOOTH);
+        ImageIcon scaledIcon = new ImageIcon(imgScale);
+        lblSelectedPic.setIcon(scaledIcon);
     }
 
     //Start the session for the user
@@ -370,7 +458,7 @@ public class APULogin extends javax.swing.JFrame {
         }
     }
 
-    private void checkUserType() {
+    private void checkUserType() throws IOException {
         if (UserID.contains("CM")) {
             new APUCMMenu().setVisible(true);
             this.dispose();
@@ -381,12 +469,13 @@ public class APULogin extends javax.swing.JFrame {
         }
     }
 
-    private void initForm() {
+    private void initForm() throws IOException {
         // Create the required directory for first time boot
         createDir();
         // Create the required database textfiles for first time boot
         createDatabase();
         setLogo();
+        loadImage();
         this.setLocationRelativeTo(null);
         btnLogin.setEnabled(false); // This will prevent the login button from being pressed right after startup
         this.chkpass.setSelected(true);
@@ -457,7 +546,13 @@ public class APULogin extends javax.swing.JFrame {
                 if (validateAccount()) {
                     JOptionPane.showMessageDialog(null, "Login Successfully! Going to Main Menu", "Authentication Successfully!", JOptionPane.INFORMATION_MESSAGE);
                     userSession();
-                    checkUserType();
+                    try {
+                        checkUserType();
+
+                    } catch (IOException ex) {
+                        Logger.getLogger(APULogin.class
+                                .getName()).log(Level.SEVERE, null, ex);
+                    }
                 } else {
                     JOptionPane.showMessageDialog(null, "Authentication failed! Wrong password or username", "Failure of Authentication", JOptionPane.ERROR_MESSAGE);
 
@@ -483,7 +578,13 @@ public class APULogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Login Successfully! Going to Main Menu", "Authentication Successfully!", JOptionPane.INFORMATION_MESSAGE);
             userSession();
             storeSession();
-            checkUserType();
+            try {
+                checkUserType();
+
+            } catch (IOException ex) {
+                Logger.getLogger(APULogin.class
+                        .getName()).log(Level.SEVERE, null, ex);
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Authentication failed! Wrong password or username", "Failure of Authentication", JOptionPane.ERROR_MESSAGE);
 
@@ -509,6 +610,20 @@ public class APULogin extends javax.swing.JFrame {
             txtPassword.setEchoChar('*');
         }
     }//GEN-LAST:event_chkpassActionPerformed
+
+    private void txtUsernamePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_txtUsernamePropertyChange
+
+    }//GEN-LAST:event_txtUsernamePropertyChange
+
+    private void txtUsernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsernameFocusLost
+        try {
+            loadUserProfile();
+
+        } catch (IOException ex) {
+            Logger.getLogger(APULogin.class
+                    .getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_txtUsernameFocusLost
     // </editor-fold>
 
     /**
@@ -523,7 +638,13 @@ public class APULogin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new APULogin().setVisible(true);
+                try {
+                    new APULogin().setVisible(true);
+
+                } catch (IOException ex) {
+                    Logger.getLogger(APULogin.class
+                            .getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -539,8 +660,10 @@ public class APULogin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblDesc;
     private javax.swing.JLabel lblPass;
+    private javax.swing.JLabel lblSelectedPic;
     private javax.swing.JLabel lblTitle1;
     private javax.swing.JLabel lblsuer;
+    private javax.swing.JPanel profilePnl;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables

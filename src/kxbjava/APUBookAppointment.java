@@ -222,7 +222,7 @@ public class APUBookAppointment extends javax.swing.JFrame {
         txtManagerID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
 
         cmbCustomerID.setBackground(new java.awt.Color(68, 68, 68));
-        cmbCustomerID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        cmbCustomerID.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         cmbCustomerID.setForeground(new java.awt.Color(255, 255, 255));
         cmbCustomerID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Customer ID" }));
         cmbCustomerID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
@@ -245,7 +245,7 @@ public class APUBookAppointment extends javax.swing.JFrame {
         });
 
         cmbTechID.setBackground(new java.awt.Color(68, 68, 68));
-        cmbTechID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        cmbTechID.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         cmbTechID.setForeground(new java.awt.Color(255, 255, 255));
         cmbTechID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Technician ID" }));
         cmbTechID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
@@ -257,7 +257,7 @@ public class APUBookAppointment extends javax.swing.JFrame {
         });
 
         cmbTime.setBackground(new java.awt.Color(68, 68, 68));
-        cmbTime.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        cmbTime.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         cmbTime.setForeground(new java.awt.Color(255, 255, 255));
         cmbTime.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Time", "0800", "1000", "1200", "1400", "1600", "1800" }));
         cmbTime.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
@@ -276,7 +276,7 @@ public class APUBookAppointment extends javax.swing.JFrame {
         });
 
         cmbAppliance.setBackground(new java.awt.Color(68, 68, 68));
-        cmbAppliance.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        cmbAppliance.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         cmbAppliance.setForeground(new java.awt.Color(255, 255, 255));
         cmbAppliance.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Appliance", "Television", "Refrigerator", "Air-conditioner", "Washing Machine", "PC" }));
         cmbAppliance.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));

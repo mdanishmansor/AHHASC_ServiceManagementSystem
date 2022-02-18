@@ -6,15 +6,19 @@
 package kxbjava;
 
 import com.formdev.flatlaf.FlatDarkLaf;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -24,11 +28,13 @@ import javax.swing.UIManager;
  * @author User
  */
 public class APUTCMenu extends javax.swing.JFrame {
-    private String FileDir;
+
+    private String FileDir, uID;
+
     /**
      * Creates new form APUTCMenu
      */
-    public APUTCMenu() {
+    public APUTCMenu() throws IOException {
         initComponents();
         initForm();
     }
@@ -39,8 +45,8 @@ public class APUTCMenu extends javax.swing.JFrame {
         this.setTitle("AHHASC Technician Home Page");
 
     }
-    
-     private void loadUserProfile() {
+
+    private void loadUserProfile() throws IOException {
         String[] matchedID = null;
         FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
         File usertext = new File(FileDir + "UserCache.txt");
@@ -50,17 +56,29 @@ public class APUTCMenu extends javax.swing.JFrame {
             while (intUser.hasNext()) {
                 String bEntry = intUser.nextLine();
                 matchedID = bEntry.split(":");
+                uID = matchedID[0];
                 lblDesc1.setText("Welcome Back "
-                        + "\n" 
-                        + matchedID[5] 
+                        + "\n"
+                        + matchedID[5]
                         + "!");
             }
             intUser.close();
         } catch (FileNotFoundException ex) {
             //Logger.getLogger(.class.getName()).log(Level.SEVERE, null, ex);
         }
+        File imgPng = new File(System.getProperty("user.dir") + "\\src\\UserProfilePictures\\" + uID + ".png");
+        String identifiedImg;
+        if (imgPng.exists()) {
+            identifiedImg = System.getProperty("user.dir") + "\\src\\UserProfilePictures\\" + uID + ".png";
+        } else {
+            identifiedImg = System.getProperty("user.dir") + "\\src\\Icons\\defaultUser.png";
+        }
+        BufferedImage bufImg = ImageIO.read(new File(identifiedImg));
+        Image imgScale = bufImg.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        ImageIcon scaledIcon = new ImageIcon(imgScale);
+        lblSelectedPic.setIcon(scaledIcon);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -80,6 +98,8 @@ public class APUTCMenu extends javax.swing.JFrame {
         btnProfile = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
         lblDesc1 = new javax.swing.JLabel();
+        profilePnl = new javax.swing.JPanel();
+        lblSelectedPic = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
@@ -192,6 +212,14 @@ public class APUTCMenu extends javax.swing.JFrame {
         btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/signouty.png"))); // NOI18N
         btnLogout.setBorder(null);
         btnLogout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLogout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnLogoutMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnLogoutMouseExited(evt);
+            }
+        });
         btnLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLogoutActionPerformed(evt);
@@ -205,6 +233,30 @@ public class APUTCMenu extends javax.swing.JFrame {
         lblDesc1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblDesc1.setText("Welcome Back!");
         jPanel2.add(lblDesc1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 390, 600, 80));
+
+        profilePnl.setBackground(new java.awt.Color(68, 68, 68));
+        profilePnl.setPreferredSize(new java.awt.Dimension(200, 200));
+
+        lblSelectedPic.setMaximumSize(new java.awt.Dimension(100, 100));
+        lblSelectedPic.setMinimumSize(new java.awt.Dimension(100, 100));
+        lblSelectedPic.setPreferredSize(new java.awt.Dimension(100, 100));
+
+        javax.swing.GroupLayout profilePnlLayout = new javax.swing.GroupLayout(profilePnl);
+        profilePnl.setLayout(profilePnlLayout);
+        profilePnlLayout.setHorizontalGroup(
+            profilePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, profilePnlLayout.createSequentialGroup()
+                .addGap(0, 2, Short.MAX_VALUE)
+                .addComponent(lblSelectedPic, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        profilePnlLayout.setVerticalGroup(
+            profilePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, profilePnlLayout.createSequentialGroup()
+                .addComponent(lblSelectedPic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        jPanel2.add(profilePnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 50, 100, 100));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
 
@@ -222,8 +274,8 @@ public class APUTCMenu extends javax.swing.JFrame {
 
         }
     }
-    
-    private void initForm(){
+
+    private void initForm() throws IOException {
         this.setLocationRelativeTo(null);
         setLogo();
         loadUserProfile();
@@ -241,7 +293,7 @@ public class APUTCMenu extends javax.swing.JFrame {
             }
         });
     }
-    
+
     private void btnCollectPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCollectPaymentActionPerformed
         new ViewPayment().setVisible(true);
         this.dispose();
@@ -299,6 +351,7 @@ public class APUTCMenu extends javax.swing.JFrame {
         int selection = JOptionPane.showConfirmDialog(null, "Logging out. Are you sure to continue?", "Logout", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (selection == JOptionPane.YES_OPTION) {
             clearCache();
+            new APULogin().setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_btnLogoutActionPerformed
@@ -307,13 +360,20 @@ public class APUTCMenu extends javax.swing.JFrame {
         new ViewFeedback().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnProvideFeedbackActionPerformed
-                                           
+
+    private void btnLogoutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogoutMouseEntered
+        lblDesc.setText("Log Out?");
+    }//GEN-LAST:event_btnLogoutMouseEntered
+
+    private void btnLogoutMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogoutMouseExited
+        lblDesc.setText("Please Select Your Choice");
+    }//GEN-LAST:event_btnLogoutMouseExited
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-       try {
+        try {
             UIManager.setLookAndFeel(new FlatDarkLaf());
         } catch (Exception ex) {
             System.err.println("Fail Look and Feel");
@@ -322,7 +382,11 @@ public class APUTCMenu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new APUTCMenu().setVisible(true);
+                try {
+                    new APUTCMenu().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(APUTCMenu.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -337,6 +401,8 @@ public class APUTCMenu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblDesc;
     private javax.swing.JLabel lblDesc1;
+    private javax.swing.JLabel lblSelectedPic;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JPanel profilePnl;
     // End of variables declaration//GEN-END:variables
 }

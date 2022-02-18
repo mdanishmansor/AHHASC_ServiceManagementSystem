@@ -1,3 +1,3 @@
-CM00001:CM00001:Centre Manager:Muhammad Irfan:Irfan@gmail.com:irfan:123:0126767890:Male:null
+CM00001:CM00001:Centre Manager:Muhammad Irfan:Irfan@gmail.com:irfan:123:0126767890:Male:true
 TC00001:CM00001:Technician:Muhammad Danish Bin Mansor:danish2@gmail.com:danish:cang2:0172778201:Female:true
 CM00002:CM00001:Centre Manager:Mr Kacang:danish@mail.com:kacang:kacang:01267647  :Male:true

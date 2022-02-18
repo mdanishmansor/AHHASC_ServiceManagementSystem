@@ -33,15 +33,16 @@ public class ManageFeedback extends javax.swing.JFrame {
 
     private String FileDir, feedID, apptid, techid, status, feedback;
     private boolean filter = false;
+
     /**
      * Creates new form ViewFeedback
      */
     public ManageFeedback() throws java.io.IOException {
         initComponents();
         initForm();
-       
+
     }
-    
+
     private void setLogo() {
         String sourcefolder = System.getProperty("user.dir") + "\\src\\icons\\";
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(sourcefolder + "AHHASCrsmol.png"));
@@ -240,10 +241,11 @@ public class ManageFeedback extends javax.swing.JFrame {
 
         clearTable();
         try {
-            if(filterFeedback()){
+            if (filterFeedback()) {
                 JOptionPane.showMessageDialog(null, "Record(s) filtered accordingly", "Records Filtered!", JOptionPane.INFORMATION_MESSAGE);
-            } else{
+            } else {
                 JOptionPane.showMessageDialog(null, "No record(s) found according to the filter", "No Record(s)", JOptionPane.ERROR_MESSAGE);
+                insertFeedbackRecords();
             }
         } catch (java.io.IOException ex) {
             Logger.getLogger(ManageFeedback.class.getName()).log(Level.SEVERE, null, ex);
@@ -273,7 +275,7 @@ public class ManageFeedback extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void txtFilterPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_txtFilterPropertyChange
-        if(txtFilter.getText().equals("")) {
+        if (txtFilter.getText().equals("")) {
             btnFilter.setEnabled(false);
         } else {
             btnFilter.setEnabled(true);
@@ -281,24 +283,20 @@ public class ManageFeedback extends javax.swing.JFrame {
     }//GEN-LAST:event_txtFilterPropertyChange
 
     // </editor-fold>
-    
     // <editor-fold defaultstate="collapsed" desc="Methods">   
-    
-    
-    private void selectRow(){
+    private void selectRow() {
         int i = tblFeedback.getSelectedRow();
-        
+
         feedID = tblFeedback.getValueAt(i, 0).toString();
         apptid = tblFeedback.getValueAt(i, 1).toString();
         techid = tblFeedback.getValueAt(i, 2).toString();
         status = tblFeedback.getValueAt(i, 3).toString();
         feedback = tblFeedback.getValueAt(i, 4).toString();
-        
-        
+
         txtFeedback.setText(feedback);
-        
+
     }
-    
+
 //    private void printRecords() throws FileNotFoundException{
 //        
 //           
@@ -347,20 +345,19 @@ public class ManageFeedback extends javax.swing.JFrame {
 //       JOptionPane.showMessageDialog(null, "Printed to PDF Successfully!", "Records Printed!", JOptionPane.INFORMATION_MESSAGE);
 //    
 //    }
-     private void updateUserInfo() {
+    private void updateUserInfo() {
         // TODO add your handling code here:
         try {
             // Check if textfields are empty
-           // emptyFields();
-           // if (emailChecker()) {
-           ///     throw new Exception("There is account with this email. Email cannot be used");
-           //}
-           // if (usernameChecker()) {
-           //     throw new Exception("Username is taken. Username Duplicated!");
-           // }
+            // emptyFields();
+            // if (emailChecker()) {
+            ///     throw new Exception("There is account with this email. Email cannot be used");
+            //}
+            // if (usernameChecker()) {
+            //     throw new Exception("Username is taken. Username Duplicated!");
+            // }
             // To get directory  
-            
-            
+
             FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
             // To get the book ID
             //uID = (String) cmbUserID.getSelectedItem();
@@ -405,9 +402,8 @@ public class ManageFeedback extends javax.swing.JFrame {
                     matchedID[3] = status;
                     matchedID[4] = txtFeedback.getText();
                     matchedID[5] = "true";
-                   // matchedID[5] = "true";
-                   
-                    
+                    // matchedID[5] = "true";
+
                     // JOptionPane.showMessageDialog(null, "Yes it worked");
                 }
                 // Rewrite the new book.txt with values found in clientBak.txt
@@ -415,7 +411,7 @@ public class ManageFeedback extends javax.swing.JFrame {
                         + matchedID[1] + ":"
                         + matchedID[2] + ":"
                         + matchedID[3] + ":"
-                        + matchedID[4] + ":" 
+                        + matchedID[4] + ":"
                         + matchedID[5]);
 
             }
@@ -428,67 +424,65 @@ public class ManageFeedback extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Client record has been updated!", "Client updated!", JOptionPane.INFORMATION_MESSAGE);
             clearTable();
             insertFeedbackRecords();
-            
-           // loadUserInfo();
+
+            // loadUserInfo();
         } catch (Exception ex) {
             System.out.println(ex);
             //highlightEmpty();
             // if (emailChecker()) {
             //    JOptionPane.showMessageDialog(null, "There is account with this email. Email cannot be used", "Duplicated Email", JOptionPane.WARNING_MESSAGE);
-           // }
+            // }
             //if (usernameChecker()) {
-           //   JOptionPane.showMessageDialog(null, "Username is taken! Use a different username to proceed.", "Username is in use!", JOptionPane.WARNING_MESSAGE);  
-           // }
+            //   JOptionPane.showMessageDialog(null, "Username is taken! Use a different username to proceed.", "Username is in use!", JOptionPane.WARNING_MESSAGE);  
+            // }
             JOptionPane.showMessageDialog(null, "Invalid input! Please check your input to proceed.", "Invalid insertion detected!", JOptionPane.ERROR_MESSAGE);
         }
     }
-    private void insertFeedbackRecords() throws java.io.IOException{
+
+    private void insertFeedbackRecords() throws java.io.IOException {
         try {
-             FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
-             File feedtxt = new File(FileDir + "Feedback.txt");
-             BufferedReader br = new BufferedReader(new FileReader(feedtxt));
+            FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
+            File feedtxt = new File(FileDir + "Feedback.txt");
+            BufferedReader br = new BufferedReader(new FileReader(feedtxt));
             Object[] tableLines = br.lines().toArray();
-            DefaultTableModel model = (DefaultTableModel)tblFeedback.getModel();
-            for(int i = 0; i < tableLines.length; i++)
-            {
+            DefaultTableModel model = (DefaultTableModel) tblFeedback.getModel();
+            for (int i = 0; i < tableLines.length; i++) {
                 String line = tableLines[i].toString().trim();
                 String[] dataRow = line.split(":");
                 //if(txticpass.getText().equals(dataRow[1])){
-                     model.addRow(dataRow);
-              //  }
-             
-        }
+                model.addRow(dataRow);
+                //  }
+
+            }
             br.close();
-        }
-        catch (FileNotFoundException ex){
+        } catch (FileNotFoundException ex) {
             Logger.getLogger(LoginRecords.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    private boolean filterFeedback() throws java.io.IOException{
+
+    private boolean filterFeedback() throws java.io.IOException {
         boolean Records = false;
         try {
-             
-             FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
-             File feedtxt = new File(FileDir + "Feedback.txt");
-             BufferedReader br = new BufferedReader(new FileReader(feedtxt));
+
+            FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
+            File feedtxt = new File(FileDir + "Feedback.txt");
+            BufferedReader br = new BufferedReader(new FileReader(feedtxt));
             Object[] tableLines = br.lines().toArray();
-            DefaultTableModel model = (DefaultTableModel)tblFeedback.getModel();
-            for(int i = 0; i < tableLines.length; i++)
-            {
+            DefaultTableModel model = (DefaultTableModel) tblFeedback.getModel();
+            for (int i = 0; i < tableLines.length; i++) {
                 String line = tableLines[i].toString().trim();
                 String[] dataRow = line.split(":");
-                if(dataRow[0].contains(txtFeedback.getText()) || dataRow[1].contains(txtFeedback.getText()) || dataRow[2].contains(txtFeedback.getText()) || dataRow[3].contains(txtFeedback.getText()) || dataRow[4].contains(txtFeedback.getText())){
-                     model.addRow(dataRow);
-                     Records = true;
-                     
-               }
+                if (dataRow[0].contains(txtFilter.getText()) || dataRow[1].contains(txtFilter.getText()) || dataRow[2].contains(txtFilter.getText()) || dataRow[3].contains(txtFilter.getText()) || dataRow[4].contains(txtFilter.getText())) {
+                    model.addRow(dataRow);
+                    Records = true;
+
+                }
             }
-             br.close();
+            br.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(ManageFeedback.class.getName()).log(Level.SEVERE, null, ex);
         }
-        catch (FileNotFoundException ex){
-           Logger.getLogger(ManageFeedback.class.getName()).log(Level.SEVERE, null, ex);
-       }
-         return Records;
+        return Records;
     }
 //    private void updateFeedback(){
 //        try {
@@ -571,72 +565,76 @@ public class ManageFeedback extends javax.swing.JFrame {
 //        }
 //    }
 //    
-    private void clearTable(){
-        DefaultTableModel model = (DefaultTableModel)tblFeedback.getModel();
-        while(model.getRowCount()>0){
+
+    private void clearTable() {
+        DefaultTableModel model = (DefaultTableModel) tblFeedback.getModel();
+        while (model.getRowCount() > 0) {
             model.removeRow(0);
         }
     }
-     //<editor-fold defaultstate="collapsed" desc="Validation Methods">
-         private void inputCharacterValidation(){
+    //<editor-fold defaultstate="collapsed" desc="Validation Methods">
+
+    private void inputCharacterValidation() {
         txtFeedback.getDocument().addDocumentListener(new APUDocumentListener() {
             filterValidation vd = new filterValidation();
+
             @Override
-            public void changedUpdate(DocumentEvent e){
+            public void changedUpdate(DocumentEvent e) {
                 vd.runValidate(txtFeedback);
             }
+
             @Override
             public void insertUpdate(DocumentEvent e) {
                 vd.runValidate(txtFeedback);
             }
+
             @Override
             public void removeUpdate(DocumentEvent e) {
                 vd.runValidate(txtFeedback);
             }
-            
+
         });
     }
-    private void showLoginButton(){
-        if (filter){
-            btnFilter.setEnabled(true);
+
+    private void showLoginButton() {
+        if (filter) {
+            btnUpdate.setEnabled(true);
+        } else {
+            btnUpdate.setEnabled(false);
         }
-        else
-        {
-            btnFilter.setEnabled(false);
-        }
-     } 
-    private void showLoginButton(JTextField txt){
-        if ("".equals(txt.getText())){
+    }
+
+    private void showLoginButton(JTextField txt) {
+        if ("".equals(txt.getText())) {
             filter = false;
-        } 
-        else {
+        } else {
             filter = true;
         }
         showLoginButton();
-     }
-    
+    }
+
     // </editor-fold>
-    
-    
-    private void clearCache(){
-        try {  
+    private void clearCache() {
+        try {
             FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
             File cache = new File(FileDir + "UserCache.txt");
             if (cache.exists()) {
                 cache.delete();
             }
         } catch (Exception ex) {
-            
+
         }
-    }     
-     private void initForm() throws java.io.IOException{
-         setLogo();
+    }
+
+    private void initForm() throws java.io.IOException {
+        setLogo();
         this.setLocationRelativeTo(null);
         insertFeedbackRecords();
         btnFilter.setEnabled(false);
+        btnUpdate.setEnabled(false);
         // Set the initial value for new book
         // This anon class handles window closing event
-         txtFeedback.getDocument().addDocumentListener(new APUDocumentListener(){
+        txtFeedback.getDocument().addDocumentListener(new APUDocumentListener() {
 
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -655,7 +653,7 @@ public class ManageFeedback extends javax.swing.JFrame {
             }
         });
         addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e){
+            public void windowClosing(WindowEvent e) {
                 int selection = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Closing Window", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if (selection == JOptionPane.YES_OPTION) {
                     clearCache();
@@ -666,22 +664,20 @@ public class ManageFeedback extends javax.swing.JFrame {
             }
         });
         inputCharacterValidation();
-     }
-    
-     // </editor-fold>
-    
-     
+    }
+
+    // </editor-fold>
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code">
-         try {
+        try {
             UIManager.setLookAndFeel(new FlatDarkLaf());
         } catch (Exception ex) {
             System.err.println("Fail Look and Feel");
         }
-       // </editor-fold>
+        // </editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
