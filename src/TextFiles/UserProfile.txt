@@ -1,6 +1,3 @@
-CM00001:CM00001:Centre Manager:Muhammad Irfan:Irfan@gmail.com:irfan:123:0126767890:Male:null
-TC00001:CM00001:Technician:Danishman:danish2@gmail.com:danish:cang2:010101010:Female:true
-CM00002:CM00001:Centre Manager:danish:danish@mail.com:kacang:kacang:0126764703:Male:true
-CM00003:CM00001:Centre Manager:nishs:dada@mail.com:nish:nish:0101001010:Male:false
-CM00004:CM00001:Centre Manager:irfandadada:irfanna@gmail.com:dadadadad:adadada:1313333333:Male:true
-CM00005:CM00001:Centre Manager:Penis:penis@gmail.com:penis:penis:0172778201:Male:false
+CM00001:CM00001:Centre Manager:Muhammad Irfan:Irfan@gmail.com:irfan:123:0126767890:Male:true
+TC00001:CM00001:Technician:Muhammad Danish Bin Mansor:danish2@gmail.com:danish:cang2:0172778201:Female:true
+CM00002:CM00001:Centre Manager:Mr Kacang:danish@mail.com:kacang:kacang:01267647  :Male:true

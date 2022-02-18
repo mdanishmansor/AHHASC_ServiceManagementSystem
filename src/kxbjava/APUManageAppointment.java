@@ -250,7 +250,7 @@ public class APUManageAppointment extends javax.swing.JFrame {
             inputFile.close();
             appBack.delete();
             cdp.close();
-            JOptionPane.showMessageDialog(null, "Customer has paid for the service, balance is: ", "Payment made", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Appointment Details Has Been Updated ", "Appointment Updated", JOptionPane.INFORMATION_MESSAGE);
 
         } catch (IOException e) {
             //highlightEmpty();
@@ -530,25 +530,25 @@ public class APUManageAppointment extends javax.swing.JFrame {
         pnlApp.add(btnPnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 620, 1280, 100));
 
         lblDesc.setBackground(new java.awt.Color(68, 68, 68));
-        lblDesc.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
+        lblDesc.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblDesc.setForeground(new java.awt.Color(255, 255, 255));
         lblDesc.setText("Select Your Appointment To Update");
         pnlApp.add(lblDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
 
         lblTitle1.setBackground(new java.awt.Color(68, 68, 68));
-        lblTitle1.setFont(new java.awt.Font("Segoe UI Variable", 1, 38)); // NOI18N
+        lblTitle1.setFont(new java.awt.Font("Arial", 1, 38)); // NOI18N
         lblTitle1.setForeground(new java.awt.Color(214, 41, 99));
         lblTitle1.setText("Manage Appointments");
         pnlApp.add(lblTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(68, 68, 68));
 
-        lblApptID.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblApptID.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblApptID.setForeground(new java.awt.Color(255, 255, 255));
         lblApptID.setText("Appointment ID");
 
         cmbAppID.setBackground(new java.awt.Color(68, 68, 68));
-        cmbAppID.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        cmbAppID.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         cmbAppID.setForeground(new java.awt.Color(255, 255, 255));
         cmbAppID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Appointment ID" }));
         cmbAppID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
@@ -559,12 +559,12 @@ public class APUManageAppointment extends javax.swing.JFrame {
             }
         });
 
-        lblApptID1.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblApptID1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblApptID1.setForeground(new java.awt.Color(255, 255, 255));
         lblApptID1.setText("Customer ID");
 
         cmbCustomerID.setBackground(new java.awt.Color(68, 68, 68));
-        cmbCustomerID.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        cmbCustomerID.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         cmbCustomerID.setForeground(new java.awt.Color(255, 255, 255));
         cmbCustomerID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Customer ID" }));
         cmbCustomerID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
@@ -576,7 +576,7 @@ public class APUManageAppointment extends javax.swing.JFrame {
         });
 
         cmbAppliance.setBackground(new java.awt.Color(68, 68, 68));
-        cmbAppliance.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        cmbAppliance.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         cmbAppliance.setForeground(new java.awt.Color(255, 255, 255));
         cmbAppliance.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Appliance", "Television", "Refrigerator", "Air-conditioner", "Washing Machine", "PC" }));
         cmbAppliance.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
@@ -588,7 +588,7 @@ public class APUManageAppointment extends javax.swing.JFrame {
         });
 
         cmbTime.setBackground(new java.awt.Color(68, 68, 68));
-        cmbTime.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        cmbTime.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         cmbTime.setForeground(new java.awt.Color(255, 255, 255));
         cmbTime.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Time", "0800", "1000", "1200", "1400", "1600", "1800" }));
         cmbTime.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
@@ -599,11 +599,11 @@ public class APUManageAppointment extends javax.swing.JFrame {
             }
         });
 
-        lblApptID2.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblApptID2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblApptID2.setForeground(new java.awt.Color(255, 255, 255));
         lblApptID2.setText("Appliance Type");
 
-        lblApptID3.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblApptID3.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblApptID3.setForeground(new java.awt.Color(255, 255, 255));
         lblApptID3.setText("Appointment Time");
 
@@ -611,40 +611,39 @@ public class APUManageAppointment extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(135, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblApptID2)
-                    .addComponent(cmbTime, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblApptID3)
-                    .addComponent(lblApptID1)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(cmbAppliance, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(cmbCustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblApptID)
-                    .addComponent(cmbAppID, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(135, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(137, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(cmbCustomerID, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblApptID2, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblApptID3, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblApptID1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblApptID, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cmbAppID, javax.swing.GroupLayout.Alignment.LEADING, 0, 478, Short.MAX_VALUE)
+                    .addComponent(cmbAppliance, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cmbTime, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(15, 15, 15))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 10, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(lblApptID)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmbAppID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmbAppID, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblApptID1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmbCustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmbCustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblApptID2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmbAppliance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmbAppliance, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblApptID3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmbTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(71, 71, 71))
+                .addComponent(cmbTime, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         cmbCustomerID.getAccessibleContext().setAccessibleName("260");
@@ -658,17 +657,17 @@ public class APUManageAppointment extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(68, 68, 68));
 
-        lblApptID4.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblApptID4.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblApptID4.setForeground(new java.awt.Color(255, 255, 255));
         lblApptID4.setText("Technician ID");
 
-        lblApptID5.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblApptID5.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblApptID5.setForeground(new java.awt.Color(255, 255, 255));
         lblApptID5.setText("Customer Name");
 
         txtCustName.setEditable(false);
         txtCustName.setBackground(new java.awt.Color(68, 68, 68));
-        txtCustName.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtCustName.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txtCustName.setToolTipText("Customer Name");
         txtCustName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         txtCustName.addActionListener(new java.awt.event.ActionListener() {
@@ -679,12 +678,12 @@ public class APUManageAppointment extends javax.swing.JFrame {
 
         txtManagerID.setEditable(false);
         txtManagerID.setBackground(new java.awt.Color(68, 68, 68));
-        txtManagerID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtManagerID.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txtManagerID.setToolTipText("Manager ID");
         txtManagerID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
 
         cmbTechID.setBackground(new java.awt.Color(68, 68, 68));
-        cmbTechID.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        cmbTechID.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         cmbTechID.setForeground(new java.awt.Color(255, 255, 255));
         cmbTechID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Technician ID" }));
         cmbTechID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
@@ -703,11 +702,11 @@ public class APUManageAppointment extends javax.swing.JFrame {
             }
         });
 
-        lblApptID6.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblApptID6.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblApptID6.setForeground(new java.awt.Color(255, 255, 255));
         lblApptID6.setText("Manager ID");
 
-        lblApptID7.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblApptID7.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblApptID7.setForeground(new java.awt.Color(255, 255, 255));
         lblApptID7.setText("Appointment Date");
 
@@ -718,15 +717,15 @@ public class APUManageAppointment extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(87, 87, 87)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cmbTechID, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(appDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbTechID, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(appDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblApptID7)
-                    .addComponent(txtManagerID, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCustName, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtManagerID, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCustName, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblApptID5)
                     .addComponent(lblApptID4)
                     .addComponent(lblApptID6))
-                .addContainerGap(193, Short.MAX_VALUE))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -734,20 +733,20 @@ public class APUManageAppointment extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addComponent(lblApptID4)
                 .addGap(5, 5, 5)
-                .addComponent(cmbTechID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmbTechID, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblApptID5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtCustName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCustName, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblApptID6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtManagerID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtManagerID, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblApptID7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(appDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addComponent(appDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         cmbTechID.getAccessibleContext().setAccessibleName("260");
@@ -861,8 +860,11 @@ public class APUManageAppointment extends javax.swing.JFrame {
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        new APUCMMenu().setVisible(true);
-        this.dispose();
+        int selection = JOptionPane.showConfirmDialog(null, "Are you sure to go back?", "Back to Main Menu", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (selection == JOptionPane.YES_OPTION) {
+            new APUCMMenu().setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed

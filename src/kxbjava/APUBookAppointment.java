@@ -102,7 +102,7 @@ public class APUBookAppointment extends javax.swing.JFrame {
         btnPnl.setBackground(new java.awt.Color(68, 68, 68));
 
         btnReset.setBackground(new java.awt.Color(68, 68, 68));
-        btnReset.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnReset.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnReset.setForeground(new java.awt.Color(237, 237, 237));
         btnReset.setText("Reset");
         btnReset.setToolTipText("Button to reset every fields");
@@ -115,7 +115,7 @@ public class APUBookAppointment extends javax.swing.JFrame {
         });
 
         btnBack.setBackground(new java.awt.Color(68, 68, 68));
-        btnBack.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnBack.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnBack.setForeground(new java.awt.Color(237, 237, 237));
         btnBack.setText("Back");
         btnBack.setToolTipText("Button to reset every fields");
@@ -128,7 +128,7 @@ public class APUBookAppointment extends javax.swing.JFrame {
         });
 
         btnBook.setBackground(new java.awt.Color(68, 68, 68));
-        btnBook.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnBook.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnBook.setForeground(new java.awt.Color(237, 237, 237));
         btnBook.setText("Book Appointment");
         btnBook.setToolTipText("Button to reset every fields");
@@ -167,13 +167,13 @@ public class APUBookAppointment extends javax.swing.JFrame {
         mainPnl.add(btnPnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 620, 1280, 100));
 
         lblDesc.setBackground(new java.awt.Color(68, 68, 68));
-        lblDesc.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
+        lblDesc.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblDesc.setForeground(new java.awt.Color(255, 255, 255));
         lblDesc.setText("Book Appointments for Customers");
         mainPnl.add(lblDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
 
         lblTitle1.setBackground(new java.awt.Color(68, 68, 68));
-        lblTitle1.setFont(new java.awt.Font("Segoe UI Variable", 1, 38)); // NOI18N
+        lblTitle1.setFont(new java.awt.Font("Arial", 1, 38)); // NOI18N
         lblTitle1.setForeground(new java.awt.Color(214, 41, 99));
         lblTitle1.setText("Book New Appointments");
         mainPnl.add(lblTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
@@ -181,48 +181,48 @@ public class APUBookAppointment extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(68, 68, 68));
 
         lblGender.setBackground(new java.awt.Color(68, 68, 68));
-        lblGender.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblGender.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblGender.setForeground(new java.awt.Color(237, 237, 237));
         lblGender.setText("Appointment Date");
 
         lblPassword.setBackground(new java.awt.Color(68, 68, 68));
-        lblPassword.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblPassword.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblPassword.setForeground(new java.awt.Color(237, 237, 237));
         lblPassword.setText("Customer Name");
 
         lblEmail.setBackground(new java.awt.Color(68, 68, 68));
-        lblEmail.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblEmail.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblEmail.setForeground(new java.awt.Color(237, 237, 237));
         lblEmail.setText("Customer ID");
 
         lblUserID.setBackground(new java.awt.Color(68, 68, 68));
-        lblUserID.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblUserID.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblUserID.setForeground(new java.awt.Color(237, 237, 237));
         lblUserID.setText("Manager ID");
 
         lblPhoneNumber.setBackground(new java.awt.Color(68, 68, 68));
-        lblPhoneNumber.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblPhoneNumber.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblPhoneNumber.setForeground(new java.awt.Color(237, 237, 237));
         lblPhoneNumber.setText("Select Appliance Type");
 
         lblUsername.setBackground(new java.awt.Color(68, 68, 68));
-        lblUsername.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblUsername.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblUsername.setForeground(new java.awt.Color(237, 237, 237));
         lblUsername.setText("Appointment Time Slot");
 
         lblFullName.setBackground(new java.awt.Color(68, 68, 68));
-        lblFullName.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblFullName.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblFullName.setForeground(new java.awt.Color(237, 237, 237));
         lblFullName.setText("Technician ID");
 
         txtManagerID.setEditable(false);
         txtManagerID.setBackground(new java.awt.Color(68, 68, 68));
-        txtManagerID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtManagerID.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txtManagerID.setToolTipText("Manager ID");
         txtManagerID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
 
         cmbCustomerID.setBackground(new java.awt.Color(68, 68, 68));
-        cmbCustomerID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        cmbCustomerID.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         cmbCustomerID.setForeground(new java.awt.Color(255, 255, 255));
         cmbCustomerID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Customer ID" }));
         cmbCustomerID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
@@ -235,7 +235,7 @@ public class APUBookAppointment extends javax.swing.JFrame {
 
         txtCustName.setEditable(false);
         txtCustName.setBackground(new java.awt.Color(68, 68, 68));
-        txtCustName.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtCustName.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txtCustName.setToolTipText("Customer Name");
         txtCustName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         txtCustName.addActionListener(new java.awt.event.ActionListener() {
@@ -245,7 +245,7 @@ public class APUBookAppointment extends javax.swing.JFrame {
         });
 
         cmbTechID.setBackground(new java.awt.Color(68, 68, 68));
-        cmbTechID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        cmbTechID.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         cmbTechID.setForeground(new java.awt.Color(255, 255, 255));
         cmbTechID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Technician ID" }));
         cmbTechID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
@@ -257,7 +257,7 @@ public class APUBookAppointment extends javax.swing.JFrame {
         });
 
         cmbTime.setBackground(new java.awt.Color(68, 68, 68));
-        cmbTime.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        cmbTime.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         cmbTime.setForeground(new java.awt.Color(255, 255, 255));
         cmbTime.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Time", "0800", "1000", "1200", "1400", "1600", "1800" }));
         cmbTime.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
@@ -276,7 +276,7 @@ public class APUBookAppointment extends javax.swing.JFrame {
         });
 
         cmbAppliance.setBackground(new java.awt.Color(68, 68, 68));
-        cmbAppliance.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        cmbAppliance.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         cmbAppliance.setForeground(new java.awt.Color(255, 255, 255));
         cmbAppliance.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Appliance", "Television", "Refrigerator", "Air-conditioner", "Washing Machine", "PC" }));
         cmbAppliance.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
@@ -349,7 +349,7 @@ public class APUBookAppointment extends javax.swing.JFrame {
                 .addComponent(lblGender)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(appDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         mainPnl.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 1190, 460));

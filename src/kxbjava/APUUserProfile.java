@@ -6,17 +6,31 @@
 package kxbjava;
 
 import com.formdev.flatlaf.FlatDarkLaf;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import org.apache.commons.io.FilenameUtils;
 
 /**
  *
@@ -24,11 +38,11 @@ import javax.swing.UIManager;
  */
 public class APUUserProfile extends javax.swing.JFrame {
     
-    private String FileDir, currentUserID, userID, userRole, ManagerID;
+    private String FileDir, currentUserID, userID, userRole, ManagerID, imgDir, fullID;
     /**
      * Creates new form APUUserProfile
      */
-    public APUUserProfile() {
+    public APUUserProfile() throws IOException {
         initComponents();
         initForm();
     }
@@ -50,7 +64,6 @@ public class APUUserProfile extends javax.swing.JFrame {
     private void initComponents() {
 
         mainPnl = new javax.swing.JPanel();
-        lblTitle = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         cmbGender = new javax.swing.JComboBox<>();
         lblGender = new javax.swing.JLabel();
@@ -68,10 +81,16 @@ public class APUUserProfile extends javax.swing.JFrame {
         txtFullName = new javax.swing.JTextField();
         iconNoSee = new javax.swing.JLabel();
         iconSee = new javax.swing.JLabel();
+        lblDesc = new javax.swing.JLabel();
+        lblTitle = new javax.swing.JLabel();
+        profilePnl = new javax.swing.JPanel();
+        lblSelectedPic = new javax.swing.JLabel();
+        lblPfp = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        btnSelectImg = new javax.swing.JButton();
         btnPnl = new javax.swing.JPanel();
         btnUpdate = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
-        lblDesc = new javax.swing.JLabel();
         chkpass = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -82,84 +101,78 @@ public class APUUserProfile extends javax.swing.JFrame {
         mainPnl.setBackground(new java.awt.Color(68, 68, 68));
         mainPnl.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblTitle.setBackground(new java.awt.Color(68, 68, 68));
-        lblTitle.setFont(new java.awt.Font("Segoe UI Variable", 1, 38)); // NOI18N
-        lblTitle.setForeground(new java.awt.Color(214, 41, 99));
-        lblTitle.setText("User Profile");
-        mainPnl.add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, -1));
-
         jPanel4.setBackground(new java.awt.Color(68, 68, 68));
 
         cmbGender.setBackground(new java.awt.Color(68, 68, 68));
-        cmbGender.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        cmbGender.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         cmbGender.setForeground(new java.awt.Color(237, 237, 237));
         cmbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Gender", "Male", "Female" }));
         cmbGender.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         cmbGender.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         lblGender.setBackground(new java.awt.Color(68, 68, 68));
-        lblGender.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblGender.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblGender.setForeground(new java.awt.Color(237, 237, 237));
         lblGender.setText("Gender");
 
         txtPassField.setBackground(new java.awt.Color(68, 68, 68));
-        txtPassField.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        txtPassField.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txtPassField.setForeground(new java.awt.Color(237, 237, 237));
         txtPassField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
 
         lblPassword.setBackground(new java.awt.Color(68, 68, 68));
-        lblPassword.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblPassword.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblPassword.setForeground(new java.awt.Color(237, 237, 237));
         lblPassword.setText("Password");
 
         txtEmail.setBackground(new java.awt.Color(68, 68, 68));
-        txtEmail.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        txtEmail.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txtEmail.setForeground(new java.awt.Color(237, 237, 237));
         txtEmail.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
 
         lblEmail.setBackground(new java.awt.Color(68, 68, 68));
-        lblEmail.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblEmail.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblEmail.setForeground(new java.awt.Color(237, 237, 237));
         lblEmail.setText("Email");
 
         txtUserID.setEditable(false);
         txtUserID.setBackground(new java.awt.Color(68, 68, 68));
-        txtUserID.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        txtUserID.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txtUserID.setForeground(new java.awt.Color(237, 237, 237));
         txtUserID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
 
         lblUserID.setBackground(new java.awt.Color(68, 68, 68));
-        lblUserID.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblUserID.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblUserID.setForeground(new java.awt.Color(237, 237, 237));
         lblUserID.setText("User ID");
 
         txtPhoneNumber.setBackground(new java.awt.Color(68, 68, 68));
-        txtPhoneNumber.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        txtPhoneNumber.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txtPhoneNumber.setForeground(new java.awt.Color(237, 237, 237));
         txtPhoneNumber.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
 
         lblPhoneNumber.setBackground(new java.awt.Color(68, 68, 68));
-        lblPhoneNumber.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblPhoneNumber.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblPhoneNumber.setForeground(new java.awt.Color(237, 237, 237));
         lblPhoneNumber.setText("Phone Number");
 
         lblUsername.setBackground(new java.awt.Color(68, 68, 68));
-        lblUsername.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblUsername.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblUsername.setForeground(new java.awt.Color(237, 237, 237));
         lblUsername.setText("Username");
 
         txtUsername.setBackground(new java.awt.Color(68, 68, 68));
-        txtUsername.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        txtUsername.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txtUsername.setForeground(new java.awt.Color(237, 237, 237));
         txtUsername.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
 
         lblFullName.setBackground(new java.awt.Color(68, 68, 68));
-        lblFullName.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblFullName.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblFullName.setForeground(new java.awt.Color(237, 237, 237));
         lblFullName.setText("Full Name");
 
         txtFullName.setBackground(new java.awt.Color(68, 68, 68));
-        txtFullName.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        txtFullName.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txtFullName.setForeground(new java.awt.Color(237, 237, 237));
         txtFullName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
 
@@ -179,82 +192,156 @@ public class APUUserProfile extends javax.swing.JFrame {
             }
         });
 
+        lblDesc.setBackground(new java.awt.Color(68, 68, 68));
+        lblDesc.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lblDesc.setForeground(new java.awt.Color(255, 255, 255));
+        lblDesc.setText("View or Update Your Information Details");
+
+        lblTitle.setBackground(new java.awt.Color(68, 68, 68));
+        lblTitle.setFont(new java.awt.Font("Arial", 1, 38)); // NOI18N
+        lblTitle.setForeground(new java.awt.Color(214, 41, 99));
+        lblTitle.setText("User Profile");
+
+        profilePnl.setBackground(new java.awt.Color(51, 51, 51));
+        profilePnl.setPreferredSize(new java.awt.Dimension(200, 200));
+        profilePnl.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblSelectedPic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/defaultUser.png"))); // NOI18N
+        profilePnl.add(lblSelectedPic, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 200));
+
+        lblPfp.setBackground(new java.awt.Color(68, 68, 68));
+        lblPfp.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lblPfp.setForeground(new java.awt.Color(237, 237, 237));
+        lblPfp.setText("Profile Picture");
+
+        jLabel6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Only .png are supported!");
+
+        btnSelectImg.setBackground(new java.awt.Color(68, 68, 68));
+        btnSelectImg.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnSelectImg.setForeground(new java.awt.Color(237, 237, 237));
+        btnSelectImg.setText("Choose Image");
+        btnSelectImg.setToolTipText("Button to reset every fields");
+        btnSelectImg.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        btnSelectImg.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSelectImg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelectImgActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(txtEmail)
+                                .addComponent(txtPassField)
+                                .addComponent(txtUserID)
+                                .addComponent(cmbGender, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGap(4, 4, 4)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(iconSee)
+                                .addComponent(iconNoSee))
+                            .addGap(42, 42, 42))
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblPassword)
+                                .addComponent(lblEmail)
+                                .addComponent(lblGender))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblUserID)
+                            .addComponent(lblTitle)
+                            .addComponent(lblDesc))
+                        .addGap(162, 162, 162)))
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblUserID)
-                                    .addComponent(lblPassword)
-                                    .addComponent(lblEmail))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtEmail)
-                                    .addComponent(txtPassField)
-                                    .addComponent(txtUserID)
-                                    .addComponent(cmbGender, javax.swing.GroupLayout.Alignment.LEADING, 0, 521, Short.MAX_VALUE))
-                                .addGap(4, 4, 4)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(iconSee)
-                                    .addComponent(iconNoSee))
-                                .addGap(42, 42, 42)))
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblUsername)
-                            .addComponent(lblPhoneNumber)
-                            .addComponent(lblFullName)
-                            .addComponent(txtPhoneNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 571, Short.MAX_VALUE)
-                            .addComponent(txtUsername)
-                            .addComponent(txtFullName))
-                        .addContainerGap())
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblPhoneNumber)
+                                .addComponent(txtUsername, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblPfp))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(lblGender)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(lblFullName)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(profilePnl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnSelectImg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(txtFullName))
+                        .addContainerGap())))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblFullName, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblUserID))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtUserID, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblTitle)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(50, 50, 50)
+                                .addComponent(lblDesc)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblUserID)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtUserID, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblPfp)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(profilePnl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnSelectImg, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(64, 64, 64)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEmail)
-                    .addComponent(lblUsername))
+                    .addComponent(lblFullName))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPassword)
-                    .addComponent(lblPhoneNumber))
+                    .addComponent(lblUsername))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtPassField, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(iconSee)
-                    .addComponent(iconNoSee))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblGender)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPassField, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(iconSee)
+                            .addComponent(iconNoSee))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblGender)
+                            .addComponent(lblPhoneNumber))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        mainPnl.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 1190, 440));
+        mainPnl.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 1190, 570));
 
         btnPnl.setBackground(new java.awt.Color(68, 68, 68));
 
@@ -305,12 +392,6 @@ public class APUUserProfile extends javax.swing.JFrame {
 
         mainPnl.add(btnPnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 620, 1280, 100));
 
-        lblDesc.setBackground(new java.awt.Color(68, 68, 68));
-        lblDesc.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
-        lblDesc.setForeground(new java.awt.Color(255, 255, 255));
-        lblDesc.setText("View or Update Your Information Details");
-        mainPnl.add(lblDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, -1, -1));
-
         chkpass.setFocusable(false);
         chkpass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -326,7 +407,68 @@ public class APUUserProfile extends javax.swing.JFrame {
     
     // <editor-fold defaultstate="collapsed" desc="Methods">
     
-    private void loadUserProfile(){
+    private void selectImage() {
+
+        try {
+            JFileChooser fileChooser = new JFileChooser();
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("3 Extensions Supported", "Jpg", "png", "jpeg");
+            fileChooser.setFileFilter(filter);
+            int selected = fileChooser.showOpenDialog(null);
+            if (selected == JFileChooser.APPROVE_OPTION) { //Opens Window To Select Image File To Upload As Thumbnail Image.
+
+                File file = fileChooser.getSelectedFile(); //Store Image as File Object.
+                String getselectedImage = file.getAbsolutePath(); //Assigns Variable Containing Directory Where It Was Selected.
+
+                BufferedImage bufImg = ImageIO.read(new File(getselectedImage));
+                Image imgScale = bufImg.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+                ImageIcon scaledIcon = new ImageIcon(imgScale);
+
+                lblSelectedPic.setIcon(scaledIcon); //Sets Icon Image on Label As A Preview.
+                imgDir = getselectedImage; //Sets Directory of Selected Image Which Will Be Sent To the insertData() Method.
+
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error Occured While Trying To Retrieve Image");
+        }
+
+    }
+    
+    private void saveImage() {
+
+        File file = new File(imgDir); //Create A File Object With The Directory of the Selected Image.
+
+        String source = System.getProperty("user.dir"); //Retrieving Directory of The Source Files.
+        String destination = source + "\\src\\UserProfilePictures\\"; //Sets the Directory Folder Containing Thumbnail Image Files.
+        String extensionName = FilenameUtils.getExtension(imgDir); // Retrieve File Extension of Selected File.
+        String newFileName = destination + userID + "." + "png"; // Assigning New Directory and New Image Filename.
+
+        File newFile = new File(newFileName);  // Create File Objects of the Image File That Will Be Transfered To The Source Folder.
+        File oriFileName = new File(destination);
+
+        if (newFile.exists()) { //Checks If An Image With The Same Name Already Exist.
+            Path imagesPath = Paths.get(newFileName);
+            try {
+                Files.delete(imagesPath);
+            } catch (IOException ex) {
+
+            }
+        }
+
+        try {
+
+            Files.copy(file.toPath(), newFile.toPath(), StandardCopyOption.REPLACE_EXISTING); //Copies File To The Thumbnail Image Folder.
+            boolean success = oriFileName.renameTo(newFile); //After Copying, The Image Will Be Renamed.
+
+            if (!success) {
+                // File was not successfully renamed
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+    
+    private void loadUserProfile() throws IOException{
         String[] matchedID = null;
         FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
         File usertext = new File(FileDir + "UserCache.txt");
@@ -360,6 +502,20 @@ public class APUUserProfile extends javax.swing.JFrame {
                         default:
                             cmbGender.setSelectedIndex(1);
                     }
+              
+               // To set profile picture on label
+                    File imgPng = new File(System.getProperty("user.dir") + "\\src\\UserProfilePictures\\" + userID + ".png");
+                    String identifiedImg;
+                    if (imgPng.exists()) {
+                        identifiedImg = System.getProperty("user.dir") + "\\src\\UserProfilePictures\\" + userID + ".png";
+                    } else {
+                        identifiedImg = System.getProperty("user.dir") + "\\src\\Icons\\defaultUser.png";
+                    }
+                    BufferedImage bufImg = ImageIO.read(new File(identifiedImg));
+                    Image imgScale = bufImg.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+                    ImageIcon scaledIcon = new ImageIcon(imgScale);
+                    lblSelectedPic.setIcon(scaledIcon);
+                    
                 }
             intUser.close();
         } catch (FileNotFoundException ex) {
@@ -492,6 +648,7 @@ public class APUUserProfile extends javax.swing.JFrame {
             UserBack.delete();
             // This closes the book.txt printer 
             cdp.close();
+            saveImage();
             JOptionPane.showMessageDialog(null, "Your profile have been updated!!", "User Information Updated!", JOptionPane.INFORMATION_MESSAGE);
             loadnewUserProfile();
         } catch (Exception ex) {
@@ -522,7 +679,7 @@ public class APUUserProfile extends javax.swing.JFrame {
          }
     }
     
-    private void initForm(){
+    private void initForm() throws IOException{
         setLogo();
         this.setLocationRelativeTo(null);
         this.chkpass.setSelected(true);
@@ -580,6 +737,10 @@ public class APUUserProfile extends javax.swing.JFrame {
             txtPassField.setEchoChar('*');
         }
     }//GEN-LAST:event_chkpassActionPerformed
+
+    private void btnSelectImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectImgActionPerformed
+        selectImage();
+    }//GEN-LAST:event_btnSelectImgActionPerformed
     //</editor-fold>
     
     
@@ -595,7 +756,11 @@ public class APUUserProfile extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new APUUserProfile().setVisible(true);
+                try {
+                    new APUUserProfile().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(APUUserProfile.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -603,22 +768,27 @@ public class APUUserProfile extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JPanel btnPnl;
+    private javax.swing.JButton btnSelectImg;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JCheckBox chkpass;
     private javax.swing.JComboBox<String> cmbGender;
     private javax.swing.JLabel iconNoSee;
     private javax.swing.JLabel iconSee;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel lblDesc;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblFullName;
     private javax.swing.JLabel lblGender;
     private javax.swing.JLabel lblPassword;
+    private javax.swing.JLabel lblPfp;
     private javax.swing.JLabel lblPhoneNumber;
+    private javax.swing.JLabel lblSelectedPic;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblUserID;
     private javax.swing.JLabel lblUsername;
     private javax.swing.JPanel mainPnl;
+    private javax.swing.JPanel profilePnl;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFullName;
     private javax.swing.JPasswordField txtPassField;

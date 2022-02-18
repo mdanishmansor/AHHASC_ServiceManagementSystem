@@ -104,13 +104,13 @@ public class APUManageCustomer extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblDesc.setBackground(new java.awt.Color(68, 68, 68));
-        lblDesc.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
+        lblDesc.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblDesc.setForeground(new java.awt.Color(255, 255, 255));
         lblDesc.setText("Update or Delete Customer Details ");
         jPanel1.add(lblDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
 
         lblTitle1.setBackground(new java.awt.Color(68, 68, 68));
-        lblTitle1.setFont(new java.awt.Font("Segoe UI Variable", 1, 38)); // NOI18N
+        lblTitle1.setFont(new java.awt.Font("Arial", 1, 38)); // NOI18N
         lblTitle1.setForeground(new java.awt.Color(214, 41, 99));
         lblTitle1.setText("Manage Customers Details");
         jPanel1.add(lblTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
@@ -201,7 +201,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(68, 68, 68));
 
         cmbCustID.setBackground(new java.awt.Color(68, 68, 68));
-        cmbCustID.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        cmbCustID.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         cmbCustID.setForeground(new java.awt.Color(255, 255, 255));
         cmbCustID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Existing Customer" }));
         cmbCustID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
@@ -213,12 +213,12 @@ public class APUManageCustomer extends javax.swing.JFrame {
         });
 
         txtFullName.setBackground(new java.awt.Color(68, 68, 68));
-        txtFullName.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        txtFullName.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txtFullName.setToolTipText("Customer Full Name");
         txtFullName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
 
         txtEmail.setBackground(new java.awt.Color(68, 68, 68));
-        txtEmail.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        txtEmail.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txtEmail.setToolTipText("Customer Email");
         txtEmail.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         txtEmail.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -228,7 +228,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
         });
 
         txtDOB.setBackground(new java.awt.Color(68, 68, 68));
-        txtDOB.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        txtDOB.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txtDOB.setToolTipText("Customer Email");
         txtDOB.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         txtDOB.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -250,27 +250,27 @@ public class APUManageCustomer extends javax.swing.JFrame {
         txtPhoneNumber.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
 
         lblCustomerID.setBackground(new java.awt.Color(68, 68, 68));
-        lblCustomerID.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblCustomerID.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblCustomerID.setForeground(new java.awt.Color(237, 237, 237));
         lblCustomerID.setText("Customer ID");
 
         lblFullName.setBackground(new java.awt.Color(68, 68, 68));
-        lblFullName.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblFullName.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblFullName.setForeground(new java.awt.Color(237, 237, 237));
         lblFullName.setText("Full Name");
 
         lblEmail.setBackground(new java.awt.Color(68, 68, 68));
-        lblEmail.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblEmail.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblEmail.setForeground(new java.awt.Color(237, 237, 237));
         lblEmail.setText("Email");
 
         lblDOB.setBackground(new java.awt.Color(68, 68, 68));
-        lblDOB.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblDOB.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblDOB.setForeground(new java.awt.Color(237, 237, 237));
         lblDOB.setText("Date of Birth");
 
         lblPhoneNumber.setBackground(new java.awt.Color(68, 68, 68));
-        lblPhoneNumber.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblPhoneNumber.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblPhoneNumber.setForeground(new java.awt.Color(237, 237, 237));
         lblPhoneNumber.setText("Phone Number");
 
@@ -316,7 +316,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
                 .addComponent(lblPhoneNumber)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 630, 470));
@@ -325,11 +325,11 @@ public class APUManageCustomer extends javax.swing.JFrame {
 
         txtManagerID.setEditable(false);
         txtManagerID.setBackground(new java.awt.Color(68, 68, 68));
-        txtManagerID.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        txtManagerID.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txtManagerID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
 
         cmbGender.setBackground(new java.awt.Color(68, 68, 68));
-        cmbGender.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        cmbGender.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         cmbGender.setForeground(new java.awt.Color(255, 255, 255));
         cmbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Gender", "Male", "Female" }));
         cmbGender.setToolTipText("Customer Gender");
@@ -343,7 +343,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
 
         txaHomeAddress.setBackground(new java.awt.Color(40, 40, 40));
         txaHomeAddress.setColumns(20);
-        txaHomeAddress.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        txaHomeAddress.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txaHomeAddress.setForeground(new java.awt.Color(237, 237, 237));
         txaHomeAddress.setRows(5);
         txaHomeAddress.setToolTipText("Customer Home Address");
@@ -351,17 +351,17 @@ public class APUManageCustomer extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txaHomeAddress);
 
         lblManagerID.setBackground(new java.awt.Color(68, 68, 68));
-        lblManagerID.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblManagerID.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblManagerID.setForeground(new java.awt.Color(237, 237, 237));
         lblManagerID.setText("Manager ID");
 
         lblGender.setBackground(new java.awt.Color(68, 68, 68));
-        lblGender.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblGender.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblGender.setForeground(new java.awt.Color(237, 237, 237));
-        lblGender.setText("Gender:");
+        lblGender.setText("Gender");
 
         lblHomeAddress.setBackground(new java.awt.Color(68, 68, 68));
-        lblHomeAddress.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblHomeAddress.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblHomeAddress.setForeground(new java.awt.Color(237, 237, 237));
         lblHomeAddress.setText("Home Address");
 
@@ -395,7 +395,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
                 .addComponent(lblHomeAddress)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 150, 640, 470));

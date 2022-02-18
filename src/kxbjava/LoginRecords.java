@@ -123,25 +123,25 @@ public class LoginRecords extends javax.swing.JFrame {
         jPanel1.add(btnFilter, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 30, 100, 100));
 
         txtFilter.setBackground(new java.awt.Color(68, 68, 68));
-        txtFilter.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtFilter.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txtFilter.setForeground(new java.awt.Color(237, 237, 237));
         txtFilter.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         txtFilter.setCaretColor(new java.awt.Color(237, 237, 237));
         jPanel1.add(txtFilter, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 80, 422, 50));
 
         lblTitle1.setBackground(new java.awt.Color(68, 68, 68));
-        lblTitle1.setFont(new java.awt.Font("Segoe UI Variable", 1, 38)); // NOI18N
+        lblTitle1.setFont(new java.awt.Font("Arial", 1, 38)); // NOI18N
         lblTitle1.setForeground(new java.awt.Color(214, 41, 99));
         lblTitle1.setText("View Login Records");
         jPanel1.add(lblTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
 
         lblDesc.setBackground(new java.awt.Color(68, 68, 68));
-        lblDesc.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
+        lblDesc.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblDesc.setForeground(new java.awt.Color(255, 255, 255));
         lblDesc.setText("Track and Monitor Login Activity");
         jPanel1.add(lblDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
 
-        lblSearch.setFont(new java.awt.Font("Segoe UI Variable", 0, 24)); // NOI18N
+        lblSearch.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblSearch.setForeground(new java.awt.Color(255, 255, 255));
         lblSearch.setText("Provide Search Term");
         jPanel1.add(lblSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 50, -1, 30));
@@ -210,6 +210,7 @@ public class LoginRecords extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Record(s) filtered accordingly", "Records Filtered!", JOptionPane.INFORMATION_MESSAGE);
         } else{
             JOptionPane.showMessageDialog(null, "No record(s) found according to the filter", "No Record(s)", JOptionPane.ERROR_MESSAGE);
+            insertLoginRecords();
         }
        
     
@@ -361,11 +362,11 @@ public class LoginRecords extends javax.swing.JFrame {
     }
     private void showLoginButton(){
         if (filter){
-            btnFilter.setVisible(true);
+            btnFilter.setEnabled(true);
         }
         else
         {
-            btnFilter.setVisible(false);
+            btnFilter.setEnabled(false);
         }
      } 
     private void showLoginButton(JTextField txt){
@@ -400,7 +401,7 @@ public class LoginRecords extends javax.swing.JFrame {
         //btnUpdate.setEnabled(false);
        // btnDelete.setEnabled(false);
         insertLoginRecords();
-        btnFilter.setVisible(false);
+        btnFilter.setEnabled(false);
         // Set the initial value for new book
         // This anon class handles window closing event
          txtFilter.getDocument().addDocumentListener(new APUDocumentListener(){

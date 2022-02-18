@@ -225,7 +225,7 @@
               <Color blue="44" green="44" red="44" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI Variable" size="24" style="1"/>
+              <Font name="Arial" size="24" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -244,7 +244,7 @@
               <Color blue="44" green="44" red="44" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI Variable" size="38" style="1"/>
+              <Font name="Arial" size="38" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="63" green="29" red="d6" type="rgb"/>
@@ -360,7 +360,7 @@
                               <Component id="cmbPaymentStatus" min="-2" pref="35" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="26" max="32767" attributes="0"/>
+                      <EmptySpace pref="46" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -502,7 +502,7 @@
             <Component class="javax.swing.JLabel" name="lblApptID">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI Variable" size="24" style="0"/>
+                  <Font name="Arial" size="24" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Appointment ID"/>
               </Properties>
@@ -510,7 +510,7 @@
             <Component class="javax.swing.JLabel" name="lblCustomerName">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI Variable" size="24" style="0"/>
+                  <Font name="Arial" size="24" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Customer Name"/>
               </Properties>
@@ -518,7 +518,7 @@
             <Component class="javax.swing.JLabel" name="lblApptTime">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI Variable" size="24" style="0"/>
+                  <Font name="Arial" size="24" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Appointment Time"/>
               </Properties>
@@ -526,7 +526,7 @@
             <Component class="javax.swing.JLabel" name="lblTotalAmount">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI Variable" size="24" style="0"/>
+                  <Font name="Arial" size="24" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Total Amount"/>
               </Properties>
@@ -534,7 +534,7 @@
             <Component class="javax.swing.JLabel" name="lblPaymentStatus">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI Variable" size="24" style="0"/>
+                  <Font name="Arial" size="24" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Payment Status"/>
               </Properties>
@@ -648,7 +648,7 @@
             <Component class="javax.swing.JLabel" name="lblApptDate">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI Variable" size="24" style="0"/>
+                  <Font name="Arial" size="24" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Appointment Date"/>
               </Properties>
@@ -656,7 +656,7 @@
             <Component class="javax.swing.JLabel" name="lblAppliance">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI Variable" size="24" style="0"/>
+                  <Font name="Arial" size="24" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Appliance"/>
               </Properties>
@@ -664,7 +664,7 @@
             <Component class="javax.swing.JLabel" name="lblPaymentAmount">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI Variable" size="24" style="0"/>
+                  <Font name="Arial" size="24" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Payment Amount"/>
               </Properties>
@@ -672,7 +672,7 @@
             <Component class="javax.swing.JLabel" name="lblPaymenDate">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI Variable" size="24" style="0"/>
+                  <Font name="Arial" size="24" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Payment Date"/>
               </Properties>
@@ -680,7 +680,7 @@
             <Component class="javax.swing.JLabel" name="lblFeedback">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI Variable" size="24" style="0"/>
+                  <Font name="Arial" size="24" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Feedback"/>
               </Properties>
