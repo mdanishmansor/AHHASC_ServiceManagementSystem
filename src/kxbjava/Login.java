@@ -38,7 +38,7 @@ import javax.swing.event.DocumentEvent;
  *
  * @author User
  */
-public class APULogin extends javax.swing.JFrame {
+public class Login extends javax.swing.JFrame {
 
     private boolean Username = false, Password = false;
     private String UserID, username, FileDir, fullname, email, password, phonenumber, gender, ManagerID, currentdate, userRole, uID;
@@ -46,7 +46,7 @@ public class APULogin extends javax.swing.JFrame {
     /**
      * Creates new form APULogin
      */
-    public APULogin() throws IOException {
+    public Login() throws IOException {
         initComponents();
         initForm();
     }
@@ -306,6 +306,7 @@ public class APULogin extends javax.swing.JFrame {
             File customertxt = new File(FileDir + "Customer.txt");
             File appttxt = new File(FileDir + "Appointment.txt");
             File paymenttxt = new File(FileDir + "Payment.txt");
+            File feedbacktxt = new File(FileDir + "Feedback.txt");
             if (!usertxt.exists()) {
                 usertxt.createNewFile();
             }
@@ -317,6 +318,9 @@ public class APULogin extends javax.swing.JFrame {
             }
             if (!paymenttxt.exists()) {
                 paymenttxt.createNewFile();
+            }
+            if (!feedbacktxt.exists()) {
+                feedbacktxt.createNewFile();
             }
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, ex);
@@ -460,11 +464,11 @@ public class APULogin extends javax.swing.JFrame {
 
     private void checkUserType() throws IOException {
         if (UserID.contains("CM")) {
-            new APUCMMenu().setVisible(true);
+            new ManagerMenu().setVisible(true);
             this.dispose();
         }
         if (UserID.contains("TC")) {
-            new APUTCMenu().setVisible(true);
+            new TechnicianMenu().setVisible(true);
             this.dispose();
         }
     }
@@ -550,7 +554,7 @@ public class APULogin extends javax.swing.JFrame {
                         checkUserType();
 
                     } catch (IOException ex) {
-                        Logger.getLogger(APULogin.class
+                        Logger.getLogger(Login.class
                                 .getName()).log(Level.SEVERE, null, ex);
                     }
                 } else {
@@ -568,7 +572,7 @@ public class APULogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnForgorActionPerformed
 
     private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
-        new APUHome().setVisible(true);
+        new Homepage().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnbackActionPerformed
 
@@ -582,7 +586,7 @@ public class APULogin extends javax.swing.JFrame {
                 checkUserType();
 
             } catch (IOException ex) {
-                Logger.getLogger(APULogin.class
+                Logger.getLogger(Login.class
                         .getName()).log(Level.SEVERE, null, ex);
             }
         } else {
@@ -620,11 +624,11 @@ public class APULogin extends javax.swing.JFrame {
             loadUserProfile();
 
         } catch (IOException ex) {
-            Logger.getLogger(APULogin.class
+            Logger.getLogger(Login.class
                     .getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_txtUsernameFocusLost
-    // </editor-fold>
+    // </editor-fold>    // </editor-fold>
 
     /**
      * @param args the command line arguments
@@ -639,10 +643,10 @@ public class APULogin extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new APULogin().setVisible(true);
+                    new Login().setVisible(true);
 
                 } catch (IOException ex) {
-                    Logger.getLogger(APULogin.class
+                    Logger.getLogger(Login.class
                             .getName()).log(Level.SEVERE, null, ex);
                 }
             }

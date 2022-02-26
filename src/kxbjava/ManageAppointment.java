@@ -29,7 +29,7 @@ import javax.swing.DefaultComboBoxModel;
  *
  * @author User
  */
-public class APUManageAppointment extends javax.swing.JFrame {
+public class ManageAppointment extends javax.swing.JFrame {
 
     private final String custSource = System.getProperty("user.dir") + "\\src\\TextFiles\\Customer.txt"; //Retrieving Directory of Appointment.txt File.
     private final String techSource = System.getProperty("user.dir") + "\\src\\TextFiles\\UserProfile.txt"; //Retrieving Directory of Appointment.txt File.
@@ -40,7 +40,7 @@ public class APUManageAppointment extends javax.swing.JFrame {
     /**
      * Creates new form APUManageAppointment
      */
-    public APUManageAppointment() {
+    public ManageAppointment() {
         initComponents();
         initForm();
     }
@@ -253,6 +253,8 @@ public class APUManageAppointment extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Appointment Details Has Been Updated ", "Appointment Updated", JOptionPane.INFORMATION_MESSAGE);
 
         } catch (IOException e) {
+            
+            System.out.println(e);
             //highlightEmpty();
             JOptionPane.showMessageDialog(null, "Invalid input! Please check your input to proceed.", "Invalid insertion detected!", JOptionPane.ERROR_MESSAGE);
 
@@ -840,7 +842,7 @@ public class APUManageAppointment extends javax.swing.JFrame {
                 btnUpdate.setEnabled(true);
                 btnDelete.setEnabled(true);
             } catch (ParseException ex) {
-                Logger.getLogger(APUManageAppointment.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ManageAppointment.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         } else {
@@ -855,14 +857,18 @@ public class APUManageAppointment extends javax.swing.JFrame {
         try {
             loadApptInfo();
         } catch (ParseException ex) {
-            Logger.getLogger(APUManageAppointment.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ManageAppointment.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         int selection = JOptionPane.showConfirmDialog(null, "Are you sure to go back?", "Back to Main Menu", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (selection == JOptionPane.YES_OPTION) {
-            new APUCMMenu().setVisible(true);
+            try {
+                new ManagerMenu().setVisible(true);
+            } catch (IOException ex) {
+                Logger.getLogger(ManageAppointment.class.getName()).log(Level.SEVERE, null, ex);
+            }
             this.dispose();
         }
     }//GEN-LAST:event_btnBackActionPerformed
@@ -871,14 +877,14 @@ public class APUManageAppointment extends javax.swing.JFrame {
         try {
             updateData();
         } catch (Exception ex) {
-            Logger.getLogger(APUBookAppointment.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ManageAppointment.class.getName()).log(Level.SEVERE, null, ex);
         }    }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         try {
             deleteData();
         } catch (Exception ex) {
-            Logger.getLogger(APUManageAppointment.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ManageAppointment.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -899,20 +905,21 @@ public class APUManageAppointment extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(APUManageAppointment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageAppointment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(APUManageAppointment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageAppointment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(APUManageAppointment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageAppointment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(APUManageAppointment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageAppointment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new APUManageAppointment().setVisible(true);
+                new ManageAppointment().setVisible(true);
             }
         });
     }

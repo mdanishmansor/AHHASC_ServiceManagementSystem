@@ -6,6 +6,7 @@
 package kxbjava;
 
 import com.formdev.flatlaf.FlatDarkLaf;
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
@@ -36,13 +37,14 @@ import org.apache.commons.io.FilenameUtils;
  *
  * @author User
  */
-public class APUUserProfile extends javax.swing.JFrame {
+public class OwnUserProfile extends javax.swing.JFrame {
     
     private String FileDir, currentUserID, userID, userRole, ManagerID, imgDir, fullID;
+     private final Color ogtxt = new Color(237, 237, 237);
     /**
      * Creates new form APUUserProfile
      */
-    public APUUserProfile() throws IOException {
+    public OwnUserProfile() throws IOException {
         initComponents();
         initForm();
     }
@@ -119,12 +121,18 @@ public class APUUserProfile extends javax.swing.JFrame {
         txtPassField.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txtPassField.setForeground(new java.awt.Color(237, 237, 237));
         txtPassField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
+        txtPassField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPassFieldActionPerformed(evt);
+            }
+        });
 
         lblPassword.setBackground(new java.awt.Color(68, 68, 68));
         lblPassword.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblPassword.setForeground(new java.awt.Color(237, 237, 237));
         lblPassword.setText("Password");
 
+        txtEmail.setEditable(false);
         txtEmail.setBackground(new java.awt.Color(68, 68, 68));
         txtEmail.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txtEmail.setForeground(new java.awt.Color(237, 237, 237));
@@ -161,6 +169,7 @@ public class APUUserProfile extends javax.swing.JFrame {
         lblUsername.setForeground(new java.awt.Color(237, 237, 237));
         lblUsername.setText("Username");
 
+        txtUsername.setEditable(false);
         txtUsername.setBackground(new java.awt.Color(68, 68, 68));
         txtUsername.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txtUsername.setForeground(new java.awt.Color(237, 237, 237));
@@ -358,7 +367,7 @@ public class APUUserProfile extends javax.swing.JFrame {
         });
 
         btnBack.setBackground(new java.awt.Color(68, 68, 68));
-        btnBack.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        btnBack.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         btnBack.setForeground(new java.awt.Color(255, 255, 255));
         btnBack.setText("Back");
         btnBack.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
@@ -383,7 +392,7 @@ public class APUUserProfile extends javax.swing.JFrame {
         btnPnlLayout.setVerticalGroup(
             btnPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnPnlLayout.createSequentialGroup()
-                .addContainerGap(7, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(btnPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -434,7 +443,16 @@ public class APUUserProfile extends javax.swing.JFrame {
     }
     
     private void saveImage() {
+        if (imgDir == null) {
+            File imgPng = new File(System.getProperty("user.dir") + "\\src\\UserProfilePictures\\" + userID + ".png");
 
+            if (imgPng.exists()) {
+                imgDir = System.getProperty("user.dir") + "\\src\\UserProfilePictures\\" + userID + ".png";
+            } else {
+                imgDir = System.getProperty("user.dir") + "\\src\\Icons\\defaultUser.png";
+            }
+
+        }
         File file = new File(imgDir); //Create A File Object With The Directory of the Selected Image.
 
         String source = System.getProperty("user.dir"); //Retrieving Directory of The Source Files.
@@ -568,11 +586,57 @@ public class APUUserProfile extends javax.swing.JFrame {
         }
     }
     
+     private void emptyFields() throws Exception {
+       // EmailValidation vd = new EmailValidation();
+       if ("".equals(txtUserID.getText())) {
+            throw new Exception("Empty user ID");
+        }
+        if ("".equals(txtFullName.getText())) {
+            throw new Exception("Empty user full name");
+        }
+        if ("".equals(txtEmail.getText())) {
+            throw new Exception("Empty user email address");
+        }
+        if ("".equals(txtUsername.getText())) {
+            throw new Exception("Empty username");
+        }
+        if ("".equals(String.valueOf(txtPassField.getPassword()))) {
+            throw new Exception("Empty user password");
+        }
+        if ("          ".equals(txtPhoneNumber.getText())) {
+            throw new Exception("Empty phone number");
+        }
+//        if (vd.runValidate(txtEmail, false)) {
+//            throw new Exception("Invalid email address format");
+//        }
+    }
+     
+      private void highlightEmpty() {
+        if ("".equals(txtUserID.getText())) {
+            lblUserID.setForeground(Color.RED);
+        }
+        if ("".equals(txtFullName.getText())) {
+            lblFullName.setForeground(Color.RED);
+        }
+        if ("".equals(txtEmail.getText())) {
+            lblEmail.setForeground(Color.RED);
+        }
+        if ("".equals(txtUsername.getText())) {
+            lblUsername.setForeground(Color.RED);
+        }
+        if ("".equals(String.valueOf(txtPassField.getPassword()))) {
+            lblPassword.setForeground(Color.RED);
+        }
+        if ("          ".equals(txtPhoneNumber.getText())) {
+            lblPhoneNumber.setForeground(Color.RED);
+        }
+    }
+      
     private void updateUserInfo(){
         
         try {
             // Check if textfields are empty
-            //emptyFields();
+            emptyFields();
             // To get directory  
             FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
             // To get the book ID
@@ -652,10 +716,19 @@ public class APUUserProfile extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Your profile have been updated!!", "User Information Updated!", JOptionPane.INFORMATION_MESSAGE);
             loadnewUserProfile();
         } catch (Exception ex) {
-            //highlightEmpty();
-            //JOptionPane.showMessageDialog(null, "Invalid input! Please check your input to proceed.", "Invalid insertion detected!", JOptionPane.ERROR_MESSAGE);
+            highlightEmpty();
+            JOptionPane.showMessageDialog(null, "Invalid input! Please check your input to proceed.", "Invalid insertion detected!", JOptionPane.ERROR_MESSAGE);
         }
     
+    }
+     private void deHighlightEmpty() {
+        lblUserID.setForeground(ogtxt);
+        lblFullName.setForeground(ogtxt);
+        lblEmail.setForeground(ogtxt);
+        lblUsername.setForeground(ogtxt);
+        lblPassword.setForeground(ogtxt);
+        lblPhoneNumber.setForeground(ogtxt);
+        // lblClientHomeAddress.setForeground(ogtxt);
     }
     
     private void clearCache(){
@@ -668,13 +741,13 @@ public class APUUserProfile extends javax.swing.JFrame {
         } catch (Exception ex) {
         }
     }
-    private void checkUserType(){
+    private void checkUserType() throws IOException{
          if (txtUserID.getText().contains("CM")) {
-                    new APUCMMenu().setVisible(true);
+                    new ManagerMenu().setVisible(true);
                     this.dispose();
                 }
          if(txtUserID.getText().contains("TC")){
-             new APUTCMenu().setVisible(true);
+             new TechnicianMenu().setVisible(true);
              this.dispose();
          }
     }
@@ -703,18 +776,25 @@ public class APUUserProfile extends javax.swing.JFrame {
        // txaHomeAddress.getDocument().putProperty("filterNewlines", Boolean.TRUE);
       //  inputCharacterValidation();
      }
+    
+    
     //</editor-fold>
     
     
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
+        deHighlightEmpty();
         updateUserInfo();
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         int selection = JOptionPane.showConfirmDialog(null, "Are you sure to go back?", "Back to Main Menu", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (selection == JOptionPane.YES_OPTION) {
-            checkUserType();
+            try {
+                checkUserType();
+            } catch (IOException ex) {
+                Logger.getLogger(OwnUserProfile.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_btnBackActionPerformed
 
@@ -741,6 +821,10 @@ public class APUUserProfile extends javax.swing.JFrame {
     private void btnSelectImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectImgActionPerformed
         selectImage();
     }//GEN-LAST:event_btnSelectImgActionPerformed
+
+    private void txtPassFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPassFieldActionPerformed
     //</editor-fold>
     
     
@@ -757,9 +841,9 @@ public class APUUserProfile extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new APUUserProfile().setVisible(true);
+                    new OwnUserProfile().setVisible(true);
                 } catch (IOException ex) {
-                    Logger.getLogger(APUUserProfile.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(OwnUserProfile.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });

@@ -58,7 +58,7 @@ import org.joda.money.Money;
  *
  * @author User
  */
-public class APUHandleTask extends javax.swing.JFrame {
+public class HandleTask extends javax.swing.JFrame {
 
     private final String apptPrefix = "APPT";
     private final String feedPrefix = "FEED";
@@ -74,7 +74,7 @@ public class APUHandleTask extends javax.swing.JFrame {
     /**
      * Creates new form APUHandleTask
      */
-    public APUHandleTask() {
+    public HandleTask() {
         initComponents();
         initForm();
     }
@@ -204,7 +204,7 @@ public class APUHandleTask extends javax.swing.JFrame {
         btnPnlLayout.setVerticalGroup(
             btnPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnPnlLayout.createSequentialGroup()
-                .addContainerGap(7, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(btnPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPrintInvoice, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -634,6 +634,7 @@ public class APUHandleTask extends javax.swing.JFrame {
 
                         balanceAmount = paymentAmount.minus(totalAmount);
                         matchedID[0] = paymentID;
+                        matchedID[1] = apptPrefix + ApptID;
                         matchedID[2] = techID;
                         matchedID[3] = txtCustomerName.getText();
                         matchedID[4] = txtApptDate.getText();
@@ -645,20 +646,12 @@ public class APUHandleTask extends javax.swing.JFrame {
                         matchedID[10] = paymentAmount.toString();
                         matchedID[11] = balanceAmount.toString();
                         matchedID[12] = "true";
-
-                        insertFeedback();
-                        updateApptStatus();
-
-                        JOptionPane.showMessageDialog(null, "Customer has paid for the service, balance is: " + balanceAmount, "Payment made", JOptionPane.INFORMATION_MESSAGE);
-                        printReceipt();
+                        
+                        
+                        
 
                     }
-
-                    //JOptionPane.showMessageDialog(null, "Customer has paid for the service, balance is:RM" + balanceAmount, "Payment made", JOptionPane.INFORMATION_MESSAGE);
-                    // Inserting the new information from the text fields into the book line
-                }
-                // Rewrite the new book.txt with values found in clientBak.txt
-                cdp.println(matchedID[0] + ":"
+                       cdp.println(matchedID[0] + ":"
                         + matchedID[1] + ":"
                         + matchedID[2] + ":"
                         + matchedID[3] + ":"
@@ -671,6 +664,15 @@ public class APUHandleTask extends javax.swing.JFrame {
                         + matchedID[10] + ":"
                         + matchedID[11] + ":"
                         + matchedID[12]);
+
+                        insertFeedback();
+                        updateApptStatus();
+                        printReceipt();
+                        JOptionPane.showMessageDialog(null, "Customer has paid for the service, balance is: " + balanceAmount, "Payment made", JOptionPane.INFORMATION_MESSAGE);
+                    //JOptionPane.showMessageDialog(null, "Customer has paid for the service, balance is:RM" + balanceAmount, "Payment made", JOptionPane.INFORMATION_MESSAGE);
+                    // Inserting the new information from the text fields into the book line
+                }
+                // Rewrite the new book.txt with values found in clientBak.txt
 
             }
             // Close the clientBak.txt reader
@@ -826,7 +828,7 @@ public class APUHandleTask extends javax.swing.JFrame {
         // Formatting ID into formal 6-digit mask
         DecimalFormat dc = new DecimalFormat("00000");
         try {
-            emptyFields();
+           // emptyFields();
             // Fetching IDs from the textfields
             feedID = dc.format(newFeedID);
             String appointment_ID = (String) cmbApptID.getSelectedItem();
@@ -857,7 +859,6 @@ public class APUHandleTask extends javax.swing.JFrame {
                 // To refresh new ID 
                 feedbackIDIncrementor();
                 setAppointmentID();
-                clearPayment();
                 // JOptionPane.showMessageDialog(null, newClientID);
                 // To reload the client information
                 // Integrate the reload part with combo box implementation of Client ID
@@ -868,13 +869,14 @@ public class APUHandleTask extends javax.swing.JFrame {
                 //Logger.getLogger(unnamedBorrowMenu.class.getName()).log(Level.SEVERE, null, ex);
             }
         } catch (Exception ex) {
-            highlightEmpty();
+          //  highlightEmpty();
             // Continue with displaying which field was affected. ensure it appears before the mnessagebox
         }
     }
 
     private void printInvoice() throws IOException, FileNotFoundException {
-
+        try {
+            emptyFields();
         PdfWriter writer = new PdfWriter(invoicesource);
         PdfDocument pdfdoc = new PdfDocument(writer);
         Document document = new Document(pdfdoc);
@@ -954,6 +956,11 @@ public class APUHandleTask extends javax.swing.JFrame {
         document.add(tc);
         document.close();
         JOptionPane.showMessageDialog(null, "Invoice created successfully", "Records Printed!", JOptionPane.INFORMATION_MESSAGE);
+        }
+        catch (Exception ex){
+            highlightEmpty();
+             JOptionPane.showMessageDialog(null, "Invalid input! Check for any empty fields", "Invalid input type!", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private void printReceipt() throws IOException, FileNotFoundException {
@@ -1164,6 +1171,7 @@ public class APUHandleTask extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         setLogo();
         btnUpdate.setEnabled(false);
+        btnPrintInvoice.setEnabled(false);
         loadUserProfile();
         setAppointmentID();
         setCurrentDate();
@@ -1193,8 +1201,10 @@ public class APUHandleTask extends javax.swing.JFrame {
             loadApptInfo();
             loadAppoitnment();
             btnUpdate.setEnabled(true);
+            btnPrintInvoice.setEnabled(true);
 
         } else {
+            btnPrintInvoice.setEnabled(false);
             btnUpdate.setEnabled(false);
         }
 
@@ -1214,16 +1224,21 @@ public class APUHandleTask extends javax.swing.JFrame {
 
     private void btnPrintInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintInvoiceActionPerformed
         try {
+            deHighlightEmpty();
             printInvoice();
         } catch (IOException ex) {
-            Logger.getLogger(APUHandleTask.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HandleTask.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnPrintInvoiceActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         int selection = JOptionPane.showConfirmDialog(null, "Are you sure to go back?", "Back to Main Menu", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (selection == JOptionPane.YES_OPTION) {
-            new APUTCMenu().setVisible(true);
+            try {
+                new TechnicianMenu().setVisible(true);
+            } catch (IOException ex) {
+                Logger.getLogger(HandleTask.class.getName()).log(Level.SEVERE, null, ex);
+            }
             this.dispose();
         }
     }//GEN-LAST:event_btnBackActionPerformed
@@ -1231,7 +1246,6 @@ public class APUHandleTask extends javax.swing.JFrame {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         deHighlightEmpty();
         updatePayment();
-
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
@@ -1253,7 +1267,7 @@ public class APUHandleTask extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new APUHandleTask().setVisible(true);
+                new HandleTask().setVisible(true);
             }
         });
     }

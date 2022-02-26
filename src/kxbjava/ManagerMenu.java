@@ -27,14 +27,14 @@ import javax.swing.UIManager;
  *
  * @author User
  */
-public class APUCMMenu extends javax.swing.JFrame {
+public class ManagerMenu extends javax.swing.JFrame {
 
     private String FileDir, uID;
 
     /**
      * Creates new form APUCMMenu
      */
-    public APUCMMenu() throws IOException {
+    public ManagerMenu() throws IOException {
         initComponents();
         initForm();
     }
@@ -420,51 +420,43 @@ public class APUCMMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnManageProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageProfileActionPerformed
-        new APUMUserProfile().setVisible(true);
+        new ManageUserProfile().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnManageProfileActionPerformed
 
     private void btnBookAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookAppointmentActionPerformed
-        new APUBookAppointment().setVisible(true);
+        new BookAppointment().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBookAppointmentActionPerformed
 
     private void btnManageAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageAppointmentActionPerformed
-        new APUManageAppointment().setVisible(true);
+        new ManageAppointment().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnManageAppointmentActionPerformed
 
     private void btnManagePaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManagePaymentActionPerformed
-        try {
-            new ManagePayment().setVisible(true);
-        } catch (IOException ex) {
-            Logger.getLogger(APUCMMenu.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        new ViewPayment().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnManagePaymentActionPerformed
 
     private void btnManageFeedbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageFeedbackActionPerformed
-        try {
-            new ManageFeedback().setVisible(true);
-        } catch (IOException ex) {
-            Logger.getLogger(APUCMMenu.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        new ViewFeedback().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnManageFeedbackActionPerformed
 
     private void btnProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfileActionPerformed
         try {
             // TODO add your handling code here:
-            new APUUserProfile().setVisible(true);
+            new OwnUserProfile().setVisible(true);
         } catch (IOException ex) {
-            Logger.getLogger(APUCMMenu.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ManagerMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.dispose();
     }//GEN-LAST:event_btnProfileActionPerformed
 
     private void btnManageCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageCustomerActionPerformed
         // TODO add your handling code here:
-        new APUManageCustomer().setVisible(true);
+        new ManageCustomer().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnManageCustomerActionPerformed
 
@@ -477,7 +469,7 @@ public class APUCMMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnManageProfileMouseExited
 
     private void btnManageFeedbackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnManageFeedbackMouseEntered
-        lblDesc.setText("View and Manage Feedback");
+        lblDesc.setText("View Feedback");
     }//GEN-LAST:event_btnManageFeedbackMouseEntered
 
     private void btnManageFeedbackMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnManageFeedbackMouseExited
@@ -528,7 +520,11 @@ public class APUCMMenu extends javax.swing.JFrame {
         int selection = JOptionPane.showConfirmDialog(null, "Logging out. Are you sure to continue?", "Logout", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (selection == JOptionPane.YES_OPTION) {
             clearCache();
-            new APULogin().setVisible(true);
+            try {
+                new Login().setVisible(true);
+            } catch (IOException ex) {
+                Logger.getLogger(ManagerMenu.class.getName()).log(Level.SEVERE, null, ex);
+            }
             this.dispose();
         }
     }//GEN-LAST:event_btnLogoutActionPerformed
@@ -557,7 +553,7 @@ public class APUCMMenu extends javax.swing.JFrame {
         try {
             new ViewAppointment().setVisible(true);
         } catch (IOException ex) {
-            Logger.getLogger(APUCMMenu.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ManagerMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.dispose();
     }//GEN-LAST:event_btnViewAppointmentActionPerformed
@@ -583,9 +579,9 @@ public class APUCMMenu extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new APUCMMenu().setVisible(true);
+                    new ManagerMenu().setVisible(true);
                 } catch (IOException ex) {
-                    Logger.getLogger(APUCMMenu.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ManagerMenu.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });

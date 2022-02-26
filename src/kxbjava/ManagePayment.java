@@ -137,11 +137,6 @@ public class ManagePayment extends javax.swing.JFrame {
         txtFilter.setForeground(new java.awt.Color(237, 237, 237));
         txtFilter.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         txtFilter.setCaretColor(new java.awt.Color(237, 237, 237));
-        txtFilter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFilterActionPerformed(evt);
-            }
-        });
         mainPnl.add(txtFilter, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 80, 422, 50));
 
         btnFilter.setBackground(new java.awt.Color(68, 68, 68));
@@ -160,15 +155,28 @@ public class ManagePayment extends javax.swing.JFrame {
         txtPaymentAmount.setBackground(new java.awt.Color(68, 68, 68));
         txtPaymentAmount.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txtPaymentAmount.setForeground(new java.awt.Color(237, 237, 237));
+        txtPaymentAmount.setText("MYR");
+        txtPaymentAmount.setToolTipText("");
         txtPaymentAmount.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         txtPaymentAmount.setCaretColor(new java.awt.Color(237, 237, 237));
+        txtPaymentAmount.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtPaymentAmountFocusLost(evt);
+            }
+        });
         mainPnl.add(txtPaymentAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 540, 422, 50));
 
         txtTotalAmount.setBackground(new java.awt.Color(68, 68, 68));
         txtTotalAmount.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txtTotalAmount.setForeground(new java.awt.Color(237, 237, 237));
+        txtTotalAmount.setText("MYR");
         txtTotalAmount.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         txtTotalAmount.setCaretColor(new java.awt.Color(237, 237, 237));
+        txtTotalAmount.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtTotalAmountFocusLost(evt);
+            }
+        });
         mainPnl.add(txtTotalAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 540, 422, 50));
 
         lblTotalAmount.setBackground(new java.awt.Color(68, 68, 68));
@@ -242,7 +250,7 @@ public class ManagePayment extends javax.swing.JFrame {
         btnPnlLayout.setVerticalGroup(
             btnPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnPnlLayout.createSequentialGroup()
-                .addContainerGap(7, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(btnPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -291,14 +299,26 @@ public class ManagePayment extends javax.swing.JFrame {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         int selection = JOptionPane.showConfirmDialog(null, "Are you sure to go back?", "Back to Main Menu", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (selection == JOptionPane.YES_OPTION) {
-            new APUCMMenu().setVisible(true);
+            try {
+                new TechnicianMenu().setVisible(true);
+            } catch (java.io.IOException ex) {
+                Logger.getLogger(ManagePayment.class.getName()).log(Level.SEVERE, null, ex);
+            }
             this.dispose();
         }
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void txtFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFilterActionPerformed
+    private void txtTotalAmountFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTotalAmountFocusLost
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtFilterActionPerformed
+        PaymentValidation vd = new PaymentValidation();
+        vd.runValidate(txtTotalAmount, true);
+    }//GEN-LAST:event_txtTotalAmountFocusLost
+
+    private void txtPaymentAmountFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPaymentAmountFocusLost
+        // TODO add your handling code here:
+         PaymentValidation vd = new PaymentValidation();
+         vd.runValidate(txtPaymentAmount, true);
+    }//GEN-LAST:event_txtPaymentAmountFocusLost
 
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Methods">   

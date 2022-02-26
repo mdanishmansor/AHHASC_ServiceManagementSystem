@@ -41,7 +41,7 @@ import org.apache.commons.io.FilenameUtils;
  *
  * @author User
  */
-public class APUMUserProfile extends javax.swing.JFrame {
+public class ManageUserProfile extends javax.swing.JFrame {
 
     int UserType;
     private String userSpecies, uID, FileDir, managerID, imgDir, fullID, currentUserID, currentUsername;
@@ -52,10 +52,10 @@ public class APUMUserProfile extends javax.swing.JFrame {
     /**
      * Creates new form APURegister
      */
-    public APUMUserProfile() {
+    public ManageUserProfile() {
         initComponents();
         initForm();
-        loadUserProfile();
+        
         //getUserType();
         //setUserOption();
     }
@@ -186,14 +186,14 @@ public class APUMUserProfile extends javax.swing.JFrame {
                 .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
+                .addGap(35, 35, 35))
         );
         btnPnlLayout.setVerticalGroup(
             btnPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnPnlLayout.createSequentialGroup()
-                .addContainerGap(7, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(btnPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -405,7 +405,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
+                .addContainerGap(30, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblEmail)
@@ -455,7 +455,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
                 .addComponent(lblEmail)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 460, 470));
@@ -823,7 +823,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
             }
             intUser.close();
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(APUMUserProfile.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ManageUserProfile.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     //legacy code PLS DONT USE THIS ANYMORE
@@ -912,7 +912,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
                     newUserID = Integer.parseInt(matchedID[0]) + 1;
                 }
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(APUMUserProfile.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ManageUserProfile.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         } catch (Exception ex) {
@@ -1004,12 +1004,6 @@ public class APUMUserProfile extends javax.swing.JFrame {
         try {
             // Check if textfields are empty
             emptyFields();
-            if (emailChecker()) {
-                throw new Exception("There is account with this email. Email cannot be used");
-            }
-            if (usernameChecker()) {
-                throw new Exception("Username is taken. Username Duplicated!");
-            }
             // To get directory  
             FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
             // To get the book ID
@@ -1084,13 +1078,9 @@ public class APUMUserProfile extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Client record has been updated!", "Client updated!", JOptionPane.INFORMATION_MESSAGE);
             loadUserInfo();
         } catch (Exception ex) {
+            ex.printStackTrace();
             highlightEmpty();
-            if (emailChecker()) {
-                JOptionPane.showMessageDialog(null, "There is account with this email. Email cannot be used", "Duplicated Email", JOptionPane.WARNING_MESSAGE);
-            }
-            if (usernameChecker()) {
-                JOptionPane.showMessageDialog(null, "Username is taken! Use a different username to proceed.", "Username is in use!", JOptionPane.WARNING_MESSAGE);
-            }
+            System.out.println(ex.getMessage());
             JOptionPane.showMessageDialog(null, "Invalid input! Please check your input to proceed.", "Invalid insertion detected!", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -1202,7 +1192,9 @@ public class APUMUserProfile extends javax.swing.JFrame {
     }
 
     private void saveImage() {
-
+        if(imgDir == null){
+            imgDir = System.getProperty("user.dir") + "\\src\\Icons\\defaultUser.png";
+        }
         File file = new File(imgDir); //Create A File Object With The Directory of the Selected Image.
 
         String source = System.getProperty("user.dir"); //Retrieving Directory of The Source Files.
@@ -1247,7 +1239,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
         btnRegister.setEnabled(true);
         btnUpdate.setEnabled(false);
         btnDelete.setEnabled(false);
-
+        loadUserProfile();
         //userIncrementor();
         // This anon class handles window closing event
         addWindowListener(new WindowAdapter() {
@@ -1270,7 +1262,10 @@ public class APUMUserProfile extends javax.swing.JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Validation Methods">
     private void emptyFields() throws Exception {
-        EmailValidation vd = new EmailValidation();
+       // EmailValidation vd = new EmailValidation();
+       if (cmbUserType.getSelectedIndex() <= 0) {
+            throw new Exception("User Type not Selected");
+        }
         if ("".equals(txtFullName.getText())) {
             throw new Exception("Empty user full name");
         }
@@ -1286,9 +1281,9 @@ public class APUMUserProfile extends javax.swing.JFrame {
         if ("          ".equals(txtPhoneNumber.getText())) {
             throw new Exception("Empty phone number");
         }
-        if (vd.runValidate(txtEmail, false)) {
-            throw new Exception("Invalid email address format");
-        }
+//        if (vd.runValidate(txtEmail, false)) {
+//            throw new Exception("Invalid email address format");
+//        }
     }
 
     private void clearUser() {
@@ -1405,7 +1400,11 @@ public class APUMUserProfile extends javax.swing.JFrame {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         int selection = JOptionPane.showConfirmDialog(null, "Are you sure to go back?", "Back to Main Menu", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (selection == JOptionPane.YES_OPTION) {
-            new APUCMMenu().setVisible(true);
+            try {
+                new ManagerMenu().setVisible(true);
+            } catch (IOException ex) {
+                Logger.getLogger(ManageUserProfile.class.getName()).log(Level.SEVERE, null, ex);
+            }
             this.dispose();
         }
     }//GEN-LAST:event_btnBackActionPerformed
@@ -1441,17 +1440,22 @@ public class APUMUserProfile extends javax.swing.JFrame {
             try {
                 loadUserInfo();
             } catch (IOException ex) {
-                Logger.getLogger(APUMUserProfile.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ManageUserProfile.class.getName()).log(Level.SEVERE, null, ex);
             }
+            txtUsername.setEditable(false);
+            txtEmail.setEditable(false);
             btnRegister.setEnabled(false);
             btnDelete.setEnabled(true);
             btnUpdate.setEnabled(true);
         } else {
             // Disabling action buttons when no book is loaded. Add button is still available to accept new book
             clearUser();
+            txtUsername.setEditable(true);
+            txtEmail.setEditable(true);
             btnRegister.setEnabled(true);
             btnDelete.setEnabled(false);
             btnUpdate.setEnabled(false);
+            txtManagerID.setText(managerID);
         }
     }//GEN-LAST:event_cmbUserIDActionPerformed
 
@@ -1463,6 +1467,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
             setUserOption();
             cmbUserID.setEnabled(true);
             btnRegister.setEnabled(true);
+            txtManagerID.setText(managerID);
         } else {
             // Disabling action buttons when no client is loaded. Add button is still available to accept new book
             getUserType();
@@ -1472,6 +1477,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
             btnRegister.setEnabled(false);
             btnUpdate.setEnabled(false);
             btnDelete.setEnabled(false);
+            txtManagerID.setText(managerID);
         }
     }//GEN-LAST:event_cmbUserTypeActionPerformed
 
@@ -1512,7 +1518,7 @@ public class APUMUserProfile extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new APUMUserProfile().setVisible(true);
+                new ManageUserProfile().setVisible(true);
             }
         });
     }

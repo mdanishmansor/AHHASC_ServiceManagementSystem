@@ -6,6 +6,7 @@
 package kxbjava;
 
 import com.formdev.flatlaf.FlatDarkLaf;
+import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -32,7 +33,7 @@ import javax.swing.UIManager;
  *
  * @author User
  */
-public class APUBookAppointment extends javax.swing.JFrame {
+public class BookAppointment extends javax.swing.JFrame {
 
     /**
      * Creates new form APUBookAppointment
@@ -44,8 +45,10 @@ public class APUBookAppointment extends javax.swing.JFrame {
 
     private String generatedStaffID, FileDir, uID, generatedPaymentID;
     final DecimalFormat idformat = new DecimalFormat("00000");
+    private final Color ogtxt = new Color(237, 237, 237);
 
-    public APUBookAppointment() {
+
+    public BookAppointment() {
         initComponents();
         initForm();
 
@@ -156,7 +159,7 @@ public class APUBookAppointment extends javax.swing.JFrame {
         btnPnlLayout.setVerticalGroup(
             btnPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnPnlLayout.createSequentialGroup()
-                .addContainerGap(7, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(btnPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -312,7 +315,7 @@ public class APUBookAppointment extends javax.swing.JFrame {
                             .addComponent(cmbTime, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cmbAppliance, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(lblGender))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -432,7 +435,11 @@ public class APUBookAppointment extends javax.swing.JFrame {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         int selection = JOptionPane.showConfirmDialog(null, "Are you sure to go back?", "Back to Main Menu", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (selection == JOptionPane.YES_OPTION) {
-            new APUCMMenu().setVisible(true);
+            try {
+                new ManagerMenu().setVisible(true);
+            } catch (IOException ex) {
+                Logger.getLogger(BookAppointment.class.getName()).log(Level.SEVERE, null, ex);
+            }
             this.dispose();
         }
 
@@ -442,15 +449,16 @@ public class APUBookAppointment extends javax.swing.JFrame {
         IDincrement();
         paymentIDIncrement();
         try {
+           // deHighlightEmpty();
             insertData();
         } catch (Exception ex) {
-            Logger.getLogger(APUBookAppointment.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BookAppointment.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
             insertPayment();
 
         } catch (Exception ex) {
-            Logger.getLogger(APUBookAppointment.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BookAppointment.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_btnBookActionPerformed
@@ -475,6 +483,16 @@ public class APUBookAppointment extends javax.swing.JFrame {
         }
     }
 
+//    private void deHighlightEmpty(){
+//          lblCustName.setForeground(ogtxt);
+//          lblCustomerID.setForeground(ogtxt);
+//          lblTechID.setForeground(ogtxt);
+//          lblAppliance.setForeground(ogtxt);
+//          lblApptTime.setForeground(ogtxt);
+//          lblManagerID.setForeground(ogtxt);
+//         
+//      }
+    
     private void IDincrement() {
         int countLine = 1;
         try {
@@ -578,7 +596,7 @@ public class APUBookAppointment extends javax.swing.JFrame {
     private void insertData() throws Exception {
 
         try {
-            emptyFields();
+            //emptyFields();
             File file = new File(source);
             FileWriter fw = new FileWriter(file, true);
             BufferedWriter bf = new BufferedWriter(fw);
@@ -619,6 +637,8 @@ public class APUBookAppointment extends javax.swing.JFrame {
             bf.write(datalist); //Writes the Values From The Variables to the Appointment.txt File.
             bf.close();
         } catch (IOException e) {
+           
+            
         }
 
     }
@@ -675,7 +695,7 @@ public class APUBookAppointment extends javax.swing.JFrame {
             bf.close();
             int selection = JOptionPane.showConfirmDialog(null, "Appointment Booked! \n Would You Like to Book Another Appointment?", "Choose Next Option", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (selection == JOptionPane.NO_OPTION) {
-                new APUCMMenu().setVisible(true);
+                new ManagerMenu().setVisible(true);
                 this.dispose();
             } else if ((selection == JOptionPane.YES_OPTION)) {
                 clearAppointment();
@@ -778,7 +798,7 @@ public class APUBookAppointment extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new APUBookAppointment().setVisible(true);
+                new BookAppointment().setVisible(true);
             }
         });
     }

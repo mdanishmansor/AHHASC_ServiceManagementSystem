@@ -27,14 +27,14 @@ import javax.swing.UIManager;
  *
  * @author User
  */
-public class APUTCMenu extends javax.swing.JFrame {
+public class TechnicianMenu extends javax.swing.JFrame {
 
     private String FileDir, uID;
 
     /**
      * Creates new form APUTCMenu
      */
-    public APUTCMenu() throws IOException {
+    public TechnicianMenu() throws IOException {
         initComponents();
         initForm();
     }
@@ -295,23 +295,27 @@ public class APUTCMenu extends javax.swing.JFrame {
     }
 
     private void btnCollectPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCollectPaymentActionPerformed
-        new ViewPayment().setVisible(true);
+        try {
+            new ManagePayment().setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(TechnicianMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
     }//GEN-LAST:event_btnCollectPaymentActionPerformed
 
     private void btnProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfileActionPerformed
         try {
             // TODO add your handling code here:
-            new APUUserProfile().setVisible(true);
+            new OwnUserProfile().setVisible(true);
         } catch (IOException ex) {
-            Logger.getLogger(APUTCMenu.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TechnicianMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.dispose();
     }//GEN-LAST:event_btnProfileActionPerformed
 
     private void btnHandlingTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHandlingTaskActionPerformed
         // TODO add your handling code here:
-        new APUHandleTask().setVisible(true);
+        new HandleTask().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnHandlingTaskActionPerformed
 
@@ -324,7 +328,7 @@ public class APUTCMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHandlingTaskMouseExited
 
     private void btnProvideFeedbackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProvideFeedbackMouseEntered
-        lblDesc.setText("View Customer Feedback");
+        lblDesc.setText("View and Manage Customer Feedback");
     }//GEN-LAST:event_btnProvideFeedbackMouseEntered
 
     private void btnProvideFeedbackMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProvideFeedbackMouseExited
@@ -332,7 +336,7 @@ public class APUTCMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProvideFeedbackMouseExited
 
     private void btnCollectPaymentMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCollectPaymentMouseEntered
-        lblDesc.setText("View Payments Made");
+        lblDesc.setText("View and Manage Payments Made");
     }//GEN-LAST:event_btnCollectPaymentMouseEntered
 
     private void btnCollectPaymentMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCollectPaymentMouseExited
@@ -351,13 +355,21 @@ public class APUTCMenu extends javax.swing.JFrame {
         int selection = JOptionPane.showConfirmDialog(null, "Logging out. Are you sure to continue?", "Logout", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (selection == JOptionPane.YES_OPTION) {
             clearCache();
-            new APULogin().setVisible(true);
+            try {
+                new Login().setVisible(true);
+            } catch (IOException ex) {
+                Logger.getLogger(TechnicianMenu.class.getName()).log(Level.SEVERE, null, ex);
+            }
             this.dispose();
         }
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnProvideFeedbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProvideFeedbackActionPerformed
-        new ViewFeedback().setVisible(true);
+        try {
+            new ManageFeedback().setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(TechnicianMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
     }//GEN-LAST:event_btnProvideFeedbackActionPerformed
 
@@ -383,9 +395,9 @@ public class APUTCMenu extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new APUTCMenu().setVisible(true);
+                    new TechnicianMenu().setVisible(true);
                 } catch (IOException ex) {
-                    Logger.getLogger(APUTCMenu.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(TechnicianMenu.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });

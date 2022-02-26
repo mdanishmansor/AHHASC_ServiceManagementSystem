@@ -7,18 +7,21 @@ package kxbjava;
 
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Toolkit;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.UIManager;
 
 /**
  *
  * @author User
  */
-public class APUHome extends javax.swing.JFrame {
+public class Homepage extends javax.swing.JFrame {
 
     /**
      * Creates new form APUHome
      */
-    public APUHome() {
+    public Homepage() {
         initComponents();
         initForm();
     }
@@ -118,8 +121,12 @@ public class APUHome extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoginMouseEntered
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
-        new APULogin().setVisible(true);
+        try {
+            // TODO add your handling code here:
+            new Login().setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(Homepage.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
     }//GEN-LAST:event_btnLoginActionPerformed
 
@@ -140,7 +147,7 @@ public class APUHome extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new APUHome().setVisible(true);
+                new Homepage().setVisible(true);
             }
         });
     }

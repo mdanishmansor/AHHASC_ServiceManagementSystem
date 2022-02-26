@@ -1,3 +1,11 @@
 CM00001:CM00001:Centre Manager:Muhammad Irfan:Irfan@gmail.com:irfan:123:0126767890:Male:true
-TC00001:CM00001:Technician:Muhammad Danish Bin Mansor:danish2@gmail.com:danish:cang2:0172778201:Female:true
-CM00002:CM00001:Centre Manager:Mr Kacang:danish@mail.com:kacang:kacang:01267647  :Male:true
+TC00001:CM00001:Technician:Muhammad Danish:danish2@gmail.com:danish:cang2:0190191919:Male:true
+CM00002:CM00001:Centre Manager:JoYuqiMu:kolam@mail.com:YuqiJo:kolambusuk:0202029292:Male:true
+CM00003:CM00001:Centre Manager:Jennie :jennie@mail.com:jennieblackpink:blackpink:0299178717:Female:true
+TC00002:CM00001:Technician:lalisa manoban:lalisa@mail.com:lalisa:money9999:0182827272:Female:true
+CM00004:CM00001:Centre Manager:ackerman mikasa:mikasa@mail.com:mikasa:mikasaxeren:0101010101:Female:true
+CM00005:CM00001:Centre Manager:RUMBLING:erehYEAGER@mail.com:ereh_yeager:rumbling_itscoming:0101010101:Male:true
+TC00003:CM00001:Technician:hanina:nani@mail.com:nina:haninamasa:1010191912:Male:true
+TC00004:CM00001:Technician:kinabatangana:haj@mail.com:malasKinaBatangNGAN:kinaba:1010191912:Male:true
+TC00005:CM00001:Technician:hadadad:haniaiai@mail.com:yuzidahadad:makiluko:1010191912:Female:true
+CM00006:CM00001:Centre Manager:halilintar:boboiboy@mail.com:boboiboy:kerispelir:0101828822:Male:false

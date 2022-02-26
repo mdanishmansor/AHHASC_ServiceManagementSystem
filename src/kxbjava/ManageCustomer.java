@@ -33,7 +33,7 @@ import javax.swing.event.DocumentEvent;
  *
  * @author User
  */
-public class APUManageCustomer extends javax.swing.JFrame {
+public class ManageCustomer extends javax.swing.JFrame {
 
     private final String CustPrefix = "CUST";
     private String FileDir, CustID, uID, uUsername;
@@ -44,7 +44,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
     /**
      * Creates new form APUManageUserProfile
      */
-    public APUManageCustomer() {
+    public ManageCustomer() {
         initComponents();
         loadUserProfile();
         initForm();
@@ -187,7 +187,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
         btnPnlLayout.setVerticalGroup(
             btnPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnPnlLayout.createSequentialGroup()
-                .addContainerGap(7, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(btnPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -418,6 +418,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
                 matchedID = bEntry.split(":");
                 uID = matchedID[0];
                 uUsername = matchedID[3];
+                txtManagerID.setText(uID);
             }
             intUser.close();
         } catch (FileNotFoundException ex) {
@@ -543,7 +544,6 @@ public class APUManageCustomer extends javax.swing.JFrame {
                 //Logger.getLogger(unnamedBorrowMenu.class.getName()).log(Level.SEVERE, null, ex);
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex);
             JOptionPane.showMessageDialog(null, "Invalid input! Customer can only consist of numbers", "Invalid input type!", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -593,7 +593,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
             }
             intCustomer.close();
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(APUManageCustomer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ManageCustomer.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -617,7 +617,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
             String CustPhoneNumber = txtPhoneNumber.getText();
             String CustAddress = txaHomeAddress.getText();
             String CustGender = (String) cmbGender.getSelectedItem();
-            String CustEmail = txtDOB.getText();
+            String CustEmail = txtEmail.getText();
             String CustDOB = txtDOB.getText();
             // FileWriter and PrintWriter to create and write into book.txt
             try {
@@ -709,7 +709,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
                     matchedID[3] = txtPhoneNumber.getText();
                     matchedID[4] = txaHomeAddress.getText();
                     matchedID[5] = (String) cmbGender.getSelectedItem();
-                    matchedID[6] = txtDOB.getText();
+                    matchedID[6] = txtEmail.getText();
                     matchedID[7] = txtDOB.getText();
                     matchedID[8] = "true";
                     // JOptionPane.showMessageDialog(null, "Yes it worked");
@@ -883,7 +883,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
         txtFullName.setText("");
         txtPhoneNumber.setText("");
         txaHomeAddress.setText("");
-        txtDOB.setText("");
+        txtEmail.setText("");
         txtDOB.setText("");
         txtManagerID.setText("");
         cmbGender.setSelectedIndex(0);
@@ -968,7 +968,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
 
     private void cmbCustIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCustIDActionPerformed
         // TODO add your handling code here:
-        clearUser();
+        
         if (cmbCustID.getSelectedIndex() > 0) {
             loadCustomerInfo();
             btnRegister.setEnabled(false);
@@ -976,7 +976,9 @@ public class APUManageCustomer extends javax.swing.JFrame {
             btnDelete.setEnabled(true);
 
         } else {
+            clearUser();
             // Disabling action buttons when no book is loaded. Add button is still available to accept new book
+            txtManagerID.setText(uID);
             btnRegister.setEnabled(true);
             btnUpdate.setEnabled(false);
             btnDelete.setEnabled(false);
@@ -1003,7 +1005,11 @@ public class APUManageCustomer extends javax.swing.JFrame {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         int selection = JOptionPane.showConfirmDialog(null, "Are you sure to go back?", "Back to Main Menu", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (selection == JOptionPane.YES_OPTION) {
-            new APUCMMenu().setVisible(true);
+            try {
+                new ManagerMenu().setVisible(true);
+            } catch (IOException ex) {
+                Logger.getLogger(ManageCustomer.class.getName()).log(Level.SEVERE, null, ex);
+            }
             this.dispose();
         }
     }//GEN-LAST:event_btnBackActionPerformed
@@ -1035,7 +1041,7 @@ public class APUManageCustomer extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new APUManageCustomer().setVisible(true);
+                new ManageCustomer().setVisible(true);
             }
         });
     }

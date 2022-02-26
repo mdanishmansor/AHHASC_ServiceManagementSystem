@@ -13,8 +13,11 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -362,7 +365,7 @@ public class ForgetPassword extends javax.swing.JFrame {
 
 
                         JOptionPane.showMessageDialog(null, "Your password has been updated, you may login now.", "Password Updated!", JOptionPane.INFORMATION_MESSAGE);
-                        new APULogin().setVisible(true);
+                        new Login().setVisible(true);
                         this.dispose();
                     }
                     
@@ -510,7 +513,11 @@ public class ForgetPassword extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
-        new APULogin().setVisible(true);
+        try {
+            new Login().setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(ForgetPassword.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
     }//GEN-LAST:event_btnbackActionPerformed
 
