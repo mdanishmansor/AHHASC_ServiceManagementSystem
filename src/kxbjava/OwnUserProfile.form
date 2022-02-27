@@ -565,7 +565,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Only .png are supported!"/>
+                <Property name="text" type="java.lang.String" value="Only .png .jpg and .jpeg are supported!"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btnSelectImg">

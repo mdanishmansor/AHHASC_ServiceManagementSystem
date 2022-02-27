@@ -38,9 +38,10 @@ import org.apache.commons.io.FilenameUtils;
  * @author User
  */
 public class OwnUserProfile extends javax.swing.JFrame {
-    
+
     private String FileDir, currentUserID, userID, userRole, ManagerID, imgDir, fullID;
-     private final Color ogtxt = new Color(237, 237, 237);
+    private final Color ogtxt = new Color(237, 237, 237);
+
     /**
      * Creates new form APUUserProfile
      */
@@ -55,7 +56,7 @@ public class OwnUserProfile extends javax.swing.JFrame {
         this.setTitle("AHHASC User Profile Page");
 
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -226,7 +227,7 @@ public class OwnUserProfile extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Only .png are supported!");
+        jLabel6.setText("Only .png .jpg and .jpeg are supported!");
 
         btnSelectImg.setBackground(new java.awt.Color(68, 68, 68));
         btnSelectImg.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -413,9 +414,8 @@ public class OwnUserProfile extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
     // <editor-fold defaultstate="collapsed" desc="Methods">
-    
     private void selectImage() {
 
         try {
@@ -441,16 +441,10 @@ public class OwnUserProfile extends javax.swing.JFrame {
         }
 
     }
-    
+
     private void saveImage() {
         if (imgDir == null) {
-            File imgPng = new File(System.getProperty("user.dir") + "\\src\\UserProfilePictures\\" + userID + ".png");
-
-            if (imgPng.exists()) {
-                imgDir = System.getProperty("user.dir") + "\\src\\UserProfilePictures\\" + userID + ".png";
-            } else {
-                imgDir = System.getProperty("user.dir") + "\\src\\Icons\\defaultUser.png";
-            }
+            imgDir = System.getProperty("user.dir") + "\\src\\Icons\\defaultUser.png";
 
         }
         File file = new File(imgDir); //Create A File Object With The Directory of the Selected Image.
@@ -463,15 +457,14 @@ public class OwnUserProfile extends javax.swing.JFrame {
         File newFile = new File(newFileName);  // Create File Objects of the Image File That Will Be Transfered To The Source Folder.
         File oriFileName = new File(destination);
 
-        if (newFile.exists()) { //Checks If An Image With The Same Name Already Exist.
-            Path imagesPath = Paths.get(newFileName);
-            try {
-                Files.delete(imagesPath);
-            } catch (IOException ex) {
-
-            }
-        }
-
+//        if (newFile.exists()) { //Checks If An Image With The Same Name Already Exist.
+//            Path imagesPath = Paths.get(newFileName);
+//            try {
+//                Files.delete(imagesPath);
+//            } catch (IOException ex) {
+//
+//            }
+//        }
         try {
 
             Files.copy(file.toPath(), newFile.toPath(), StandardCopyOption.REPLACE_EXISTING); //Copies File To The Thumbnail Image Folder.
@@ -485,64 +478,66 @@ public class OwnUserProfile extends javax.swing.JFrame {
         }
 
     }
-    
-    private void loadUserProfile() throws IOException{
+
+    private void loadUserProfile() throws IOException {
         String[] matchedID = null;
         FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
         File usertext = new File(FileDir + "UserCache.txt");
         Scanner intUser;
         try {
             intUser = new Scanner(usertext);
-            while (intUser.hasNext())
-            {
-             String bEntry = intUser.nextLine();
-             matchedID = bEntry.split(":");
-             
-             //fetching the data
-             userID = matchedID[0];
-             ManagerID = matchedID[1];
-             userRole = matchedID[2];
-             
-             //load data to textfields
-             txtUserID.setText(userID);
-             txtFullName.setText(matchedID[3]);
-             txtEmail.setText(matchedID[4]);
-             txtUsername.setText(matchedID[5]);
-             txtPassField.setText(matchedID[6]);
-             txtPhoneNumber.setText(matchedID[7]);
-              switch (matchedID[8]) {
-                        case "Male":
-                            cmbGender.setSelectedIndex(1);
-                            break;
-                        case "Female":
-                            cmbGender.setSelectedIndex(2);
-                            break;
-                        default:
-                            cmbGender.setSelectedIndex(1);
-                    }
-              
-               // To set profile picture on label
-                    File imgPng = new File(System.getProperty("user.dir") + "\\src\\UserProfilePictures\\" + userID + ".png");
-                    String identifiedImg;
-                    if (imgPng.exists()) {
-                        identifiedImg = System.getProperty("user.dir") + "\\src\\UserProfilePictures\\" + userID + ".png";
-                    } else {
-                        identifiedImg = System.getProperty("user.dir") + "\\src\\Icons\\defaultUser.png";
-                    }
-                    BufferedImage bufImg = ImageIO.read(new File(identifiedImg));
-                    Image imgScale = bufImg.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
-                    ImageIcon scaledIcon = new ImageIcon(imgScale);
-                    lblSelectedPic.setIcon(scaledIcon);
-                    
+            while (intUser.hasNext()) {
+                String bEntry = intUser.nextLine();
+                matchedID = bEntry.split(":");
+
+                //fetching the data
+                userID = matchedID[0];
+                ManagerID = matchedID[1];
+                userRole = matchedID[2];
+
+                //load data to textfields
+                txtUserID.setText(userID);
+                txtFullName.setText(matchedID[3]);
+                txtEmail.setText(matchedID[4]);
+                txtUsername.setText(matchedID[5]);
+                txtPassField.setText(matchedID[6]);
+                txtPhoneNumber.setText(matchedID[7]);
+                switch (matchedID[8]) {
+                    case "Male":
+                        cmbGender.setSelectedIndex(1);
+                        break;
+                    case "Female":
+                        cmbGender.setSelectedIndex(2);
+                        break;
+                    default:
+                        cmbGender.setSelectedIndex(1);
                 }
+
+                // To set profile picture on label
+                String selectedPfp = System.getProperty("user.dir") + "\\src\\UserProfilePictures\\" + userID + ".png";
+                File imgPng = new File(selectedPfp);
+                String identifiedImg;
+                imgDir = selectedPfp;
+                if (imgPng.exists()) {
+                    identifiedImg = System.getProperty("user.dir") + "\\src\\UserProfilePictures\\" + userID + ".png";
+                } else {
+                    identifiedImg = System.getProperty("user.dir") + "\\src\\Icons\\defaultUser.png";
+                }
+                BufferedImage bufImg = ImageIO.read(new File(identifiedImg));
+                Image imgScale = bufImg.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+                ImageIcon scaledIcon = new ImageIcon(imgScale);
+                lblSelectedPic.setIcon(scaledIcon);
+
+            }
             intUser.close();
         } catch (FileNotFoundException ex) {
             //Logger.getLogger(.class.getName()).log(Level.SEVERE, null, ex);
         }
-    } 
-    private void loadnewUserProfile(){
+    }
+
+    private void loadnewUserProfile() {
         // Assigning the cID to the selected index value
-       // cID = (String) cbxClientID.getSelectedItem();
+        // cID = (String) cbxClientID.getSelectedItem();
         // This is to ensure the entire method have access to borrow matchedID array
         String[] matchedID = null;
         FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
@@ -554,8 +549,7 @@ public class OwnUserProfile extends javax.swing.JFrame {
             // This part loads all book information
             intClient = new Scanner(clienttxt);
             // Read lines from the file until no more are left.
-            while (intClient.hasNext())
-            {
+            while (intClient.hasNext()) {
                 // Read the next line.
                 String bEntry = intClient.nextLine();
                 // Split the line by using the delimiterÂ ":" (semicolon) and store into array.
@@ -582,13 +576,13 @@ public class OwnUserProfile extends javax.swing.JFrame {
             }
             intClient.close();
         } catch (FileNotFoundException ex) {
-           // Logger.getLogger(unnamedBorrowMenu.class.getName()).log(Level.SEVERE, null, ex);
+            // Logger.getLogger(unnamedBorrowMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-     private void emptyFields() throws Exception {
-       // EmailValidation vd = new EmailValidation();
-       if ("".equals(txtUserID.getText())) {
+
+    private void emptyFields() throws Exception {
+        // EmailValidation vd = new EmailValidation();
+        if ("".equals(txtUserID.getText())) {
             throw new Exception("Empty user ID");
         }
         if ("".equals(txtFullName.getText())) {
@@ -610,8 +604,8 @@ public class OwnUserProfile extends javax.swing.JFrame {
 //            throw new Exception("Invalid email address format");
 //        }
     }
-     
-      private void highlightEmpty() {
+
+    private void highlightEmpty() {
         if ("".equals(txtUserID.getText())) {
             lblUserID.setForeground(Color.RED);
         }
@@ -631,9 +625,9 @@ public class OwnUserProfile extends javax.swing.JFrame {
             lblPhoneNumber.setForeground(Color.RED);
         }
     }
-      
-    private void updateUserInfo(){
-        
+
+    private void updateUserInfo() {
+
         try {
             // Check if textfields are empty
             emptyFields();
@@ -647,7 +641,7 @@ public class OwnUserProfile extends javax.swing.JFrame {
             File UserOri = new File(FileDir + "UserProfile.txt");
             File UserBack = new File(FileDir + "UserProfileBack.txt");
             // To check if clientBak.txt is present or not
-            if (!UserBack.exists()){
+            if (!UserBack.exists()) {
                 UserOri.createNewFile();
             }
             // This is for debugging only!
@@ -657,9 +651,9 @@ public class OwnUserProfile extends javax.swing.JFrame {
             // This is to open, find and replace a specific book record
             // Requires temporary file to store current state
             // FileWriter to write into a new file called book.txt
-            FileWriter cd = new FileWriter(FileDir + "UserProfile.txt"); 
+            FileWriter cd = new FileWriter(FileDir + "UserProfile.txt");
             // PrintWriter to print into book.txt
-            PrintWriter cdp = new PrintWriter(cd); 
+            PrintWriter cdp = new PrintWriter(cd);
             // This is to open and read clientBak.txt 
             File usertxt = new File(FileDir + "UserProfileBack.txt");
             // This is to instantiate the file opened earlier
@@ -669,8 +663,7 @@ public class OwnUserProfile extends javax.swing.JFrame {
             // This is only for debugging!
             // boolean itWorked = false;
             // Read lines from the file until no more are left.
-            while (inputFile.hasNext())
-            {
+            while (inputFile.hasNext()) {
                 // This is for debugging only!
                 // JOptionPane.showMessageDialog(null, "In loop");
                 // Read the next line.
@@ -687,23 +680,22 @@ public class OwnUserProfile extends javax.swing.JFrame {
                     matchedID[5] = txtUsername.getText();
                     matchedID[6] = String.valueOf(txtPassField.getPassword());
                     matchedID[7] = txtPhoneNumber.getText();
-                    matchedID[8] = (String)cmbGender.getSelectedItem();
+                    matchedID[8] = (String) cmbGender.getSelectedItem();
                     matchedID[9] = "true";
-                    
+
                     //matchedID[8] = "false";
-                    
                 }
                 // Rewrite the new book.txt with values found in clientBak.txt
-                cdp.println(matchedID[0] + ":" +
-                            matchedID[1] + ":" +
-                            matchedID[2] + ":" +
-                            matchedID[3] + ":" +
-                            matchedID[4] + ":" +
-                            matchedID[5] + ":" +
-                            matchedID[6] + ":" + 
-                            matchedID[7] + ":" + 
-                            matchedID[8] + ":" + 
-                            matchedID[9]);
+                cdp.println(matchedID[0] + ":"
+                        + matchedID[1] + ":"
+                        + matchedID[2] + ":"
+                        + matchedID[3] + ":"
+                        + matchedID[4] + ":"
+                        + matchedID[5] + ":"
+                        + matchedID[6] + ":"
+                        + matchedID[7] + ":"
+                        + matchedID[8] + ":"
+                        + matchedID[9]);
                 //JOptionPane.showMessageDialog(null, "Yes it worked");
             }
             // Close the clientBak.txt reader
@@ -719,9 +711,10 @@ public class OwnUserProfile extends javax.swing.JFrame {
             highlightEmpty();
             JOptionPane.showMessageDialog(null, "Invalid input! Please check your input to proceed.", "Invalid insertion detected!", JOptionPane.ERROR_MESSAGE);
         }
-    
+
     }
-     private void deHighlightEmpty() {
+
+    private void deHighlightEmpty() {
         lblUserID.setForeground(ogtxt);
         lblFullName.setForeground(ogtxt);
         lblEmail.setForeground(ogtxt);
@@ -730,8 +723,8 @@ public class OwnUserProfile extends javax.swing.JFrame {
         lblPhoneNumber.setForeground(ogtxt);
         // lblClientHomeAddress.setForeground(ogtxt);
     }
-    
-    private void clearCache(){
+
+    private void clearCache() {
         try {
             FileDir = System.getProperty("user.dir") + "\\src\\TextFiles\\";
             File cache = new File(FileDir + "UserCache.txt");
@@ -741,18 +734,19 @@ public class OwnUserProfile extends javax.swing.JFrame {
         } catch (Exception ex) {
         }
     }
-    private void checkUserType() throws IOException{
-         if (txtUserID.getText().contains("CM")) {
-                    new ManagerMenu().setVisible(true);
-                    this.dispose();
-                }
-         if(txtUserID.getText().contains("TC")){
-             new TechnicianMenu().setVisible(true);
-             this.dispose();
-         }
+
+    private void checkUserType() throws IOException {
+        if (txtUserID.getText().contains("CM")) {
+            new ManagerMenu().setVisible(true);
+            this.dispose();
+        }
+        if (txtUserID.getText().contains("TC")) {
+            new TechnicianMenu().setVisible(true);
+            this.dispose();
+        }
     }
-    
-    private void initForm() throws IOException{
+
+    private void initForm() throws IOException {
         setLogo();
         this.setLocationRelativeTo(null);
         this.chkpass.setSelected(true);
@@ -763,7 +757,7 @@ public class OwnUserProfile extends javax.swing.JFrame {
         // Set the initial value for new book
         // This anon class handles window closing event
         addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e){
+            public void windowClosing(WindowEvent e) {
                 int selection = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Closing Window", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if (selection == JOptionPane.YES_OPTION) {
                     clearCache();
@@ -773,14 +767,12 @@ public class OwnUserProfile extends javax.swing.JFrame {
                 }
             }
         });
-       // txaHomeAddress.getDocument().putProperty("filterNewlines", Boolean.TRUE);
-      //  inputCharacterValidation();
-     }
-    
-    
+        // txaHomeAddress.getDocument().putProperty("filterNewlines", Boolean.TRUE);
+        //  inputCharacterValidation();
+    }
+
     //</editor-fold>
-    
-    
+
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         deHighlightEmpty();
@@ -826,8 +818,7 @@ public class OwnUserProfile extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPassFieldActionPerformed
     //</editor-fold>
-    
-    
+
     /**
      * @param args the command line arguments
      */
