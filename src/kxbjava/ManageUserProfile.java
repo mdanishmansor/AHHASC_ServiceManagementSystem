@@ -55,7 +55,7 @@ public class ManageUserProfile extends javax.swing.JFrame {
     public ManageUserProfile() {
         initComponents();
         initForm();
-        
+
         //getUserType();
         //setUserOption();
     }
@@ -557,7 +557,7 @@ public class ManageUserProfile extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // <editor-fold defaultstate="collapsed" desc="Methods">
-    private boolean emailChecker(){
+    private boolean emailChecker() {
         // Assigning the lID to the selected index value
         String userTemp = txtEmail.getText();
         // This is to ensure the entire method have access to borrow matchedID array
@@ -571,12 +571,11 @@ public class ManageUserProfile extends javax.swing.JFrame {
         try {
             if (!usertxt.exists()) {
                 usertxt.createNewFile();
-            }   
+            }
             // This part loads all book information
             intUser = new Scanner(usertxt);
             // Read lines from the file until no more are left.
-            while (intUser.hasNext())
-            {
+            while (intUser.hasNext()) {
                 // Read the next line.
                 String lEntry = intUser.nextLine();
                 // Split the line by using the delimiter ":" (semicolon) and store into array.
@@ -584,7 +583,7 @@ public class ManageUserProfile extends javax.swing.JFrame {
                 // matchedID[0] = matchedID[0].replace("LIB", "");
                 // JOptionPane.showMessageDialog(null, i);
                 if (userTemp.equals(matchedID[4]) && !currentUserID.equals(matchedID[0])) {
-                     notAvailable = true;
+                    notAvailable = true;
                 }
             }
             intUser.close();
@@ -594,7 +593,7 @@ public class ManageUserProfile extends javax.swing.JFrame {
         return notAvailable;
     }
 
-    private boolean usernameChecker(){
+    private boolean usernameChecker() {
         // Assigning the lID to the selected index value
         String userTemp = txtUsername.getText();
         // This is to ensure the entire method have access to borrow matchedID array
@@ -608,12 +607,11 @@ public class ManageUserProfile extends javax.swing.JFrame {
         try {
             if (!usertxt.exists()) {
                 usertxt.createNewFile();
-            }   
+            }
             // This part loads all book information
             intUser = new Scanner(usertxt);
             // Read lines from the file until no more are left.
-            while (intUser.hasNext())
-            {
+            while (intUser.hasNext()) {
                 // Read the next line.
                 String lEntry = intUser.nextLine();
                 // Split the line by using the delimiter ":" (semicolon) and store into array.
@@ -621,7 +619,7 @@ public class ManageUserProfile extends javax.swing.JFrame {
                 // matchedID[0] = matchedID[0].replace("LIB", "");
                 // JOptionPane.showMessageDialog(null, i);
                 if (userTemp.equals(matchedID[5]) && !currentUsername.equals(matchedID[5])) {
-                     noAvailable = true;
+                    noAvailable = true;
                 }
             }
             intUser.close();
@@ -798,7 +796,7 @@ public class ManageUserProfile extends javax.swing.JFrame {
                     switch (matchedID[2]) {
                         case "Centre Manager":
                             currentUserID = "CM" + uID;
-                            
+
                             break;
                         case "Technician":
                             currentUserID = "TC" + uID;
@@ -807,7 +805,9 @@ public class ManageUserProfile extends javax.swing.JFrame {
                     }
 
                     // To set profile picture on label
-                    File imgPng = new File(System.getProperty("user.dir") + "\\src\\UserProfilePictures\\" + currentUserID + ".png");
+                    String selectedPfp = System.getProperty("user.dir") + "\\src\\UserProfilePictures\\" + currentUserID + ".png";
+                    File imgPng = new File(selectedPfp);
+                    imgDir = selectedPfp;
                     String identifiedImg;
                     if (imgPng.exists()) {
                         identifiedImg = System.getProperty("user.dir") + "\\src\\UserProfilePictures\\" + currentUserID + ".png";
@@ -1192,30 +1192,29 @@ public class ManageUserProfile extends javax.swing.JFrame {
     }
 
     private void saveImage() {
-        if(imgDir == null){
+        if (imgDir == null) {
             imgDir = System.getProperty("user.dir") + "\\src\\Icons\\defaultUser.png";
+            System.out.println("It is null!");
+
         }
-        File file = new File(imgDir); //Create A File Object With The Directory of the Selected Image.
 
         String source = System.getProperty("user.dir"); //Retrieving Directory of The Source Files.
         String destination = source + "\\src\\UserProfilePictures\\"; //Sets the Directory Folder Containing Thumbnail Image Files.
-        String extensionName = FilenameUtils.getExtension(imgDir); // Retrieve File Extension of Selected File.
         String newFileName = destination + userSpecies + uID + "." + "png"; // Assigning New Directory and New Image Filename.
 
+        File file = new File(imgDir); //Create A File Object With The Directory of the Selected Image.
         File newFile = new File(newFileName);  // Create File Objects of the Image File That Will Be Transfered To The Source Folder.
         File oriFileName = new File(destination);
 
-        if (newFile.exists()) { //Checks If An Image With The Same Name Already Exist.
-            Path imagesPath = Paths.get(newFileName);
-            try {
-                Files.delete(imagesPath);
-            } catch (IOException ex) {
-
-            }
-        }
-
+//        if (newFile.exists()) { //Checks If An Image With The Same Name Already Exist.
+//            Path imagesPath = Paths.get(newFileName);
+//            try {
+//                Files.delete(imagesPath);
+//            } catch (IOException ex) {
+//
+//            }
+//        }
         try {
-
             Files.copy(file.toPath(), newFile.toPath(), StandardCopyOption.REPLACE_EXISTING); //Copies File To The Thumbnail Image Folder.
             boolean success = oriFileName.renameTo(newFile); //After Copying, The Image Will Be Renamed.
 
@@ -1262,8 +1261,8 @@ public class ManageUserProfile extends javax.swing.JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Validation Methods">
     private void emptyFields() throws Exception {
-       // EmailValidation vd = new EmailValidation();
-       if (cmbUserType.getSelectedIndex() <= 0) {
+        // EmailValidation vd = new EmailValidation();
+        if (cmbUserType.getSelectedIndex() <= 0) {
             throw new Exception("User Type not Selected");
         }
         if ("".equals(txtFullName.getText())) {

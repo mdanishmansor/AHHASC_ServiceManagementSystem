@@ -1,4 +1,4 @@
-CM00001:CM00001:Centre Manager:Muhammad Irfan:Irfan@gmail.com:irfan:123:0126767890:Male:true
+CM00001:CM00001:Centre Manager:Muhammad Irfan:Irfan@gmail.com:irfan:1234:0126767890:Male:true
 TC00001:CM00001:Technician:Muhammad Danish:danish2@gmail.com:danish:cang2:0190191919:Male:true
 CM00002:CM00001:Centre Manager:JoYuqiMu:kolam@mail.com:YuqiJo:kolambusuk:0202029292:Male:true
 CM00003:CM00001:Centre Manager:Jennie :jennie@mail.com:jennieblackpink:blackpink:0299178717:Female:true
