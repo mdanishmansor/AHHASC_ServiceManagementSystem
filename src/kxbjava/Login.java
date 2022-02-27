@@ -344,7 +344,7 @@ public class Login extends javax.swing.JFrame {
             while (inputFile.hasNext()) {
                 String lEntry = inputFile.nextLine();
                 matchedID = lEntry.split(":");
-                if (User.equals(matchedID[5]) && Pass.equals(matchedID[6])) {
+                if (User.equals(matchedID[5]) && Pass.equals(matchedID[6]) && matchedID[9].equals("true")) {
                     Authenticate = true;
                     UserID = matchedID[0];
                     ManagerID = matchedID[1];
@@ -384,7 +384,7 @@ public class Login extends javax.swing.JFrame {
                 String bEntry = intUser.nextLine();
                 matchedID = bEntry.split(":");
 
-                if (txtUsername.getText().equals(matchedID[5])) {
+                if (txtUsername.getText().equals(matchedID[5]) && matchedID[9].equals("true")) {
                     File imgPng = new File(System.getProperty("user.dir") + "\\src\\UserProfilePictures\\" + matchedID[0] + ".png");
                     String identifiedImg;
                     if (imgPng.exists()) {

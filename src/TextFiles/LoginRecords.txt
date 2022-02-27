@@ -66,3 +66,5 @@ TC00001:CM00001:Technician:Muhammad Danish:28/02/2022, 00.00.46
 TC00001:CM00001:Technician:Muhammad Danish:28/02/2022, 00.02.08
 TC00001:CM00001:Technician:Muhammad Danish:28/02/2022, 00.04.57
 TC00001:CM00001:Technician:Muhammad Danish:28/02/2022, 00.05.38
+CM00001:CM00001:Centre Manager:Muhammad Irfan:28/02/2022, 00.14.22
+CM00001:CM00001:Centre Manager:Muhammad Irfan:28/02/2022, 00.16.25
