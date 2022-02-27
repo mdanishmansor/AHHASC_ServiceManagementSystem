@@ -1,11 +1,16 @@
-CM00001:CM00001:Centre Manager:Muhammad Irfan:Irfan@gmail.com:irfan:1234:0126767890:Male:true
+CM00001:CM00001:Centre Manager:Muhammad Irfan:Irfan@gmail.com:irfan:Papa:0126767890:Male:true
 TC00001:CM00001:Technician:Muhammad Danish:danish2@gmail.com:danish:cang2:0190191919:Male:true
 CM00002:CM00001:Centre Manager:JoYuqiMu:kolam@mail.com:YuqiJo:kolambusuk:0202029292:Male:true
-CM00003:CM00001:Centre Manager:Jennie :jennie@mail.com:jennieblackpink:blackpink:0299178717:Female:true
+CM00003:CM00001:Centre Manager:Jennie Kim :jennie@mail.com:jennieblackpink:blackpink:0299178717:Male:true
 TC00002:CM00001:Technician:lalisa manoban:lalisa@mail.com:lalisa:money9999:0182827272:Female:true
 CM00004:CM00001:Centre Manager:ackerman mikasa:mikasa@mail.com:mikasa:mikasaxeren:0101010101:Female:true
-CM00005:CM00001:Centre Manager:RUMBLING:erehYEAGER@mail.com:ereh_yeager:rumbling_itscoming:0101010101:Male:true
-TC00003:CM00001:Technician:hanina:nani@mail.com:nina:haninamasa:1010191912:Male:true
+CM00005:CM00001:Centre Manager:RUMBLING:erehYEAGER@mail.com:ereh_yeager:rumbling_itscoming:0101010101:Male:false
+TC00003:CM00001:Technician:haninako:nani@mail.com:nina:haninamasa:1010191912:Female:true
 TC00004:CM00001:Technician:kinabatangana:haj@mail.com:malasKinaBatangNGAN:kinaba:1010191912:Male:true
 TC00005:CM00001:Technician:hadadad:haniaiai@mail.com:yuzidahadad:makiluko:1010191912:Female:true
 CM00006:CM00001:Centre Manager:halilintar:boboiboy@mail.com:boboiboy:kerispelir:0101828822:Male:false
+TC00006:CM00001:Technician:Jett Anak Phoenix:jomama@mail.:jettxphoenix:WatchThis:3189367183:Female:true
+TC00007:CM00001:Technician:BON HOBIES :dadadhH@mail.com:jojojojo:Kacang240911:1231231312:Male:true
+CM00007:CM00001:Centre Manager:dadadadad:dadada@mail.com:fadadadadada:adadadad:1111111111:Male:true
+CM00008:CM00001:Centre Manager:ssss:popop@mail.com:sssss:adadadada:1212121212:Male:true
+CM00009:CM00001:Centre Manager:dadada:dadadadada@mail.com:adadada:dadada:1111111111:Male:true

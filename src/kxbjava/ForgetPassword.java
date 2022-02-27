@@ -86,14 +86,14 @@ public class ForgetPassword extends javax.swing.JFrame {
         mainPnl.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtUserID.setBackground(new java.awt.Color(68, 68, 68));
-        txtUserID.setFont(new java.awt.Font("Segoe UI Variable", 1, 18)); // NOI18N
+        txtUserID.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txtUserID.setForeground(new java.awt.Color(255, 255, 255));
         txtUserID.setToolTipText("User ID");
         txtUserID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
         mainPnl.add(txtUserID, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 160, 700, 80));
 
         txtEmail.setBackground(new java.awt.Color(68, 68, 68));
-        txtEmail.setFont(new java.awt.Font("Segoe UI Variable", 1, 18)); // NOI18N
+        txtEmail.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txtEmail.setForeground(new java.awt.Color(255, 255, 255));
         txtEmail.setToolTipText("User Email");
         txtEmail.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
@@ -105,7 +105,7 @@ public class ForgetPassword extends javax.swing.JFrame {
         mainPnl.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 700, 80));
 
         txtConfirmPass.setBackground(new java.awt.Color(68, 68, 68));
-        txtConfirmPass.setFont(new java.awt.Font("Segoe UI Variable", 1, 18)); // NOI18N
+        txtConfirmPass.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txtConfirmPass.setForeground(new java.awt.Color(255, 255, 255));
         txtConfirmPass.setToolTipText("Confirm Password");
         txtConfirmPass.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
@@ -113,7 +113,7 @@ public class ForgetPassword extends javax.swing.JFrame {
         mainPnl.add(txtConfirmPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 390, 700, 80));
 
         txtNewPass.setBackground(new java.awt.Color(68, 68, 68));
-        txtNewPass.setFont(new java.awt.Font("Segoe UI Variable", 1, 18)); // NOI18N
+        txtNewPass.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txtNewPass.setForeground(new java.awt.Color(255, 255, 255));
         txtNewPass.setToolTipText("User Password");
         txtNewPass.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(237, 237, 237)));
@@ -176,7 +176,7 @@ public class ForgetPassword extends javax.swing.JFrame {
         btnPnlLayout.setVerticalGroup(
             btnPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnPnlLayout.createSequentialGroup()
-                .addContainerGap(7, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(btnPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnback, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -398,7 +398,6 @@ public class ForgetPassword extends javax.swing.JFrame {
             //loadCustomerInfo();
         } catch (Exception ex) {
             highlightEmpty();
-            System.out.println(ex);
             if (!similarPassword()) {
                 JOptionPane.showMessageDialog(null, "Password is not matching!", "Password mismatch!", JOptionPane.WARNING_MESSAGE);
             }

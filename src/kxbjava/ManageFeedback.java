@@ -89,7 +89,7 @@ public class ManageFeedback extends javax.swing.JFrame {
         mainPnl.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblFeedback.setBackground(new java.awt.Color(68, 68, 68));
-        tblFeedback.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        tblFeedback.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         tblFeedback.setForeground(new java.awt.Color(237, 237, 237));
         tblFeedback.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -213,7 +213,7 @@ public class ManageFeedback extends javax.swing.JFrame {
         btnPnlLayout.setVerticalGroup(
             btnPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnPnlLayout.createSequentialGroup()
-                .addContainerGap(7, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(btnPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -246,7 +246,7 @@ public class ManageFeedback extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Record(s) filtered accordingly", "Records Filtered!", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(null, "No record(s) found according to the filter", "No Record(s)", JOptionPane.ERROR_MESSAGE);
-                insertFeedbackRecords();
+                
             }
         } catch (java.io.IOException ex) {
             Logger.getLogger(ManageFeedback.class.getName()).log(Level.SEVERE, null, ex);

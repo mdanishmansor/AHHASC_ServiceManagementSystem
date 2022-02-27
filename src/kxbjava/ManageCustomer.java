@@ -820,6 +820,7 @@ public class ManageCustomer extends javax.swing.JFrame {
 
         }
     }
+    
 
     //form load method during init of the form
     private void initForm() {
@@ -1021,8 +1022,10 @@ public class ManageCustomer extends javax.swing.JFrame {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         int selection = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete customer record?", "Deleting customer", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (selection == JOptionPane.YES_OPTION) {
+            
             deleteCustomer();
-            loadCustomerInfo();
+            clearUser();
+            setCustomerID();
         } else {
             JOptionPane.showMessageDialog(null, "Customer record has not been deleted!", "Customer deletion", JOptionPane.INFORMATION_MESSAGE);
         }

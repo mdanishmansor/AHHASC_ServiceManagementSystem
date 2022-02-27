@@ -211,7 +211,7 @@ public class LoginRecords extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Record(s) filtered accordingly", "Records Filtered!", JOptionPane.INFORMATION_MESSAGE);
         } else{
             JOptionPane.showMessageDialog(null, "No record(s) found according to the filter", "No Record(s)", JOptionPane.ERROR_MESSAGE);
-            insertLoginRecords();
+            //insertLoginRecords();
         }
        
     

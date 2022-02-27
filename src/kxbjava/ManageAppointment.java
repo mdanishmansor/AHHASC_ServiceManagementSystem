@@ -841,6 +841,7 @@ public class ManageAppointment extends javax.swing.JFrame {
                 loadApptInfo();
                 btnUpdate.setEnabled(true);
                 btnDelete.setEnabled(true);
+                cmbCustomerID.setEnabled(false);
             } catch (ParseException ex) {
                 Logger.getLogger(ManageAppointment.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -849,16 +850,20 @@ public class ManageAppointment extends javax.swing.JFrame {
             btnUpdate.setEnabled(false);
             btnReset.setEnabled(false);
             btnDelete.setEnabled(false);
+            cmbCustomerID.setEnabled(false);
 
         }
     }//GEN-LAST:event_cmbAppIDActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-        try {
-            loadApptInfo();
-        } catch (ParseException ex) {
-            Logger.getLogger(ManageAppointment.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       cmbAppID.setSelectedIndex(0);
+            cmbCustomerID.setSelectedIndex(0);
+            cmbTechID.setSelectedIndex(0);
+            txtManagerID.setText("");
+            txtCustName.setText("");
+            appDateChooser.setDate(null);
+            cmbTime.setSelectedIndex(0);
+            cmbAppliance.setSelectedIndex(0);
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed

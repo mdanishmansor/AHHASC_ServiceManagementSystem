@@ -166,7 +166,7 @@ public class ManageUserProfile extends javax.swing.JFrame {
         btnDelete.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         btnDelete.setForeground(new java.awt.Color(237, 237, 237));
         btnDelete.setText("Delete");
-        btnDelete.setToolTipText("Button to reset every fields");
+        btnDelete.setToolTipText("Button to delete user");
         btnDelete.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         btnDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -997,6 +997,7 @@ public class ManageUserProfile extends javax.swing.JFrame {
             }
             JOptionPane.showMessageDialog(null, "Invalid input! Please check your input to proceed.", "Invalid insertion detected!", JOptionPane.ERROR_MESSAGE);
         }
+        imgDir = null;
     }
 
     private void updateUserInfo() {
@@ -1194,7 +1195,6 @@ public class ManageUserProfile extends javax.swing.JFrame {
     private void saveImage() {
         if (imgDir == null) {
             imgDir = System.getProperty("user.dir") + "\\src\\Icons\\defaultUser.png";
-            System.out.println("It is null!");
 
         }
 
@@ -1414,14 +1414,14 @@ public class ManageUserProfile extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        int selection = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete customer record?", "Deleting customer", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        int selection = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete user record?", "Deleting user", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (selection == JOptionPane.YES_OPTION) {
             deleteUserInfo();
             clearUser();
             getUserType();
             setUserOption();
         } else {
-            JOptionPane.showMessageDialog(null, "Customer record has not been deleted!", "Customer deletion", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "User record has not been deleted!", "User deletion", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -1433,9 +1433,16 @@ public class ManageUserProfile extends javax.swing.JFrame {
 
     private void cmbUserIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbUserIDActionPerformed
 
+        uID = (String) cmbUserID.getSelectedItem();
         deHighlightEmpty();
+        if (managerID.equals("CM" + uID)){
+            btnDelete.setEnabled(false);
+           
+        } else {
+            btnDelete.setEnabled(true);
+        }
         // Loads index with Book ID only
-        if (cmbUserID.getSelectedIndex() > 0) {
+        if (cmbUserID.getSelectedIndex() > 0 ) {
             try {
                 loadUserInfo();
             } catch (IOException ex) {
@@ -1444,7 +1451,6 @@ public class ManageUserProfile extends javax.swing.JFrame {
             txtUsername.setEditable(false);
             txtEmail.setEditable(false);
             btnRegister.setEnabled(false);
-            btnDelete.setEnabled(true);
             btnUpdate.setEnabled(true);
         } else {
             // Disabling action buttons when no book is loaded. Add button is still available to accept new book
@@ -1467,6 +1473,7 @@ public class ManageUserProfile extends javax.swing.JFrame {
             cmbUserID.setEnabled(true);
             btnRegister.setEnabled(true);
             txtManagerID.setText(managerID);
+            imgDir = null;
         } else {
             // Disabling action buttons when no client is loaded. Add button is still available to accept new book
             getUserType();
@@ -1478,6 +1485,7 @@ public class ManageUserProfile extends javax.swing.JFrame {
             btnDelete.setEnabled(false);
             txtManagerID.setText(managerID);
         }
+        
     }//GEN-LAST:event_cmbUserTypeActionPerformed
 
     private void iconNoSeeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconNoSeeMousePressed

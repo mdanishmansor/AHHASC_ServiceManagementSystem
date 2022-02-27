@@ -1,5 +1,6 @@
 CUST00001:CM00001:Jobies Idzmans:0192929828:Taman Minang, Cheras, Malaysia:Male:jobies@mail.com:09-10-2001:true
-CUST00002:CM00001:Kish Jen Tanan:0101010101:Taman Gembira, Malaysia:Male:hariharan@mail.com:09-10-2001:true
+CUST00002:CM00001:Kish Jen Tanan:0101010101:Taman Gembira, Malaysia 68100:Male:hariharan@mail.com:09-10-2001:true
 CUST00003:CM00001:Irfan kacang:2839028329:Kajang, Malaysia:Male:kacang@mail.apu.edu.my:08-02-2001:true
 CUST00004:CM00001:Danish Mansor Kach:1333333333:Gombak, Malaysia:Male:Kac@mail.apu.com:09-11-2001:true
 CUST00005:CM00001:aisyah binti bagus:0101019191:sabah, Malaysia:Female:aisyah@mail.com:09-12-2001:true
+CUST00006:CM00001:premMinister:0294302940:Ampang, 6800, Selangor, Malaysia:Female:prem@gmail.com:01-07-2001:true
