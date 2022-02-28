@@ -68,3 +68,11 @@ TC00001:CM00001:Technician:Muhammad Danish:28/02/2022, 00.04.57
 TC00001:CM00001:Technician:Muhammad Danish:28/02/2022, 00.05.38
 CM00001:CM00001:Centre Manager:Muhammad Irfan:28/02/2022, 00.14.22
 CM00001:CM00001:Centre Manager:Muhammad Irfan:28/02/2022, 00.16.25
+CM00001:CM00001:Centre Manager:Muhammad Irfan:28/02/2022, 13.55.12
+TC00002:CM00001:Technician:lalisa manoban:28/02/2022, 13.57.39
+TC00002:CM00001:Technician:lalisa manoban:28/02/2022, 14.00.17
+TC00002:CM00001:Technician:lalisa manoban:28/02/2022, 14.08.52
+TC00002:CM00001:Technician:lalisa manoban:28/02/2022, 14.11.36
+TC00002:CM00001:Technician:lalisa manoban:28/02/2022, 14.14.00
+TC00002:CM00001:Technician:lalisa manoban:28/02/2022, 14.16.06
+TC00002:CM00001:Technician:lalisa manoban:28/02/2022, 14.17.16

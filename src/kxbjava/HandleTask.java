@@ -630,28 +630,36 @@ public class HandleTask extends javax.swing.JFrame {
                         if (cmbPaymentStatus.getSelectedIndex() <= 1) {
                             JOptionPane.showMessageDialog(null, "Payment status was not set to paid, autoset it to Paid", "Payment Status unselected!", JOptionPane.ERROR_MESSAGE);
                             cmbPaymentStatus.setSelectedIndex(2);
+
+                            balanceAmount = paymentAmount.minus(totalAmount);
+                            matchedID[0] = paymentID;
+                            matchedID[1] = apptPrefix + ApptID;
+                            matchedID[2] = techID;
+                            matchedID[3] = txtCustomerName.getText();
+                            matchedID[4] = txtApptDate.getText();
+                            matchedID[5] = txtApptTime.getText();
+                            matchedID[6] = txtAppliance.getText();
+                            matchedID[7] = (String) cmbPaymentStatus.getSelectedItem();
+                            matchedID[8] = txtPaymentDate.getText();
+                            matchedID[9] = totalAmount.toString();
+                            matchedID[10] = paymentAmount.toString();
+                            matchedID[11] = balanceAmount.toString();
+                            matchedID[12] = "true";
+
+                            insertFeedback();
+                            updateApptStatus();
+                            printReceipt();
+                            clearPayment();
+                            JOptionPane.showMessageDialog(null, "Customer has paid for the service, balance is: " + balanceAmount, "Payment made", JOptionPane.INFORMATION_MESSAGE);
                         }
 
-                        balanceAmount = paymentAmount.minus(totalAmount);
-                        matchedID[0] = paymentID;
-                        matchedID[1] = apptPrefix + ApptID;
-                        matchedID[2] = techID;
-                        matchedID[3] = txtCustomerName.getText();
-                        matchedID[4] = txtApptDate.getText();
-                        matchedID[5] = txtApptTime.getText();
-                        matchedID[6] = txtAppliance.getText();
-                        matchedID[7] = (String) cmbPaymentStatus.getSelectedItem();
-                        matchedID[8] = txtPaymentDate.getText();
-                        matchedID[9] = totalAmount.toString();
-                        matchedID[10] = paymentAmount.toString();
-                        matchedID[11] = balanceAmount.toString();
-                        matchedID[12] = "true";
-                        
-                        
-                        
-
                     }
-                       cdp.println(matchedID[0] + ":"
+
+                    //JOptionPane.showMessageDialog(null, "Customer has paid for the service, balance is:RM" + balanceAmount, "Payment made", JOptionPane.INFORMATION_MESSAGE);
+                    // Inserting the new information from the text fields into the book line
+                }
+                // Rewrite the new book.txt with values found in clientBak.txt
+                cdp.println(matchedID[0] + ":"
                         + matchedID[1] + ":"
                         + matchedID[2] + ":"
                         + matchedID[3] + ":"
@@ -665,15 +673,6 @@ public class HandleTask extends javax.swing.JFrame {
                         + matchedID[11] + ":"
                         + matchedID[12]);
 
-                        insertFeedback();
-                        updateApptStatus();
-                        printReceipt();
-                        JOptionPane.showMessageDialog(null, "Customer has paid for the service, balance is: " + balanceAmount, "Payment made", JOptionPane.INFORMATION_MESSAGE);
-                    //JOptionPane.showMessageDialog(null, "Customer has paid for the service, balance is:RM" + balanceAmount, "Payment made", JOptionPane.INFORMATION_MESSAGE);
-                    // Inserting the new information from the text fields into the book line
-                }
-                // Rewrite the new book.txt with values found in clientBak.txt
-
             }
             // Close the clientBak.txt reader
             inputFile.close();
@@ -681,7 +680,6 @@ public class HandleTask extends javax.swing.JFrame {
             paymentBack.delete();
             // This closes the book.txt printer 
             cdp.close();
-            clearPayment();
             setCurrentDate();
         } catch (Exception ex) {
             highlightEmpty();
@@ -828,7 +826,7 @@ public class HandleTask extends javax.swing.JFrame {
         // Formatting ID into formal 6-digit mask
         DecimalFormat dc = new DecimalFormat("00000");
         try {
-           // emptyFields();
+            // emptyFields();
             // Fetching IDs from the textfields
             feedID = dc.format(newFeedID);
             String appointment_ID = (String) cmbApptID.getSelectedItem();
@@ -869,7 +867,7 @@ public class HandleTask extends javax.swing.JFrame {
                 //Logger.getLogger(unnamedBorrowMenu.class.getName()).log(Level.SEVERE, null, ex);
             }
         } catch (Exception ex) {
-          //  highlightEmpty();
+            //  highlightEmpty();
             // Continue with displaying which field was affected. ensure it appears before the mnessagebox
         }
     }
@@ -877,89 +875,88 @@ public class HandleTask extends javax.swing.JFrame {
     private void printInvoice() throws IOException, FileNotFoundException {
         try {
             emptyFields();
-        PdfWriter writer = new PdfWriter(invoicesource);
-        PdfDocument pdfdoc = new PdfDocument(writer);
-        Document document = new Document(pdfdoc);
-        pdfdoc.setDefaultPageSize(PageSize.A4);
+            PdfWriter writer = new PdfWriter(invoicesource);
+            PdfDocument pdfdoc = new PdfDocument(writer);
+            Document document = new Document(pdfdoc);
+            pdfdoc.setDefaultPageSize(PageSize.A4);
 
-        float width = 280f;
-        float columnWidth[] = {width, width};
-        Table tbl = new Table(columnWidth);
+            float width = 280f;
+            float columnWidth[] = {width, width};
+            Table tbl = new Table(columnWidth);
 
-        tbl.addCell(new Cell(1, 2).add(new Paragraph("AHHASC").setFontSize(30f).setBold().setFontColor(new DeviceRgb(66, 133, 244))).setBorder(Border.NO_BORDER));
+            tbl.addCell(new Cell(1, 2).add(new Paragraph("AHHASC").setFontSize(30f).setBold().setFontColor(new DeviceRgb(66, 133, 244))).setBorder(Border.NO_BORDER));
 
-        tbl.addCell(new Cell().add(new Paragraph("Danish & Irfan Service")).setBorder(Border.NO_BORDER).setTextAlignment(LEFT));
-        tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+            tbl.addCell(new Cell().add(new Paragraph("Danish & Irfan Service")).setBorder(Border.NO_BORDER).setTextAlignment(LEFT));
+            tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
 
-        tbl.addCell(new Cell().add(new Paragraph("0126764728")).setBorder(Border.NO_BORDER).setTextAlignment(LEFT));
+            tbl.addCell(new Cell().add(new Paragraph("0126764728")).setBorder(Border.NO_BORDER).setTextAlignment(LEFT));
 
-        tbl.addCell(new Cell().add(new Paragraph("\n")).setBorder(Border.NO_BORDER));
-        tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
-        tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
-        tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
-        tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+            tbl.addCell(new Cell().add(new Paragraph("\n")).setBorder(Border.NO_BORDER));
+            tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+            tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+            tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+            tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
 
-        Text textBilledTo = new Text("BILLED TO\n");
-        textBilledTo.setBold();
-        textBilledTo.setFontColor(new DeviceRgb(66, 133, 244));
-        Paragraph billedto = new Paragraph();
-        billedto.add(textBilledTo);
-        String customerName = txtCustomerName.getText();
-        billedto.add(customerName);
+            Text textBilledTo = new Text("BILLED TO\n");
+            textBilledTo.setBold();
+            textBilledTo.setFontColor(new DeviceRgb(66, 133, 244));
+            Paragraph billedto = new Paragraph();
+            billedto.add(textBilledTo);
+            String customerName = txtCustomerName.getText();
+            billedto.add(customerName);
 
-        tbl.addCell(new Cell().add(billedto).setBorder(Border.NO_BORDER));
-        tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+            tbl.addCell(new Cell().add(billedto).setBorder(Border.NO_BORDER));
+            tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
 
-        tbl.addCell(new Cell(2, 1).add(new Paragraph("INVOICE").setBold().setFontSize(24).setFontColor(new DeviceRgb(66, 133, 244))).setBorder(Border.NO_BORDER).setTextAlignment(LEFT));
-        tbl.addCell(new Cell().add(new Paragraph("\n")).setBorder(Border.NO_BORDER));
-        tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
-        tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
-        tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+            tbl.addCell(new Cell(2, 1).add(new Paragraph("INVOICE").setBold().setFontSize(24).setFontColor(new DeviceRgb(66, 133, 244))).setBorder(Border.NO_BORDER).setTextAlignment(LEFT));
+            tbl.addCell(new Cell().add(new Paragraph("\n")).setBorder(Border.NO_BORDER));
+            tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+            tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+            tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
 
-        Text textDateOfIssue = new Text("DATE OF ISSUE\n");
-        textDateOfIssue.setBold().setFontColor(new DeviceRgb(23, 23, 23));
-        Paragraph paragraphDateOfIssue = new Paragraph();
-        paragraphDateOfIssue.add(textDateOfIssue);
-        String invoiceiIssue = txtApptDate.getText();
-        paragraphDateOfIssue.add(invoiceiIssue);
+            Text textDateOfIssue = new Text("DATE OF ISSUE\n");
+            textDateOfIssue.setBold().setFontColor(new DeviceRgb(23, 23, 23));
+            Paragraph paragraphDateOfIssue = new Paragraph();
+            paragraphDateOfIssue.add(textDateOfIssue);
+            String invoiceiIssue = txtApptDate.getText();
+            paragraphDateOfIssue.add(invoiceiIssue);
 
-        tbl.addCell(new Cell(3, 1).add(paragraphDateOfIssue).setBorder(Border.NO_BORDER));
-        tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
-        tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
-        tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+            tbl.addCell(new Cell(3, 1).add(paragraphDateOfIssue).setBorder(Border.NO_BORDER));
+            tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+            tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
+            tbl.addCell(new Cell().setBorder(Border.NO_BORDER));
 
-        float itemColWidth[] = {403, 200};
-        Table itemTable = new Table(itemColWidth);
+            float itemColWidth[] = {403, 200};
+            Table itemTable = new Table(itemColWidth);
 
-        itemTable.addCell("Description").setBackgroundColor(new DeviceRgb(0, 157, 196)).setFontColor(new DeviceRgb(237, 237, 237)).setTextAlignment(CENTER);
-        itemTable.addCell("Amount").setBackgroundColor(new DeviceRgb(0, 157, 196)).setFontColor(new DeviceRgb(237, 237, 237)).setTextAlignment(CENTER);
+            itemTable.addCell("Description").setBackgroundColor(new DeviceRgb(0, 157, 196)).setFontColor(new DeviceRgb(237, 237, 237)).setTextAlignment(CENTER);
+            itemTable.addCell("Amount").setBackgroundColor(new DeviceRgb(0, 157, 196)).setFontColor(new DeviceRgb(237, 237, 237)).setTextAlignment(CENTER);
 
-        Table dataTable = new Table(itemColWidth);
-        String APPLIANCE = txtAppliance.getText();
-        String ttlAmount = txttotalAmount.getText();
+            Table dataTable = new Table(itemColWidth);
+            String APPLIANCE = txtAppliance.getText();
+            String ttlAmount = txttotalAmount.getText();
 
-        dataTable.addCell(APPLIANCE).setBackgroundColor(WHITE).setTextAlignment(CENTER);
-        dataTable.addCell(ttlAmount).setBackgroundColor(WHITE).setTextAlignment(CENTER);
+            dataTable.addCell(APPLIANCE).setBackgroundColor(WHITE).setTextAlignment(CENTER);
+            dataTable.addCell(ttlAmount).setBackgroundColor(WHITE).setTextAlignment(CENTER);
 
-        Table paymentTable = new Table(itemColWidth);
+            Table paymentTable = new Table(itemColWidth);
 
-        paymentTable.addCell(new Cell().add(new Paragraph("Total Amount:")).setBorder(Border.NO_BORDER).setTextAlignment(RIGHT));
-        paymentTable.addCell(new Cell().add(new Paragraph(ttlAmount)).setBorder(Border.NO_BORDER).setTextAlignment(CENTER));
+            paymentTable.addCell(new Cell().add(new Paragraph("Total Amount:")).setBorder(Border.NO_BORDER).setTextAlignment(RIGHT));
+            paymentTable.addCell(new Cell().add(new Paragraph(ttlAmount)).setBorder(Border.NO_BORDER).setTextAlignment(CENTER));
 
-        Paragraph tc = new Paragraph("\n PAYMENT MUST BE MADE ASAP");
-        //tbl.addCell(new Cell().add(new Paragraph("test")));
-        //write into the pdf
-        document.add(tbl);
-        document.add(itemTable);
-        document.add(dataTable);
-        document.add(paymentTable);
-        document.add(tc);
-        document.close();
-        JOptionPane.showMessageDialog(null, "Invoice created successfully", "Records Printed!", JOptionPane.INFORMATION_MESSAGE);
-        }
-        catch (Exception ex){
+            Paragraph tc = new Paragraph("\n PAYMENT MUST BE MADE ASAP");
+            //tbl.addCell(new Cell().add(new Paragraph("test")));
+            //write into the pdf
+            document.add(tbl);
+            document.add(itemTable);
+            document.add(dataTable);
+            document.add(paymentTable);
+            document.add(tc);
+            document.close();
+            JOptionPane.showMessageDialog(null, "Invoice created successfully", "Records Printed!", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception ex) {
             highlightEmpty();
-             JOptionPane.showMessageDialog(null, "Invalid input! Check for any empty fields", "Invalid input type!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Invalid input! Check for any empty fields", "Invalid input type!", JOptionPane.ERROR_MESSAGE);
         }
     }
 
