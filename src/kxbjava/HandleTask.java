@@ -646,11 +646,13 @@ public class HandleTask extends javax.swing.JFrame {
                             matchedID[11] = balanceAmount.toString();
                             matchedID[12] = "true";
 
+                            
+                            JOptionPane.showMessageDialog(null, "Customer has paid for the service, balance is: " + balanceAmount, "Payment made", JOptionPane.INFORMATION_MESSAGE);
                             insertFeedback();
                             updateApptStatus();
                             printReceipt();
-                            clearPayment();
-                            JOptionPane.showMessageDialog(null, "Customer has paid for the service, balance is: " + balanceAmount, "Payment made", JOptionPane.INFORMATION_MESSAGE);
+                            
+                            
                         }
 
                     }
@@ -672,6 +674,7 @@ public class HandleTask extends javax.swing.JFrame {
                         + matchedID[10] + ":"
                         + matchedID[11] + ":"
                         + matchedID[12]);
+              
 
             }
             // Close the clientBak.txt reader
@@ -680,7 +683,9 @@ public class HandleTask extends javax.swing.JFrame {
             paymentBack.delete();
             // This closes the book.txt printer 
             cdp.close();
+            clearPayment();
             setCurrentDate();
+            setAppointmentID();
         } catch (Exception ex) {
             highlightEmpty();
             JOptionPane.showMessageDialog(null, "Invalid input! Please check your input to proceed.", "Invalid insertion detected!", JOptionPane.ERROR_MESSAGE);

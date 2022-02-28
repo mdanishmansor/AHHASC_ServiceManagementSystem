@@ -76,3 +76,5 @@ TC00002:CM00001:Technician:lalisa manoban:28/02/2022, 14.11.36
 TC00002:CM00001:Technician:lalisa manoban:28/02/2022, 14.14.00
 TC00002:CM00001:Technician:lalisa manoban:28/02/2022, 14.16.06
 TC00002:CM00001:Technician:lalisa manoban:28/02/2022, 14.17.16
+CM00001:CM00001:Centre Manager:Muhammad Irfan:28/02/2022, 14.46.03
+TC00001:CM00001:Technician:Muhammad Danish:28/02/2022, 14.49.51

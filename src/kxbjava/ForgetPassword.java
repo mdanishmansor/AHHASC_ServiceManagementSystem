@@ -361,7 +361,7 @@ public class ForgetPassword extends javax.swing.JFrame {
                         matchedID[6] = String.valueOf(txtNewPass.getPassword());
                         matchedID[7] = phoneNumber;
                         matchedID[8] = Gender;
-                        matchedID[9] = flag;
+                        matchedID[9] = "true";
 
 
                         JOptionPane.showMessageDialog(null, "Your password has been updated, you may login now.", "Password Updated!", JOptionPane.INFORMATION_MESSAGE);
